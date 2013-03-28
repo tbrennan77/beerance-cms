@@ -1,0 +1,23 @@
+<h3>List of Users</h3>
+<h4 class="subheader">Admin view only of course :)</h4>
+<hr />
+
+<table>
+  <thead>
+    <tr>
+      <th>Username</th>
+      <th>Actions</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% User.all.each do |u| %>
+    <tr>
+      <td><%= link_to u.username, user_path(u) %></td>
+      <td>
+        <%= link_to "Edit", edit_user_path(u) %>
+        <%= link_to "Delete", user_path(u), method: 'delete', data: {confirm: "Are you sure?"} %>
+      </td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>

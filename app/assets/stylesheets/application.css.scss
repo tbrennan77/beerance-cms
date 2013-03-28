@@ -1,0 +1,68 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the top of the
+ * compiled file, but it's generally better to create a new file per style scope.
+ *
+ *= require_self
+ *= require foundation_and_overrides
+ *= require_tree .
+ *= require animate
+ */
+
+@import 'foundation';
+@font-face {
+    font-family: 'itc_officina_sans_std_bookRg';
+    src: url('officinasansstd-book-webfont.eot');
+    src: url('officinasansstd-book-webfont.eot?#iefix') format('embedded-opentype'),
+         url('officinasansstd-book-webfont.ttf') format('truetype'),
+         url('officinasansstd-book-webfont.svg#itc_officina_sans_std_bookRg') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.errorExplanation h2 { font-size: 17px; color: white; }
+.errorExplanation {
+  border: 1px solid red;
+  padding: 8px;
+  color: white;
+  background: #ff3019; /* Old browsers */
+  background: -moz-linear-gradient(top,  #ff3019 0%, #cf0404 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ff3019), color-stop(100%,#cf0404)); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top,  #ff3019 0%,#cf0404 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top,  #ff3019 0%,#cf0404 100%); /* Opera 11.10+ */
+  background: -ms-linear-gradient(top,  #ff3019 0%,#cf0404 100%); /* IE10+ */
+  background: linear-gradient(to bottom,  #ff3019 0%,#cf0404 100%); /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff3019', endColorstr='#cf0404',GradientType=0 ); /* IE6-9 */
+}
+
+.field_with_errors input {
+  border: 1px dotted red;
+}
+
+nav.top-bar {
+  margin-bottom: 30px;
+  background-image: url(header.png);
+  box-shadow: 0 1px 3px #AAA;
+}
+
+.panel {margin-left: 15px !important;}
+
+fieldset {background: #FFF;}
+
+.error_messages {
+  padding: 15px;
+  border: 1px solid red;
+  background: #fcc7c7;
+  h2 {color: red;}
+  ul {padding-left: 18px;}
+}
+
+.field_with_errors {
+  label {color:red;}
+  input {border: 1px dotted red !important;}
+}

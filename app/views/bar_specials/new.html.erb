@@ -1,0 +1,48 @@
+<h3>Add a new bar</h3>
+<h4 class="subheader">Fill out the form below</h4>
+<hr />
+
+<fieldset>
+<%= form_for @bar_special do |f| %>  
+  <% if @bar_special.errors.any? %>  
+    <div class="error_messages">  
+      <h2>Form is invalid</h2>  
+      <ul>  
+        <% for message in @bar_special.errors.full_messages %>  
+          <li><%= message %></li>  
+        <% end %>  
+      </ul>  
+    </div>  
+  <% end %>  
+  <p>  
+    <%= f.label :bar_id, "Bar Name" %><br />  
+    <%= f.select :bar_id, BarEntity.where(bar_owner_id: current_user.id).map {|b| [b.bar_name, b.id]} %>  
+  </p>  
+  <p>  
+    <%= f.label :special_description %><br />  
+    <%= f.text_field :special_description %>  
+  </p>  
+  <p>  
+    <%= f.label :sale_price %><br />  
+    <%= f.text_field :sale_price %>  
+  </p>  
+  <p>  
+    <%= f.label :expiration_prepend %><br />  
+    <%= f.text_field :expiration_prepend %>  
+  </p>  
+  <p>  
+    <%= f.label :expiration_date %><br />  
+    <%= f.text_field :expiration_date, value:'2013-6-12' %>  
+  </p>  
+  <p>  
+    <%= f.label :beer_color %><br />  
+    <%= f.select :beer_color, [1, 2, 3] %>  
+  </p>  
+  <p>  
+    <%= f.label :is_regular_item %><br />  
+    <%= f.check_box :is_regular_item %>  
+  </p> 
+
+  <p><%= f.submit "Add Special", class: 'button nice radius success' %> <%= link_to "Cancel", profile_path, class: 'alert button nice radius' %></p>  
+<% end %>  
+</fieldset>

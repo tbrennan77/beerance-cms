@@ -1,0 +1,29 @@
+<h3>Edit <%= @user.username %></h3>  
+<hr />
+
+<fieldset>
+<%= form_for @user do |f| %>  
+  <% if @user.errors.any? %>  
+    <div class="error_messages">  
+      <h2>Form is invalid</h2>  
+      <ul>  
+        <% for message in @user.errors.full_messages %>  
+          <li><%= message %></li>  
+        <% end %>  
+      </ul>  
+    </div>  
+  <% end %>  
+  <p>  
+    <%= f.label :email %><br />  
+    <%= f.email_field :username %>  
+  </p>  
+  <p>  
+    <%= f.label :password %><br />  
+    <%= f.password_field :password %>  
+  </p>  
+  <p>
+    <%= f.submit "Update User", class: 'button nice radius' %>
+    <%= link_to "cancel", users_path, class: 'alert button nice radius' %> 
+  </p>
+<% end %>  
+</fieldset>

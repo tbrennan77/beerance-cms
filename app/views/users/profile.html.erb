@@ -1,0 +1,83 @@
+<h3>Your Profile</h3>
+<h4 class="subheader">View your profile below</h4>
+<hr />
+
+<b>Username: </b><%= @user.username %><br />
+<b>Member Since:</b> <%= @user.createdAt.to_date %>
+<br />
+<br />
+<%= link_to "Add Bar", new_bar_entity_path, class: 'success small button nice radius' %>
+
+<ul>
+  <% @bar_entities.each do |bar| %>
+    <li class="bar-list">
+      <div class="row bar-title">
+        <div class="large-8 columns"><h4><%= bar.bar_name %></h4></div>
+        <div class="large-4 columns"><span class="right"><%= link_to "Edit", edit_bar_entity_path(bar) %> <%= link_to "Delete", bar_entity_path(bar), method: 'delete', data: {confirm: "Are you sure?"} %></span></div>
+      </div>
+      <div class="row bar-content">
+        <div class="row">
+          <div class="large-6 columns">
+            <h4>Information</h4>
+            <hr />
+            <%= bar.bar_addr1 %><br />
+            <% unless bar.bar_addr2.blank? %>
+              <%= bar.bar_addr2 %><br />
+            <% end %>
+            <%= bar.bar_city %>, <%= bar.bar_state %> <%= bar.bar_zip %><br />
+            <%= number_to_phone(bar.bar_phone, :area_code => true) %><br />
+            <%= link_to bar.bar_url, "http://#{bar.bar_url}", target: :_blank %>
+            <br />
+            <br />
+            <br />
+            <%= link_to 'Add a special', new_bar_special_path, class: 'button small nice radius' %>
+          </div>
+          <div class="large-6 columns">
+            <h4>Hours</h4>
+            <hr />
+            <ul>
+              <li><b>Monday:</b> <%= bar.hours_mon %></li>
+              <li><b>Tuesday:</b> <%= bar.hours_tues %></li>
+              <li><b>Wednesday:</b> <%= bar.hours_wed %></li>
+              <li><b>Thursday:</b> <%= bar.hours_thur %></li>
+              <li><b>Friday:</b> <%= bar.hours_fri %></li>
+              <li><b>Saturday:</b> <%= bar.hours_sat %></li>
+              <li><b>Sunday:</b> <%= bar.hours_sun %></li>
+            </ul>
+            <br />
+          </div>
+        </div>
+        <% unless BarSpecial.where(bar_id: bar.id).blank? %>
+        <div class="row bar-specials">
+          <div class="large-12 columns">
+            <h4>Specials</h4>
+            <hr />
+            <table>
+              <thead>
+                <tr>
+                  <th>Special Desctiption</th>
+                  <th>Sale Price</th>
+                  <th>Expiration Date</th>
+                  <th>Beer Color</th>
+                  <th>Is A Regular Item?</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% BarSpecial.where(bar_id: bar.id).each do |bs| %>
+                <tr>
+                  <td><%= bs.special_description %></td>
+                  <td><%= number_to_currency bs.sale_price %></td>
+                  <td><%= bs.expiration_date %></td>
+                  <td><%= bs.beer_color %></td>
+                  <td><%= bs.is_regular_item ? "Yes" : "" %></td>
+                </tr>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <% end %>
+      </div>
+    </li>
+  <% end %>
+</ul>

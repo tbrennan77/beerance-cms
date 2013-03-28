@@ -1,0 +1,80 @@
+<h3>Add a new bar</h3>
+<h4 class="subheader">Fill out the form below</h4>
+<hr />
+
+<fieldset>
+<%= form_for @bar_entity do |f| %>  
+  <% if @bar_entity.errors.any? %>  
+    <div class="error_messages">  
+      <h2>Form is invalid</h2>  
+      <ul>  
+        <% for message in @bar_entity.errors.full_messages %>  
+          <li><%= message %></li>  
+        <% end %>  
+      </ul>  
+    </div>  
+  <% end %>  
+  <p>  
+    <%= f.label :bar_name %><br />  
+    <%= f.text_field :bar_name %>  
+  </p>
+  <p>  
+    <%= f.label :bar_phone %><br />  
+    <%= f.phone_field :bar_phone %>  
+  </p>
+  <p>  
+    <%= f.label :bar_url, "Website URL" %><br />  
+    <%= f.text_field :bar_url %>  
+  </p>  
+  <p>  
+    <%= f.label :bar_addr1 %><br />  
+    <%= f.text_field :bar_addr1 %>  
+  </p>  
+  <p>  
+    <%= f.label :bar_addr2 %><br />  
+    <%= f.text_field :bar_addr2 %>  
+  </p>  
+  <p>  
+    <%= f.label :bar_city %><br />  
+    <%= f.text_field :bar_city %>  
+  </p>  
+  <p>  
+    <%= f.label :bar_state %><br />  
+    <%= f.text_field :bar_state %>  
+  </p>  
+  <p>  
+    <%= f.label :bar_zip %><br />  
+    <%= f.text_field :bar_zip %>  
+  </p> 
+  <p>  
+    <%= f.label :hours_mon %><br />  
+    <%= f.text_field :hours_mon %>  
+  </p>
+  <p>  
+    <%= f.label :hours_tues %><br />  
+    <%= f.text_field :hours_tues %>  
+  </p>
+  <p>  
+    <%= f.label :hours_wed %><br />  
+    <%= f.text_field :hours_wed %>  
+  </p>
+  <p>  
+    <%= f.label :hours_thur %><br />  
+    <%= f.text_field :hours_thur %>  
+  </p>
+  <p>  
+    <%= f.label :hours_fri %><br />  
+    <%= f.text_field :hours_fri %>  
+  </p>
+  <p>  
+    <%= f.label :hours_sat %><br />  
+    <%= f.text_field :hours_sat %>  
+  </p>
+  <p>  
+    <%= f.label :hours_sun %><br />  
+    <%= f.text_field :hours_sun %>  
+  </p>
+
+  <p><%= f.submit "Add Bar", class: 'button nice radius success' %></p>  
+<% end %>  
+</fieldset>
