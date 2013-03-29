@@ -6,11 +6,11 @@
 <%= form_tag sessions_path do %>  
   <p>  
     <%= label_tag :email %><br />  
-    <%= text_field_tag :email, params[:email] %>  
+    <%= text_field_tag :email, params[:email], class: 'required' %>  
   </p>  
   <p>  
     <%= label_tag :password %><br />  
-    <%= password_field_tag :password %>  
+    <%= password_field_tag :password, class: 'required' %>  
   </p>  
   <p><%= submit_tag "Log in", class: 'success button nice radius' %></p>  
 <% end %>  

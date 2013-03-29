@@ -24,7 +24,7 @@
 </head>
   <body>
     <% if flash[:notice] %>
-      <div class='alert-box success'><%= flash[:notice] %></div>
+      <div class='alert-box'><%= flash[:notice] %></div>
     <% end %>
     <% if flash[:error] %>
       <div class='alert-box error'><%= flash[:error] %></div>
@@ -73,7 +73,7 @@
         <ul class="right">
           <li class="divider show-for-medium-and-up"></li>
           <li>
-            <%= link_to "Sign up", sign_up_path %>
+            <%= link_to "Sign Up", "#", data: {reveal_id: "sign_up"}, title: "Sign Up" %>
           </li>
         </ul>
         <% end %> 
@@ -84,6 +84,7 @@
       <div class="large-12 columns">
         <%= yield %>
 
+        <!-- log in form -->
          <div id="log_in" class="reveal-modal">
           <h3 class="blue">Log in!</h3>
           <p class="lead">Log in to your account.</p>
@@ -93,17 +94,51 @@
               <%= form_tag sessions_path do %>  
               <p>  
                 <%= label_tag :email %><br />  
-                <%= text_field_tag :email, params[:email] %>  
+                <%= text_field_tag :email, params[:email], class: 'required' %>  
               </p>  
               <p>  
                 <%= label_tag :password %><br />  
-                <%= password_field_tag :password %>  
+                <%= password_field_tag :password, nil, class: 'required' %>  
               </p>  
               <p><%= submit_tag "Login", class: 'blue button nice radius' %></p>  
             <% end %>  
             </div>              
           </div>  
           <a class="close-reveal-modal">&#215;</a>
+        </div>
+
+        <!-- sign up form -->
+        <div id="sign_up" class="reveal-modal">
+          <h3>Sign Up For Beerance</h3>
+          <h4 class="subheader">Get started today!</h4>
+          <hr />
+            
+          <fieldset>
+          <%= form_for User.new do |f| %>  
+            <p>  
+              <%= f.label :email %><br />  
+              <%= f.email_field :username, class: 'required' %>  
+            </p>
+            <p>  
+              <%= f.label :owner_name, "Your Name" %><br />  
+              <%= f.text_field :owner_name, class: 'required' %>  
+            </p>
+            <p>  
+              <%= f.label :owner_phone, "Business Phone Number" %><br />  
+              <%= f.phone_field :owner_phone, class: 'required' %>  
+            </p>  
+            <p>  
+              <%= f.label :password %><br />  
+              <%= f.password_field :password, class: 'required' %>  
+            </p>  
+            <p>  
+              <%= f.label :password_confirmation %><br />
+              <%= f.password_field :password_confirmation, class: 'required' %>  
+            </p>  
+            <p><%= f.submit "Sign Up", class: 'button nice radius success' %></p>  
+          <% end %>  
+          </fieldset>
+          <a class="close-reveal-modal">&#215;</a>          
         </div>
       </div>
     </div>
