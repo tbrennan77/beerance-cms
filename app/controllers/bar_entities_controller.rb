@@ -1,6 +1,7 @@
 class BarEntitiesController < ApplicationController
   before_filter :require_user
   before_filter :confirm_correct_user, except: %w{new index create}
+  before_filter :confirm_number_of_bars, only: %w{new create}
 
   def new  
     @bar_entity = BarEntity.new  
@@ -44,5 +45,9 @@ class BarEntitiesController < ApplicationController
 
   def confirm_correct_user
     redirect_to logout_path unless BarEntity.find(params[:id]).bar_owner_id == current_user.id
+  end
+
+  def confirm_number_of_bars
+    redirect_to(profile_path, notice: "You have reached your maximum allowed bars.") if BarEntity.where(bar_owner_id: current_user.id).count > 0
   end
 end

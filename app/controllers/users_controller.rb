@@ -25,7 +25,7 @@ class UsersController < ApplicationController
     if @user.save
       session[:user_id] = @user.id
       Notifier.signup(@user).deliver
-      redirect_to root_url, :notice => "Signed up!"
+      redirect_to profile_path, :notice => "Welcome to Beerance!"
     else
       render "new"
     end

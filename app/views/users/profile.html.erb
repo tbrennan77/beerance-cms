@@ -1,22 +1,38 @@
 <style>
 .switch {height: 30px !important;}
+h4 a {color: #AAA;}
 </style>
 <h3>Your Profile</h3>
 <h4 class="subheader">View your profile below</h4>
 <hr />
 
-<b>Username: </b><%= @user.username %><br />
-<b>Member Since:</b> <%= @user.createdAt.to_date %>
-<br />
-<br />
-<%= link_to "Add Bar", new_bar_entity_path, class: 'success small button nice radius' %>
+<%#= link_to "Add Bar", new_bar_entity_path, class: 'success small button nice radius' %>
+<% if @bar_entities.blank? %>
+<style>
+h1 {
+  font-size: 56px;
+  line-height: 100px;
+  font-weight: normal;
+  color: #A87250;
+}
+.uh-oh {  
+  text-align: center;
+}
+</style>
+
+<div class="uh-oh">
+  <h1>Uh-oh!</h1>
+  <p>You haven't added your bar yet. You can add it <%= link_to "here", new_bar_entity_path %>.</p>
+</div>
+
+<% else %>
 
 <ul>
   <% @bar_entities.each do |bar| %>
     <li class="bar-list">
       <div class="row bar-title">
         <div class="large-8 columns"><h4><%= bar.bar_name %> <small>(<%= link_to "Edit", edit_bar_entity_path(bar) %>)</small></h4></div>
-        <div class="large-4 columns"><span class="right"><%= link_to "Delete", bar_entity_path(bar), method: 'delete', class: 'red', data: {confirm: "Are you sure?"} %></span></div>
+        <div class="large-4 columns"><span class="right"><%#= link_to "Delete", bar_entity_path(bar), method: 'delete', class: 'red', data: {confirm: "Are you sure?"} %></span></div>
       </div>
       <div class="row bar-content">
         <div class="row">
@@ -95,3 +111,5 @@
     </li>
   <% end %>
 </ul>
+
+<% end %>
