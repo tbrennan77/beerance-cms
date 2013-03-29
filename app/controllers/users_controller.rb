@@ -21,6 +21,7 @@ class UsersController < ApplicationController
     
   def create
     params[:user].assert_valid_keys %w{username password owner_name owner_phone password_confirmation}
+    params[:user][:username].downcase!
     @user = User.new(params[:user])
     if @user.save
       session[:user_id] = @user.id
@@ -36,6 +37,7 @@ class UsersController < ApplicationController
   end
 
   def update
+    params[:user][:username].downcase!
     @user = User.find(params[:id])
     @user.username = params[:user][:username]
     @user.password = params[:user][:password]
