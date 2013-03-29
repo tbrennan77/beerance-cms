@@ -32,6 +32,7 @@ $(document).ready(function() {
   if ($(".alert-box").length){
     $(".alert-box").hide().slideDown(400,function(){
       $(this).delay(3000).slideUp(250);
+      $('form').validate();
     });
   }
   $(document).foundation();

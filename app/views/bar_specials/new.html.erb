@@ -20,11 +20,11 @@
   </p>  
   <p>  
     <%= f.label :special_description %><br />  
-    <%= f.text_field :special_description %>  
+    <%= f.text_field :special_description, placeholder: 'Usually the name of the beer', class: 'required' %>  
   </p>  
   <p>  
     <%= f.label :sale_price %><br />  
-    <%= f.text_field :sale_price %>  
+    <%= f.text_field :sale_price, placeholder: '3.99' %>  
   </p>
   <p>  
     <%= f.label :expiration_date %><br />  

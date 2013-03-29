@@ -27,34 +27,34 @@
         <h5>Bar Information</h5>
         <hr />
 
-        <%= f.label :bar_name %> 
-        <%= f.text_field :bar_name %>  
+        <%= f.label :bar_name, "Name of the bar" %> 
+        <%= f.text_field :bar_name, placeholder: 'Rocky River Brewing Co' %>  
     
-        <%= f.label :bar_phone %>
-        <%= f.phone_field :bar_phone %>  
+        <%= f.label :bar_phone, "Phone number for the bar" %>
+        <%= f.phone_field :bar_phone, placeholder: '216-123-4567' %>  
     
         <%= f.label :bar_url, "Website URL" %>
-        <%= f.text_field :bar_url, value: 'http://' %>  
+        <%= f.text_field :bar_url, value: 'http://', placeholder: 'http://www.brew.com' %>  
         
-        <%= f.label :bar_addr1 %>
-        <%= f.text_field :bar_addr1 %>  
+        <%= f.label :bar_addr1, "Address" %>
+        <%= f.text_field :bar_addr1, placeholder: '123 Main St' %>  
     
-        <%= f.label :bar_addr2 %>
-        <%= f.text_field :bar_addr2 %>  
+        <%= f.label :bar_addr2, "Address 2" %>
+        <%= f.text_field :bar_addr2, placeholder: '(optional)' %>  
         
         <div class='row'>
           <div class='large-8 columns'>
-            <%= f.label :bar_city %>
-            <%= f.text_field :bar_city %>  
+            <%= f.label :bar_city, "City" %>
+            <%= f.text_field :bar_city, placeholder: 'Cleveland' %>  
           </div>
           <div class='large-4 columns'>
-            <%= f.label :bar_state %>
+            <%= f.label :bar_state, "State" %>
             <%= f.select :bar_state, states.map {|s| s} %>  
           </div>
         </div>
         <br />
-        <%= f.label :bar_zip %>
-        <%= f.text_field :bar_zip %>
+        <%= f.label :bar_zip, "Zip" %>
+        <%= f.text_field :bar_zip, placeholder: '44116' %>
       </div>
       <div class='large-6 columns'>
         <h5>Hours</h5>

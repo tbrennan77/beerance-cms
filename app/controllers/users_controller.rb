@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_filter :require_user, except: %w{new create}
-  before_filter :require_admin, except: %w{new create}
+  before_filter :require_admin, except: %w{new create profile}
 
   def index
     @users = User.all
@@ -20,7 +20,7 @@ class UsersController < ApplicationController
   end  
     
   def create
-    params[:user].asset_valid_keys %w{username password}
+    params[:user].assert_valid_keys %w{username password owner_name owner_phone password_confirmation}
     @user = User.new(params[:user])  
     if @user.save
       session[:user_id] = @user.id
