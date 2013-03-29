@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_filter :require_user, except: %w{new create}
+  before_filter :require_admin, except: %w{new create}
 
   def index
     @users = User.all
@@ -48,5 +49,17 @@ class UsersController < ApplicationController
     user = User.find params[:id]
     user.destroy
     redirect_to users_path
+  end
+
+  def make_admin
+    user = User.find params[:id]
+    user.make_admin
+    redirect_to users_path, notice: 'Updated User'
+  end
+
+  def remove_admin
+    user = User.find params[:id]
+    user.remove_admin
+    redirect_to users_path, notice: 'Updated User'
   end
 end
