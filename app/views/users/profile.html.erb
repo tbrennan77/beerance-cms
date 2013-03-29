@@ -71,6 +71,27 @@ h1 {
           <div class="large-12 columns">
             <h4>Specials</h4>
             <hr />
+            <% BarSpecial.where(bar_id: bar.id).each do |bs| %>
+            <ul class="pricing-table show-for-small" style="background: whitesmoke">
+              <li class="title"><%= bs.special_description %></li>
+              <li class="price"><%= number_to_currency bs.sale_price %></li>
+              <li class="description"><%= beer_color_image bs.beer_color %></li>
+              <li class="bullet-item"><%= link_to "Edit", '', class: 'expand tiny button nice radius' %></li>
+              <li class="bullet-item"><%= link_to "Delete", '', class: 'expand tiny button nice radius alert' %></li>
+              <li class="cta-button">
+                <div class="switch">
+                      <input id="1<%= bs.id %>" name="switch-1<%= bs.id %>" type="radio" checked>
+                      <label for="1<%= bs.id %>" onclick="">Off</label>
+
+                      <input id="1<%= bs.id %>1" name="switch-1<%= bs.id %>" type="radio">
+                      <label for="1<%= bs.id %>1" onclick="">On</label>
+
+                      <span></span>
+                    </div>
+              </li>
+            </ul>
+            <% end %>
+            <span class="hide-for-small">
             <table>
               <thead>
                 <tr>
@@ -104,6 +125,7 @@ h1 {
                 <% end %>
               </tbody>
             </table>
+          </span>
           </div>
         </div>
         <% end %>
