@@ -1,4 +1,7 @@
 ParseRailsBoilerplate::Application.routes.draw do
+  get 'contact' => 'home#contact', as: 'contact'
+  get 'about' => 'home#about', as: 'about'
+
   get "log-in" => "sessions#new", :as => "log_in"  
   get "log-out" => "sessions#destroy", :as => "log_out"  
   get "/my-profile" => "users#profile", as: "profile"
