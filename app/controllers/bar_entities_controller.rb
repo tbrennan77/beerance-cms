@@ -48,6 +48,6 @@ class BarEntitiesController < ApplicationController
   end
 
   def confirm_number_of_bars
-    redirect_to(profile_path, notice: "You have reached your maximum allowed bars.") if BarEntity.where(bar_owner_id: current_user.id).count > 0
+    redirect_to(profile_path, notice: "You have reached your maximum allowed bars.") if BarEntity.where(bar_owner_id: current_user.id).count > 3
   end
 end
