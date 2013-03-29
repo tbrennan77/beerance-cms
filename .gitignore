@@ -15,3 +15,8 @@
 /tmp
 
 /config/parse_resource.yml
+
+.DS_Store
+*/.DS_Store
+*/*/.DS_Store
+*/*/*/.DS_Store
