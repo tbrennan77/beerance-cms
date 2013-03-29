@@ -19,7 +19,8 @@ class UsersController < ApplicationController
     @user = User.new  
   end  
     
-  def create  
+  def create
+    params[:user].asset_valid_keys %w{username password}
     @user = User.new(params[:user])  
     if @user.save
       session[:user_id] = @user.id

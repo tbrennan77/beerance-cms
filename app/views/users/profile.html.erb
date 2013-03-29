@@ -12,8 +12,8 @@
   <% @bar_entities.each do |bar| %>
     <li class="bar-list">
       <div class="row bar-title">
-        <div class="large-8 columns"><h4><%= bar.bar_name %></h4></div>
-        <div class="large-4 columns"><span class="right"><%= link_to "Edit", edit_bar_entity_path(bar) %> <%= link_to "Delete", bar_entity_path(bar), method: 'delete', data: {confirm: "Are you sure?"} %></span></div>
+        <div class="large-8 columns"><h4><%= bar.bar_name %> <small>(<%= link_to "Edit", edit_bar_entity_path(bar) %>)</small></h4></div>
+        <div class="large-4 columns"><span class="right"><%= link_to "Delete", bar_entity_path(bar), method: 'delete', class: 'red', data: {confirm: "Are you sure?"} %></span></div>
       </div>
       <div class="row bar-content">
         <div class="row">
@@ -25,8 +25,8 @@
               <%= bar.bar_addr2 %><br />
             <% end %>
             <%= bar.bar_city %>, <%= bar.bar_state %> <%= bar.bar_zip %><br />
-            <%= number_to_phone(bar.bar_phone, :area_code => true) %><br />
-            <%= link_to bar.bar_url, "http://#{bar.bar_url}", target: :_blank %>
+            <%= bar.bar_phone %><br />
+            <%= link_to bar.bar_url, "#{bar.bar_url}", target: :_blank %>
             <br />
             <br />
             <br />
@@ -59,6 +59,7 @@
                   <th>Sale Price</th>
                   <th>Beer Color</th>
                   <th>Expiration Date</th>
+                  <th>Actions</th>
                 </tr>
               </thead>
               <tbody>
@@ -68,6 +69,7 @@
                   <td><%= number_to_currency bs.sale_price %></td>
                   <td><%= bs.beer_color %></td>
                   <td><%= expiration_date_format bs.expiration_date %></td>
+                  <td><%= link_to "edit", '', class: 'tiny button nice radius' %> <%= link_to "delete", '', class: 'alert tiny button nice radius', data: {confirm: "Are you sure?"} %></td>
                 </tr>
                 <% end %>
               </tbody>

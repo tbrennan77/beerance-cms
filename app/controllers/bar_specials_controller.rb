@@ -9,10 +9,6 @@ class BarSpecialsController < ApplicationController
   def create  
     params[:bar_special].assert_valid_keys %w{ bar_id special_description sale_price expiration_date beer_color }
     @bar_special = BarSpecial.new(params[:bar_special])    
-    @bar_special.set_expiration_date
-    @bar_special.set_bar_name
-    @bar_special.set_geo_location
-    @bar_special.ensure_formats
     
     if @bar_special.save
       redirect_to profile_path, :notice => "Added Special!"  
