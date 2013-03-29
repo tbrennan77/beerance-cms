@@ -1,4 +1,4 @@
-<h3>Add a new bar</h3>
+<h3>Add a new Special</h3>
 <h4 class="subheader">Fill out the form below</h4>
 <hr />
 
@@ -25,23 +25,15 @@
   <p>  
     <%= f.label :sale_price %><br />  
     <%= f.text_field :sale_price %>  
-  </p>  
-  <p>  
-    <%= f.label :expiration_prepend %><br />  
-    <%= f.text_field :expiration_prepend %>  
-  </p>  
+  </p>
   <p>  
     <%= f.label :expiration_date %><br />  
-    <%= f.text_field :expiration_date, value:'2013-6-12' %>  
+    <%= f.text_field :expiration_date, value: Date.today.advance(days: 3) %>  
   </p>  
   <p>  
     <%= f.label :beer_color %><br />  
     <%= f.select :beer_color, [1, 2, 3] %>  
   </p>  
-  <p>  
-    <%= f.label :is_regular_item %><br />  
-    <%= f.check_box :is_regular_item %>  
-  </p> 
 
   <p><%= f.submit "Add Special", class: 'button nice radius success' %> <%= link_to "Cancel", profile_path, class: 'alert button nice radius' %></p>  
 <% end %>  

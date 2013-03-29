@@ -57,9 +57,8 @@
                 <tr>
                   <th>Special Desctiption</th>
                   <th>Sale Price</th>
-                  <th>Expiration Date</th>
                   <th>Beer Color</th>
-                  <th>Is A Regular Item?</th>
+                  <th>Expiration Date</th>
                 </tr>
               </thead>
               <tbody>
@@ -67,9 +66,8 @@
                 <tr>
                   <td><%= bs.special_description %></td>
                   <td><%= number_to_currency bs.sale_price %></td>
-                  <td><%= bs.expiration_date %></td>
                   <td><%= bs.beer_color %></td>
-                  <td><%= bs.is_regular_item ? "Yes" : "" %></td>
+                  <td><%= expiration_date_format bs.expiration_date %></td>
                 </tr>
                 <% end %>
               </tbody>
