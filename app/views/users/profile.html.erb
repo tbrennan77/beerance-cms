@@ -67,7 +67,7 @@
                 <tr>
                   <td><%= bs.special_description %></td>
                   <td><%= number_to_currency bs.sale_price %></td>
-                  <td><%= bs.beer_color %></td>
+                  <td align='center'><%= beer_color_image bs.beer_color %></td>
                   <td><%= expiration_date_format bs.expiration_date %></td>
                   <td><%= link_to "edit", '', class: 'tiny button nice radius' %> <%= link_to "delete", '', class: 'alert tiny button nice radius', data: {confirm: "Are you sure?"} %></td>
                 </tr>

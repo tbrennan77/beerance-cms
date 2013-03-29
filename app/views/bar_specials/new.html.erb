@@ -1,3 +1,18 @@
+<style>
+  .active img {border: 1px dashed brown;}
+  label img {padding: 30px 60px;}
+  label {text-align: center;}
+  input[type="radio"] {display: none;}
+</style>
+<script>
+  $(document).ready(function() {
+    $('input[type="radio"]').live('change', function() {
+      $('label').removeClass('active');
+      $(this).parent().addClass('active');
+    });
+  });
+</script>
+
 <h3>Add a new Special</h3>
 <h4 class="subheader">Fill out the form below</h4>
 <hr />
@@ -24,17 +39,46 @@
   </p>  
   <p>  
     <%= f.label :sale_price %><br />  
-    <%= f.text_field :sale_price, placeholder: '3.99' %>  
+    <%= f.text_field :sale_price, placeholder: '3.99', class: 'required' %>  
   </p>
   <p>  
     <%= f.label :expiration_date %><br />  
-    <%= f.text_field :expiration_date, value: Date.today.advance(days: 3) %>  
+    <%= f.text_field :expiration_date, value: Date.today.advance(days: 3), class: 'required' %>  
   </p>  
   <p>  
-    <%= f.label :beer_color %><br />  
-    <%= f.select :beer_color, [1, 2, 3] %>  
+    <%= f.label :beer_color %>
   </p>  
-
+  <div class="row">
+    <div class="large-3 columns">
+      <label class='active'>
+        <%= f.radio_button :beer_color, 1 %>
+        <%= image_tag "beer_icon_02.jpg" %>
+        1
+      </label>
+    </div>
+    <div class="large-3 columns">
+      <label>
+        <%= f.radio_button :beer_color, 2 %>
+        <%= image_tag "beer_icon_03.jpg" %>
+        2
+      </label>
+    </div>
+    <div class="large-3 columns">
+      <label>
+        <%= f.radio_button :beer_color, 3 %>
+        <%= image_tag "beer_icon_04.jpg" %>
+        3
+      </label>
+    </div>
+    <div class="large-3 columns">
+      <label>
+        <%= f.radio_button :beer_color, 4 %>
+        <%= image_tag "beer_icon_05.jpg" %>
+        4
+      </label>
+    </div>
+  </div>
+  <hr />
   <p><%= f.submit "Add Special", class: 'button nice radius success' %> <%= link_to "Cancel", profile_path, class: 'alert button nice radius' %></p>  
 <% end %>  
 </fieldset>

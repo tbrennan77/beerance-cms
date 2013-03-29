@@ -12,7 +12,7 @@
 <%= form_for @bar_entity do |f| %>  
   <% if @bar_entity.errors.any? %>  
     <div class="error_messages">  
-      <h2>Form is invalid</h2>  
+      <h4>Form is invalid</h4>  
       <ul>  
         <% for message in @bar_entity.errors.full_messages %>  
           <li><%= message %></li>  
@@ -26,16 +26,16 @@
         <hr />
 
         <%= f.label :bar_name, "Name of the bar" %> 
-        <%= f.text_field :bar_name, placeholder: 'Rocky River Brewing Co' %>  
+        <%= f.text_field :bar_name, placeholder: 'Rocky River Brewing Co', class: 'required' %>  
     
         <%= f.label :bar_phone, "Phone number for the bar" %>
-        <%= f.phone_field :bar_phone, placeholder: '216-123-4567' %>  
+        <%= f.phone_field :bar_phone, placeholder: '216-123-4567', class: 'required' %>  
     
         <%= f.label :bar_url, "Website URL" %>
-        <%= f.text_field :bar_url, placeholder: 'http://www.brew.com' %>  
+        <%= f.text_field :bar_url, placeholder: 'http://www.brew.com', class: 'required' %>  
         
         <%= f.label :bar_addr1, "Address" %>
-        <%= f.text_field :bar_addr1, placeholder: '123 Main St' %>  
+        <%= f.text_field :bar_addr1, placeholder: '123 Main St', class: 'required' %>  
     
         <%= f.label :bar_addr2, "Address 2" %>
         <%= f.text_field :bar_addr2, placeholder: '(optional)' %>  
@@ -43,7 +43,7 @@
         <div class='row'>
           <div class='large-8 columns'>
             <%= f.label :bar_city, "City" %>
-            <%= f.text_field :bar_city, placeholder: 'Cleveland' %>  
+            <%= f.text_field :bar_city, placeholder: 'Cleveland', class: 'required' %>  
           </div>
           <div class='large-4 columns'>
             <%= f.label :bar_state, "State" %>
@@ -52,7 +52,7 @@
         </div>
         <br />
         <%= f.label :bar_zip, "Zip" %>
-        <%= f.text_field :bar_zip, placeholder: '44116' %>
+        <%= f.text_field :bar_zip, placeholder: '44116', class: 'required' %>
       </div>
       <div class='large-6 columns'>
         <h5>Hours</h5>
