@@ -1,3 +1,6 @@
+<style>
+.switch {height: 30px !important;}
+</style>
 <h3>Your Profile</h3>
 <h4 class="subheader">View your profile below</h4>
 <hr />
@@ -58,7 +61,7 @@
                   <th>Special Desctiption</th>
                   <th>Sale Price</th>
                   <th>Beer Color</th>
-                  <th>Expiration Date</th>
+                  <th>Active?</th>
                   <th>Actions</th>
                 </tr>
               </thead>
@@ -68,7 +71,18 @@
                   <td><%= bs.special_description %></td>
                   <td><%= number_to_currency bs.sale_price %></td>
                   <td align='center'><%= beer_color_image bs.beer_color %></td>
-                  <td><%= expiration_date_format bs.expiration_date %></td>
+                  <td>
+                    <div class="switch">
+                      <input id="<%= bs.id %>" name="switch-<%= bs.id %>" type="radio" checked>
+                      <label for="<%= bs.id %>" onclick="">Off</label>
+
+                      <input id="<%= bs.id %>1" name="switch-<%= bs.id %>" type="radio">
+                      <label for="<%= bs.id %>1" onclick="">On</label>
+
+                      <span></span>
+                    </div>
+                    <%#= expiration_date_format bs.expiration_date %>
+                  </td>
                   <td><%= link_to "edit", '', class: 'tiny button nice radius' %> <%= link_to "delete", '', class: 'alert tiny button nice radius', data: {confirm: "Are you sure?"} %></td>
                 </tr>
                 <% end %>

@@ -2,6 +2,7 @@ class BarSpecial < ParseUser
   fields :bar_id, :bar_location, :bar_name, :special_description, :sale_price, :expiration_date, :beer_color
   validates_presence_of :bar_id, :special_description, :sale_price, :expiration_date, :beer_color
   validates :sale_price, :numericality => {greater_than: 0}
+  validates :beer_color, :numericality => {greater_than_or_equal_to: 1, less_than_or_equal_to: 4}
 
   before_save :ensure_fields
 

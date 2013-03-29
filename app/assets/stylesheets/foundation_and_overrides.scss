@@ -27,12 +27,12 @@ $body-bg: #FFECE0;
 
 // We use these to control text direction settings
 // $text-direction: ltr;
-
 // We use these as default colors throughout
  $primary-color: #A87250;
 // $secondary-color: #e9e9e9;
 // $alert-color: #c60f13;
 // $success-color: #5da423;
+$positive-color: $primary-color;
 
 // We use these to make sure border radius matches unless we want it different.
 // $global-radius: 3px;
@@ -910,6 +910,7 @@ $body-bg: #FFECE0;
 // These are for controlling the display and margin of tables
 // $table-display: table-cell;
 // $table-margin-bottom: emCalc(20px);
+ table {border-collapse: collapse;}
 
 //
 // Image Thumbnail Variables

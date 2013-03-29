@@ -1,7 +1,6 @@
 <style>
   .active img {border: 1px dashed brown;}
   label img {padding: 30px 60px;}
-  label {text-align: center;}
   input[type="radio"] {display: none;}
 </style>
 <script>
@@ -30,7 +29,7 @@
     </div>  
   <% end %>  
   <p>  
-    <%= f.label :bar_id, "Bar Name" %><br />  
+    <%= f.label :bar_id, "Select your bar" %><br />  
     <%= f.select :bar_id, BarEntity.where(bar_owner_id: current_user.id).map {|b| [b.bar_name, b.id]} %>  
   </p>  
   <p>  
@@ -48,33 +47,29 @@
   <p>  
     <%= f.label :beer_color %>
   </p>  
-  <div class="row">
+  <div class="row beer-colors">
     <div class="large-3 columns">
       <label class='active'>
         <%= f.radio_button :beer_color, 1 %>
         <%= image_tag "beer_icon_02.jpg" %>
-        1
       </label>
     </div>
     <div class="large-3 columns">
       <label>
         <%= f.radio_button :beer_color, 2 %>
         <%= image_tag "beer_icon_03.jpg" %>
-        2
       </label>
     </div>
     <div class="large-3 columns">
       <label>
         <%= f.radio_button :beer_color, 3 %>
         <%= image_tag "beer_icon_04.jpg" %>
-        3
       </label>
     </div>
     <div class="large-3 columns">
       <label>
         <%= f.radio_button :beer_color, 4 %>
         <%= image_tag "beer_icon_05.jpg" %>
-        4
       </label>
     </div>
   </div>

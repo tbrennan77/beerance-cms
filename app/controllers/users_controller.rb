@@ -21,13 +21,14 @@ class UsersController < ApplicationController
     
   def create
     params[:user].assert_valid_keys %w{username password owner_name owner_phone password_confirmation}
-    @user = User.new(params[:user])  
+    @user = User.new(params[:user])
     if @user.save
       session[:user_id] = @user.id
-      redirect_to root_url, :notice => "Signed up!"  
-    else  
-      render "new"  
-    end  
+      Notifier.signup(@user).deliver
+      redirect_to root_url, :notice => "Signed up!"
+    else
+      render "new"
+    end
   end
 
   def edit
