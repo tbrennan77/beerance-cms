@@ -24,7 +24,7 @@
     <%= form_for @user do |f| %>  
       <% if @user.errors.any? %>  
         <div class="error_messages">  
-          <h2>Form is invalid</h2>  
+          <h4>Form is invalid</h4>  
           <ul>  
             <% for message in @user.errors.full_messages %>  
               <li><%= message %></li>  
@@ -32,17 +32,17 @@
           </ul>  
         </div>  
       <% end %>  
-      <p>  
+      <p>
         <%= f.label :email %><br />  
-        <%= f.email_field :username, class: 'required' %>  
+        <%= f.email_field :username, placeholder: 'email@domain.com', class: 'required' %>  
       </p>
       <p>  
         <%= f.label :owner_name, "Your Name" %><br />  
-        <%= f.text_field :owner_name, class: 'required' %>  
+        <%= f.text_field :owner_name, placeholder: 'First Last', class: 'required' %>  
       </p>
       <p>  
         <%= f.label :owner_phone, "Business Phone Number" %><br />  
-        <%= f.phone_field :owner_phone, class: 'required' %>  
+        <%= f.phone_field :owner_phone, placeholder: '216-123-4567', class: 'required' %>  
       </p>  
       <p>  
         <%= f.label :password %><br />  

@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   before_filter :require_user, except: %w{new create}
   before_filter :require_admin, except: %w{new create profile}
+  before_filter :verify_create_parameters, only: %w{create}
 
   def index
     @users = User.all
@@ -19,14 +20,13 @@ class UsersController < ApplicationController
     @user = User.new  
   end  
     
-  def create
-    params[:user].assert_valid_keys %w{username password owner_name owner_phone password_confirmation}
-    params[:user][:username].downcase!
+  def create    
     @user = User.new(params[:user])
+
     if @user.save
       session[:user_id] = @user.id
       Notifier.signup(@user).deliver
-      redirect_to profile_path, :notice => "Welcome to Beerance!"
+      redirect_to new_bar_entity_path, :notice => "Welcome to Beerance!"
     else
       render "new"
     end
@@ -65,5 +65,16 @@ class UsersController < ApplicationController
     user = User.find params[:id]
     user.remove_admin
     redirect_to users_path, notice: 'Updated User'
+  end
+
+  def verify_create_parameters
+    params[:user].assert_valid_keys %w{username password owner_name owner_phone password_confirmation}    
+    if params[:user][:password] != params[:user][:password_confirmation]
+      @user = User.new(params[:user])
+      @user.errors.add :password, "did not match confirmation."
+      render 'new'
+    end
+    params[:user].delete :password_confirmation
+    params[:user][:username].downcase!
   end
 end
