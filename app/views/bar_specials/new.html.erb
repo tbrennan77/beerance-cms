@@ -1,8 +1,8 @@
 <style>
   label img:hover {border: 2px dashed brown;}
-  .active img {border: 2px solid brown;}
+  .active img {border: 2px solid brown;box-shadow: 0 1px 3px #CCC}
   .active img:hover {border: 2px solid brown;}
-  label img {padding: 3px 6px;}
+  label img {padding: 3px 3px;}
   input[type="radio"],  span.custom.radio {display: none;}
 </style>
 <script>
@@ -42,12 +42,12 @@
     <%= f.label :sale_price %><br />  
     <%= f.text_field :sale_price, placeholder: '3.99', class: 'required' %>  
   </p>
-  <p>  
-    <%= f.label :expiration_date %><br />  
-    <%= f.text_field :expiration_date, value: Date.today.advance(days: 3), class: 'required' %>  
+   <p>  
+    <%= f.label :beer_size %><br />  
+    <%= f.select :beer_size, [['9oz.', 9],['12oz.', 12],['16oz.', 16]] %>  
   </p>  
   <p>  
-    <%= f.label :beer_color %>
+    <%= f.label :beer_color, "Choose a beer color" %>
   </p>  
   <div class="row beer-colors">
     <div class="large-3 columns">

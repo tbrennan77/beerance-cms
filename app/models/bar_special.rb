@@ -1,13 +1,14 @@
 class BarSpecial < ParseUser
-  fields :bar_id, :bar_location, :bar_name, :special_description, :sale_price, :expiration_date, :beer_color
-  validates_presence_of :bar_id, :special_description, :sale_price, :expiration_date, :beer_color
+  fields :bar_id, :bar_location, :bar_name, :special_description, :sale_price, :expiration_date, :beer_color, :beer_size
+  validates_presence_of :bar_id, :special_description, :sale_price, :beer_color
   validates :sale_price, :numericality => {greater_than: 0}
   validates :beer_color, :numericality => {greater_than_or_equal_to: 1, less_than_or_equal_to: 4}
+  validates :beer_size, :numericality => {only_integer: true}
 
   before_save :ensure_fields
 
   def set_expiration_date
-    self.expiration_date = ParseDate.new(iso: Time.parse(self.expiration_date).utc.iso8601)
+    self.expiration_date = ParseDate.new(iso: DateTime.new(Date.tomorrow.year, Date.tomorrow.month, Date.tomorrow.day, 9).utc.iso8601)
   end
 
   def set_geo_location
@@ -28,5 +29,13 @@ class BarSpecial < ParseUser
     set_bar_name
     set_geo_location
     ensure_formats
+  end
+
+  def end_special
+    self.expiration_date = ParseDate.new(iso: DateTime.new(Date.yesterday.year, Date.yesterday.month, Date.yesterday.day, 9).utc.iso8601)
+  end
+
+  def reactivate_special
+    self.expiration_date = ParseDate.new(iso: DateTime.new(Date.tomorrow.year, Date.tomorrow.month, Date.tomorrow.day, 9).utc.iso8601)
   end
 end
