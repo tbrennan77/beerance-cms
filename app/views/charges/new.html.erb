@@ -1,0 +1,42 @@
+<%= form_tag charges_path do %>
+  <%= hidden_field_tag "plan_type", 1 %>
+  <article>
+    <label class="amount">
+      <span>Amount: $5.00</span>
+    </label>
+  </article>
+
+  <script src="https://checkout.stripe.com/v2/checkout.js" class="stripe-button"
+          data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+          data-description="A month's subscription"
+          data-amount="500"></script>
+<% end %>
+
+<%= form_tag charges_path do %>
+  <%= hidden_field_tag "plan_type", 2 %>
+  <article>
+    <label class="amount">
+      <span>Amount: $15.00</span>
+    </label>
+  </article>
+
+  <script src="https://checkout.stripe.com/v2/checkout.js" class="stripe-button"
+          data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+          data-description="6 month's subscription"
+          data-amount="1500"></script>
+<% end %>
+
+<%= form_tag charges_path do %>
+  <%= hidden_field_tag "plan_type", 3 %>
+  <article>
+    <label class="amount">
+      <span>Amount: $30.00</span>
+    </label>
+  </article>
+
+  <script src="https://checkout.stripe.com/v2/checkout.js" class="stripe-button"
+          data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+          data-description="A year's subscription"
+          data-amount="3000"></script>
+<% end %>
+

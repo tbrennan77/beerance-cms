@@ -20,10 +20,15 @@ group :assets do
   gem 'zurb-foundation', '~> 4.0.0'
 end
 
+gem "combined_time_select", "~> 0.0.1"
+
 gem 'modernizr-rails'
 gem 'jquery-rails'
 gem "animate-rails"
+
+# Parse and Stripe
 gem 'parse_resource', :git => 'git@github.com:adelevie/parse_resource.git'
+gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

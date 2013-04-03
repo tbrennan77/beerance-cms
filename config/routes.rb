@@ -16,4 +16,7 @@ ParseRailsBoilerplate::Application.routes.draw do
   get '/admin' => "admin#index", as: 'admin'
   match '/admin/make-admin' => 'users#make_admin', as: 'make_admin'
   match '/admin/remove-admin' => 'users#remove_admin', as: 'remove_admin'
+
+  resources :charges, path: 'subscriptions'
+  get '/cancel-subscription' => "charges#cancel_subscription", as: 'cancel_subscription'
 end
