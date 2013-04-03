@@ -10,14 +10,6 @@
     <p>Cool paragraphs!</p>
     <p>Cool paragraphs!</p>
     <p>Cool paragraphs!</p>
-    <p>Cool paragraphs!</p>
-    <p>Cool paragraphs!</p>
-    <p>Cool paragraphs!</p>
-    <p>Cool paragraphs!</p>
-    <p>Cool paragraphs!</p>
-    <p>Cool paragraphs!</p>
-    <p>Cool paragraphs!</p>
-    <p>Cool paragraphs!</p>
   </div>
   <div class='large-7 columns'>
     <fieldset>
@@ -27,8 +19,8 @@
           <h4>Form is invalid</h4>  
           <ul>  
             <% for message in @user.errors.full_messages %>  
-              <li><%= message %></li>  
-            <% end %>  
+              <li><%= message[0..15] == '400 {"code"=>202' ? "Username has already been taken" : message %></li>
+            <% end %>
           </ul>  
         </div>  
       <% end %>  

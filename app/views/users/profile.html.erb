@@ -1,5 +1,4 @@
 <style>
-.switch {height: 30px !important;}
 h4 a {color: #AAA;}
 </style>
 <h3>Your Profile</h3>
@@ -19,119 +18,109 @@ h1 {
   text-align: center;
 }
 </style>
-
 <div class="uh-oh">
   <h1>Uh-oh!</h1>
   <p>You haven't added your bar yet. You can add it <%= link_to "here", new_bar_entity_path %>.</p>
 </div>
 
 <% else %>
+<script>
+  function fix() {$(window).trigger("resize");}
+  setTimeout(fix, 1000);
+</script>
 
-<ul>
+<div class='row'>
+  <%= link_to "Cancel Subscription", cancel_subscription_path, data: {confirm: "Are you really sure?"}, class: 'alert small button radius' %>
+  <%= link_to "Start Subscription", new_charge_path, class: 'small button radius' %>
+  <%= link_to "New Bar", new_bar_entity_path, class: 'success small button radius' %>
   <% @bar_entities.each do |bar| %>
-    <li class="bar-list">
-      <div class="row bar-title">
+
+      <div class="row">
         <div class="large-8 columns"><h4><%= bar.bar_name %> <small>(<%= link_to "Edit", edit_bar_entity_path(bar) %>)</small></h4></div>
         <div class="large-4 columns"><span class="right"><%#= link_to "Delete", bar_entity_path(bar), method: 'delete', class: 'red', data: {confirm: "Are you sure?"} %></span></div>
       </div>
-      <div class="row bar-content">
-        <div class="row">
-          <div class="large-6 columns">
-            <h4>Information</h4>
-            <hr />
-            <%= bar.bar_addr1 %><br />
-            <% unless bar.bar_addr2.blank? %>
-              <%= bar.bar_addr2 %><br />
-            <% end %>
-            <%= bar.bar_city %>, <%= bar.bar_state %> <%= bar.bar_zip %><br />
-            <%= bar.bar_phone %><br />
-            <%= link_to bar.bar_url, "#{bar.bar_url}", target: :_blank %>
-            <br />
-            <br />
-            <br />
-            <%= link_to 'Add a special', new_bar_special_path, class: 'button small nice radius' %>
-          </div>
-          <div class="large-6 columns">
-            <h4>Hours</h4>
-            <hr />
-            <ul>
-              <li><b>Monday:</b> <%= bar.hours_mon %></li>
-              <li><b>Tuesday:</b> <%= bar.hours_tues %></li>
-              <li><b>Wednesday:</b> <%= bar.hours_wed %></li>
-              <li><b>Thursday:</b> <%= bar.hours_thur %></li>
-              <li><b>Friday:</b> <%= bar.hours_fri %></li>
-              <li><b>Saturday:</b> <%= bar.hours_sat %></li>
-              <li><b>Sunday:</b> <%= bar.hours_sun %></li>
-            </ul>
-            <br />
-          </div>
-        </div>
-        <% unless BarSpecial.where(bar_id: bar.id).blank? %>
-        <div class="row bar-specials">
-          <div class="large-12 columns">
-            <h4>Specials</h4>
-            <hr />
-            <% BarSpecial.where(bar_id: bar.id).each do |bs| %>
-            <ul class="pricing-table show-for-small" style="background: whitesmoke">
-              <li class="title"><%= bs.special_description %></li>
-              <li class="price"><%= number_to_currency bs.sale_price %></li>
-              <li class="description"><%= beer_color_image bs.beer_color %></li>
-              <li class="bullet-item"><%= link_to "Edit", '', class: 'expand tiny button nice radius' %></li>
-              <li class="bullet-item"><%= link_to "Delete", '', class: 'expand tiny button nice radius alert' %></li>
-              <li class="cta-button">
-                <div class="switch">
-                      <input id="1<%= bs.id %>" name="switch-1<%= bs.id %>" type="radio" checked>
-                      <label for="1<%= bs.id %>" onclick="">Off</label>
 
-                      <input id="1<%= bs.id %>1" name="switch-1<%= bs.id %>" type="radio">
-                      <label for="1<%= bs.id %>1" onclick="">On</label>
-
-                      <span></span>
-                    </div>
-              </li>
-            </ul>
-            <% end %>
-            <span class="hide-for-small">
-            <table>
-              <thead>
-                <tr>
-                  <th>Special Desctiption</th>
-                  <th>Sale Price</th>
-                  <th>Beer Color</th>
-                  <th>Active?</th>
-                  <th>Actions</th>
-                </tr>
-              </thead>
-              <tbody>
+      <div class="section-container tabs" data-section="tabs">
+        <section class="section">
+          <p class="title"><a href="#">Current Specials</a></p>
+          <div class="content">
+            <div class="row">
+              <div class="large-12 columns">
+                <h4>Specials</h4>
+                <hr />
+                <%= link_to "New Special", new_bar_special_path, class: 'small button radius' %>
                 <% BarSpecial.where(bar_id: bar.id).each do |bs| %>
-                <tr>
-                  <td><%= bs.special_description %></td>
-                  <td><%= number_to_currency bs.sale_price %></td>
-                  <td align='center'><%= beer_color_image bs.beer_color %></td>
-                  <td>
-                    <div class="switch">
-                      <input id="<%= bs.id %>" name="switch-<%= bs.id %>" type="radio" checked>
-                      <label for="<%= bs.id %>" onclick="">Off</label>
-
-                      <input id="<%= bs.id %>1" name="switch-<%= bs.id %>" type="radio">
-                      <label for="<%= bs.id %>1" onclick="">On</label>
-
-                      <span></span>
-                    </div>
-                    <%#= expiration_date_format bs.expiration_date %>
-                  </td>
-                  <td><%= link_to "edit", '', class: 'tiny button nice radius' %> <%= link_to "delete", '', class: 'alert tiny button nice radius', data: {confirm: "Are you sure?"} %></td>
-                </tr>
+                <ul class="inline-list">
+                  <li><%= bs.special_description %></li>
+                  <li><%= number_to_currency bs.sale_price %></li>
+                  <li><%= beer_color_image bs.beer_color %></li>
+                  <li><%= bs.beer_size %>oz.</li>
+                  <li><%= link_to "End Clearance" %></li>
+                </ul>
                 <% end %>
-              </tbody>
-            </table>
-          </span>
+              </div>
+            </div>
           </div>
-        </div>
-        <% end %>
+        </section>
+        <section class="section">
+          <p class="title"><a href="#">Archive</a></p>
+          <div class="content">
+            <div class="row">
+              <div class="large-12 columns">
+                <h4>Specials</h4>
+                <hr />
+                <% BarSpecial.where(bar_id: bar.id).each do |bs| %>
+                <ul class="inline-list">
+                  <li><%= bs.special_description %></li>
+                  <li><%= number_to_currency bs.sale_price %></li>
+                  <li><%= beer_color_image bs.beer_color %></li>
+                  <li><%= bs.beer_size %>oz.</li>
+                  <li><%= link_to "End Clearance" %></li>
+                </ul>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="section">
+          <p class="title"><a href="#">Bar Info</a></p>
+          <div class="content">
+            <div class="row">
+              <div class="large-6 columns">
+                <h4>Information</h4>
+                <hr />
+                <%= bar.bar_addr1 %><br />
+                <% unless bar.bar_addr2.blank? %>
+                  <%= bar.bar_addr2 %><br />
+                <% end %>
+                <%= bar.bar_city %>, <%= bar.bar_state %> <%= bar.bar_zip %><br />
+                <%= bar.bar_phone %><br />
+                <%= link_to bar.bar_url, "#{bar.bar_url}", target: :_blank %>
+                <br />
+                <br />
+                <br />
+                <%= link_to 'Add a special', new_bar_special_path, class: 'button small nice radius' %>
+              </div>
+              <div class="large-6 columns">
+                <h4>Hours</h4>
+                <hr />
+                <ul>
+                  <li><b>Monday:</b> <%= bar.hours_mon %></li>
+                  <li><b>Tuesday:</b> <%= bar.hours_tues %></li>
+                  <li><b>Wednesday:</b> <%= bar.hours_wed %></li>
+                  <li><b>Thursday:</b> <%= bar.hours_thur %></li>
+                  <li><b>Friday:</b> <%= bar.hours_fri %></li>
+                  <li><b>Saturday:</b> <%= bar.hours_sat %></li>
+                  <li><b>Sunday:</b> <%= bar.hours_sun %></li>
+                </ul>
+                <br />
+              </div>
+            </div>
+          </div>
+        </section>
       </div>
-    </li>
+
   <% end %>
-</ul>
+</div>
 
 <% end %>
