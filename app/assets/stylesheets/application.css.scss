@@ -64,3 +64,17 @@ body > .alert-box {text-align: center; width: 100%; border-left: 0; border-right
 
 h2 {font-family: "Domine"}
 li {list-style-type: none;}
+
+#debug {
+  padding: 16px;
+background: #333;
+color: #69F;
+}
+
+#jPanelMenu-menu {
+  background: #3f1c04;
+
+  li {
+    a {background: #a87250;}
+  }
+}

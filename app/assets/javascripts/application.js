@@ -35,7 +35,8 @@ $(document).ready(function() {
     });
   }
   $(document).foundation();
-  
+  var jPM = $.jPanelMenu();
+  jPM.on();
   $("#loading").hide();  
   $('form').each(function() { $(this).validate(); });
 
