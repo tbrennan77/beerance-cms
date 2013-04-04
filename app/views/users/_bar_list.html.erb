@@ -20,7 +20,7 @@
             <% else %>
             <br />
             <%= link_to "New Bar", new_bar_entity_path, id: 'new_link', remote: true, class: 'success button radius' %>
-            <%BarEntity.all.each do |bar| %>
+            <% @bar_entities.each do |bar| %>
             <div id="bar-<%= bar.id %>" class="row">
               <div class="large-12 columns"><h4><%= bar.bar_name %> <small><%= link_to "(edit)", edit_bar_entity_path(bar) %> <%= link_to "(delete)", bar, method: :delete, data: {confirm: "Are you sure?"}, remote: true %></small></h4></div>
               <div class="large-6 columns">

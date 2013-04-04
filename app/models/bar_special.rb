@@ -5,7 +5,7 @@ class BarSpecial < ParseUser
   validates :beer_color, :numericality => {greater_than_or_equal_to: 1, less_than_or_equal_to: 4}
   validates :beer_size, :numericality => {only_integer: true}
 
-  before_save :ensure_fields
+  before_create :ensure_fields  
 
   def set_expiration_date
     self.expiration_date = ParseDate.new(iso: DateTime.new(Date.tomorrow.year, Date.tomorrow.month, Date.tomorrow.day, 9).utc.iso8601)
@@ -23,6 +23,10 @@ class BarSpecial < ParseUser
     self.beer_color = self.beer_color.to_f
     self.sale_price = self.sale_price.to_f
     self.beer_size  = self.beer_size.to_i
+  end
+
+  def active?
+    self.expiration_date > DateTime.now
   end
 
   def ensure_fields

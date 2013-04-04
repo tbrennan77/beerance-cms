@@ -1,4 +1,7 @@
 ParseRailsBoilerplate::Application.routes.draw do
+  get '/end-beerance' => 'bar_specials#end_beerance', as: 'end_beerance'
+  get '/reactive-beerance' => 'bar_specials#reactivate_beerance', as: 'reactivate_beerance'
+
   get 'contact' => 'home#contact', as: 'contact'
   get 'about' => 'home#about', as: 'about'
 

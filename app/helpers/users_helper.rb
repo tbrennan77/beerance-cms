@@ -8,15 +8,15 @@ module UsersHelper
   def beer_color_image(beer_color_number)
     case beer_color_number
       when 1
-        image_tag "beer_icon_02.png", style: 'height: 52px; width: 32px;'
+        image_tag "beer_icon_02.png", style: 'height: 52px; width: 32px; vertical-align: middle; margin-top: -12px; margin-right: 18px; margin-left: 8px;'
       when 2
-        image_tag "beer_icon_03.png", style: 'height: 52px; width: 32px;'
+        image_tag "beer_icon_03.png", style: 'height: 52px; width: 32px; vertical-align: middle; margin-top: -12px; margin-right: 18px; margin-left: 8px;'
       when 3
-        image_tag "beer_icon_04.png", style: 'height: 52px; width: 32px;'
+        image_tag "beer_icon_04.png", style: 'height: 52px; width: 32px; vertical-align: middle; margin-top: -12px; margin-right: 18px; margin-left: 8px;'
       when 4
-        image_tag "beer_icon_05.png", style: 'height: 52px; width: 32px;'
+        image_tag "beer_icon_05.png", style: 'height: 52px; width: 32px; vertical-align: middle; margin-top: -12px; margin-right: 18px; margin-left: 8px;'
       else
-        image_tag "beer_icon_05.png", style: 'height: 52px; width: 32px;'
+        image_tag "beer_icon_05.png", style: 'height: 52px; width: 32px; vertical-align: middle; margin-top: -12px; margin-right: 18px; margin-left: 8px;'
     end
   end
 

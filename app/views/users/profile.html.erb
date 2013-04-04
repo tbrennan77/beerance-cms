@@ -24,23 +24,38 @@ h4 a {color: #AAA;}
                 <h4>Specials</h4>
                 <hr />
                 <%= link_to "New Special", "#", data: {reveal_id: "new_special"}, title: "New Special", class: 'small button radius' %>
-                <% BarSpecial.all.each do |bs| %>
                 <div class="row">
-                  <div class="large-4 columns">
-                    <%= beer_color_image bs.beer_color %>
-                    <%= bs.special_description %>
+                  <div class='large-5 columns'>
+                    Special Description
                   </div>
-                  <div class="large-2 columns">
+                  <div class='large-1 columns'>
+                    Price
+                  </div>
+                  <div class='large-1 columns'>
+                    Size
+                  </div>
+                  <div class='large-2 columns'>
+                    Location
+                  </div>
+                  <div class='large-3 columns'></div>
+                </div>
+                <hr />
+                <% @active_specials.each do |bs| %>
+                <div class="row">
+                  <div class="large-5 columns">
+                    <%= beer_color_image bs.beer_color %> <%= bs.special_description %>
+                  </div>
+                  <div class="large-1 columns">
                     <%= number_to_currency bs.sale_price %>
                   </div>
-                  <div class="large-2 columns">
-                    <%= bs.beer_size %>oz.
+                  <div class="large-1 columns">
+                     <%= bs.beer_size %>oz.
                   </div>
                   <div class="large-2 columns">
-                    <%= link_to "End Clearance" %>
+                    <%= bs.bar_name %>
                   </div>
-                  <div class="large-2 columns">
-                    <%= BarEntity.find(bs.bar_id).bar_name %>
+                  <div class="large-3 columns">
+                    <%= link_to "End Beerance", end_beerance_path(:id => bs.id), class: 'small button radius expanded' %>
                   </div>
                 </div>
                 <hr />
@@ -56,14 +71,41 @@ h4 a {color: #AAA;}
               <div class="large-12 columns">
                 <h4>Specials</h4>
                 <hr />
-                <% BarSpecial.all.each do |bs| %>
-                <ul class="inline-list">
-                  <li><%= bs.special_description %></li>
-                  <li><%= number_to_currency bs.sale_price %></li>
-                  <li><%= beer_color_image bs.beer_color %></li>
-                  <li><%= bs.beer_size %>oz.</li>
-                  <li><%= link_to "End Clearance" %></li>
-                </ul>
+                <div class="row">
+                  <div class='large-5 columns'>
+                    Special Description
+                  </div>
+                  <div class='large-1 columns'>
+                    Price
+                  </div>
+                  <div class='large-1 columns'>
+                    Size
+                  </div>
+                  <div class='large-2 columns'>
+                    Location
+                  </div>
+                  <div class='large-3 columns'></div>
+                </div>
+                <hr />
+                <% @inactive_specials.each do |bs| %>
+                <div class="row">
+                  <div class="large-5 columns">
+                    <%= beer_color_image bs.beer_color %> <%= bs.special_description %>
+                  </div>
+                  <div class="large-1 columns">
+                    <%= number_to_currency bs.sale_price %>
+                  </div>
+                  <div class="large-1 columns">
+                     <%= bs.beer_size %>oz.
+                  </div>
+                  <div class="large-2 columns">
+                    <%= bs.bar_name %>
+                  </div>
+                  <div class="large-3 columns">
+                    <%= link_to "Reactive Beerance", reactivate_beerance_path(:id => bs.id), class: 'small button radius expanded' %>
+                  </div>
+                </div>
+                <hr />
                 <% end %>
               </div>
             </div>
