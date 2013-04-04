@@ -12,7 +12,8 @@ class UsersController < ApplicationController
   end
 
   def profile
-    @user = current_user
+    @bar_entity = BarEntity.new
+    @bar_special = BarSpecial.new
     @bar_entities = BarEntity.where bar_owner_id: current_user.id
   end
 
@@ -26,7 +27,7 @@ class UsersController < ApplicationController
     if @user.save
       session[:user_id] = @user.id
       Notifier.signup(@user).deliver
-      redirect_to new_bar_entity_path, :notice => "Welcome to Beerance!"
+      redirect_to new_charge_path
     else
       render "new"
     end

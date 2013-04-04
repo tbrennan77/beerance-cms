@@ -1,44 +1,19 @@
 <style>
 h4 a {color: #AAA;}
+.hour-label { margin-top: 4px !important; }
 </style>
 <h3>Your Profile</h3>
 <h4 class="subheader">View your profile below</h4>
 <hr />
 
-<%#= link_to "Add Bar", new_bar_entity_path, class: 'success small button nice radius' %>
-<% if @bar_entities.blank? %>
-<style>
-h1 {
-  font-size: 56px;
-  line-height: 100px;
-  font-weight: normal;
-  color: #A87250;
-}
-.uh-oh {  
-  text-align: center;
-}
-</style>
-<div class="uh-oh">
-  <h1>Uh-oh!</h1>
-  <p>You haven't added your bar yet. You can add it <%= link_to "here", new_bar_entity_path %>.</p>
-</div>
-
-<% else %>
 <script>
   function fix() {$(window).trigger("resize");}
   setTimeout(fix, 1000);
 </script>
 
 <div class='row'>
-  <%= link_to "Cancel Subscription", cancel_subscription_path, data: {confirm: "Are you really sure?"}, class: 'alert small button radius' %>
-  <%= link_to "Start Subscription", new_charge_path, class: 'small button radius' %>
-  <%= link_to "New Bar", new_bar_entity_path, class: 'success small button radius' %>
-  <% @bar_entities.each do |bar| %>
-
-      <div class="row">
-        <div class="large-8 columns"><h4><%= bar.bar_name %> <small>(<%= link_to "Edit", edit_bar_entity_path(bar) %>)</small></h4></div>
-        <div class="large-4 columns"><span class="right"><%#= link_to "Delete", bar_entity_path(bar), method: 'delete', class: 'red', data: {confirm: "Are you sure?"} %></span></div>
-      </div>
+  <%#= link_to "Cancel Subscription", cancel_subscription_path, data: {confirm: "Are you really sure?"}, class: 'alert small button radius' %>
+  <%#= link_to "Start Subscription", new_charge_path, class: 'small button radius' %>  
 
       <div class="section-container tabs" data-section="tabs">
         <section class="section">
@@ -48,15 +23,27 @@ h1 {
               <div class="large-12 columns">
                 <h4>Specials</h4>
                 <hr />
-                <%= link_to "New Special", new_bar_special_path, class: 'small button radius' %>
-                <% BarSpecial.where(bar_id: bar.id).each do |bs| %>
-                <ul class="inline-list">
-                  <li><%= bs.special_description %></li>
-                  <li><%= number_to_currency bs.sale_price %></li>
-                  <li><%= beer_color_image bs.beer_color %></li>
-                  <li><%= bs.beer_size %>oz.</li>
-                  <li><%= link_to "End Clearance" %></li>
-                </ul>
+                <%= link_to "New Special", "#", data: {reveal_id: "new_special"}, title: "New Special", class: 'small button radius' %>
+                <% BarSpecial.all.each do |bs| %>
+                <div class="row">
+                  <div class="large-4 columns">
+                    <%= beer_color_image bs.beer_color %>
+                    <%= bs.special_description %>
+                  </div>
+                  <div class="large-2 columns">
+                    <%= number_to_currency bs.sale_price %>
+                  </div>
+                  <div class="large-2 columns">
+                    <%= bs.beer_size %>oz.
+                  </div>
+                  <div class="large-2 columns">
+                    <%= link_to "End Clearance" %>
+                  </div>
+                  <div class="large-2 columns">
+                    <%= BarEntity.find(bs.bar_id).bar_name %>
+                  </div>
+                </div>
+                <hr />
                 <% end %>
               </div>
             </div>
@@ -69,7 +56,7 @@ h1 {
               <div class="large-12 columns">
                 <h4>Specials</h4>
                 <hr />
-                <% BarSpecial.where(bar_id: bar.id).each do |bs| %>
+                <% BarSpecial.all.each do |bs| %>
                 <ul class="inline-list">
                   <li><%= bs.special_description %></li>
                   <li><%= number_to_currency bs.sale_price %></li>
@@ -82,45 +69,101 @@ h1 {
             </div>
           </div>
         </section>
-        <section class="section">
+        <section class="section <%= has_a_bar? %>">
           <p class="title"><a href="#">Bar Info</a></p>
-          <div class="content">
-            <div class="row">
-              <div class="large-6 columns">
-                <h4>Information</h4>
-                <hr />
-                <%= bar.bar_addr1 %><br />
-                <% unless bar.bar_addr2.blank? %>
-                  <%= bar.bar_addr2 %><br />
-                <% end %>
-                <%= bar.bar_city %>, <%= bar.bar_state %> <%= bar.bar_zip %><br />
-                <%= bar.bar_phone %><br />
-                <%= link_to bar.bar_url, "#{bar.bar_url}", target: :_blank %>
-                <br />
-                <br />
-                <br />
-                <%= link_to 'Add a special', new_bar_special_path, class: 'button small nice radius' %>
-              </div>
-              <div class="large-6 columns">
-                <h4>Hours</h4>
-                <hr />
-                <ul>
-                  <li><b>Monday:</b> <%= bar.hours_mon %></li>
-                  <li><b>Tuesday:</b> <%= bar.hours_tues %></li>
-                  <li><b>Wednesday:</b> <%= bar.hours_wed %></li>
-                  <li><b>Thursday:</b> <%= bar.hours_thur %></li>
-                  <li><b>Friday:</b> <%= bar.hours_fri %></li>
-                  <li><b>Saturday:</b> <%= bar.hours_sat %></li>
-                  <li><b>Sunday:</b> <%= bar.hours_sun %></li>
-                </ul>
-                <br />
-              </div>
-            </div>
+          <div class="content bar-list">
+            <%= render partial: 'bar_list' %>
           </div>
         </section>
       </div>
 
-  <% end %>
 </div>
 
-<% end %>
+    <div id="new_special" class="reveal-modal xlarge">
+      <h3 class="blue">Add a new Special</h3>
+      <p class="lead">Simply fill out the form.</p>
+      <hr />
+      <div class='row'>
+        <div class='twelve columns'>
+          <style>
+            label.active img {border: 2px solid brown;box-shadow: 0 1px 3px #CCC}
+            label.active img:hover {border: 2px solid brown;}
+            input[type="radio"],  span.custom.radio {display: none;}
+          </style>
+          <script>
+            $(document).ready(function() {
+              $('input[type="radio"]').live('change', function() {
+                $('label').removeClass('active');
+                $(this).parent().addClass('active');
+              });
+            });
+          </script>
+          <fieldset>
+          <%= form_for @bar_special, html: {class: 'custom'} do |f| %>  
+            <% if @bar_special.errors.any? %>  
+              <div class="error_messages">  
+                <h2>Form is invalid</h2>  
+                <ul>  
+                  <% for message in @bar_special.errors.full_messages %>  
+                    <li><%= message %></li>  
+                  <% end %>  
+                </ul>  
+              </div>  
+            <% end %>  
+            <div class="large-6 columns"> 
+            <p>  
+              <%= f.label :bar_id, "Select your bar" %><br />  
+              <%= f.select :bar_id, BarEntity.where(bar_owner_id: current_user.id).map {|b| [b.bar_name, b.id]}, include_blank: true %>  
+            </p>  
+            <p>  
+              <%= f.label :special_description %><br />  
+              <%= f.text_field :special_description, placeholder: 'Usually the name of the beer', class: 'required' %>  
+            </p>  
+            <p>  
+              <%= f.label :sale_price %><br />  
+              <%= f.text_field :sale_price, placeholder: '3.99', class: 'required' %>  
+            </p>
+            </div> 
+            <div class="large-6 columns"> 
+               <p>  
+                <%= f.label :beer_size %><br />  
+                <%= f.select :beer_size, [['9oz.', 9],['12oz.', 12],['16oz.', 16]] %>  
+              </p>  
+              <p>  
+                <%= f.label :beer_color, "Choose a beer color" %>
+              </p> 
+              <div class="row beer-colors">
+                <div class="large-3 columns">
+                  <label class='active'>
+                    <%= f.radio_button :beer_color, 1 %>
+                    <%= image_tag "beer_icon_02.png" %>
+                  </label>
+                </div>
+                <div class="large-3 columns">
+                  <label>
+                    <%= f.radio_button :beer_color, 2 %>
+                    <%= image_tag "beer_icon_03.png" %>
+                  </label>
+                </div>
+                <div class="large-3 columns">
+                  <label>
+                    <%= f.radio_button :beer_color, 3 %>
+                    <%= image_tag "beer_icon_04.png" %>
+                  </label>
+                </div>
+                <div class="large-3 columns">
+                  <label>
+                    <%= f.radio_button :beer_color, 4 %>
+                    <%= image_tag "beer_icon_05.png" %>
+                  </label>
+                </div>
+              </div>
+            </div>
+            <hr />
+            <p><%= f.submit "Add Special", class: 'button nice radius expanded' %></p>  
+          <% end %>  
+          </fieldset>  
+        </div>              
+      </div>  
+      <a class="close-reveal-modal">&#215;</a>
+    </div>
