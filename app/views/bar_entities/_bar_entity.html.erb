@@ -1,0 +1,30 @@
+<div id="bar-<%= @bar_entity.id %>" class="row">
+  <div class="large-12 columns"><h4><%= @bar_entity.bar_name %> <small><%= link_to "(edit)", edit_bar_entity_path(@bar_entity) %> <%= link_to "(delete)", @bar_entity, method: :delete, data: {confirm: "Are you sure?"}, remote: true %></small></h4></div>
+  <div class="large-6 columns">
+    <h4>Information</h4>
+    <%= @bar_entity.bar_addr1 %><br />
+    <% unless @bar_entity.bar_addr2.blank? %>
+      <%= @bar_entity.bar_addr2 %><br />
+    <% end %>
+    <%= @bar_entity.bar_city %>, <%= @bar_entity.bar_state %> <%= @bar_entity.bar_zip %><br />
+    <%= @bar_entity.bar_phone %><br />
+    <%= link_to @bar_entity.bar_url, "#{@bar_entity.bar_url}", target: :_blank %>
+    <br />
+    <br />
+    <br />
+  </div>
+  <div class="large-6 columns">
+    <h4>Hours</h4>
+    <ul>
+      <li><b>Monday:</b> <%= @bar_entity.hours_mon %></li>
+      <li><b>Tuesday:</b> <%= @bar_entity.hours_tues %></li>
+      <li><b>Wednesday:</b> <%= @bar_entity.hours_wed %></li>
+      <li><b>Thursday:</b> <%= @bar_entity.hours_thur %></li>
+      <li><b>Friday:</b> <%= @bar_entity.hours_fri %></li>
+      <li><b>Saturday:</b> <%= @bar_entity.hours_sat %></li>
+      <li><b>Sunday:</b> <%= @bar_entity.hours_sun %></li>
+    </ul>
+    <br />
+  </div>
+  <hr />
+</div>

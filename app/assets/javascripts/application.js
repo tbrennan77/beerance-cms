@@ -28,17 +28,19 @@ function IpadIsNotStandalone() {
 }
 function DisplayAddToHomeScreenPopup() { $("#addToHomeScreen").show(); }
 
-$(document).ready(function() {
-  if ($(".alert-box").length){
-    $(".alert-box").hide().fadeIn(400,function(){
-      $(this).delay(3000).fadeOut(250);
-    });
-  }
+$(document).ready(function() {  
   $(document).foundation();
   var jPM = $.jPanelMenu();
   jPM.on();
   $("#loading").hide();  
   $('form').each(function() { $(this).validate(); });
-
 });
 $(document).foundation();
+
+$(document).live('ajax:beforeSend', function(event, xhr, settings) {    
+  $("#ajax_bar").fadeIn("slow");
+});
+
+$(document).live('ajax:complete', function(event, xhr, settings) {  
+  $("#ajax_bar").fadeOut("slow");
+});  

@@ -1,0 +1,103 @@
+<div class="row">
+      <div class='large-6 columns'>
+        <h5>Bar Information</h5>
+        <hr />
+
+        <%= f.label :bar_name, "Name of the bar" %> 
+        <%= f.text_field :bar_name, placeholder: 'Rocky River Brewing Co', class: 'required' %>  
+    
+        <%= f.label :bar_phone, "Phone number for the bar" %>
+        <%= f.phone_field :bar_phone, placeholder: '216-123-4567', class: 'required' %>  
+    
+        <%= f.label :bar_url, "Website URL" %>
+        <%= f.text_field :bar_url, placeholder: 'http://www.brew.com', class: 'required' %>  
+        
+        <%= f.label :bar_addr1, "Address" %>
+        <%= f.text_field :bar_addr1, placeholder: '123 Main St', class: 'required' %>  
+    
+        <%= f.label :bar_addr2, "Address 2" %>
+        <%= f.text_field :bar_addr2, placeholder: '(optional)' %>  
+        
+        <div class='row'>
+          <div class='large-8 columns'>
+            <%= f.label :bar_city, "City" %>
+            <%= f.text_field :bar_city, placeholder: 'Cleveland', class: 'required' %>  
+          </div>
+          <div class='large-4 columns'>
+            <%= f.label :bar_state, "State" %>
+            <%= f.select :bar_state, states.map {|s| s} %>  
+          </div>
+        </div>
+        <br />
+        <%= f.label :bar_zip, "Zip" %>
+        <%= f.text_field :bar_zip, placeholder: '44116', class: 'required' %>
+      </div>
+    <div class='large-6 columns'>
+        <h5>Hours</h5>
+        <hr />
+        <%= f.label :hours_mon, "Monday" %>
+        <div class='row hour-label'>
+          <div class="large-6 columns">
+            <%= f.select :mon_start, times.map {|t| t }, :prompt => "Open", selected: selected_time(f.object.hours_mon)[:open] %>
+          </div>
+          <div class="large-6 columns">
+            <%= f.select :mon_end, times.map {|t| t }, :prompt => "Close", selected: selected_time(f.object.hours_mon)[:close] %>
+          </div>
+        </div>
+        <%= f.label :hours_tues, "Tuesday" %>
+        <div class='row hour-label'>
+          <div class="large-6 columns">
+            <%= f.select :tue_start, times.map {|t| t }, :prompt => "Open", selected: selected_time(f.object.hours_tues)[:open] %>
+          </div>
+          <div class="large-6 columns">
+            <%= f.select :tue_end, times.map {|t| t }, :prompt => "Close", selected: selected_time(f.object.hours_tues)[:close] %>
+          </div>
+        </div>
+        <%= f.label :hours_wed, "Wednesday" %>
+        <div class='row hour-label'>
+          <div class="large-6 columns">
+            <%= f.select :wed_start, times.map {|t| t }, :prompt => "Open", selected: selected_time(f.object.hours_wed)[:open] %>
+          </div>
+          <div class="large-6 columns">
+            <%= f.select :wed_end, times.map {|t| t }, :prompt => "Close", selected: selected_time(f.object.hours_wed)[:close] %>
+          </div>
+        </div>
+        <%= f.label :hours_thur, "Thursday" %>
+        <div class='row hour-label'>
+          <div class="large-6 columns">
+            <%= f.select :thu_start, times.map {|t| t }, :prompt => "Open", selected: selected_time(f.object.hours_thur)[:open] %>
+          </div>
+          <div class="large-6 columns">
+            <%= f.select :thu_end, times.map {|t| t }, :prompt => "Close", selected: selected_time(f.object.hours_thur)[:close] %>
+          </div>
+        </div>
+        <%= f.label :hours_fri, "Friday" %>
+        <div class='row hour-label'>
+          <div class="large-6 columns">
+            <%= f.select :fri_start, times.map {|t| t }, :prompt => "Open", selected: selected_time(f.object.hours_fri)[:open] %>
+          </div>
+          <div class="large-6 columns">
+            <%= f.select :fri_end, times.map {|t| t }, :prompt => "Close", selected: selected_time(f.object.hours_fri)[:close] %>
+          </div>
+        </div>
+        <%= f.label :hours_sat, "Saturday" %>
+        <div class='row hour-label'>
+          <div class="large-6 columns">
+            <%= f.select :sat_start, times.map {|t| t }, :prompt => "Open", selected: selected_time(f.object.hours_sat)[:open] %>
+          </div>
+          <div class="large-6 columns">
+            <%= f.select :sat_end, times.map {|t| t }, :prompt => "Close", selected: selected_time(f.object.hours_sat)[:close] %>
+          </div>
+        </div>
+        <%= f.label :hours_sun, "Sunday" %>
+        <div class='row hour-label'>
+          <div class="large-6 columns">
+            <%= f.select :sun_start, times.map {|t| t }, :prompt => "Open", selected: selected_time(f.object.hours_sun)[:open] %>
+          </div>
+          <div class="large-6 columns">
+            <%= f.select :sun_end, times.map {|t| t }, :prompt => "Close", selected: selected_time(f.object.hours_sun)[:close] %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <hr />

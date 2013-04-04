@@ -1,10 +1,5 @@
 <style>
-.hour-label {text-align: right; }
-
-.hour-fields .large-4 {
-  height: 46px;
-  padding-top: 7px !important;
-}
+.hour-label { margin-top: 4px !important; }
 </style>
 <h3>Edit <%= @bar_entity.bar_name %></h3>  
 <hr />
@@ -20,104 +15,9 @@
         <% end %>  
       </ul>  
     </div>  
-  <% end %>  
-  <div class="row">
-      <div class='large-6 columns'>
-        <h5>Bar Information</h5>
-        <hr />
+  <% end %>
 
-        <%= f.label :bar_name, "Name of the bar" %> 
-        <%= f.text_field :bar_name, placeholder: 'Rocky River Brewing Co', class: 'required' %>  
-    
-        <%= f.label :bar_phone, "Phone number for the bar" %>
-        <%= f.phone_field :bar_phone, placeholder: '216-123-4567', class: 'required' %>  
-    
-        <%= f.label :bar_url, "Website URL" %>
-        <%= f.text_field :bar_url, placeholder: 'http://www.brew.com', class: 'required' %>  
-        
-        <%= f.label :bar_addr1, "Address" %>
-        <%= f.text_field :bar_addr1, placeholder: '123 Main St', class: 'required' %>  
-    
-        <%= f.label :bar_addr2, "Address 2" %>
-        <%= f.text_field :bar_addr2, placeholder: '(optional)' %>  
-        
-        <div class='row'>
-          <div class='large-8 columns'>
-            <%= f.label :bar_city, "City" %>
-            <%= f.text_field :bar_city, placeholder: 'Cleveland', class: 'required' %>  
-          </div>
-          <div class='large-4 columns'>
-            <%= f.label :bar_state, "State" %>
-            <%= f.select :bar_state, states.map {|s| s} %>  
-          </div>
-        </div>
-        <br />
-        <%= f.label :bar_zip, "Zip" %>
-        <%= f.text_field :bar_zip, placeholder: '44116', class: 'required' %>
-      </div>
-      <div class='large-6 columns hour-fields'>
-        <h5>Hours</h5>
-        <hr />
-        <br />
-        <div class="row">
-          <div class='large-4 columns hour-label'>
-            Monday
-          </div>
-          <div class='large-8 columns'>
-            <%= f.text_field :hours_mon, placeholder: '11am - 12pm' %>  
-          </div>
-        </div>
-        <div class="row">
-          <div class='large-4 columns hour-label'>
-            Tuesday
-          </div>
-          <div class='large-8 columns'>
-            <%= f.text_field :hours_tues, placeholder: '11am - 12pm' %>  
-          </div>
-        </div>
-        <div class="row">
-          <div class='large-4 columns hour-label'>
-            Wednesday
-          </div>
-          <div class='large-8 columns'>
-            <%= f.text_field :hours_wed, placeholder: '11am - 12pm' %>  
-          </div>
-        </div>
-        <div class="row">
-          <div class='large-4 columns hour-label'>
-            Thursday
-          </div>
-          <div class='large-8 columns'>
-            <%= f.text_field :hours_thur, placeholder: '11am - 12pm' %>  
-          </div>
-        </div>
-        <div class="row">
-          <div class='large-4 columns hour-label'>
-            Friday
-          </div>
-          <div class='large-8 columns'>
-            <%= f.text_field :hours_fri, placeholder: '11am - 12pm' %>  
-          </div>
-        </div>
-        <div class="row">
-          <div class='large-4 columns hour-label'>
-            Saturday
-          </div>
-          <div class='large-8 columns'>
-            <%= f.text_field :hours_sat, placeholder: '11am - 12pm' %>  
-          </div>
-        </div>
-        <div class="row">
-          <div class='large-4 columns hour-label'>
-            Sunday
-          </div>
-          <div class='large-8 columns'>
-            <%= f.text_field :hours_sun, placeholder: '11am - 12pm' %>  
-          </div>
-        </div>
-      </div>
-    </div>
-    <hr />
+  <%= render partial: 'form', locals: {f: f} %>
 
   <%= f.submit "Update Bar", class: 'button nice radius' %> <%= link_to "Cancel", profile_path, class: 'alert button nice radius' %>
 <% end %>  

@@ -3,7 +3,38 @@ class BarEntity < ParseUser
   include ActionView::Helpers
   include Geokit::Geocoders
   
-  fields :bar_owner_id, :bar_name, :bar_phone, :bar_url, :bar_addr1, :bar_addr2, :bar_city, :bar_state, :bar_zip, :bar_location, :hours_mon, :hours_tues, :hours_wed, :hours_thur, :hours_fri, :hours_sat, :hours_sun
+  fields :bar_owner_id,
+        :bar_name,
+        :bar_phone,
+        :bar_url,
+        :bar_addr1,
+        :bar_addr2,
+        :bar_city,
+        :bar_state,
+        :bar_zip,
+        :bar_location,
+        :hours_mon,
+        :hours_tues,
+        :hours_wed,
+        :hours_thur,
+        :hours_fri,
+        :hours_sat,
+        :hours_sun,
+        :mon_start,
+        :mon_end,
+        :tue_start,
+        :tue_end,
+        :wed_start,
+        :wed_end,
+        :thu_start,
+        :thu_end,
+        :fri_start,
+        :fri_end,
+        :sat_start,
+        :sat_end,
+        :sun_start,
+        :sun_end
+
   validates_presence_of :bar_name, :bar_location, :bar_phone, :bar_url, :bar_addr1, :bar_city, :bar_state, :bar_zip, :hours_mon, :hours_tues, :hours_wed, :hours_thur, :hours_fri, :hours_sat, :hours_sun
   before_save :ensure_fields
 

@@ -1,0 +1,18 @@
+  <fieldset>
+  <%= form_for @bar_entity, html: {class: 'custom'}, remote: true do |f| %>  
+    <% if @bar_entity.errors.any? %>  
+      <div class="error_messages">  
+        <h2>Form is invalid</h2>  
+        <ul>  
+          <% for message in @bar_entity.errors.full_messages %>  
+            <li><%= message %></li>  
+          <% end %>  
+        </ul>  
+      </div>  
+    <% end %>  
+    <br />
+    <%= render partial: 'form', locals: {f: f} %>
+
+    <%= f.submit "Add Bar", class: 'button nice radius' %>
+  <% end %>  
+</fieldset>
