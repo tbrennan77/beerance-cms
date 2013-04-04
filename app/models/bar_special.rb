@@ -12,7 +12,7 @@ class BarSpecial < ParseUser
   end
 
   def set_geo_location
-    self.bar_location = ParseGeoPoint.new :latitude => 34.09300844216167, :longitude => -118.3780094460731
+    self.bar_location = BarEntity.find(self.bar_id).bar_location
   end
 
   def set_bar_name
@@ -22,6 +22,7 @@ class BarSpecial < ParseUser
   def ensure_formats
     self.beer_color = self.beer_color.to_f
     self.sale_price = self.sale_price.to_f
+    self.beer_size  = self.beer_size.to_i
   end
 
   def ensure_fields

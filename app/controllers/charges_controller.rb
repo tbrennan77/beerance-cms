@@ -5,7 +5,7 @@ class ChargesController < ApplicationController
   end
 
   def create
-
+    begin
     customer = Stripe::Customer.create(
       :card  => params[:stripeToken],
       :plan  => @plan_type,
@@ -20,9 +20,12 @@ class ChargesController < ApplicationController
       :currency    => 'usd'
     )
 
-  rescue Stripe::CardError => e
-    flash[:error] = e.message
-    redirect_to charges_path
+
+    rescue Stripe::CardError => e
+      flash[:error] = e.message
+      redirect_to new_charge_path
+    end
+    redirect_to profile_path
   end
 
   def cancel_subscription
