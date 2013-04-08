@@ -15,6 +15,7 @@
 /tmp
 
 /config/parse_resource.yml
+config/initializers/stripe.rb
 
 .DS_Store
 */.DS_Store
