@@ -35,10 +35,12 @@
   border: 1px dotted red;
 }
 
-nav.top-bar {  
+.top-bar {  
   margin-bottom: 0 !important;
-  background-image: url(header.png);
+  background-image: url(header.png) !important;
   box-shadow: 0 1px 3px #AAA;
+  background: blue;
+  width: 100%;
 }
 
 .panel {margin-left: 15px !important;}
@@ -103,3 +105,45 @@ li {list-style-type: none;}
     a {background: #a87250;}
   }
 }
+
+body, html {height: 100% !important;}
+
+/* #footermain */
+#footermain {clear: both;margin-top: 0px; background: #222; border-top: 2px solid brown; padding: 10px 0; width: 100%; text-align: center;
+  h5 { font-size: 16px; color: brown; margin-bottom: 10px;
+    a {padding: 3px 10px 5px; position: relative; top: -3px; left: -10px;}
+    a:hover {background-color: #f4f4f4;border-radius: 8px;}
+  }
+  ul {line-height: 130%; margin-bottom: 15px;
+    li, li a {color: #999}
+    li {margin-bottom: 5px; list-style-type:none;
+      a:hover {color: #444;}
+      a > img {position: relative; margin-right: 3px; top: 2px;}
+    }
+  }
+  form label {color: #888; position: relative; top: -4px;}
+  .twelve.columns.centered { font-size: 11px; color: #888; text-align: center;}
+  .vcard {border: 0; padding: 0; margin: 0;}
+  
+  & .show-for-small { font-size: 12px; text-align: center; margin-bottom: 15px; margin-top: 15px;
+    dd {display: inline-block; margin-right: 10px;
+      &:last-child {margin-right: 0;}
+      a {color: brown;
+        &:hover, &:focus {color: #999;}
+      }
+    }
+  }
+}
+
+.contact, .login {
+  background:#a87250; 
+  color:#FFF; 
+  width:100%; 
+  height:140px;
+  a {
+    color: black;
+    text-decoration: underline;
+  }
+}
+.login {padding-top: 40px;}
+.contact {padding-top: 12px;}
