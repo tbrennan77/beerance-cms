@@ -33,7 +33,7 @@ $(document).ready(function() {
   var jPM = $.jPanelMenu();
   jPM.on();
   $("#loading").hide();  
-  $('form').each(function() { $(this).validate(); });
+  //$('form').each(function() { $(this).validate(); });
 });
 $(document).foundation();
 

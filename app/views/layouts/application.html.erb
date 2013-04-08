@@ -18,9 +18,9 @@
   <%= stylesheet_link_tag    "application" %>
   
   <!-- Included JS Files  -->
-  <%= javascript_include_tag "application" %>
-  
+  <%= javascript_include_tag "https://js.stripe.com/v1/", "application" %>
   <%= csrf_meta_tags %>
+  <%= tag :meta, :name => "stripe-key", :content => STRIPE_PUBLIC_KEY %>
   <link href='http://fonts.googleapis.com/css?family=Domine:400,700' rel='stylesheet' type='text/css'>
 </head>
   <body>
@@ -69,7 +69,7 @@
               <%= submit_tag "Login", class: 'blue button nice radius' %>
             </div>
             <div class='large-3 columns' style='margin-top: 25px'>
-              <%= link_to "Register", root_path, class: 'right' %>
+              <%= link_to "Register", sign_up_path, class: 'right' %>
             </div>
         <% end %>  
       </div>

@@ -37,12 +37,10 @@ class UsersController < ApplicationController
   end  
     
   def create    
-    @user = User.new(params[:user])
-
-    if @user.save
+    if @user.save_with_payment
       session[:user_id] = @user.id
       Notifier.signup(@user).deliver
-      redirect_to new_charge_path
+      redirect_to profile_path
     else
       render "new"
     end
@@ -84,13 +82,16 @@ class UsersController < ApplicationController
   end
 
   def verify_create_parameters
-    params[:user].assert_valid_keys %w{username password owner_name owner_phone password_confirmation}    
+    @user = User.new(params[:user])
+    @user.stripe_card_token = params[:user][:stripe_card_token]
+    @user.plan_type = params[:user][:plan_type].to_i
+    @user.username.downcase!
+    @user.newsletter_subscription = !@user.newsletter_subscription.to_i.zero?
     if params[:user][:password] != params[:user][:password_confirmation]
-      @user = User.new(params[:user])
       @user.errors.add :password, "did not match confirmation."
       render 'new'
     end
     params[:user].delete :password_confirmation
-    params[:user][:username].downcase!
+    params[:user].delete :stripe_card_token
   end
 end
