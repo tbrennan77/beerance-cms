@@ -1,6 +1,6 @@
 ParseRailsBoilerplate::Application.routes.draw do
-  get '/end-beerance' => 'bar_specials#end_beerance', as: 'end_beerance'
-  get '/reactive-beerance' => 'bar_specials#reactivate_beerance', as: 'reactivate_beerance'
+  get '/end-beerance/:id' => 'bar_specials#end_beerance', as: 'end_beerance'
+  get '/reactive-beerance/:id' => 'bar_specials#reactivate_beerance', as: 'reactivate_beerance'
 
   get 'contact' => 'home#contact', as: 'contact'
   get 'about' => 'home#about', as: 'about'
@@ -15,6 +15,9 @@ ParseRailsBoilerplate::Application.routes.draw do
   resources :sessions 
   resources :bar_entities, path: 'bars'
   resources :bar_specials, path: 'bar-specials'
+  match 'bar-specials' => "bar_specials#index", as: 'bar_specials_index'
+  match 'bar-specials/new' => "bar_specials#new", as: 'new_bar_special'
+  #match 'bar-specials/create' => "bar_specials#create", as: 'bar_special'
 
   get '/admin' => "admin#index", as: 'admin'
   match '/admin/make-admin' => 'users#make_admin', as: 'make_admin'

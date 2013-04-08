@@ -1,8 +1,4 @@
-class BarEntity < ParseUser
-  # For phone number formatting
-  include ActionView::Helpers
-  include Geokit::Geocoders
-  
+class BarEntity < ParseResource::Base
   fields :bar_owner_id,
         :bar_name,
         :bar_phone,
@@ -39,12 +35,28 @@ class BarEntity < ParseUser
   before_save :ensure_fields
 
   def set_phone_number
-    self.bar_phone = number_to_phone(self.bar_phone.gsub(/[^\d]/, ""), :area_code => true)
+    self.bar_phone = self.bar_phone.gsub(/[^\d]/, "")
+  end
+
+  def set_url
+    self.bar_url = "http://#{self.bar_url.gsub(/(https:\/\/|http:\/\/)/,'')}"
   end
 
   def set_geo_location
-    geo = MultiGeocoder.geocode("#{self.bar_addr1}, #{self.bar_city}, #{self.bar_state} #{self.bar_zip}").ll.split(',')
-    self.bar_location = ParseGeoPoint.new :latitude => geo[0].to_f, :longitude => geo[1].to_f
+    geo = Geocoder.search("#{self.bar_addr1}, #{self.bar_city}, #{self.bar_state} #{self.bar_zip}")
+    lat = geo.first.data['geometry']['location']['lat']
+    lng = geo.first.data['geometry']['location']['lng']
+    self.bar_location = ParseGeoPoint.new :latitude => lat, :longitude => lng    
+  end
+
+  def update_specials
+    specials = BarSpecials.where(bar_id: self.id)
+    if specials
+      specials.each do |s|
+        s.bar_location = self.bar_location
+        s.save
+      end
+    end
   end
 
   def set_bar_owner(id)
@@ -53,6 +65,8 @@ class BarEntity < ParseUser
 
   def ensure_fields
     set_phone_number
+    set_url
     set_geo_location
+    update_specials
   end
 end

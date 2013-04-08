@@ -13,6 +13,7 @@
   </thead>
   <tbody>
   <% User.all.each do |u| %>
+    <% unless u.owner_name.blank? %>
     <tr>
       <td><%= link_to u.username, user_path(u) %></td>
       <td><%= u.admin? ? 'yes' : '' %></td>
@@ -29,6 +30,7 @@
         <%= u.id == current_user.id ? " <- This is YOU!" : "" %>
       </td>
     </tr>
+    <% end %>
   <% end %>
   </tbody>
 </table>

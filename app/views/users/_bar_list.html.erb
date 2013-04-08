@@ -1,55 +1,55 @@
 <% if @bar_entities.blank? %>
-              <fieldset>
-                <%= form_for @bar_entity, html: {class: 'custom'}, remote: true do |f| %>  
-                  <% if @bar_entity.errors.any? %>  
-                    <div class="error_messages">  
-                      <h2>Form is invalid</h2>  
-                      <ul>  
-                        <% for message in @bar_entity.errors.full_messages %>  
-                          <li><%= message %></li>  
-                        <% end %>  
-                      </ul>  
-                    </div>  
-                  <% end %>  
-                  <br />
-                  <%= render partial: 'bar_entities/form', locals: {f: f} %>
+  <fieldset>
+    <%= form_for @bar_entity, html: {class: 'custom'}, remote: true do |f| %>  
+      <% if @bar_entity.errors.any? %>  
+        <div class="error_messages">  
+          <h2>Form is invalid</h2>  
+          <ul>  
+            <% for message in @bar_entity.errors.full_messages %>  
+              <li><%= message %></li>  
+            <% end %>  
+          </ul>  
+        </div>  
+      <% end %>  
+      <br />
+      <%= render partial: 'bar_entities/form', locals: {f: f} %>
 
-                  <%= f.submit "Add Bar", class: 'button nice radius' %>
-                <% end %>  
-              </fieldset>
-            <% else %>
-            <br />
-            <%= link_to "New Bar", new_bar_entity_path, id: 'new_link', remote: true, class: 'success button radius' %>
-            <% @bar_entities.each do |bar| %>
-            <div id="bar-<%= bar.id %>" class="row">
-              <div class="large-12 columns"><h4><%= bar.bar_name %> <small><%= link_to "(edit)", edit_bar_entity_path(bar) %> <%= link_to "(delete)", bar, method: :delete, data: {confirm: "Are you sure?"}, remote: true %></small></h4></div>
-              <div class="large-6 columns">
-                <h4>Information</h4>
-                <%= bar.bar_addr1 %><br />
-                <% unless bar.bar_addr2.blank? %>
-                  <%= bar.bar_addr2 %><br />
-                <% end %>
-                <%= bar.bar_city %>, <%= bar.bar_state %> <%= bar.bar_zip %><br />
-                <%= bar.bar_phone %><br />
-                <%= link_to bar.bar_url, "#{bar.bar_url}", target: :_blank %>
-                <br />
-                <br />
-                <br />
-              </div>
-              <div class="large-6 columns">
-                <h4>Hours</h4>
-                <ul>
-                  <li><b>Monday:</b> <%= bar.hours_mon %></li>
-                  <li><b>Tuesday:</b> <%= bar.hours_tues %></li>
-                  <li><b>Wednesday:</b> <%= bar.hours_wed %></li>
-                  <li><b>Thursday:</b> <%= bar.hours_thur %></li>
-                  <li><b>Friday:</b> <%= bar.hours_fri %></li>
-                  <li><b>Saturday:</b> <%= bar.hours_sat %></li>
-                  <li><b>Sunday:</b> <%= bar.hours_sun %></li>
-                </ul>
-                <br />
-              </div>
-              <hr />
-            </div>
-            <% end %>
-            <% end %>
+      <%= f.submit "Add Bar", class: 'button nice radius' %>
+    <% end %>  
+  </fieldset>
+<% else %>
+  <br />
+  <%= link_to "Create New Bar", new_bar_entity_path, id: 'new_link', remote: true, class: 'small button radius right' %>
+  <% @bar_entities.each do |bar| %>
+  <div id="bar-<%= bar.id %>" class="row">
+    <div class="large-12 columns"><h4><%= bar.bar_name %> <small><%= link_to "edit", edit_bar_entity_path(bar) %> / <%= link_to "delete", bar, method: :delete, data: {confirm: "Are you sure?"}, remote: true %></small></h4></div>
+    <div class="large-6 columns">
+      <%= bar.bar_addr1 %><br />
+      <% unless bar.bar_addr2.blank? %>
+        <%= bar.bar_addr2 %><br />
+      <% end %>
+      <%= bar.bar_city %>, <%= bar.bar_state %>
+      <br /><%= bar.bar_zip %><br /><br />
+      <%= number_to_phone bar.bar_phone, area_code: true %><br />
+      <%= link_to bar.bar_url, "#{bar.bar_url}", target: :_blank %>
+      <br />
+      <br />
+      <br />
+    </div>
+    <div class="large-6 columns">
+      <h4>Hours</h4>
+      <ul>
+        <li><b>Monday:</b> <%= bar.hours_mon %></li>
+        <li><b>Tuesday:</b> <%= bar.hours_tues %></li>
+        <li><b>Wednesday:</b> <%= bar.hours_wed %></li>
+        <li><b>Thursday:</b> <%= bar.hours_thur %></li>
+        <li><b>Friday:</b> <%= bar.hours_fri %></li>
+        <li><b>Saturday:</b> <%= bar.hours_sat %></li>
+        <li><b>Sunday:</b> <%= bar.hours_sun %></li>
+      </ul>
+      <br />
+    </div>
+    <hr />
+  </div>
+  <% end %>
+<% end %>

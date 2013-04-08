@@ -71,8 +71,7 @@ GEM
     execjs (1.4.0)
       multi_json (~> 1.0)
     fssm (0.2.10)
-    geokit (1.6.5)
-      multi_json
+    geocoder (1.1.6)
     hike (1.2.1)
     i18n (0.6.1)
     journey (1.0.4)
@@ -148,7 +147,7 @@ DEPENDENCIES
   combined_time_select (~> 0.0.1)
   compass-rails
   dynamic_form
-  geokit
+  geocoder
   jquery-rails
   modernizr-rails
   parse_resource!

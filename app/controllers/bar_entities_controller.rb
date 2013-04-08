@@ -32,10 +32,11 @@ class BarEntitiesController < ApplicationController
   def update
     params[:bar_entity].assert_valid_keys %w{bar_name bar_phone bar_url bar_addr1 bar_addr2 bar_city bar_state bar_zip hours_mon hours_tues hours_wed hours_thur hours_fri hours_sat hours_sun}
     @bar_entity = BarEntity.find(params[:id])
-    @bar_entity.ensure_fields
 
     if @bar_entity.valid?
       @bar_entity.update_attributes params[:bar_entity]     
+      @bar_entity.ensure_fields
+      @bar_entity.save
       redirect_to profile_path, notice: 'Updated Bar'
     else
       render :edit

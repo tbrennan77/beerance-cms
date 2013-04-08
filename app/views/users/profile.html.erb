@@ -1,10 +1,16 @@
 <style>
 h4 a {color: #AAA;}
+.content {padding-bottom: 0 !important;}
 .hour-label { margin-top: 4px !important; }
+.specials > div > div, .archives > div > div {text-align: center;}
+.specials > div > div a, .archives > div > div a {text-decoration: underline;}
+.specials > div, .archives > div {
+  padding: 16px;
+  border-top: 1px solid #CCC;
+}
+.specials > div:nth-child(even), .archives > div:nth-child(odd) {background: #DDD;}
 </style>
-<h3>Your Profile</h3>
-<h4 class="subheader">View your profile below</h4>
-<hr />
+<h3>Welcome, <%= current_user.owner_name %> <small><%= link_to "(edit my account)", 'javascript:void(0)' %></small></h3>
 
 <script>
   function fix() {$(window).trigger("resize");}
@@ -20,45 +26,49 @@ h4 a {color: #AAA;}
           <p class="title"><a href="#">Current Specials</a></p>
           <div class="content">
             <div class="row">
-              <div class="large-12 columns">
-                <h4>Specials</h4>
-                <hr />
+              <div class="large-12 columns specials">
                 <%= link_to "New Special", "#", data: {reveal_id: "new_special"}, title: "New Special", class: 'small button radius' %>
                 <div class="row">
-                  <div class='large-5 columns'>
-                    Special Description
-                  </div>
-                  <div class='large-1 columns'>
-                    Price
-                  </div>
-                  <div class='large-1 columns'>
-                    Size
+                  <div class='large-2 columns'>
+                    <b>Name</b>
                   </div>
                   <div class='large-2 columns'>
-                    Location
+                    <b>Style</b>
                   </div>
-                  <div class='large-3 columns'></div>
+                  <div class='large-1 columns'>
+                    <b>Price</b>
+                  </div>
+                  <div class='large-1 columns'>
+                    <b>Size</b>
+                  </div>
+                  <div class='large-4 columns'>
+                    <b>Location</b>
+                  </div>
+                  <div class='large-2 columns'>
+                    <b>Remove</b>
+                  </div>
                 </div>
-                <hr />
                 <% @active_specials.each do |bs| %>
                 <div class="row">
-                  <div class="large-5 columns">
-                    <%= beer_color_image bs.beer_color %> <%= bs.special_description %>
+                  <div class="large-2 columns">
+                    <%= bs.special_description %>
+                  </div>
+                  <div class="large-2 columns">
+                    IPA
                   </div>
                   <div class="large-1 columns">
                     <%= number_to_currency bs.sale_price %>
                   </div>
                   <div class="large-1 columns">
-                     <%= bs.beer_size %>oz.
+                     <%= bs.beer_size %>oz
                   </div>
-                  <div class="large-2 columns">
+                  <div class="large-4 columns">
                     <%= bs.bar_name %>
                   </div>
-                  <div class="large-3 columns">
-                    <%= link_to "End Beerance", end_beerance_path(:id => bs.id), class: 'small button radius expanded' %>
+                  <div class="large-2 columns">
+                    <%= link_to "X", end_beerance_path(bs) %>
                   </div>
                 </div>
-                <hr />
                 <% end %>
               </div>
             </div>
@@ -68,51 +78,55 @@ h4 a {color: #AAA;}
           <p class="title"><a href="#">Archive</a></p>
           <div class="content">
             <div class="row">
-              <div class="large-12 columns">
-                <h4>Specials</h4>
-                <hr />
+              <div class="large-12 columns archives">
                 <div class="row">
-                  <div class='large-5 columns'>
-                    Special Description
-                  </div>
-                  <div class='large-1 columns'>
-                    Price
-                  </div>
-                  <div class='large-1 columns'>
-                    Size
+                  <div class='large-2 columns'>
+                    <b>Name</b>
                   </div>
                   <div class='large-2 columns'>
-                    Location
+                    <b>Style</b>
                   </div>
-                  <div class='large-3 columns'></div>
+                  <div class='large-1 columns'>
+                    <b>Price</b>
+                  </div>
+                  <div class='large-1 columns'>
+                    <b>Size</b>
+                  </div>
+                  <div class='large-4 columns'>
+                    <b>Location</b>
+                  </div>
+                  <div class='large-2 columns'>
+                    <b>Reactivate</b>
+                  </div>
                 </div>
-                <hr />
                 <% @inactive_specials.each do |bs| %>
                 <div class="row">
-                  <div class="large-5 columns">
-                    <%= beer_color_image bs.beer_color %> <%= bs.special_description %>
+                  <div class="large-2 columns">
+                    <%= bs.special_description %>
+                  </div>
+                  <div class="large-2 columns">
+                    IPA
                   </div>
                   <div class="large-1 columns">
                     <%= number_to_currency bs.sale_price %>
                   </div>
                   <div class="large-1 columns">
-                     <%= bs.beer_size %>oz.
+                     <%= bs.beer_size %>oz
                   </div>
-                  <div class="large-2 columns">
+                  <div class="large-4 columns">
                     <%= bs.bar_name %>
                   </div>
-                  <div class="large-3 columns">
-                    <%= link_to "Reactive Beerance", reactivate_beerance_path(:id => bs.id), class: 'small button radius expanded' %>
+                  <div class="large-2 columns">
+                    <%= link_to "Reactivate", reactivate_beerance_path(bs) %>
                   </div>
                 </div>
-                <hr />
                 <% end %>
               </div>
             </div>
           </div>
         </section>
         <section class="section <%= has_a_bar? %>">
-          <p class="title"><a href="#">Bar Info</a></p>
+          <p class="title"><a href="#"><%= my_bars @bar_entities.all.count %></a></p>
           <div class="content bar-list">
             <%= render partial: 'bar_list' %>
           </div>
@@ -177,26 +191,26 @@ h4 a {color: #AAA;}
               <div class="row beer-colors">
                 <div class="large-3 columns">
                   <label class='active'>
+                    <%= f.radio_button :beer_color, 0 %>
+                    <%= image_tag "black.png" %>
+                  </label>
+                </div>
+                <div class="large-3 columns">
+                  <label>
                     <%= f.radio_button :beer_color, 1 %>
-                    <%= image_tag "beer_icon_02.png" %>
+                    <%= image_tag "red.png" %>
                   </label>
                 </div>
                 <div class="large-3 columns">
                   <label>
                     <%= f.radio_button :beer_color, 2 %>
-                    <%= image_tag "beer_icon_03.png" %>
+                    <%= image_tag "pale.png" %>
                   </label>
                 </div>
                 <div class="large-3 columns">
                   <label>
                     <%= f.radio_button :beer_color, 3 %>
-                    <%= image_tag "beer_icon_04.png" %>
-                  </label>
-                </div>
-                <div class="large-3 columns">
-                  <label>
-                    <%= f.radio_button :beer_color, 4 %>
-                    <%= image_tag "beer_icon_05.png" %>
+                    <%= image_tag "amber.png" %>
                   </label>
                 </div>
               </div>

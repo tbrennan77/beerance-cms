@@ -56,6 +56,7 @@ module ApplicationHelper
 
   def times 
    @times = [
+      ["Closed"],
       ["12:00 AM"],
       ["12:30 AM"],
       ["1:00 AM"],

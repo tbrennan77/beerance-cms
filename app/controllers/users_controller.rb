@@ -13,13 +13,13 @@ class UsersController < ApplicationController
 
   def profile
     @bar_entity = BarEntity.new
-    @bar_special = BarSpecial.new
+    @bar_special = BarSpecials.new
     @bar_entities = BarEntity.where bar_owner_id: current_user.id    
     @active_specials = []
     @inactive_specials = []
     
     @bar_entities.each do |be|
-      specials = BarSpecial.where(bar_id: be.id)
+      specials = BarSpecials.where(bar_id: be.id)
       if specials
         specials.each do |s|
           if s.active?
