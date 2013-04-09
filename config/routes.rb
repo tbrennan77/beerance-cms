@@ -2,8 +2,11 @@ ParseRailsBoilerplate::Application.routes.draw do
   get '/end-beerance/:id' => 'bar_specials#end_beerance', as: 'end_beerance'
   get '/reactive-beerance/:id' => 'bar_specials#reactivate_beerance', as: 'reactivate_beerance'
 
-  get 'contact' => 'home#contact', as: 'contact'
-  get 'about' => 'home#about', as: 'about'
+  get '/legal' => 'home#legal', as: 'legal'
+  get '/tos' => 'home#tos', as: 'tos'
+  get '/privacy' => 'home#privacy', as: 'privacy'
+  get '/about' => 'home#about', as: 'about'
+  get '/support' => 'home#contact', as: 'support'
 
   get "log-in" => "sessions#new", :as => "log_in"  
   get "log-out" => "sessions#destroy", :as => "log_out"  

@@ -11,3 +11,4 @@ jQuery ->
     if $('.contact').is(":visible")
       $('.contact').slideToggle('fast')
     $('.login').slideToggle('fast')
+    $('#email').focus()

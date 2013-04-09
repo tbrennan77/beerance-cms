@@ -6,6 +6,8 @@ en:
     attributes:
       user:
         username: "E-mail address"
+        owner_name: "Your name"
+        owner_phone: "Your business phone number"
     errors:
       models:
         user:
