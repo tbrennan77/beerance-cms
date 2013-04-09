@@ -59,6 +59,10 @@ class BarEntity < ParseResource::Base
     end
   end
 
+  def bar_specials
+    BarSpecials.where(bar_id: self.id)
+  end
+
   def set_bar_owner(id)
     self.bar_owner_id = id
   end

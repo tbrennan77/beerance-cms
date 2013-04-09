@@ -2,15 +2,8 @@
 # See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
-  activerecord:
+  activerecord:    
     attributes:
-      user:
-        username: "E-mail address"
-        owner_name: "Your name"
-        owner_phone: "Your business phone number"
-    errors:
-      models:
+      parseuser:
         user:
-          attributes:
-            username:
-              format: "is required"
+          owner_phone: "Handle"

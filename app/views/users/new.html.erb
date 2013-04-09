@@ -41,38 +41,19 @@
 <h3>Step 2</h3>
 <h5 class='subheader'>Package Selection:</h5>
  <div class="row">
-  <div class="large-4 columns">
-      <article>
-        <label class="amount">
-          <h5>3 Months</h5>
-          <%= image_tag "black.png" %><br />
-          <%= f.radio_button :plan_type, 1 %>
-          <span>Amount: $30.00</span>
-        </label>
-      </article>
-
+  <% SubscriptionPlan.order("name").each do |p| %>
+    <div class="large-4 columns">
+        <article>
+          <label class="amount">
+            <h5><%= p.friendly_name %></h5>
+            <%= image_tag p.image %><br />
+            <%= f.radio_button :subscription_plan_id, p.id %>
+            <span><%= number_to_currency p.amount/100 %></span>
+          </label>
+        </article>
+    </div>
+  <% end %>
   </div>
-  <div class="large-4 columns">
-      <article>
-        <label class="amount">
-          <h5>6 Months</h5>
-          <%= image_tag "red.png" %><br />
-          <%= f.radio_button :plan_type, 2 %>
-          <span>Amount: $57.00</span>
-        </label>
-      </article>
-  </div>
-  <div class="large-4 columns">
-      <article>
-        <label class="amount">
-          <h5>1 Year</h5>
-          <%= image_tag "amber.png" %><br />
-          <%= f.radio_button :plan_type, 3 %>
-          <span>Amount: $102.00</span>
-        </label>
-      </article>
-  </div>
-</div>
 
 <br />
 <br />

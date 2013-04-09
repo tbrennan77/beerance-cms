@@ -1,35 +1,40 @@
 class UsersController < ApplicationController
   before_filter :require_user, except: %w{new create}
-  before_filter :require_admin, except: %w{new create profile}
+  before_filter :require_admin, except: %w{new create profile show}
   before_filter :verify_create_parameters, only: %w{create}
 
   def index
     @users = User.all
   end
 
-  def show
-    @user = current_user
+  def show    
+    @total_specials = 0
+    bar_entities = BarEntity.where(bar_owner_id: current_user.id)
+
+    bar_entities.each do |be|
+      @total_specials += be.bar_specials.count
+    end
+    
+    @total_bars = bar_entities.count
   end
 
   def profile
     @bar_entity = BarEntity.new
     @bar_special = BarSpecials.new
-    @bar_entities = BarEntity.where bar_owner_id: current_user.id    
+    @bar_entities = BarEntity.where bar_owner_id: current_user.id
     @active_specials = []
     @inactive_specials = []
     
     @bar_entities.each do |be|
-      specials = BarSpecials.where(bar_id: be.id)
-      if specials
-        specials.each do |s|
-          if s.active?
-            @active_specials << s
-          else
-            @inactive_specials << s
-          end
+      be.bar_specials.each do |s|
+        if s.active?
+          @active_specials << s
+        else
+          @inactive_specials << s
         end
       end
     end
+         
   end
 
   def new  
@@ -83,8 +88,8 @@ class UsersController < ApplicationController
 
   def verify_create_parameters
     @user = User.new(params[:user])
-    @user.stripe_card_token = params[:user][:stripe_card_token]
-    @user.plan_type = params[:user][:plan_type].to_i
+    @user.stripe_card_token = params[:user][:stripe_card_token]    
+    @user.subscription_plan_id = params[:user][:subscription_plan_id]    
     @user.username.downcase!
     @user.newsletter_subscription = !@user.newsletter_subscription.to_i.zero?
     if params[:user][:password] != params[:user][:password_confirmation]
