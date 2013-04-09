@@ -33,7 +33,10 @@ $(document).ready(function() {
   var jPM = $.jPanelMenu();
   jPM.on();
   $("#loading").hide();  
-  //$('form').each(function() { $(this).validate(); });
+  $('form').each(function() { $(this).validate(); });
+  if ($('.alert-box.notice').length) {
+    $('.alert-box.notice').fadeIn().delay(3000).fadeOut();
+  }
 });
 $(document).foundation();
 
@@ -44,20 +47,3 @@ $(document).live('ajax:beforeSend', function(event, xhr, settings) {
 $(document).live('ajax:complete', function(event, xhr, settings) {  
   $("#ajax_bar").fadeOut("slow");
 });
-
-$(function() {
-      $('#contact').click(function() {
-        if ($('.login').is(":visible")) {
-          $('.login').slideToggle('fast');
-        }
-        $('.contact').slideToggle('fast');
-      });
-  });
-  $(function() {
-      $('#login').click(function() {
-        if ($('.contact').is(":visible")) {
-          $('.contact').slideToggle('fast');
-        }
-        $('.login').slideToggle('fast');
-      });
-  });

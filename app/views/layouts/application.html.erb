@@ -24,6 +24,9 @@
   <link href='http://fonts.googleapis.com/css?family=Domine:400,700' rel='stylesheet' type='text/css'>
 </head>
   <body>
+    <% if flash[:notice] %>
+      <div class='alert-box notice'><%= flash[:notice] %></div>
+    <% end %>
     <div id="ajax_bar"><%= image_tag "ajax-loader.gif" %><br /><br />loading...</div>
     
     <div class="contact hide">
@@ -123,12 +126,6 @@
     <div class="row">      
       <div class="large-12 columns">
           <br />
-        <% if flash[:notice] %>
-          <div data-alert class='alert-box success'>
-            <%= flash[:notice] %>
-            <a href="#" class="close">&times;</a>
-          </div>
-        <% end %>
         <% if flash[:error] %>
           <div data-alert class='alert-box alert'>
             <%= flash[:error] %>

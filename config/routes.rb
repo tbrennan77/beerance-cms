@@ -7,7 +7,8 @@ ParseRailsBoilerplate::Application.routes.draw do
 
   get "log-in" => "sessions#new", :as => "log_in"  
   get "log-out" => "sessions#destroy", :as => "log_out"  
-  get "/my-profile" => "users#profile", as: "profile"
+  get "/my-beerances" => "users#profile", as: "profile"
+  get "/my-account" => "users#show", as: "account"
   
   get "sign-up" => "users#new", :as => "sign_up"  
   root :to => "home#index"  

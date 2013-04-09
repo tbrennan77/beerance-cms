@@ -10,7 +10,7 @@ h4 a {color: #AAA;}
 }
 .specials > div:nth-child(even), .archives > div:nth-child(odd) {background: #DDD;}
 </style>
-<h3>Welcome, <%= current_user.owner_name %> <small><%= link_to "(edit my account)", 'javascript:void(0)' %></small></h3>
+<h3>Welcome, <%= current_user.owner_name %> <small><%= link_to "(account details)", account_path %></small></h3>
 
 <script>
   function fix() {$(window).trigger("resize");}
@@ -18,9 +18,6 @@ h4 a {color: #AAA;}
 </script>
 
 <div class='row'>
-  <%#= link_to "Cancel Subscription", cancel_subscription_path, data: {confirm: "Are you really sure?"}, class: 'alert small button radius' %>
-  <%#= link_to "Start Subscription", new_charge_path, class: 'small button radius' %>  
-
       <div class="section-container tabs" data-section="tabs">
         <section class="section">
           <p class="title"><a href="#">Current Specials</a></p>

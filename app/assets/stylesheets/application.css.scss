@@ -148,3 +148,22 @@ body, html {height: 100% !important;}
 .login {padding-top: 40px;}
 .contact {padding-top: 12px;}
 #stripe_error {color: red; padding: 16px; margin: 16px;}
+.alert-box.notice {
+  z-index: 999;
+  text-shadow: 1px -1px 0px #999;
+  text-align: center;
+  top: 45px;
+  position: fixed;
+  width: 100%;
+  border: 0;
+  box-shadow: 0 1px 3px #555;
+  display: none;
+  background: #a9db80; /* Old browsers */
+  background: -moz-linear-gradient(top,  #a9db80 0%, #96c56f 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#a9db80), color-stop(100%,#96c56f)); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top,  #a9db80 0%,#96c56f 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top,  #a9db80 0%,#96c56f 100%); /* Opera 11.10+ */
+  background: -ms-linear-gradient(top,  #a9db80 0%,#96c56f 100%); /* IE10+ */
+  background: linear-gradient(to bottom,  #a9db80 0%,#96c56f 100%); /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a9db80', endColorstr='#96c56f',GradientType=0 ); /* IE6-9 */
+}
