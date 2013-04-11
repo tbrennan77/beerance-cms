@@ -1044,3 +1044,4 @@ $topbar-margin-bottom: emCalc(0px);
 body {border-top: 2px solid $primary-color;}
 @import 'foundation';
 h1, h2, h3, h4, h5 {font-family: "Domine" !important; color: $primary-color;}
+body {height: 100% !important;}

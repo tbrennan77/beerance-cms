@@ -1,5 +1,9 @@
 <style>
-  .amount {text-align: center;}
+  .amount {text-align: center;-webkit-transition:color 0.15s ease-in-out;  
+   -moz-transition:color 0.15s ease-in-out;  
+   -o-transition:color 0.15s ease-in-out;  
+   transition:color 0.15s ease-in-out;}
+  .amount:hover {color: #a87250;}
   .form-field select {width: 49%}
 </style>
 
@@ -19,9 +23,9 @@
   <div class='row'>
     <div class='large-5 large-offset-1 columns'>
       <%= f.label :email %><br />
-      <%= f.email_field :username, placeholder: 'email@example.com', class: 'required' %>
+      <%= f.email_field :username, placeholder: 'master@jedi.com', class: 'required' %>
       <%= f.label :owner_name, "Your Name" %><br />
-      <%= f.text_field :owner_name, placeholder: 'John Smith', class: 'required' %>
+      <%= f.text_field :owner_name, placeholder: 'Luke S. Walker', class: 'required' %>
       <%= f.label :owner_phone, "Business Phone Number" %><br />
       <%= f.phone_field :owner_phone, placeholder: '216-123-4567', class: 'required' %>
     </div>
