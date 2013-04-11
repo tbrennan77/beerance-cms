@@ -1,5 +1,7 @@
 class Subscription < ParseResource::Base
   fields :user_id, :subscription_plan_id, :expiration_date
+
+  validates_presence_of :user_id, :subscription_plan_id, :expiration_date
   before_create :set_expiration
 
   def plan

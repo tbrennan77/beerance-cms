@@ -44,5 +44,5 @@ gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
 
 group :test do
   # Pretty printed test output
-  gem 'turn', '0.8.2', :require => false
+  gem 'turn', '0.8.3', :require => false
 end
