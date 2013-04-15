@@ -12,12 +12,22 @@
 
 <h3>My Beerance Plan</h3>
 <hr />
-<%= link_to "Change My Plan", '#' %><br />
-<%= current_user.subscription.plan.friendly_name %><br />
-<%= number_to_currency current_user.subscription.plan.amount/100 %><br />
-Cost per month: <%= number_to_currency current_user.subscription.plan.cost_per_month %>
 <br />
-<br />
-You have <b><%= pluralize ((current_user.subscription.expiration_date.to_time - Time.now)/1.day).to_i, 'day' %></b> remaining
-<br />
-<br />
+<% if current_user.subscription %>
+  <%= link_to "Change My Plan", '#' %><br />
+  <%= current_user.subscription.plan.friendly_name %><br />
+  <%= number_to_currency current_user.subscription.plan.amount/100 %><br />
+  Cost per month: <%= number_to_currency current_user.subscription.plan.cost_per_month %>
+  <br />
+  <br />
+  You have <b><%= pluralize ((current_user.subscription.expiration_date.to_time - Time.now)/1.day).to_i, 'day' %></b> remaining
+  <br />
+  <br />
+<% else %>
+  <p style="text-align:center;">
+    It looks like you don't have a plan yet :(
+    <br />
+    <br />
+    <%= link_to "Choose A Plan", '#', class: 'button radius' %>
+  </p>
+<% end %>
