@@ -16,7 +16,7 @@ class User < ParseUser
 
   def save_with_payment
     if valid?
-      s = Subscription.new subscription_plan_id: self.subscription_plan_id
+      s = Subscription.create subscription_plan_id: self.subscription_plan_id, user_id: id
       customer = Stripe::Customer.create(
         card:  stripe_card_token,
         plan:  s.plan.name,
@@ -28,11 +28,7 @@ class User < ParseUser
         description: 'Rails Stripe customer',
         currency:    'usd'
       )
-      self.stripe_customer_id = customer.id      
-      if self.save
-        s.user_id = id
-        s.save
-      end
+      self.stripe_customer_id = customer.id
     end
   rescue Stripe::InvalidRequestError => e    
     errors.add :base, "There was a problem with your credit card."
