@@ -1,7 +1,8 @@
 class Subscription < ParseResource::Base
   fields :user_id, :subscription_plan_id, :expiration_date
 
-  validates_presence_of :user_id, :subscription_plan_id
+  validates_presence_of :user_id, :subscription_plan_id  
+
   before_create :set_expiration
 
   def plan
@@ -9,10 +10,15 @@ class Subscription < ParseResource::Base
   end
 
   def set_expiration
-    self.expiration_date = ParseDate.new(iso: DateTime.new(Date.today.advance(months: plan.length_in_months).year, Date.today.advance(months: plan.length_in_months).month, Date.today.advance(months: plan.length_in_months).day).utc.iso8601)    
+    self.expiration_date = ParseDate.new(determine_expiration_date).to_s
   end
 
-  def day_remaining
-    expiration_date-Date.today
+  def days_remaining
+    (expiration_date-DateTime.now.beginning_of_day.utc).to_i
   end
+
+  def determine_expiration_date
+    Time.new(Date.today.advance(months: plan.length_in_months).year, Date.today.advance(months: plan.length_in_months).month, Date.today.advance(months: plan.length_in_months).day).utc.iso8601
+  end
+
 end

@@ -20,7 +20,7 @@
   Cost per month: <%= number_to_currency current_user.subscription.plan.cost_per_month %>
   <br />
   <br />
-  You have <b><%= pluralize ((current_user.subscription.expiration_date.to_time - Time.now)/1.day).to_i, 'day' %></b> remaining
+  You have <b><%= pluralize current_user.subscription.days_remaining, 'day' %></b> remaining
   <br />
   <br />
 <% else %>

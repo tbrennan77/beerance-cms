@@ -1,7 +1,7 @@
 class ParseDate
   attr_accessor :iso
 
-  def initialize(time)
+  def initialize(time=nil)
     if time.nil?
       self.iso = Time.now.utc.iso8601
     else
@@ -14,8 +14,9 @@ class ParseDate
   end
 
   def to_s
-    self.iso.to_s
+    self.to_pointer
   end
+
 end
 
 class Query
