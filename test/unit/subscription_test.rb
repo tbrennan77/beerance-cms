@@ -18,4 +18,5 @@ class SubscriptionTest < ActiveSupport::TestCase
     expected_time = Time.new(Date.today.advance(months: subscription_plan.length_in_months).year, Date.today.advance(months: subscription_plan.length_in_months).month, Date.today.advance(months: subscription_plan.length_in_months).day).utc
     assert_equal expected_time, subscription.expiration_date
   end
+  
 end
