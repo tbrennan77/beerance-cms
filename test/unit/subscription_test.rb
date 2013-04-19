@@ -3,12 +3,12 @@ require File.dirname(__FILE__) + '/../test_helper'
 
 class SubscriptionTest < ActiveSupport::TestCase
   test "it has a subscription plan" do
-    subscription = Subscription.new user_id: "1", expiration_date: Date.today
+    subscription = Subscription.new user_id: "1", expiration_date: Date.today, subscription_plan_id: nil
     assert !subscription.valid?
   end
 
   test "it has a user id" do
-    subscription = Subscription.new expiration_date: Date.today, subscription_plan_id: "1"
+    subscription = Subscription.new expiration_date: Date.today, subscription_plan_id: "1", user_id: nil
     assert !subscription.valid?
   end
 
@@ -18,5 +18,5 @@ class SubscriptionTest < ActiveSupport::TestCase
     expected_time = Time.new(Date.today.advance(months: subscription_plan.length_in_months).year, Date.today.advance(months: subscription_plan.length_in_months).month, Date.today.advance(months: subscription_plan.length_in_months).day).utc
     assert_equal expected_time, subscription.expiration_date
   end
-  
+
 end
