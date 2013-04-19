@@ -25,7 +25,7 @@ namespace :parse do
       
       # Create Bar
       b = BarEntity.new(
-        bar_owner_id: 1,
+        bar_owner_id: "1",
         bar_name: 'Rocky River Brewing Company',
         bar_phone: '2165551234',
         bar_url: 'http://www.google.com',
@@ -43,7 +43,8 @@ namespace :parse do
         hours_sat: '7:00am - 10:00pm',
         hours_sun: '7:00am - 10:00pm' 
       )
-      b.ensure_fields.save
+      b.ensure_fields
+      b.save
     end
   end
 end

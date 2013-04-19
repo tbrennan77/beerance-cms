@@ -2,14 +2,26 @@ class BarSpecials < ParseResource::Base
   fields :bar_id, :bar_location, :bar_name, :special_description, :sale_price, :expiration_date, :beer_color, :beer_size
   
   validates_presence_of :bar_id, :special_description, :sale_price, :beer_color, :beer_size
-  validates :sale_price, :numericality => {greater_than: 0}
-  validates :beer_color, :numericality => {only_integer: true, greater_than_or_equal_to: 0, less_than_or_equal_to: 3}
-  validates :beer_size, :numericality => {only_integer: true, greater_than: 0}
+  validates :sale_price,
+    numericality: {greater_than: 0}
+
+  validates :beer_color,
+    numericality: {
+      only_integer: true, 
+      greater_than_or_equal_to: 0,
+      less_than_or_equal_to: 3
+    }
+
+  validates :beer_size,
+    numericality: {
+      only_integer: true,
+      greater_than: 0
+    }
 
   before_create :ensure_fields  
 
-  def set_expiration_date
-    self.expiration_date = DateTime.new(Date.tomorrow.year, Date.tomorrow.month, Date.tomorrow.day, 9)
+  def set_expiration_date    
+    self.expiration_date = ParseDate.new(tomorrows_date).to_s
   end
 
   def set_geo_location
@@ -27,7 +39,7 @@ class BarSpecials < ParseResource::Base
   end
 
   def active?
-    self.expiration_date > DateTime.now
+    self.expiration_date > Time.now
   end
 
   def ensure_fields
@@ -38,10 +50,20 @@ class BarSpecials < ParseResource::Base
   end
 
   def end_special
-    self.expiration_date = ParseDate.new(iso: DateTime.new(Date.yesterday.year, Date.yesterday.month, Date.yesterday.day, 9).utc.iso8601)
+    self.expiration_date = ParseDate.new(yesterdays_date).to_s
   end
 
   def reactivate_special
-    self.expiration_date = ParseDate.new(iso: DateTime.new(Date.tomorrow.year, Date.tomorrow.month, Date.tomorrow.day, 9).utc.iso8601)
+    self.set_expiration_date
+  end
+
+  private
+
+  def tomorrows_date
+    Time.new(Date.tomorrow.year, Date.tomorrow.month, Date.tomorrow.day, 9).utc.iso8601
+  end
+
+  def yesterdays_date
+    Time.new(Date.yesterday.year, Date.yesterday.month, Date.yesterday.day, 9).utc.iso8601
   end
 end

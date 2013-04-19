@@ -10,7 +10,7 @@ class ParseDate
   end
 
   def to_pointer
-    {"__type"=>"Date", iso: self.iso}
+    {"__type"=>"Date", "iso"=>self.iso}
   end
 
   def to_s
