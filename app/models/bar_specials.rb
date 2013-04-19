@@ -39,7 +39,7 @@ class BarSpecials < ParseResource::Base
   end
 
   def active?
-    self.expiration_date > Time.now
+    self.expiration_date > Time.now.utc
   end
 
   def ensure_fields

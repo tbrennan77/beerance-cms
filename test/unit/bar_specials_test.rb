@@ -60,6 +60,11 @@ class BarSpecialsTest < ActiveSupport::TestCase
     assert !@bar_special.valid?
   end
 
+  test "should not save special if beer color is greater than 3" do
+    @bar_special.beer_color = 4
+    assert !@bar_special.valid?
+  end
+
   test "should not save special if beer price is not a number" do
     @bar_special.sale_price = "foo"
     assert !@bar_special.valid?
