@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+
+<title>class BarEntity - Rails Application Documentation</title>
+
+<link type="text/css" media="screen" href="./rdoc.css" rel="stylesheet">
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+</script>
+
+<script type="text/javascript" charset="utf-8" src="./js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/navigation.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/search_index.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/search.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/searcher.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/darkfish.js"></script>
+
+
+<body id="top" class="class">
+<nav id="metadata">
+  <nav id="home-section" class="section">
+  <h3 class="section-header">
+    <a href="./index.html">Home</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </h3>
+</nav>
+
+
+  <nav id="search-section" class="section project-section" class="initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <h3 class="section-header">
+      <input type="text" name="search" placeholder="Search" id="search-field"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </h3>
+  </form>
+
+  <ul id="search-results" class="initially-hidden"></ul>
+</nav>
+
+
+  <div id="file-metadata">
+    <nav id="file-list-section" class="section">
+  <h3 class="section-header">Defined In</h3>
+  <ul>
+    <li>app/models/bar_entity.rb
+  </ul>
+</nav>
+
+    
+  </div>
+
+  <div id="class-metadata">
+    
+    <nav id="parent-class-section" class="section">
+  <h3 class="section-header">Parent</h3>
+  
+  <p class="link">ParseResource::Base
+  
+</nav>
+
+    
+    <!-- Method Quickref -->
+<nav id="method-list-section" class="section">
+  <h3 class="section-header">Methods</h3>
+
+  <ul class="link-list">
+    
+    <li><a href="#method-i-bar_specials">#bar_specials</a>
+    
+    <li><a href="#method-i-ensure_fields">#ensure_fields</a>
+    
+    <li><a href="#method-i-set_bar_owner">#set_bar_owner</a>
+    
+    <li><a href="#method-i-set_geo_location">#set_geo_location</a>
+    
+    <li><a href="#method-i-set_phone_number">#set_phone_number</a>
+    
+    <li><a href="#method-i-set_url">#set_url</a>
+    
+    <li><a href="#method-i-update_specials">#update_specials</a>
+    
+  </ul>
+</nav>
+
+  </div>
+
+  <div id="project-metadata">
+    <nav id="fileindex-section" class="section project-section">
+  <h3 class="section-header">Pages</h3>
+
+  <ul>
+  
+    <li class="file"><a href="./doc/README_FOR_APP.html">README_FOR_APP</a>
+  
+  </ul>
+</nav>
+
+    <nav id="classindex-section" class="section project-section">
+  <h3 class="section-header">Class and Module Index</h3>
+
+  <ul class="link-list">
+  
+    <li><a href="./ParseResource.html">ParseResource</a>
+  
+    <li><a href="./ParseResource/QueryMethods.html">ParseResource::QueryMethods</a>
+  
+    <li><a href="./ParseResource/QueryMethods/ClassMethods.html">ParseResource::QueryMethods::ClassMethods</a>
+  
+    <li><a href="./AdminController.html">AdminController</a>
+  
+    <li><a href="./AdminHelper.html">AdminHelper</a>
+  
+    <li><a href="./ApplicationController.html">ApplicationController</a>
+  
+    <li><a href="./ApplicationHelper.html">ApplicationHelper</a>
+  
+    <li><a href="./BarEntitiesController.html">BarEntitiesController</a>
+  
+    <li><a href="./BarEntitiesHelper.html">BarEntitiesHelper</a>
+  
+    <li><a href="./BarEntity.html">BarEntity</a>
+  
+    <li><a href="./BarSpecials.html">BarSpecials</a>
+  
+    <li><a href="./BarSpecialsController.html">BarSpecialsController</a>
+  
+    <li><a href="./ChargesController.html">ChargesController</a>
+  
+    <li><a href="./ChargesHelper.html">ChargesHelper</a>
+  
+    <li><a href="./HomeController.html">HomeController</a>
+  
+    <li><a href="./HomeHelper.html">HomeHelper</a>
+  
+    <li><a href="./Notifier.html">Notifier</a>
+  
+    <li><a href="./ParseDate.html">ParseDate</a>
+  
+    <li><a href="./Query.html">Query</a>
+  
+    <li><a href="./SessionsController.html">SessionsController</a>
+  
+    <li><a href="./SessionsHelper.html">SessionsHelper</a>
+  
+    <li><a href="./Subscription.html">Subscription</a>
+  
+    <li><a href="./SubscriptionPlan.html">SubscriptionPlan</a>
+  
+    <li><a href="./User.html">User</a>
+  
+    <li><a href="./UsersController.html">UsersController</a>
+  
+    <li><a href="./UsersHelper.html">UsersHelper</a>
+  
+  </ul>
+</nav>
+
+  </div>
+</nav>
+
+<div id="documentation">
+  <h1 class="class">class BarEntity</h1>
+
+  <div id="description" class="description">
+    
+  </div><!-- description -->
+
+  
+  
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+
+    <!-- Methods -->
+    
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section section">
+      <h3 class="section-header">Public Instance Methods</h3>
+
+    
+      <div id="method-i-bar_specials" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">bar_specials</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="bar_specials-source">
+            <pre><span class="ruby-comment"># File app/models/bar_entity.rb, line 62</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">bar_specials</span>
+  <span class="ruby-constant">BarSpecials</span>.<span class="ruby-identifier">where</span>(<span class="ruby-identifier">bar_id</span><span class="ruby-operator">:</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">id</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- bar_specials-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- bar_specials-method -->
+
+    
+      <div id="method-i-ensure_fields" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">ensure_fields</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="ensure_fields-source">
+            <pre><span class="ruby-comment"># File app/models/bar_entity.rb, line 70</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">ensure_fields</span>
+  <span class="ruby-identifier">set_phone_number</span>
+  <span class="ruby-identifier">set_url</span>
+  <span class="ruby-identifier">set_geo_location</span>
+  <span class="ruby-identifier">update_specials</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- ensure_fields-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- ensure_fields-method -->
+
+    
+      <div id="method-i-set_bar_owner" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">set_bar_owner</span><span
+            class="method-args">(id)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="set_bar_owner-source">
+            <pre><span class="ruby-comment"># File app/models/bar_entity.rb, line 66</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">set_bar_owner</span>(<span class="ruby-identifier">id</span>)
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">bar_owner_id</span> = <span class="ruby-identifier">id</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- set_bar_owner-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- set_bar_owner-method -->
+
+    
+      <div id="method-i-set_geo_location" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">set_geo_location</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="set_geo_location-source">
+            <pre><span class="ruby-comment"># File app/models/bar_entity.rb, line 45</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">set_geo_location</span>
+  <span class="ruby-identifier">geo</span> = <span class="ruby-constant">Geocoder</span>.<span class="ruby-identifier">search</span>(<span class="ruby-node">&quot;#{self.bar_addr1}, #{self.bar_city}, #{self.bar_state} #{self.bar_zip}&quot;</span>)
+  <span class="ruby-identifier">lat</span> = <span class="ruby-identifier">geo</span>.<span class="ruby-identifier">first</span>.<span class="ruby-identifier">data</span>[<span class="ruby-string">'geometry'</span>][<span class="ruby-string">'location'</span>][<span class="ruby-string">'lat'</span>]
+  <span class="ruby-identifier">lng</span> = <span class="ruby-identifier">geo</span>.<span class="ruby-identifier">first</span>.<span class="ruby-identifier">data</span>[<span class="ruby-string">'geometry'</span>][<span class="ruby-string">'location'</span>][<span class="ruby-string">'lng'</span>]
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">bar_location</span> = <span class="ruby-constant">ParseGeoPoint</span>.<span class="ruby-identifier">new</span> <span class="ruby-value">:latitude</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">lat</span>, <span class="ruby-value">:longitude</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">lng</span>    
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- set_geo_location-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- set_geo_location-method -->
+
+    
+      <div id="method-i-set_phone_number" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">set_phone_number</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="set_phone_number-source">
+            <pre><span class="ruby-comment"># File app/models/bar_entity.rb, line 37</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">set_phone_number</span>
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">bar_phone</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">bar_phone</span>.<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp">/[^\d]/</span>, <span class="ruby-string">&quot;&quot;</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- set_phone_number-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- set_phone_number-method -->
+
+    
+      <div id="method-i-set_url" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">set_url</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="set_url-source">
+            <pre><span class="ruby-comment"># File app/models/bar_entity.rb, line 41</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">set_url</span>
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">bar_url</span> = <span class="ruby-node">&quot;http://#{self.bar_url.gsub(/(https:\/\/|http:\/\/)/,'')}&quot;</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- set_url-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- set_url-method -->
+
+    
+      <div id="method-i-update_specials" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">update_specials</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="update_specials-source">
+            <pre><span class="ruby-comment"># File app/models/bar_entity.rb, line 52</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">update_specials</span>
+  <span class="ruby-identifier">specials</span> = <span class="ruby-constant">BarSpecials</span>.<span class="ruby-identifier">where</span>(<span class="ruby-identifier">bar_id</span><span class="ruby-operator">:</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">id</span>)
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">specials</span>
+    <span class="ruby-identifier">specials</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">s</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">s</span>.<span class="ruby-identifier">bar_location</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">bar_location</span>
+      <span class="ruby-identifier">s</span>.<span class="ruby-identifier">save</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- update_specials-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- update_specials-method -->
+
+    
+    </section><!-- public-instance-method-details -->
+  
+  </section><!-- 5Buntitled-5D -->
+
+</div><!-- documentation -->
+
+
+<footer id="validator-badges">
+  <p><a href="http://validator.w3.org/check/referer">[Validate]</a>
+  <p>Generated by <a href="https://github.com/rdoc/rdoc">RDoc</a> 3.12.2.
+  <p>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish Rdoc Generator</a> 3.
+</footer>
+

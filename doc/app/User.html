@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+
+<title>class User - Rails Application Documentation</title>
+
+<link type="text/css" media="screen" href="./rdoc.css" rel="stylesheet">
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+</script>
+
+<script type="text/javascript" charset="utf-8" src="./js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/navigation.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/search_index.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/search.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/searcher.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/darkfish.js"></script>
+
+
+<body id="top" class="class">
+<nav id="metadata">
+  <nav id="home-section" class="section">
+  <h3 class="section-header">
+    <a href="./index.html">Home</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </h3>
+</nav>
+
+
+  <nav id="search-section" class="section project-section" class="initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <h3 class="section-header">
+      <input type="text" name="search" placeholder="Search" id="search-field"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </h3>
+  </form>
+
+  <ul id="search-results" class="initially-hidden"></ul>
+</nav>
+
+
+  <div id="file-metadata">
+    <nav id="file-list-section" class="section">
+  <h3 class="section-header">Defined In</h3>
+  <ul>
+    <li>app/models/user.rb
+  </ul>
+</nav>
+
+    
+  </div>
+
+  <div id="class-metadata">
+    
+    <nav id="parent-class-section" class="section">
+  <h3 class="section-header">Parent</h3>
+  
+  <p class="link">ParseUser
+  
+</nav>
+
+    
+    <!-- Method Quickref -->
+<nav id="method-list-section" class="section">
+  <h3 class="section-header">Methods</h3>
+
+  <ul class="link-list">
+    
+    <li><a href="#method-i-admin-3F">#admin?</a>
+    
+    <li><a href="#method-i-make_admin">#make_admin</a>
+    
+    <li><a href="#method-i-remove_admin">#remove_admin</a>
+    
+    <li><a href="#method-i-save_with_payment">#save_with_payment</a>
+    
+    <li><a href="#method-i-subscription">#subscription</a>
+    
+  </ul>
+</nav>
+
+  </div>
+
+  <div id="project-metadata">
+    <nav id="fileindex-section" class="section project-section">
+  <h3 class="section-header">Pages</h3>
+
+  <ul>
+  
+    <li class="file"><a href="./doc/README_FOR_APP.html">README_FOR_APP</a>
+  
+  </ul>
+</nav>
+
+    <nav id="classindex-section" class="section project-section">
+  <h3 class="section-header">Class and Module Index</h3>
+
+  <ul class="link-list">
+  
+    <li><a href="./ParseResource.html">ParseResource</a>
+  
+    <li><a href="./ParseResource/QueryMethods.html">ParseResource::QueryMethods</a>
+  
+    <li><a href="./ParseResource/QueryMethods/ClassMethods.html">ParseResource::QueryMethods::ClassMethods</a>
+  
+    <li><a href="./AdminController.html">AdminController</a>
+  
+    <li><a href="./AdminHelper.html">AdminHelper</a>
+  
+    <li><a href="./ApplicationController.html">ApplicationController</a>
+  
+    <li><a href="./ApplicationHelper.html">ApplicationHelper</a>
+  
+    <li><a href="./BarEntitiesController.html">BarEntitiesController</a>
+  
+    <li><a href="./BarEntitiesHelper.html">BarEntitiesHelper</a>
+  
+    <li><a href="./BarEntity.html">BarEntity</a>
+  
+    <li><a href="./BarSpecials.html">BarSpecials</a>
+  
+    <li><a href="./BarSpecialsController.html">BarSpecialsController</a>
+  
+    <li><a href="./ChargesController.html">ChargesController</a>
+  
+    <li><a href="./ChargesHelper.html">ChargesHelper</a>
+  
+    <li><a href="./HomeController.html">HomeController</a>
+  
+    <li><a href="./HomeHelper.html">HomeHelper</a>
+  
+    <li><a href="./Notifier.html">Notifier</a>
+  
+    <li><a href="./ParseDate.html">ParseDate</a>
+  
+    <li><a href="./Query.html">Query</a>
+  
+    <li><a href="./SessionsController.html">SessionsController</a>
+  
+    <li><a href="./SessionsHelper.html">SessionsHelper</a>
+  
+    <li><a href="./Subscription.html">Subscription</a>
+  
+    <li><a href="./SubscriptionPlan.html">SubscriptionPlan</a>
+  
+    <li><a href="./User.html">User</a>
+  
+    <li><a href="./UsersController.html">UsersController</a>
+  
+    <li><a href="./UsersHelper.html">UsersHelper</a>
+  
+  </ul>
+</nav>
+
+  </div>
+</nav>
+
+<div id="documentation">
+  <h1 class="class">class User</h1>
+
+  <div id="description" class="description">
+    
+  </div><!-- description -->
+
+  
+  
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+    <!-- Constants -->
+    <section id="constants-list" class="section">
+      <h3 class="section-header">Constants</h3>
+      <dl>
+      
+        <dt id="EMAIL_REGEX">EMAIL_REGEX
+        
+        <dd class="description">
+        
+      
+      </dl>
+    </section>
+    
+
+    
+    <!-- Attributes -->
+    <section id="attribute-method-details" class="method-section section">
+      <h3 class="section-header">Attributes</h3>
+
+      
+      <div id="attribute-i-stripe_card_token" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">stripe_card_token</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
+
+        <div class="method-description">
+        
+        
+        
+        </div>
+      </div>
+      
+    </section><!-- attribute-method-details -->
+    
+
+    <!-- Methods -->
+    
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section section">
+      <h3 class="section-header">Public Instance Methods</h3>
+
+    
+      <div id="method-i-admin-3F" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">admin?</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="admin-3F-source">
+            <pre><span class="ruby-comment"># File app/models/user.rb, line 13</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">admin?</span>; <span class="ruby-keyword">self</span>.<span class="ruby-identifier">admin</span> <span class="ruby-operator">?</span> <span class="ruby-keyword">true</span> <span class="ruby-operator">:</span> <span class="ruby-keyword">false</span>; <span class="ruby-keyword">end</span></pre>
+          </div><!-- admin-3F-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- admin-3F-method -->
+
+    
+      <div id="method-i-make_admin" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">make_admin</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="make_admin-source">
+            <pre><span class="ruby-comment"># File app/models/user.rb, line 14</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">make_admin</span>; <span class="ruby-keyword">self</span>.<span class="ruby-identifier">admin</span>=<span class="ruby-keyword">true</span>;<span class="ruby-keyword">self</span>.<span class="ruby-identifier">save</span>; <span class="ruby-keyword">end</span></pre>
+          </div><!-- make_admin-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- make_admin-method -->
+
+    
+      <div id="method-i-remove_admin" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">remove_admin</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="remove_admin-source">
+            <pre><span class="ruby-comment"># File app/models/user.rb, line 15</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">remove_admin</span>; <span class="ruby-keyword">self</span>.<span class="ruby-identifier">admin</span>=<span class="ruby-keyword">false</span>;<span class="ruby-keyword">self</span>.<span class="ruby-identifier">save</span>; <span class="ruby-keyword">end</span></pre>
+          </div><!-- remove_admin-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- remove_admin-method -->
+
+    
+      <div id="method-i-save_with_payment" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">save_with_payment</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="save_with_payment-source">
+            <pre><span class="ruby-comment"># File app/models/user.rb, line 17</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">save_with_payment</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">valid?</span>
+    <span class="ruby-keyword">self</span>.<span class="ruby-identifier">save</span>
+    <span class="ruby-identifier">s</span> = <span class="ruby-constant">Subscription</span>.<span class="ruby-identifier">create</span> <span class="ruby-identifier">subscription_plan_id</span><span class="ruby-operator">:</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">subscription_plan_id</span>, <span class="ruby-identifier">user_id</span><span class="ruby-operator">:</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">id</span>
+    <span class="ruby-identifier">s</span>.<span class="ruby-identifier">set_expiration</span>
+
+    <span class="ruby-identifier">customer</span> = <span class="ruby-constant">Stripe</span><span class="ruby-operator">::</span><span class="ruby-constant">Customer</span>.<span class="ruby-identifier">create</span>(
+      <span class="ruby-identifier">card</span><span class="ruby-operator">:</span>  <span class="ruby-identifier">stripe_card_token</span>,
+      <span class="ruby-identifier">plan</span><span class="ruby-operator">:</span>  <span class="ruby-identifier">s</span>.<span class="ruby-identifier">plan</span>.<span class="ruby-identifier">name</span>,
+      <span class="ruby-identifier">email</span><span class="ruby-operator">:</span> <span class="ruby-identifier">username</span>
+    )
+    <span class="ruby-identifier">charge</span> = <span class="ruby-constant">Stripe</span><span class="ruby-operator">::</span><span class="ruby-constant">Charge</span>.<span class="ruby-identifier">create</span>(
+      <span class="ruby-identifier">customer</span><span class="ruby-operator">:</span>    <span class="ruby-identifier">customer</span>.<span class="ruby-identifier">id</span>,
+      <span class="ruby-identifier">amount</span><span class="ruby-operator">:</span>      <span class="ruby-identifier">s</span>.<span class="ruby-identifier">plan</span>.<span class="ruby-identifier">amount</span>,
+      <span class="ruby-identifier">description</span><span class="ruby-operator">:</span> <span class="ruby-string">'Rails Stripe customer'</span>,
+      <span class="ruby-identifier">currency</span><span class="ruby-operator">:</span>    <span class="ruby-string">'usd'</span>
+    )
+
+    <span class="ruby-keyword">self</span>.<span class="ruby-identifier">stripe_customer_id</span> = <span class="ruby-identifier">customer</span>.<span class="ruby-identifier">id</span>
+    <span class="ruby-keyword">self</span>.<span class="ruby-identifier">save</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">rescue</span> <span class="ruby-constant">Stripe</span><span class="ruby-operator">::</span><span class="ruby-constant">InvalidRequestError</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">e</span>    
+  <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">add</span> <span class="ruby-value">:base</span>, <span class="ruby-string">&quot;There was a problem with your credit card.&quot;</span>
+  <span class="ruby-keyword">false</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- save_with_payment-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- save_with_payment-method -->
+
+    
+      <div id="method-i-subscription" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">subscription</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="subscription-source">
+            <pre><span class="ruby-comment"># File app/models/user.rb, line 43</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">subscription</span>
+  <span class="ruby-constant">Subscription</span>.<span class="ruby-identifier">find_by_user_id</span> <span class="ruby-identifier">id</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- subscription-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- subscription-method -->
+
+    
+    </section><!-- public-instance-method-details -->
+  
+  </section><!-- 5Buntitled-5D -->
+
+</div><!-- documentation -->
+
+
+<footer id="validator-badges">
+  <p><a href="http://validator.w3.org/check/referer">[Validate]</a>
+  <p>Generated by <a href="https://github.com/rdoc/rdoc">RDoc</a> 3.12.2.
+  <p>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish Rdoc Generator</a> 3.
+</footer>
+

@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+
+<title>module ApplicationHelper - Rails Application Documentation</title>
+
+<link type="text/css" media="screen" href="./rdoc.css" rel="stylesheet">
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+</script>
+
+<script type="text/javascript" charset="utf-8" src="./js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/navigation.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/search_index.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/search.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/searcher.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/darkfish.js"></script>
+
+
+<body id="top" class="module">
+<nav id="metadata">
+  <nav id="home-section" class="section">
+  <h3 class="section-header">
+    <a href="./index.html">Home</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </h3>
+</nav>
+
+
+  <nav id="search-section" class="section project-section" class="initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <h3 class="section-header">
+      <input type="text" name="search" placeholder="Search" id="search-field"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </h3>
+  </form>
+
+  <ul id="search-results" class="initially-hidden"></ul>
+</nav>
+
+
+  <div id="file-metadata">
+    <nav id="file-list-section" class="section">
+  <h3 class="section-header">Defined In</h3>
+  <ul>
+    <li>app/helpers/application_helper.rb
+  </ul>
+</nav>
+
+    
+  </div>
+
+  <div id="class-metadata">
+    
+    
+    
+    <!-- Method Quickref -->
+<nav id="method-list-section" class="section">
+  <h3 class="section-header">Methods</h3>
+
+  <ul class="link-list">
+    
+    <li><a href="#method-i-states">#states</a>
+    
+    <li><a href="#method-i-times">#times</a>
+    
+  </ul>
+</nav>
+
+  </div>
+
+  <div id="project-metadata">
+    <nav id="fileindex-section" class="section project-section">
+  <h3 class="section-header">Pages</h3>
+
+  <ul>
+  
+    <li class="file"><a href="./doc/README_FOR_APP.html">README_FOR_APP</a>
+  
+  </ul>
+</nav>
+
+    <nav id="classindex-section" class="section project-section">
+  <h3 class="section-header">Class and Module Index</h3>
+
+  <ul class="link-list">
+  
+    <li><a href="./ParseResource.html">ParseResource</a>
+  
+    <li><a href="./ParseResource/QueryMethods.html">ParseResource::QueryMethods</a>
+  
+    <li><a href="./ParseResource/QueryMethods/ClassMethods.html">ParseResource::QueryMethods::ClassMethods</a>
+  
+    <li><a href="./AdminController.html">AdminController</a>
+  
+    <li><a href="./AdminHelper.html">AdminHelper</a>
+  
+    <li><a href="./ApplicationController.html">ApplicationController</a>
+  
+    <li><a href="./ApplicationHelper.html">ApplicationHelper</a>
+  
+    <li><a href="./BarEntitiesController.html">BarEntitiesController</a>
+  
+    <li><a href="./BarEntitiesHelper.html">BarEntitiesHelper</a>
+  
+    <li><a href="./BarEntity.html">BarEntity</a>
+  
+    <li><a href="./BarSpecials.html">BarSpecials</a>
+  
+    <li><a href="./BarSpecialsController.html">BarSpecialsController</a>
+  
+    <li><a href="./ChargesController.html">ChargesController</a>
+  
+    <li><a href="./ChargesHelper.html">ChargesHelper</a>
+  
+    <li><a href="./HomeController.html">HomeController</a>
+  
+    <li><a href="./HomeHelper.html">HomeHelper</a>
+  
+    <li><a href="./Notifier.html">Notifier</a>
+  
+    <li><a href="./ParseDate.html">ParseDate</a>
+  
+    <li><a href="./Query.html">Query</a>
+  
+    <li><a href="./SessionsController.html">SessionsController</a>
+  
+    <li><a href="./SessionsHelper.html">SessionsHelper</a>
+  
+    <li><a href="./Subscription.html">Subscription</a>
+  
+    <li><a href="./SubscriptionPlan.html">SubscriptionPlan</a>
+  
+    <li><a href="./User.html">User</a>
+  
+    <li><a href="./UsersController.html">UsersController</a>
+  
+    <li><a href="./UsersHelper.html">UsersHelper</a>
+  
+  </ul>
+</nav>
+
+  </div>
+</nav>
+
+<div id="documentation">
+  <h1 class="module">module ApplicationHelper</h1>
+
+  <div id="description" class="description">
+    
+  </div><!-- description -->
+
+  
+  
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+
+    <!-- Methods -->
+    
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section section">
+      <h3 class="section-header">Public Instance Methods</h3>
+
+    
+      <div id="method-i-states" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">states</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="states-source">
+            <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 2</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">states</span>
+  <span class="ruby-ivar">@states</span> = [
+       [ <span class="ruby-string">&quot;Alabama&quot;</span>, <span class="ruby-string">&quot;AL&quot;</span> ],
+       [ <span class="ruby-string">&quot;Alaska&quot;</span>, <span class="ruby-string">&quot;AK&quot;</span> ],
+       [ <span class="ruby-string">&quot;Arizona&quot;</span>, <span class="ruby-string">&quot;AZ&quot;</span> ],
+       [ <span class="ruby-string">&quot;Arkansas&quot;</span>, <span class="ruby-string">&quot;AR&quot;</span> ],
+       [ <span class="ruby-string">&quot;California&quot;</span>, <span class="ruby-string">&quot;CA&quot;</span> ],
+       [ <span class="ruby-string">&quot;Colorado&quot;</span>, <span class="ruby-string">&quot;CO&quot;</span> ],
+       [ <span class="ruby-string">&quot;Connecticut&quot;</span>, <span class="ruby-string">&quot;CT&quot;</span> ],
+       [ <span class="ruby-string">&quot;Delaware&quot;</span>, <span class="ruby-string">&quot;DE&quot;</span> ],
+       [ <span class="ruby-string">&quot;Florida&quot;</span>, <span class="ruby-string">&quot;FL&quot;</span> ],
+       [ <span class="ruby-string">&quot;Georgia&quot;</span>, <span class="ruby-string">&quot;GA&quot;</span> ],
+       [ <span class="ruby-string">&quot;Hawaii&quot;</span>, <span class="ruby-string">&quot;HI&quot;</span> ],
+       [ <span class="ruby-string">&quot;Idaho&quot;</span>, <span class="ruby-string">&quot;ID&quot;</span> ],
+       [ <span class="ruby-string">&quot;Illinois&quot;</span>, <span class="ruby-string">&quot;IL&quot;</span> ],
+       [ <span class="ruby-string">&quot;Indiana&quot;</span>, <span class="ruby-string">&quot;IN&quot;</span> ],
+       [ <span class="ruby-string">&quot;Iowa&quot;</span>, <span class="ruby-string">&quot;IA&quot;</span> ],
+       [ <span class="ruby-string">&quot;Kansas&quot;</span>, <span class="ruby-string">&quot;KS&quot;</span> ],
+       [ <span class="ruby-string">&quot;Kentucky&quot;</span>, <span class="ruby-string">&quot;KY&quot;</span> ],
+       [ <span class="ruby-string">&quot;Louisiana&quot;</span>, <span class="ruby-string">&quot;LA&quot;</span> ],
+       [ <span class="ruby-string">&quot;Maine&quot;</span>, <span class="ruby-string">&quot;ME&quot;</span> ],
+       [ <span class="ruby-string">&quot;Maryland&quot;</span>, <span class="ruby-string">&quot;MD&quot;</span> ],
+       [ <span class="ruby-string">&quot;Massachusetts&quot;</span>, <span class="ruby-string">&quot;MA&quot;</span> ],
+       [ <span class="ruby-string">&quot;Michigan&quot;</span>, <span class="ruby-string">&quot;MI&quot;</span> ],
+       [ <span class="ruby-string">&quot;Minnesota&quot;</span>, <span class="ruby-string">&quot;MN&quot;</span> ],
+       [ <span class="ruby-string">&quot;Mississippi&quot;</span>, <span class="ruby-string">&quot;MS&quot;</span> ],
+       [ <span class="ruby-string">&quot;Missouri&quot;</span>, <span class="ruby-string">&quot;MO&quot;</span> ],
+       [ <span class="ruby-string">&quot;Montana&quot;</span>, <span class="ruby-string">&quot;MT&quot;</span> ],
+       [ <span class="ruby-string">&quot;Nebraska&quot;</span>, <span class="ruby-string">&quot;NE&quot;</span> ],
+       [ <span class="ruby-string">&quot;Nevada&quot;</span>, <span class="ruby-string">&quot;NV&quot;</span> ],
+       [ <span class="ruby-string">&quot;New Hampshire&quot;</span>, <span class="ruby-string">&quot;NH&quot;</span> ],
+       [ <span class="ruby-string">&quot;New Jersey&quot;</span>, <span class="ruby-string">&quot;NJ&quot;</span> ],
+       [ <span class="ruby-string">&quot;New Mexico&quot;</span>, <span class="ruby-string">&quot;NM&quot;</span> ],
+       [ <span class="ruby-string">&quot;New York&quot;</span>, <span class="ruby-string">&quot;NY&quot;</span> ],
+       [ <span class="ruby-string">&quot;North Carolina&quot;</span>, <span class="ruby-string">&quot;NC&quot;</span> ],
+       [ <span class="ruby-string">&quot;North Dakota&quot;</span>, <span class="ruby-string">&quot;ND&quot;</span> ],
+       [ <span class="ruby-string">&quot;Ohio&quot;</span>, <span class="ruby-string">&quot;OH&quot;</span> ],
+       [ <span class="ruby-string">&quot;Oklahoma&quot;</span>, <span class="ruby-string">&quot;OK&quot;</span> ],
+       [ <span class="ruby-string">&quot;Oregon&quot;</span>, <span class="ruby-string">&quot;OR&quot;</span> ],
+       [ <span class="ruby-string">&quot;Pennsylvania&quot;</span>, <span class="ruby-string">&quot;PA&quot;</span> ],
+       [ <span class="ruby-string">&quot;Rhode Island&quot;</span>, <span class="ruby-string">&quot;RI&quot;</span> ],
+       [ <span class="ruby-string">&quot;South Carolina&quot;</span>, <span class="ruby-string">&quot;SC&quot;</span> ],
+       [ <span class="ruby-string">&quot;South Dakota&quot;</span>, <span class="ruby-string">&quot;SD&quot;</span> ],
+       [ <span class="ruby-string">&quot;Tennessee&quot;</span>, <span class="ruby-string">&quot;TN&quot;</span> ],
+       [ <span class="ruby-string">&quot;Texas&quot;</span>, <span class="ruby-string">&quot;TX&quot;</span> ],
+       [ <span class="ruby-string">&quot;Utah&quot;</span>, <span class="ruby-string">&quot;UT&quot;</span> ],
+       [ <span class="ruby-string">&quot;Vermont&quot;</span>, <span class="ruby-string">&quot;VT&quot;</span> ],
+       [ <span class="ruby-string">&quot;Virginia&quot;</span>, <span class="ruby-string">&quot;VA&quot;</span> ],
+       [ <span class="ruby-string">&quot;Washington&quot;</span>, <span class="ruby-string">&quot;WA&quot;</span> ],
+       [ <span class="ruby-string">&quot;West Virginia&quot;</span>, <span class="ruby-string">&quot;WV&quot;</span> ],
+       [ <span class="ruby-string">&quot;Wisconsin&quot;</span>, <span class="ruby-string">&quot;WI&quot;</span> ],
+       [ <span class="ruby-string">&quot;Wyoming&quot;</span>, <span class="ruby-string">&quot;WY&quot;</span> ]
+     ]
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- states-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- states-method -->
+
+    
+      <div id="method-i-times" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">times</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="times-source">
+            <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 57</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">times</span> 
+ <span class="ruby-ivar">@times</span> = [
+    [<span class="ruby-string">&quot;Closed&quot;</span>],
+    [<span class="ruby-string">&quot;12:00 AM&quot;</span>],
+    [<span class="ruby-string">&quot;12:30 AM&quot;</span>],
+    [<span class="ruby-string">&quot;1:00 AM&quot;</span>],
+    [<span class="ruby-string">&quot;1:30 AM&quot;</span>],
+    [<span class="ruby-string">&quot;2:00 AM&quot;</span>],
+    [<span class="ruby-string">&quot;2:30 AM&quot;</span>],
+    [<span class="ruby-string">&quot;3:00 AM&quot;</span>],
+    [<span class="ruby-string">&quot;3:30 AM&quot;</span>],
+    [<span class="ruby-string">&quot;4:00 AM&quot;</span>],
+    [<span class="ruby-string">&quot;4:30 AM&quot;</span>],
+    [<span class="ruby-string">&quot;5:00 AM&quot;</span>],
+    [<span class="ruby-string">&quot;5:30 AM&quot;</span>],
+    [<span class="ruby-string">&quot;6:00 AM&quot;</span>],
+    [<span class="ruby-string">&quot;6:30 AM&quot;</span>],
+    [<span class="ruby-string">&quot;7:00 AM&quot;</span>],
+    [<span class="ruby-string">&quot;7:30 AM&quot;</span>],
+    [<span class="ruby-string">&quot;8:00 AM&quot;</span>],
+    [<span class="ruby-string">&quot;8:30 AM&quot;</span>],
+    [<span class="ruby-string">&quot;9:00 AM&quot;</span>],
+    [<span class="ruby-string">&quot;9:30 AM&quot;</span>],
+    [<span class="ruby-string">&quot;10:00 AM&quot;</span>],
+    [<span class="ruby-string">&quot;10:30 AM&quot;</span>],
+    [<span class="ruby-string">&quot;11:00 AM&quot;</span>],
+    [<span class="ruby-string">&quot;11:30 AM&quot;</span>],
+    [<span class="ruby-string">&quot;12:00 PM&quot;</span>],
+    [<span class="ruby-string">&quot;12:30 PM&quot;</span>],
+    [<span class="ruby-string">&quot;1:00 PM&quot;</span>],
+    [<span class="ruby-string">&quot;1:30 PM&quot;</span>],
+    [<span class="ruby-string">&quot;2:00 PM&quot;</span>],
+    [<span class="ruby-string">&quot;2:30 PM&quot;</span>],
+    [<span class="ruby-string">&quot;3:00 PM&quot;</span>],
+    [<span class="ruby-string">&quot;3:30 PM&quot;</span>],
+    [<span class="ruby-string">&quot;4:00 PM&quot;</span>],
+    [<span class="ruby-string">&quot;4:30 PM&quot;</span>],
+    [<span class="ruby-string">&quot;5:00 PM&quot;</span>],
+    [<span class="ruby-string">&quot;5:30 PM&quot;</span>],
+    [<span class="ruby-string">&quot;6:00 PM&quot;</span>],
+    [<span class="ruby-string">&quot;6:30 PM&quot;</span>],
+    [<span class="ruby-string">&quot;7:00 PM&quot;</span>],
+    [<span class="ruby-string">&quot;7:30 PM&quot;</span>],
+    [<span class="ruby-string">&quot;8:00 PM&quot;</span>],
+    [<span class="ruby-string">&quot;8:30 PM&quot;</span>],
+    [<span class="ruby-string">&quot;9:00 PM&quot;</span>],
+    [<span class="ruby-string">&quot;9:30 PM&quot;</span>],
+    [<span class="ruby-string">&quot;10:00 PM&quot;</span>],
+    [<span class="ruby-string">&quot;10:30 PM&quot;</span>],
+    [<span class="ruby-string">&quot;11:00 PM&quot;</span>],
+    [<span class="ruby-string">&quot;11:30 PM&quot;</span>]
+ ]
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- times-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- times-method -->
+
+    
+    </section><!-- public-instance-method-details -->
+  
+  </section><!-- 5Buntitled-5D -->
+
+</div><!-- documentation -->
+
+
+<footer id="validator-badges">
+  <p><a href="http://validator.w3.org/check/referer">[Validate]</a>
+  <p>Generated by <a href="https://github.com/rdoc/rdoc">RDoc</a> 3.12.2.
+  <p>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish Rdoc Generator</a> 3.
+</footer>
+

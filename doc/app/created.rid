@@ -1,0 +1,24 @@
+Tue, 23 Apr 2013 12:24:05 -0400
+doc/README_FOR_APP	Thu, 28 Mar 2013 10:11:58 -0400
+app/controllers/admin_controller.rb	Fri, 29 Mar 2013 09:05:24 -0400
+app/controllers/application_controller.rb	Thu, 28 Mar 2013 11:43:13 -0400
+app/controllers/bar_entities_controller.rb	Fri, 05 Apr 2013 11:18:08 -0400
+app/controllers/bar_specials_controller.rb	Mon, 08 Apr 2013 10:00:30 -0400
+app/controllers/charges_controller.rb	Thu, 04 Apr 2013 10:56:20 -0400
+app/controllers/home_controller.rb	Thu, 28 Mar 2013 10:57:30 -0400
+app/controllers/sessions_controller.rb	Fri, 29 Mar 2013 20:10:18 -0400
+app/controllers/users_controller.rb	Tue, 09 Apr 2013 14:12:23 -0400
+app/helpers/admin_helper.rb	Fri, 29 Mar 2013 09:04:34 -0400
+app/helpers/application_helper.rb	Fri, 05 Apr 2013 13:58:27 -0400
+app/helpers/bar_entities_helper.rb	Wed, 03 Apr 2013 15:28:37 -0400
+app/helpers/charges_helper.rb	Wed, 03 Apr 2013 09:59:03 -0400
+app/helpers/home_helper.rb	Thu, 28 Mar 2013 10:57:31 -0400
+app/helpers/sessions_helper.rb	Thu, 28 Mar 2013 10:11:58 -0400
+app/helpers/users_helper.rb	Mon, 08 Apr 2013 10:11:57 -0400
+app/mailers/notifier.rb	Fri, 29 Mar 2013 15:58:53 -0400
+app/models/bar_entity.rb	Tue, 09 Apr 2013 12:39:04 -0400
+app/models/bar_specials.rb	Tue, 23 Apr 2013 11:59:55 -0400
+app/models/parse_date.rb	Fri, 19 Apr 2013 10:57:29 -0400
+app/models/subscription.rb	Fri, 19 Apr 2013 14:06:45 -0400
+app/models/subscription_plan.rb	Tue, 09 Apr 2013 14:33:51 -0400
+app/models/user.rb	Thu, 18 Apr 2013 13:49:07 -0400
