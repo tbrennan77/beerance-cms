@@ -1,4 +1,4 @@
-source 'http://rubygems.org'
+source 'https://rubygems.org'
 
 gem 'rails', '3.2.13'
 
@@ -27,7 +27,7 @@ gem 'jquery-rails'
 gem "animate-rails"
 
 # Parse and Stripe
-gem 'parse_resource', :git => 'git@github.com:adelevie/parse_resource.git'
+gem 'parse_resource', :git => 'https://github.com/adelevie/parse_resource.git'
 gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
 
 # To use ActiveModel has_secure_password

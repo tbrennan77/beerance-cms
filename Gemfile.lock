@@ -1,8 +1,8 @@
 GIT
-  remote: git@github.com:adelevie/parse_resource.git
-  revision: c110c796fe78fa48f30b2438cb20b35c572e13ce
+  remote: https://github.com/adelevie/parse_resource.git
+  revision: 969f9c1c844b9eea37c990aa56dd2af48512b886
   specs:
-    parse_resource (1.7.3)
+    parse_resource (1.8.0)
       activemodel
       activesupport
       json
@@ -10,14 +10,14 @@ GIT
 
 GIT
   remote: https://github.com/stripe/stripe-ruby
-  revision: ce34d9ef8b1c8522206294f651b37e9f1e528302
+  revision: 56f9ba200fcdf70728742a4e5ab8c2d24f3fbaba
   specs:
-    stripe (1.7.11)
+    stripe (1.8.1)
       multi_json (>= 1.0.4, < 2)
       rest-client (~> 1.4)
 
 GEM
-  remote: http://rubygems.org/
+  remote: https://rubygems.org/
   specs:
     actionmailer (3.2.13)
       actionpack (= 3.2.13)
@@ -71,7 +71,7 @@ GEM
     execjs (1.4.0)
       multi_json (~> 1.0)
     fssm (0.2.10)
-    geocoder (1.1.6)
+    geocoder (1.1.8)
     hike (1.2.2)
     i18n (0.6.1)
     journey (1.0.4)
@@ -83,7 +83,7 @@ GEM
       i18n (>= 0.4.0)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
-    mime-types (1.22)
+    mime-types (1.23)
     modernizr-rails (2.6.2.1)
     multi_json (1.7.2)
     polyglot (0.3.3)
@@ -114,7 +114,7 @@ GEM
       json (~> 1.4)
     rest-client (1.6.7)
       mime-types (>= 1.16)
-    sass (3.2.7)
+    sass (3.2.8)
     sass-rails (3.2.6)
       railties (~> 3.2.0)
       sass (>= 3.1.10)
