@@ -33,7 +33,7 @@ class BarSpecials < ParseResource::Base
   end
 
   def ensure_formats
-    self.beer_color = self.beer_color.to_f
+    self.beer_color = self.beer_color.to_i
     self.sale_price = self.sale_price.to_f
     self.beer_size  = self.beer_size.to_i
   end

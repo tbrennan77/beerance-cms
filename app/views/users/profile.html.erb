@@ -8,7 +8,7 @@ h4 a {color: #AAA;}
   padding: 16px;
   border-top: 1px solid #CCC;
 }
-.specials > div:nth-child(even), .archives > div:nth-child(odd) {background: #DDD;}
+.specials > div:nth-child(even), .archives > div:nth-child(even) {background: #DDD;}
 </style>
 <h3>Welcome, <%= current_user.owner_name %> <small><%= link_to "(account details)", account_path %></small></h3>
 
@@ -76,6 +76,7 @@ h4 a {color: #AAA;}
           <div class="content">
             <div class="row">
               <div class="large-12 columns archives">
+                <%= link_to "New Special", "#", data: {reveal_id: "new_special"}, title: "New Special", class: 'small button radius' %>
                 <div class="row">
                   <div class='large-2 columns'>
                     <b>Name</b>
@@ -131,7 +132,18 @@ h4 a {color: #AAA;}
       </div>
 
 </div>
-
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
     <div id="new_special" class="reveal-modal xlarge">
       <h3 class="blue">Add a new Special</h3>
       <p class="lead">Simply fill out the form.</p>
