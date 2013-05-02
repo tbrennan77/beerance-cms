@@ -48,6 +48,18 @@ ParseRailsBoilerplate::Application.configure do
   # Disable delivery errors, bad email addresses will be ignored
   # config.action_mailer.raise_delivery_errors = false
 
+  # Email settings
+  config.action_mailer.perform_deliveries = false
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    :address              => "smtp.gmail.com",
+    :port                 => 587,
+    :domain               => 'send.booondockwalker.com',
+    :user_name            => 'files.boondock@gmail.com',
+    :password             => 'BJ4lXDDF0tf65cBUQBT7BQ==',
+    :authentication       => 'plain',
+    :enable_starttls_auto => true  }
+
   # Enable threaded mode
   # config.threadsafe!
 
