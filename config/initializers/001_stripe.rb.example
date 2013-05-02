@@ -1,5 +1,4 @@
 Rails.configuration.stripe = {
-  # Replace these with your Stripe.com keys
   :publishable_key => "pk_test_weoNBbbyjlvVH6byhDE992nq",
   :secret_key      => "sk_test_Yla7t2GFVTDzgCO3s8OlUaaF"
 }

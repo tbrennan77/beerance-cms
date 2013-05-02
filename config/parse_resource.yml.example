@@ -1,0 +1,13 @@
+# Replace environment keys with actual parse.com keys
+
+development:
+  app_id: FOsgW0Yc7XF4GJIAGjIz0gZkGLDsNmHv8Cv8aZkE
+  master_key: Fk8VaA5z5hzVhcV9a05B5EVYvkNbC3JgFYWpoW37
+
+test:
+  app_id: B8AnzBXiNujxsdovN5Ox4yxHHeBqsTkc4rjAsglb
+  master_key: CVq9OpDcbqSIYrVgz27GJLvk0Cu686IauIK8Yw19
+
+production:
+  app_id: FOsgW0Yc7XF4GJIAGjIz0gZkGLDsNmHv8Cv8aZkE
+  master_key: Fk8VaA5z5hzVhcV9a05B5EVYvkNbC3JgFYWpoW37
