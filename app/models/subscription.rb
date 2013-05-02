@@ -14,7 +14,7 @@ class Subscription < ParseResource::Base
   end
 
   def days_remaining
-    (expiration_date-DateTime.now.beginning_of_day.utc).to_i
+    (Date.new(expiration_date.year, expiration_date.month, expiration_date.day)-Date.today).to_i
   end
 
   def determine_expiration_date
