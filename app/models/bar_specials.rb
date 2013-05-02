@@ -43,7 +43,7 @@ class BarSpecials < ParseResource::Base
   end
 
   def ensure_fields
-    set_expiration_date unless expiration_date
+    set_expiration_date if expiration_date.blank?
     set_bar_name
     set_geo_location
     ensure_formats
