@@ -18,7 +18,7 @@ class BarSpecials < ParseResource::Base
       greater_than: 0
     }
 
-  before_create :ensure_fields  
+  before_save :ensure_fields
 
   def set_expiration_date    
     self.expiration_date = ParseDate.new(tomorrows_date).to_s
@@ -43,7 +43,7 @@ class BarSpecials < ParseResource::Base
   end
 
   def ensure_fields
-    set_expiration_date
+    set_expiration_date unless expiration_date
     set_bar_name
     set_geo_location
     ensure_formats
@@ -55,6 +55,10 @@ class BarSpecials < ParseResource::Base
 
   def reactivate_special
     self.set_expiration_date
+  end
+
+  def bar
+    BarEntity.find bar_id
   end
 
   private

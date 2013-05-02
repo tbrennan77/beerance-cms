@@ -89,15 +89,15 @@ class BarSpecialsTest < ActiveSupport::TestCase
 
   test "end special sets expiration_date to yesterday" do
     @bar_special.end_special
-    assert_equal @yesterday, @bar_special.expiration_date
+    assert_equal @yesterday, @bar_special.expiration_date.utc
   end
 
   test "reactivate special sets expiration_date to tomorrow" do
     @bar_special.reactivate_special
-    assert_equal @tomorrow, @bar_special.expiration_date
+    assert_equal @tomorrow, @bar_special.expiration_date.utc
   end
 
   test "set expiration_date set expiration_date to tomorrow" do
-    assert_equal @tomorrow, @bar_special.expiration_date
+    assert_equal @tomorrow, @bar_special.expiration_date.utc
   end
 end
