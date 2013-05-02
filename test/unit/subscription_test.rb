@@ -15,8 +15,11 @@ class SubscriptionTest < ActiveSupport::TestCase
   test "is sets the expiration date on create" do
     subscription_plan = SubscriptionPlan.first
     subscription = Subscription.create user_id: "1", subscription_plan_id: subscription_plan.id
-    expected_time = Time.new(Date.today.advance(months: subscription_plan.length_in_months).year, Date.today.advance(months: subscription_plan.length_in_months).month, Date.today.advance(months: subscription_plan.length_in_months).day).utc
-    assert_equal expected_time, subscription.expiration_date
+    
+    end_date = Date.today.advance months: subscription_plan.length_in_months
+    expected_time = Time.new(end_date.year, end_date.month, end_date.day).utc
+    
+    assert_equal expected_time, subscription.expiration_date.utc
   end
 
 end

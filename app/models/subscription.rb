@@ -3,7 +3,7 @@ class Subscription < ParseResource::Base
 
   validates_presence_of :user_id, :subscription_plan_id  
 
-  before_create :set_expiration
+  before_save :set_expiration
 
   def plan
     SubscriptionPlan.find subscription_plan_id
@@ -18,7 +18,8 @@ class Subscription < ParseResource::Base
   end
 
   def determine_expiration_date
-    Time.new(Date.today.advance(months: plan.length_in_months).year, Date.today.advance(months: plan.length_in_months).month, Date.today.advance(months: plan.length_in_months).day).utc.iso8601
+    end_date = Date.today.advance months: plan.length_in_months
+    Time.new(end_date.year, end_date.month, end_date.day).utc.iso8601
   end
 
 end
