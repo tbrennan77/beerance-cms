@@ -17,9 +17,9 @@ class SubscriptionTest < ActiveSupport::TestCase
     subscription = Subscription.create user_id: "1", subscription_plan_id: subscription_plan.id
     
     end_date = Date.today.advance months: subscription_plan.length_in_months
-    expected_time = Time.new(end_date.year, end_date.month, end_date.day).utc
+    expected_time = DateTime.new(end_date.year, end_date.month, end_date.day).to_time_in_current_zone
     
-    assert_equal expected_time, subscription.expiration_date.utc
+    assert_equal expected_time, subscription.expiration_date
   end
 
 end

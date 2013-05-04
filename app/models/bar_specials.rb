@@ -21,7 +21,7 @@ class BarSpecials < ParseResource::Base
   before_save :ensure_fields
 
   def set_expiration_date    
-    self.expiration_date = ParseDate.new(tomorrows_date).to_s
+    self.expiration_date = DateTime.now.tomorrow.beginning_of_day.advance(hours: 9)
   end
 
   def set_geo_location
@@ -39,18 +39,18 @@ class BarSpecials < ParseResource::Base
   end
 
   def active?
-    self.expiration_date > Time.now.utc
+    self.expiration_date > Time.now
   end
 
   def ensure_fields
-    set_expiration_date if expiration_date.blank?
+    set_expiration_date unless expiration_date
     set_bar_name
     set_geo_location
     ensure_formats
   end
 
   def end_special
-    self.expiration_date = ParseDate.new(yesterdays_date).to_s
+    self.expiration_date = DateTime.now.yesterday.beginning_of_day.advance(hours: 9)
   end
 
   def reactivate_special
@@ -59,15 +59,5 @@ class BarSpecials < ParseResource::Base
 
   def bar
     BarEntity.find bar_id
-  end
-
-  private
-
-  def tomorrows_date
-    Time.new(Date.tomorrow.year, Date.tomorrow.month, Date.tomorrow.day, 9).utc.iso8601
-  end
-
-  def yesterdays_date
-    Time.new(Date.yesterday.year, Date.yesterday.month, Date.yesterday.day, 9).utc.iso8601
   end
 end

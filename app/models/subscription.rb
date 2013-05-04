@@ -10,16 +10,11 @@ class Subscription < ParseResource::Base
   end
 
   def set_expiration
-    self.expiration_date = ParseDate.new(determine_expiration_date).to_s
+    end_date = Date.today.advance months: plan.length_in_months
+    self.expiration_date = DateTime.new(end_date.year, end_date.month, end_date.day)
   end
 
   def days_remaining
     (Date.new(expiration_date.year, expiration_date.month, expiration_date.day)-Date.today).to_i
   end
-
-  def determine_expiration_date
-    end_date = Date.today.advance months: plan.length_in_months
-    Time.new(end_date.year, end_date.month, end_date.day).utc.iso8601
-  end
-
 end

@@ -4,13 +4,20 @@ class User < ParseUser
 
   EMAIL_REGEX = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i
 
-  validates :username, presence: true, length: {maximum: 100}, format: {with: EMAIL_REGEX}
-  validates :password, presence: true, length: {minimum: 6}  
+  validates :username,
+    presence: true,
+    length: {maximum: 100},
+    format: {with: EMAIL_REGEX}
+  
+  validates :password,
+    presence: true,
+    length: {minimum: 6}
+  
   validates :owner_name, presence: true
   validates :owner_phone, presence: true
   validates :subscription_plan_id, presence: true
 
-  def admin?; self.admin ? true : false; end
+  def admin?; self.admin==true; end
   def make_admin; self.admin=true;self.save; end
   def remove_admin; self.admin=false;self.save; end
 
@@ -31,7 +38,6 @@ class User < ParseUser
         description: 'Rails Stripe customer',
         currency:    'usd'
       )
-
       self.stripe_customer_id = customer.id
       self.save
     end

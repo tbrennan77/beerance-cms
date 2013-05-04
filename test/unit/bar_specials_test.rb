@@ -2,18 +2,9 @@ require 'test_helper'
 require File.dirname(__FILE__) + '/../test_helper'
 
 class BarSpecialsTest < ActiveSupport::TestCase
-
-  def tomorrows_date
-    Time.new(Date.tomorrow.year, Date.tomorrow.month, Date.tomorrow.day, 9).utc
-  end
-
-  def yesterdays_date
-    Time.new(Date.yesterday.year, Date.yesterday.month, Date.yesterday.day, 9).utc
-  end
-
   def setup
-    @tomorrow  = tomorrows_date
-    @yesterday = yesterdays_date
+    @tomorrow  = DateTime.now.tomorrow.beginning_of_day.advance(hours: 9).to_time_in_current_zone
+    @yesterday = DateTime.now.yesterday.beginning_of_day.advance(hours: 9).to_time_in_current_zone
     @bar = BarEntity.first
     @bar_special = BarSpecials.new(
       bar_id: @bar.id,
@@ -89,15 +80,18 @@ class BarSpecialsTest < ActiveSupport::TestCase
 
   test "end special sets expiration_date to yesterday" do
     @bar_special.end_special
-    assert_equal @yesterday, @bar_special.expiration_date.utc
+    @bar_special.save
+    assert_equal @yesterday, @bar_special.expiration_date
   end
 
   test "reactivate special sets expiration_date to tomorrow" do
     @bar_special.reactivate_special
-    assert_equal @tomorrow, @bar_special.expiration_date.utc
+    @bar_special.save
+    assert_equal @tomorrow, @bar_special.expiration_date
   end
 
   test "set expiration_date set expiration_date to tomorrow" do
-    assert_equal @tomorrow, @bar_special.expiration_date.utc
+    @bar_special.save
+    assert_equal @tomorrow, @bar_special.expiration_date
   end
 end
