@@ -14,7 +14,7 @@ For this app to function in any environment the following configuration/accounts
 
 1. Create a [Stripe.com](https://stripe.com/) account.
 
-2. Create a [Parse.com](https://parse.com/) account.
+2. Create a [Parse.com](https://parse.com/) account. Once you have the Parse.com account you will need to make a "Parse App" for each environment you wish to use.
 
 ***The below example files should be replaced and updated with the correct credentials***
 
