@@ -12,9 +12,15 @@ Setup
 
 For this app to function in any environment the following configuration/accounts need to be established:
 
-The below example file should be replaced
-```beerance/config/initializers/stripe.rb```
+***The below example files should be replaced and updated with the correct credentials***
 
+```bash
+cp config/initializers/stripe.rb.example config/initializers/stripe.rb
+```
+
+```bash
+cp config/parse_resource.yml.example config/parse_resource.yml
+```
 
 Testing
 -------
@@ -23,6 +29,7 @@ Due to using Parse.com as the database, testing requires a test account to be se
 
 Rake Tasks
 ==========
+***
 
 There are a number of rake tasks available to aid development and testing.
 
