@@ -2,7 +2,7 @@ class User < ParseUser
   attr_accessor :stripe_card_token
   fields :email, :newsletter_subscription, :username, :owner_name, :owner_phone, :account_type, :expiration_date, :user_favorites, :createdAt, :admin, :stripe_customer_id, :subscription_plan_id
 
-  EMAIL_REGEX = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i
+  EMAIL_REGEX = /[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}/i
 
   validates :username,
     presence: true,
@@ -13,9 +13,7 @@ class User < ParseUser
     presence: true,
     length: {minimum: 6}
   
-  validates :owner_name, presence: true
-  validates :owner_phone, presence: true
-  validates :subscription_plan_id, presence: true
+  validates_presence_of :owner_name, :owner_phone, :subscription_plan_id
 
   def admin?; self.admin==true; end
   def make_admin; self.admin=true;self.save; end
