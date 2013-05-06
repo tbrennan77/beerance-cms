@@ -14,11 +14,15 @@ h4 a {color: #AAA;}
 
 <script>
   function fix() {$(window).trigger("resize");}
-  setTimeout(fix, 1000);
+  var timer_fixes = [100, 500, 1000];
+  for (var i=0;i<timer_fixes.length;i++) {
+    setTimeout(fix, timer_fixes[i]);
+  }
 </script>
 
 <div class='row'>
       <div class="section-container tabs" data-section="tabs">
+        <% if has_a_bar? %>
         <section class="section">
           <p class="title"><a href="#">Current Specials</a></p>
           <div class="content">
@@ -123,7 +127,8 @@ h4 a {color: #AAA;}
             </div>
           </div>
         </section>
-        <section class="section <%= has_a_bar? %>">
+        <% end %>
+        <section class="section">
           <p class="title"><a href="#"><%= my_bars @bar_entities.all.count %></a></p>
           <div class="content bar-list">
             <%= render partial: 'bar_list' %>

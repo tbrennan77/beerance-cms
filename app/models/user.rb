@@ -46,6 +46,10 @@ class User < ParseUser
     false
   end
 
+  def bars
+    BarEntity.where(bar_owner_id: id)
+  end
+
   def subscription
     Subscription.find_by_user_id id
   end

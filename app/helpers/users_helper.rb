@@ -19,9 +19,7 @@ module UsersHelper
   end
 
   def has_a_bar?
-    if BarEntity.where(bar_owner_id: current_user.id).count == 0
-      "active"
-    end
+    current_user.bars.count > 0
   end
 
   def my_bars(number)
