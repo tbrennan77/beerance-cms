@@ -1,10 +1,20 @@
 BeeranceApp
 ===========
+***
 
 About
 -----
 
 This is a simple Rails 3 app that uses [parse_resource](http://github.com/adelevie/parse_resource) for model persistence. The app is designed to allow bar owners to sign up for a paid account (payments are integrated with [Stripe.com](http://stripe.com)) that allows them to publish "Beerance" sales to the iOS application "Beerance".
+
+Setup
+-----
+
+For this app to function in any environment the following configuration/accounts need to be established:
+
+The below example file should be replaced
+```beerance/config/initializers/stripe.rb```
+
 
 Testing
 -------
