@@ -12,6 +12,10 @@ Setup
 
 For this app to function in any environment the following configuration/accounts need to be established:
 
+1. Create a [Stripe.com](https://stripe.com/) account.
+
+2. Create a [Parse.com](https://parse.com/) account.
+
 ***The below example files should be replaced and updated with the correct credentials***
 
 ```bash
