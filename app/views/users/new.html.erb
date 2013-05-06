@@ -45,7 +45,7 @@
 <h3>Step 2</h3>
 <h5 class='subheader'>Package Selection:</h5>
  <div class="row">
-  <% SubscriptionPlan.order("name").each do |p| %>
+  <% SubscriptionPlan.all.each do |p| %>
     <div class="large-4 columns">
         <article>
           <label class="amount">
