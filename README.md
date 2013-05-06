@@ -32,13 +32,11 @@ Testing
 Due to using Parse.com as the database, testing requires a test account to be setup with Parse. Test::Unit is currently being used and can be run by simply calling ```rake``` from the application root.
 
 Rake Tasks
-==========
-***
+----------
 
 There are a number of rake tasks available to aid development and testing.
 
-Development
------------
+### Development
 
 **Sets up default subscription plans in development.**
 
@@ -47,8 +45,7 @@ rake parse:dev:setup
 ```
 
 
-Testing
--------
+### Testing
 
 **Sets up mock database records.**
 
