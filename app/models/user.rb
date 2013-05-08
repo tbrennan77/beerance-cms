@@ -45,6 +45,10 @@ class User < ParseUser
     false
   end
 
+  def phone
+    owner_phone.gsub(/[^\d]/, '')
+  end
+
   def bars
     BarEntity.where(bar_owner_id: id)
   end

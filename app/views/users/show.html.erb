@@ -5,7 +5,7 @@
 <div class='panel'>
   <b>Email:</b> <%= current_user.username %><br />
   <b>Name:</b> <%= current_user.owner_name %><br />
-  <b>Phone:</b> <%= number_to_phone current_user.owner_phone, area_code: true %><br />  
+  <b>Phone:</b> <%= number_to_phone current_user.phone, area_code: true %><br />  
   <hr />
   <%= link_to "Change Account Information", edit_user_path(current_user) %><br />
   <%= link_to "Change Password", edit_user_path(current_user) %>
