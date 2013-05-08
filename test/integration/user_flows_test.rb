@@ -19,9 +19,9 @@ class UserFlowsTest < ActionDispatch::IntegrationTest
     assert_equal sessions_path, current_path
   end
 
-  test "visiting the logout path logs out the current user"
+  test "visiting the logout path logs out the current user" do
     login
-    visit logout_path
+    visit log_out_path
     assert page.has_content?('Logged out!')
     assert_equal root_path, current_path
   end
