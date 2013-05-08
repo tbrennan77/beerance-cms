@@ -1,25 +1,30 @@
-<h3>Edit <%= @user.username %></h3>  
+<h3>Edit Account Information</h3>  
 <hr />
 
-<fieldset>
 <%= form_for @user do |f| %>  
   <% if @user.errors.any? %>  
     <div class="error_messages">  
-      <h2>Form is invalid</h2>  
+      <h4>Something isn't quite right...</h4>
       <ul>  
         <% for message in @user.errors.full_messages %>  
-          <li><%= message %></li>  
+          <li><%= message.gsub('202 username', 'Email') %></li>  
         <% end %>  
       </ul>  
     </div>  
+    <br />
   <% end %>  
-  <p>  
+  
     <%= f.label :email %><br />  
     <%= f.email_field :username %>  
-  </p>  
+
+    <%= f.label :owner_name %><br />  
+    <%= f.text_field :owner_name %>  
+
+    <%= f.label :owner_phone %><br />  
+    <%= f.phone_field :owner_phone %>  
+  
   <p>
-    <%= f.submit "Update User", class: 'button nice radius' %>
-    <%= link_to "cancel", users_path, class: 'alert button nice radius' %> 
+    <%= f.submit "Update User", class: 'small button nice radius' %>
+    <%= link_to "Cancel", profile_path, class: 'alert small button nice radius' %> 
   </p>
 <% end %>  
-</fieldset>

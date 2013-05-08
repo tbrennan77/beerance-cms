@@ -17,4 +17,8 @@ class Subscription < ParseResource::Base
   def days_remaining
     (Date.new(expiration_date.year, expiration_date.month, expiration_date.day)-Date.today).to_i
   end
+
+  def subscription_plan
+    SubscriptionPlan.find subscription_plan_id
+  end
 end

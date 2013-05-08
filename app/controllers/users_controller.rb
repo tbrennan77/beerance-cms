@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_filter :require_user, except: %w{new create}
-  before_filter :require_admin, except: %w{new create profile show}
+  before_filter :require_admin, except: %w{new edit update create profile show}
   before_filter :verify_create_parameters, only: %w{create}
 
   def index
@@ -52,17 +52,14 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user = User.find(params[:id])
+    @user = User.find params[:id]
   end
 
   def update
     params[:user][:username].downcase!
-    @user = User.find(params[:id])
-    @user.username = params[:user][:username]
-    @user.password = params[:user][:password]
-    if @user.valid?
-      @user.save
-      redirect_to users_path
+    @user = User.find params[:id]    
+    if @user.update_attributes params[:user]
+      redirect_to user_path(@user)
     else
       render :edit
     end

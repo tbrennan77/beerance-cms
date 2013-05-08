@@ -2,7 +2,15 @@
 <h4 class="subheader">for <%= current_user.username %></h4>
 <hr />
 
-<%= link_to "Edit My Account", '#' %>
+<div class='panel'>
+  <b>Email:</b> <%= current_user.username %><br />
+  <b>Name:</b> <%= current_user.owner_name %><br />
+  <b>Phone:</b> <%= number_to_phone current_user.owner_phone, area_code: true %><br />  
+  <hr />
+  <%= link_to "Change Account Information", edit_user_path(current_user) %><br />
+  <%= link_to "Change Password", edit_user_path(current_user) %>
+</div>
+
 <h3>Statistics</h3>
 <ul>
   <li>You manage <%= pluralize @total_bars, 'bar' %></li>
@@ -14,15 +22,22 @@
 <hr />
 <br />
 <% if current_user.subscription %>
-  <%= link_to "Change My Plan", '#' %><br />
-  <%= current_user.subscription.plan.friendly_name %><br />
-  <%= number_to_currency current_user.subscription.plan.amount/100 %><br />
-  Cost per month: <%= number_to_currency current_user.subscription.plan.cost_per_month %>
-  <br />
-  <br />
-  You have <b><%= pluralize current_user.subscription.days_remaining, 'day' %></b> remaining
-  <br />
-  <br />
+  <div class="row">
+    <div class="large-2 columns panel" style="text-align:center">  
+      <%= image_tag current_user.subscription.subscription_plan.image %><br /><br />
+      <%= current_user.subscription.plan.friendly_name %><br />
+      <%= link_to "Change My Plan", '#' %><br />
+    </div>
+    <div class="large-9 columns">  
+      <br />
+      <br />
+      <%= number_to_currency current_user.subscription.plan.amount/100 %><br />
+      Cost per month: <%= number_to_currency current_user.subscription.plan.cost_per_month %>
+      <br />
+      <br />
+      You have <b><%= pluralize current_user.subscription.days_remaining, 'day' %></b> remaining
+    </div>
+  </div>
 <% else %>
   <p style="text-align:center;">
     It looks like you don't have a plan yet :(
