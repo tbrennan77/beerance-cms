@@ -10,4 +10,11 @@ end
 class ActionDispatch::IntegrationTest
   # Make the Capybara DSL available in all integration tests
   include Capybara::DSL
+
+  def login
+    visit root_path
+    fill_in 'email', with: 'user@example.org'
+    fill_in 'password', with: 'secret'
+    click_on 'Login'
+  end
 end
