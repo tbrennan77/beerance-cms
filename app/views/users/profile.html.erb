@@ -1,154 +1,66 @@
+<%= render partial: 'shared/subnav' %>
 <style>
 h4 a {color: #AAA;}
 .content {padding-bottom: 0 !important;}
 .hour-label { margin-top: 4px !important; }
+.rounded-box {padding: 20px;}
 .specials > div > div, .archives > div > div {text-align: center;}
 .specials > div > div a, .archives > div > div a {text-decoration: underline;}
 .specials > div, .archives > div {
-  padding: 16px;
-  border-top: 1px solid #CCC;
+  padding: 2px;
+  border-left: 1px solid #7A4225;
+  border-right: 1px solid #7A4225;
+  border-bottom: 1px solid #7A4225;
 }
-.specials > div:nth-child(even), .archives > div:nth-child(even) {background: #DDD;}
+.specials > div:nth-child(odd), .archives > div:nth-child(odd) {background: #7A4225;}
+.specials > div:nth-child(even), .archives > div:nth-child(even) {background: tan;}
+.specials > div.thead, .archives > div.thead {background: #311308;}
+.orange_grad > div {color: white;}
+.info .beer .button {
+  margin: 0;
+  width: 150px;
+  margin-left: 30px;
+  margin-bottom: 20px;
+}
+#ajax_bar {
+  background: #FFF;
+}
+.remove {
+  background: #311308;
+  border-radius: 20px;
+  padding: 8px;
+  color: white;
+  text-decoration: normal;
+}
 </style>
-<h3>Welcome, <%= current_user.owner_name %> <small><%= link_to "(account details)", account_path %></small></h3>
 
-<script>
-  function fix() {$(window).trigger("resize");}
-  var timer_fixes = [100, 500, 1000];
-  for (var i=0;i<timer_fixes.length;i++) {
-    setTimeout(fix, timer_fixes[i]);
-  }
-</script>
-
-<div class='row'>
-      <div class="section-container tabs" data-section="tabs">
-        <% if has_a_bar? %>
-        <section class="section">
-          <p class="title"><a href="#">Current Specials</a></p>
-          <div class="content">
-            <div class="row">
-              <div class="large-12 columns specials">
-                <%= link_to "New Special", "#", data: {reveal_id: "new_special"}, title: "New Special", class: 'small button radius' %>
-                <div class="row">
-                  <div class='large-2 columns'>
-                    <b>Name</b>
-                  </div>
-                  <div class='large-2 columns'>
-                    <b>Style</b>
-                  </div>
-                  <div class='large-1 columns'>
-                    <b>Price</b>
-                  </div>
-                  <div class='large-1 columns'>
-                    <b>Size</b>
-                  </div>
-                  <div class='large-4 columns'>
-                    <b>Location</b>
-                  </div>
-                  <div class='large-2 columns'>
-                    <b>Remove</b>
-                  </div>
-                </div>
-                <% @active_specials.each do |bs| %>
-                <div class="row">
-                  <div class="large-2 columns">
-                    <%= bs.special_description %>
-                  </div>
-                  <div class="large-2 columns">
-                    IPA
-                  </div>
-                  <div class="large-1 columns">
-                    <%= number_to_currency bs.sale_price %>
-                  </div>
-                  <div class="large-1 columns">
-                     <%= bs.beer_size %>oz
-                  </div>
-                  <div class="large-4 columns">
-                    <%= bs.bar_name %>
-                  </div>
-                  <div class="large-2 columns">
-                    <%= link_to "X", end_beerance_path(bs) %>
-                  </div>
-                </div>
-                <% end %>
-              </div>
-            </div>
-          </div>
-        </section>
-        <section class="section">
-          <p class="title"><a href="#">Archive</a></p>
-          <div class="content">
-            <div class="row">
-              <div class="large-12 columns archives">
-                <%= link_to "New Special", "#", data: {reveal_id: "new_special"}, title: "New Special", class: 'small button radius' %>
-                <div class="row">
-                  <div class='large-2 columns'>
-                    <b>Name</b>
-                  </div>
-                  <div class='large-2 columns'>
-                    <b>Style</b>
-                  </div>
-                  <div class='large-1 columns'>
-                    <b>Price</b>
-                  </div>
-                  <div class='large-1 columns'>
-                    <b>Size</b>
-                  </div>
-                  <div class='large-4 columns'>
-                    <b>Location</b>
-                  </div>
-                  <div class='large-2 columns'>
-                    <b>Reactivate</b>
-                  </div>
-                </div>
-                <% @inactive_specials.each do |bs| %>
-                <div class="row">
-                  <div class="large-2 columns">
-                    <%= bs.special_description %>
-                  </div>
-                  <div class="large-2 columns">
-                    IPA
-                  </div>
-                  <div class="large-1 columns">
-                    <%= number_to_currency bs.sale_price %>
-                  </div>
-                  <div class="large-1 columns">
-                     <%= bs.beer_size %>oz
-                  </div>
-                  <div class="large-4 columns">
-                    <%= bs.bar_name %>
-                  </div>
-                  <div class="large-2 columns">
-                    <%= link_to "Reactivate", reactivate_beerance_path(bs) %>
-                  </div>
-                </div>
-                <% end %>
-              </div>
-            </div>
-          </div>
-        </section>
-        <% end %>
-        <section class="section">
-          <p class="title"><a href="#"><%= my_bars @bar_entities.all.count %></a></p>
-          <div class="content bar-list">
-            <%= render partial: 'bar_list' %>
-          </div>
-        </section>
-      </div>
-
+<div class="purple_grad">
+  <div class="row home-promo">
+    <div class='large-12 columns'>
+      <h3>Welcome, <%= current_user.owner_name %></h3>
+    </div>
+  </div>
 </div>
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
+
+<div class="orange_grad">
+  <div class="row badge-desc">
+    <br />
+  </div>
+  <div class="row info rounded-box">
+    <div class='large-12 columns'>
+      <div class="row">
+        <div class="large-12 columns beer">
+          <div class='ajax-container'>
+            <%= render partial: 'current_specials' %>
+          </div>          
+          </div>
+        </div>
+    </div>
+  <br />
+  </div>
+</div>
+        
+</div>
     <div id="new_special" class="reveal-modal xlarge">
       <h3 class="blue">Add a new Special</h3>
       <p class="lead">Simply fill out the form.</p>

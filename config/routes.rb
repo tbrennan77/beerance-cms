@@ -7,12 +7,15 @@ Beerance::Application.routes.draw do
   get '/privacy' => 'home#privacy', as: 'privacy'
   get '/about' => 'home#about', as: 'about'
   get '/support' => 'home#contact', as: 'support'
-  get '/recent_updates' => 'home#recent_updates', as: 'recent_updates'
+  get '/recent-updates' => 'home#recent_updates', as: 'recent_updates'
 
   get "log-in" => "sessions#new", :as => "log_in"  
   get "log-out" => "sessions#destroy", :as => "log_out"  
   get "/my-beerances" => "users#profile", as: "profile"
   get "/my-account" => "users#show", as: "account"
+  get '/my-beerances/current-specials' => "users#current_specials", as: 'current_specials'
+  get '/my-beerances/archived-specials' => "users#archived_specials", as: 'archived_specials'
+  get '/my-beerances/bar-list' => "users#bars", as: 'bar_list'
   
   get "sign-up" => "users#new", :as => "sign_up"  
   root :to => "home#index"  

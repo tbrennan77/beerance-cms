@@ -1,0 +1,48 @@
+<div class="row">
+  <div class="large-12 columns specials">
+    <%= link_to "New Special", "#", data: {reveal_id: "new_special"}, title: "New Special", class: 'small button radius' %>
+    <div class="row thead">
+      <div class='large-2 columns'>
+        <b>Name</b>
+      </div>
+      <div class='large-2 columns'>
+        <b>Style</b>
+      </div>
+      <div class='large-1 columns'>
+        <b>Price</b>
+      </div>
+      <div class='large-1 columns'>
+        <b>Size</b>
+      </div>
+      <div class='large-4 columns'>
+        <b>Location</b>
+      </div>
+      <div class='large-2 columns'>
+        <b>Remove</b>
+      </div>
+    </div>
+    <% @active_specials.each do |bs| %>
+    <div class="row">
+      <div class="large-2 columns">
+        <%= bs.special_description %>
+      </div>
+      <div class="large-2 columns">
+        IPA
+      </div>
+      <div class="large-1 columns">
+        <%= number_to_currency bs.sale_price %>
+      </div>
+      <div class="large-1 columns">
+         <%= bs.beer_size %>oz
+      </div>
+      <div class="large-4 columns">
+        <%= bs.bar_name %>
+      </div>
+      <div class="large-2 columns">
+        <%= link_to "X", end_beerance_path(bs), class: 'remove' %>
+      </div>
+    </div>
+    <% end %>
+  </div>
+</div>
+</div>

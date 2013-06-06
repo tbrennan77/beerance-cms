@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_filter :require_user, except: %w{new create}
-  before_filter :require_admin, except: %w{new edit update create profile show}
+  before_filter :require_admin, except: %w{new edit update create profile show current_specials archived_specials bars}
   before_filter :verify_create_parameters, only: %w{create}
 
   def index
@@ -36,6 +36,70 @@ class UsersController < ApplicationController
     end
          
   end
+
+def bars
+    @bar_entity = BarEntity.new
+    @bar_special = BarSpecials.new
+    @bar_entities = BarEntity.where bar_owner_id: current_user.id
+    @active_specials = []
+    @inactive_specials = []
+    
+    @bar_entities.each do |be|
+      be.bar_specials.each do |s|
+        if s.active?
+          @active_specials << s
+        else
+          @inactive_specials << s
+        end
+      end
+    end
+  end
+
+  def current_specials
+    @bar_entity = BarEntity.new
+    @bar_special = BarSpecials.new
+    @bar_entities = BarEntity.where bar_owner_id: current_user.id
+    @active_specials = []
+    @inactive_specials = []
+    
+    @bar_entities.each do |be|
+      be.bar_specials.each do |s|
+        if s.active?
+          @active_specials << s
+        else
+          @inactive_specials << s
+        end
+      end
+    end
+
+    respond_to do |format| 
+      format.js 
+      format.html
+    end
+  end
+
+   def archived_specials
+      @bar_entity = BarEntity.new
+      @bar_special = BarSpecials.new
+      @bar_entities = BarEntity.where bar_owner_id: current_user.id
+      @active_specials = []
+      @inactive_specials = []
+      
+      @bar_entities.each do |be|
+        be.bar_specials.each do |s|
+          if s.active?
+            @active_specials << s
+          else
+            @inactive_specials << s
+          end
+        end
+      end
+      
+      respond_to do |format| 
+        format.js 
+        format.html
+      end
+    end
 
   def new  
     @user = User.new  
