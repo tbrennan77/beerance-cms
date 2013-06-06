@@ -1,11 +1,12 @@
-<%= render partial: 'shared/subnav' %>
+<% title "My Beerances - " %>
+<%= render partial: 'shared/user_subnav' %>
 <style>
 h4 a {color: #AAA;}
 .content {padding-bottom: 0 !important;}
 .hour-label { margin-top: 4px !important; }
 .rounded-box {padding: 20px;}
 .specials > div > div, .archives > div > div {text-align: center;}
-.specials > div > div a, .archives > div > div a {text-decoration: underline;}
+
 .specials > div, .archives > div {
   padding: 2px;
   border-left: 1px solid #7A4225;
@@ -25,12 +26,17 @@ h4 a {color: #AAA;}
 #ajax_bar {
   background: #FFF;
 }
+.remove:hover {
+  color: tan;
+  -webkit-transition: color .25s ease-in-out;
+  transition: color .25s ease-in-out;
+}
 .remove {
   background: #311308;
   border-radius: 20px;
-  padding: 8px;
+  padding: 8px 12px;
   color: white;
-  text-decoration: normal;
+  text-decoration: none;
 }
 </style>
 
