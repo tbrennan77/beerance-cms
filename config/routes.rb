@@ -8,7 +8,7 @@ Beerance::Application.routes.draw do
   get '/about' => 'home#about', as: 'about'
   get '/support' => 'home#contact', as: 'support'
   get '/recent-updates' => 'home#recent_updates', as: 'recent_updates'
-  get '/how-it-works' => 'home#how_it_works', as: 'how_it_works'
+  get '/how_it_works' => 'home#how_it_works', as: 'how_it_works'
 
   get "log-in" => "sessions#new", :as => "log_in"  
   get "log-out" => "sessions#destroy", :as => "log_out"  
