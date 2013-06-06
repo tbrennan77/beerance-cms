@@ -19,11 +19,11 @@
   </fieldset>
 <% else %>
   <br />
-  <%= link_to "Create New Bar", new_bar_entity_path, id: 'new_link', remote: true, class: 'small button radius right' %>
+  
   <% @bar_entities.each do |bar| %>
-  <div id="bar-<%= bar.id %>" class="row">
-    <div class="large-12 columns"><h4><%= bar.bar_name %> <small><%= link_to "edit", edit_bar_entity_path(bar) %> / <%= link_to "delete", bar, method: :delete, data: {confirm: "Are you sure?"}, remote: true %></small></h4></div>
-    <div class="large-6 columns">
+  <div id="bar-<%= bar.id %>" class="row bar-row">
+    <div class="large-12 columns"><h2><%= bar.bar_name %> <small><%= link_to "edit", edit_bar_entity_path(bar) %> / <%= link_to "delete", bar, method: :delete, data: {confirm: "Are you sure?"}, remote: true %></small></h2></div>
+    <div class="large-12 columns">
       <%= bar.bar_addr1 %><br />
       <% unless bar.bar_addr2.blank? %>
         <%= bar.bar_addr2 %><br />
@@ -33,23 +33,8 @@
       <%= number_to_phone bar.bar_phone, area_code: true %><br />
       <%= link_to bar.bar_url, "#{bar.bar_url}", target: :_blank %>
       <br />
-      <br />
-      <br />
-    </div>
-    <div class="large-6 columns">
-      <h4>Hours</h4>
-      <ul>
-        <li><b>Monday:</b> <%= bar.hours_mon %></li>
-        <li><b>Tuesday:</b> <%= bar.hours_tues %></li>
-        <li><b>Wednesday:</b> <%= bar.hours_wed %></li>
-        <li><b>Thursday:</b> <%= bar.hours_thur %></li>
-        <li><b>Friday:</b> <%= bar.hours_fri %></li>
-        <li><b>Saturday:</b> <%= bar.hours_sat %></li>
-        <li><b>Sunday:</b> <%= bar.hours_sun %></li>
-      </ul>
-      <br />
-    </div>
-    <hr />
+    </div>   
   </div>
+  <br />
   <% end %>
 <% end %>

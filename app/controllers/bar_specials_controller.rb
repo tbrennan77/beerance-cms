@@ -29,7 +29,10 @@ class BarSpecialsController < ApplicationController
     special = BarSpecials.find params[:id]
     special.end_special
     if special.save
-      redirect_to profile_path, notice: 'Ended beerance'
+      respond_to do |format|
+        format.js
+        format.html {redirect_to profile_path, notice: 'Ended beerance'}
+      end      
     else
       flash[:error] = "Something went wrong"
       redirect_to profile_path
@@ -40,7 +43,10 @@ class BarSpecialsController < ApplicationController
     special = BarSpecials.find params[:id]
     special.reactivate_special
     if special.save
-      redirect_to profile_path, notice: 'Reactivated Beerance'
+      respond_to do |format|
+        format.js
+        format.html { redirect_to profile_path, notice: 'Reactivated Beerance'}
+      end
     else
       flash[:error] = "Something went wrong"
       redirect_to profile_path

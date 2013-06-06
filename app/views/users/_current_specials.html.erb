@@ -1,6 +1,6 @@
 <div class="row">
+  <%= link_to "New Special", "#", data: {reveal_id: "new_special"}, title: "New Special", class: 'small button radius' %>
   <div class="large-12 columns specials">
-    <%= link_to "New Special", "#", data: {reveal_id: "new_special"}, title: "New Special", class: 'small button radius' %>
     <div class="row thead">
       <div class='large-2 columns'>
         <b>Name</b>
@@ -39,7 +39,7 @@
         <%= bs.bar_name %>
       </div>
       <div class="large-2 columns">
-        <%= link_to "X", end_beerance_path(bs), class: 'remove' %>
+        <%= link_to "X", end_beerance_path(bs), class: 'remove', data: {remote: true} %>
       </div>
     </div>
     <% end %>

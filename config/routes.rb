@@ -1,6 +1,6 @@
 Beerance::Application.routes.draw do
-  get '/end-beerance/:id' => 'bar_specials#end_beerance', as: 'end_beerance'
-  get '/reactive-beerance/:id' => 'bar_specials#reactivate_beerance', as: 'reactivate_beerance'
+  get '/end-beerance/:id' => 'users#end_beerance', as: 'end_beerance'
+  get '/reactive-beerance/:id' => 'users#reactivate_beerance', as: 'reactivate_beerance'
 
   get '/legal' => 'home#legal', as: 'legal'
   get '/tos' => 'home#tos', as: 'tos'

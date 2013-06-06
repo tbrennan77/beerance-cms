@@ -4,7 +4,7 @@
 h4 a {color: #AAA;}
 .content {padding-bottom: 0 !important;}
 .hour-label { margin-top: 4px !important; }
-.rounded-box {padding: 20px;}
+.rounded-box {padding: 20px;min-height: 400px;}
 .specials > div > div, .archives > div > div {text-align: center;}
 
 .specials > div, .archives > div {
@@ -20,7 +20,6 @@ h4 a {color: #AAA;}
 .info .beer .button {
   margin: 0;
   width: 150px;
-  margin-left: 30px;
   margin-bottom: 20px;
 }
 #ajax_bar {
@@ -31,12 +30,51 @@ h4 a {color: #AAA;}
   -webkit-transition: color .25s ease-in-out;
   transition: color .25s ease-in-out;
 }
+.re-activate {
+  color: #c26816;
+}
+
+.re-activate:hover {
+  color: #c26816;
+  text-decoration: underline;
+}
 .remove {
   background: #311308;
   border-radius: 20px;
   padding: 8px 12px;
   color: white;
   text-decoration: none;
+}
+
+#ajax_bar {
+  background: transparent !important;
+  text-align: center;
+  color: white;
+  width: 220px;
+  height: 200px;
+  position: fixed;
+  left: 45%;
+  top: 36%;
+  z-index: 999;
+  padding: 38px;
+  background-position: 75px 90px;
+  background-repeat: no-repeat;
+  border: none;
+  box-shadow: none;
+  border-radius: 4px;
+  background: none;
+}
+
+.bar-row {
+  background: white;
+  margin-bottom: 4px;
+  color: #c26816;
+  border-radius: 22px;
+}
+
+fieldset {
+  border-radius: 22px;
+  color: #c26816;
 }
 </style>
 
@@ -124,25 +162,25 @@ h4 a {color: #AAA;}
                 <div class="large-3 columns">
                   <label class='active'>
                     <%= f.radio_button :beer_color, 0 %>
-                    <%= image_tag "black.png" %>
+                    <%= image_tag "beerance_pint.png" %>
                   </label>
                 </div>
                 <div class="large-3 columns">
                   <label>
                     <%= f.radio_button :beer_color, 1 %>
-                    <%= image_tag "red.png" %>
+                    <%= image_tag "beerance_pint.png" %>
                   </label>
                 </div>
                 <div class="large-3 columns">
                   <label>
                     <%= f.radio_button :beer_color, 2 %>
-                    <%= image_tag "pale.png" %>
+                    <%= image_tag  "beerance_pint.png" %>
                   </label>
                 </div>
                 <div class="large-3 columns">
                   <label>
                     <%= f.radio_button :beer_color, 3 %>
-                    <%= image_tag "amber.png" %>
+                    <%= image_tag "beerance_pint.png" %>
                   </label>
                 </div>
               </div>

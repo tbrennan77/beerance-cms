@@ -1,31 +1,41 @@
 <script>
-$('#subnav a').live('click', function() {
-  $('#subnav a').each( function() {
+$('.subnav a').live('click', function(e) {  
+  $('.subnav a').each( function() {
     $(this).removeClass('current');
+    $(this).removeClass('active');
+    $(this).removeAttr('disabled');
   });
-  $(this).addClass('current');
+  $(this).addClass('current');  
 })
 </script>
 
 <style>
-#subnav {
+.subnav {
   background: rgb(43, 13, 7);
   color: white;
   padding: 20px;
 }
-#subnav a { 
+.subnav a { 
   color: white;
   padding: 8px 20px;
   border-radius: 8px;
   margin-right: 28px;
 }
-#subnav a.current, #subnav a:hover { 
+.subnav a.current, .subnav a:hover { 
   background-color: rgb(122, 66, 37);
   -webkit-transition: background-color .25s ease-in-out;
   transition: background-color .25s ease-in-out;
 }
+
+.subnav.show-for-small a {
+  margin-right: 0;
+  color: white;
+}
+.subnav.show-for-small a.current {
+  color: white !important;
+}
 </style>
-<div id="subnav">
+<div class='subnav hide-for-small'>
   <div class='row'>
     <div class="large-12 columns">
       <%= link_to "Current Specials", current_specials_path, class: 'current', data: {remote: true} %>
@@ -34,4 +44,13 @@ $('#subnav a').live('click', function() {
       <%= link_to "Account Details", account_path, data: {remote: true} %>
     </div>
   </div>
+</div>
+
+<div class='subnav show-for-small'>
+  <ul class="side-nav">
+    <li class="active"><%= link_to "Current Specials", current_specials_path, class: 'current', data: {remote: true} %></li>
+    <li><%= link_to "Archive", archived_specials_path, data: {remote: true} %></li>
+    <li><%= link_to "My Bars", bar_list_path, data: {remote: true} %></li>
+    <li><%= link_to "Account Details", account_path, data: {remote: true} %></li>
+  </ul>
 </div>
