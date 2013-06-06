@@ -20,12 +20,14 @@ $white: #FFF;
 $light_orange: #dc7c22;
 $dark_orange: #b55a22;
 
+$highlightbackground: #f1de94;
+
 $light_maroon: #874736;
 $dark_maroon: #3d120c;
 
 /*-- Colors Text --*/
 $medium_orange: #c26816;
-$dark_orange: #3e130d;
+$dark_oranges: #3e130d;
 $beige: #e7e2b7;
 $orange: #ec8420;
 
@@ -47,6 +49,12 @@ body {font-family: 'Source Sans Pro', sans-serif; background: url(beerance_foote
 .top-bar-section {
 	width: 1021px!important;
 	margin:0 auto;
+}
+
+.highlightbackground{
+	background-color: $highlightbackground;
+	margin: 0 -15px 23px -15px;
+	padding: 0 15px;
 }
 
 #logo {
@@ -196,7 +204,7 @@ li {list-style-type: none;}
 
 .badge-desc {
   .badge {padding-top: 18px;}
-  p {padding: 20px 0 0 0; font-size: 27px; line-height:40px; color:$dark_orange;font-weight: 300;}
+  p {padding: 20px 0 0 0; font-size: 27px; line-height:40px; color:$dark_oranges;font-weight: 300;}
 }
 
 .rounded-box {-webkit-border-radius: 40px; -moz-border-radius: 40px; border-radius: 40px;}
@@ -205,6 +213,33 @@ li {list-style-type: none;}
 /*-- Colors 
 .button {-webkit-border-radius: 10px; -moz-border-radius: 10px; border-radius: 10px; border-color: $dark_orange!important; -webkit-box-shadow: -1px 1px 3px rgba(50, 50, 50, 0.2)!important; -moz-box-shadow: -1px 1px 3px rgba(50, 50, 50, 0.2)!important; box-shadow: -1px 1px 3px rgba(50, 50, 50, 0.2)!important;}
 --*/
+
+.internalpage {
+  .purple_grad{height:250px;}
+  .orange_grad{padding-top: 33px;}
+  h1 {font-size: 67px;font-family: 'Roboto Slab', serif;}
+  .info {margin-top: -167px;
+	p {padding: 10px; font-size: 20px; line-height: 29px;color:$dark_oranges;}
+  }
+  h2 {color:$dark_oranges;font-weight:300;}
+  .asd {
+	img {float:left;}
+	h2 {float:left;margin-left:15px;}
+  }
+  ul { padding: 0px 40px 0 40px!important;
+    li {color:$dark_oranges;} 
+  }
+  ol {font-family: 'Roboto Slab', serif!important; color:$light_orange; font-size: 28px; padding:0 0 0 35px;list-style-position: outside!important;font-weight: bold;
+  	li {list-style-type: decimal!important;}
+    span {font-family: 'Source Sans Pro', sans-serif!important; color:$dark_oranges; font-weight: normal;}
+  }
+  a.appstore {background-image: url(beerance_appstoreicon.png);width:267px; height:79px; float:left;}
+  a.bartry {background-image: url(beerance_try-free-btn.png);width:255px; height:80px; float:left; margin-left: 10px;}
+}
+
+  
+
+
 
 
 .button {
@@ -244,7 +279,7 @@ li {list-style-type: none;}
     .button {width: 85%; margin: 12px 0 0 8%;}
     ul {font-family: 'Roboto Slab', serif;}
   }
-  ul {list-style-image: url("beerance_staricon.png"); color:$dark_orange; clear:both; font-size: 20px; font-weight: 300; line-height: 25px; padding: 20px 0 0 25px;}
+  ul {list-style-image: url("beerance_staricon.png"); color:$dark_oranges; clear:both; font-size: 20px; font-weight: 300; line-height: 25px; padding: 20px 0 0 25px;}
     li {padding:7px 0;}
 }
 
@@ -293,6 +328,5 @@ li {list-style-type: none;}
   font-size: 18px;
   font-weight: normal;
   color: black;
-  font-family: "Helvetica";
   background: #EEE;
 }
