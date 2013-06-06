@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   before_filter :require_user, except: %w{new create}
   before_filter :require_admin, except: %w{new edit update create profile show current_specials archived_specials bars end_beerance reactivate_beerance}
   before_filter :verify_create_parameters, only: %w{create}
-  before_filter :get_specials, only: %w{profile current_specials archived_specials bars end_beerance reactivate_beerance}
+  before_filter :get_specials, only: %w{profile current_specials archived_specials bars}
 
   def index
     @users = User.all
@@ -55,6 +55,7 @@ class UsersController < ApplicationController
     special = BarSpecials.find params[:id]
     special.end_special
     if special.save
+      get_specials
       respond_to do |format|
         format.js
         format.html {redirect_to profile_path, notice: 'Ended beerance'}
@@ -69,6 +70,7 @@ class UsersController < ApplicationController
     special = BarSpecials.find params[:id]
     special.reactivate_special
     if special.save
+      get_specials
       respond_to do |format|
         format.js
         format.html { redirect_to profile_path, notice: 'Reactivated Beerance'}

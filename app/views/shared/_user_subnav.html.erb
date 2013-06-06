@@ -1,5 +1,6 @@
 <script>
 $('.subnav a').live('click', function(e) {  
+  $('.ajax-container').fadeOut()
   $('.subnav a').each( function() {
     $(this).removeClass('current');
     $(this).removeClass('active');
