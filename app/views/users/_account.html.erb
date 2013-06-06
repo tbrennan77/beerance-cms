@@ -1,6 +1,6 @@
-<h3>My Account</h3>
+<h2>My Account</h2>
+<br />
 <h4 class="subheader">for <%= current_user.username %></h4>
-<hr />
 
 <div class='panel'>
   <b>Email:</b> <%= current_user.username %><br />
@@ -24,7 +24,7 @@
 <% if current_user.subscription %>
   <div class="row">
     <div class="large-2 columns panel" style="text-align:center">  
-      <%= image_tag current_user.subscription.subscription_plan.image %><br /><br />
+      <%= image_tag 'beerance_mugicon.png' %><br /><br /><br /><br /><br /><br /><br />
       <%= current_user.subscription.plan.friendly_name %><br />
       <%= link_to "Change My Plan", '#' %><br />
     </div>
