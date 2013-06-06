@@ -7,6 +7,7 @@ Beerance::Application.routes.draw do
   get '/privacy' => 'home#privacy', as: 'privacy'
   get '/about' => 'home#about', as: 'about'
   get '/support' => 'home#contact', as: 'support'
+  get '/recent_updates' => 'home#recent_updates', as: 'recent_updates'
 
   get "log-in" => "sessions#new", :as => "log_in"  
   get "log-out" => "sessions#destroy", :as => "log_out"  

@@ -1,58 +1,78 @@
-<style>
-h2 {color: #a87250;}
-</style>
-<br />
-<br />
-
-<div class="row" style="border-bottom: 2px solid brown">
-  <div class="large-6 columns">
-    <%= image_tag "iphone.png", style: 'bottom: -3px; position: relative;' %>
-  </div>
-  <div class="large-6 columns" style="max-height: 400px; overflow: scroll;bottom: -3px; position: relative;">
-    <h3>Step 1</h3>
-    <p>flsdkfjdskjflkflsdkfjdskjflk</p>
-    <p>flsdkfjdskjflkflsdkfjdskjflk</p>
-    <p>flsdkfjdskjflkflsdkfjdskjflk</p>
-    <p>flsdkfjdskjflkflsdkfjdskjflk</p>
-    <p>flsdkfjdskjflkflsdkfjdskjflk</p>
-    <hr />
-    <h3>Step 2</h3>
-    <p>flsdkfjdskjflkflsdkfjdskjflk</p>
-    <p>flsdkfjdskjflkflsdkfjdskjflk</p>
-    <p>flsdkfjdskjflkflsdkfjdskjflk</p>
-    <p>flsdkfjdskjflkflsdkfjdskjflk</p>
-    <p>flsdkfjdskjflkflsdkfjdskjflk</p>
-    <hr />
-    <h3>Step 3</h3>
-    <p>flsdkfjdskjflkflsdkfjdskjflk</p>
-    <p>flsdkfjdskjflkflsdkfjdskjflk</p>
-    <p>flsdkfjdskjflkflsdkfjdskjflk</p>
-    <p>flsdkfjdskjflkflsdkfjdskjflk</p>
-  </div>
+<div class="purple_grad">
+	<div class="row home-promo">
+		<div class="large-4 columns">
+			<%= image_tag "beerance_iphone.png", class: 'iphone' %>
+		</div>
+		<div class="large-5 columns">
+			<%= image_tag "beerance_tagline.png", class: 'slogan'%>
+			<div class="row">
+				<div class='large-12 columns'>
+					<div class="row">
+						<div class="large-6 columns">
+							<h2>Beer Drinkers</h2>
+		  				</div>
+		  				<div class="large-6 columns">
+			  				<h2>Bar Owners</h2>
+		  				</div>
+		  			</div>
+		  		</div>
+	</div>
+		</div>
+		<div class="large-3 columns">
+			<%= image_tag "beerance_pint.png", class: 'pint' %>
+		</div>
+	</div>
 </div>
-<div class="row" style="border-bottom: 2px solid brown">
-  <div class='large-12 columns'>
-    <h2>About</h2>
-    <p>Bacon ipsum dolor sit amet jerky shank ball tip shankle turkey, sausage t-bone shoulder cow ham hock sirloin tri-tip turducken tail swine. Pork loin short loin leberkas pork chop, beef pork sirloin corned beef boudin bacon cow strip steak. Tongue meatball sirloin tri-tip. Jowl shoulder pig frankfurter. Turkey andouille bacon beef, rump drumstick cow prosciutto short loin jerky jowl ham hock ground round.
-    </p>
-  </div>
-</div>
-<div class="row">
-  <div class='large-12 columns'>
-    <h2>Blog</h2>
-    <div class="row">
-      <div class="large-6 columns">
-        <p>
-          <%= image_tag "red.png", class: 'left', style: 'width: 74px; height: 118px; padding: 12px; padding-right: 18px;' %>
-          Tail pork belly hamburger leberkas cow venison. Tenderloin strip steak chicken fatback, prosciutto ribeye turducken pancetta turkey chuck bacon.
-        </p>
-      </div>
-      <div class="large-6 columns">
-        <p>
-          <%= image_tag "black.png", class: 'left', style: 'width: 74px; height: 118px; padding: 12px; padding-right: 18px;' %>
-          Pig pork shoulder biltong, chuck t-bone drumstick beef jowl spare ribs. Meatball kielbasa ham sirloin tail andouille turducken turkey tongue short loin flank short ribs.
-        </p>
-      </div>
-    </div>
-  </div>
+<div class="orange_grad">
+	<div class="row badge-desc">
+		<div class='large-12 columns'>
+			<div class="row">
+				<div class="large-3 columns">
+					<%= image_tag "beerance_badge.png", class: 'badge' %>
+		  		</div>
+		  		<div class="large-9 columns">
+			  		<p>Beerance App connects beer drinkers to great craft beer specials at bars and restaurants in their local area. Whether it's micro or macro beers, bar owners post their beer special and Beerance locates and displays it to the beer connoisseur. It's a clearance sale for beer!</p>
+		  		</div>
+		  	</div>
+		</div>
+	</div>
+	<div class="row info rounded-box">
+		<div class='large-12 columns'>
+			<div class="row">
+				<div class="large-4 columns beer">
+					<%= image_tag "beerance_mugicon.png"%><h2>Beer Drinkers</h2>
+					<ul>
+						<li>Free download</li>
+						<li>Lists beer style, price, location</li>
+						<li>Based on your location</li>
+						<li>Highlight your favorite spots</li>
+						<li>Any town, any city, any country</li>
+						<li>Share your favorite specials via Facebook and Twitter</li>
+					</ul>
+					<a href="#" class="button">How it Works</a>
+		  		</div>
+		  		<div class="large-4 columns bar">
+		  			<%= image_tag "beerance_baricon.png"%><h2>Bar Owners</h2>
+		  			<ul>
+						<li>Move inventory quickly</li>
+						<li>Connect with your mobile audience</li>
+						<li>Announce Beerance Sales daily</li>
+						<li>Easy to use tools</li>
+						<li>Low monthly cost</li>
+						<li>Create loyalty</li>
+						<li>Connect to mobile users</li>
+						<li>Attract new customers</li>
+					</ul>
+					<a href="#" class="button">Sign Up for FREE!</a>
+			  	</div>
+		  		<div class="large-4 columns">
+			  		<div class="button cta">
+			  			<h2><span>Bar<br />Owners</span>Sign up today and get the 1st month FREE!</h2>
+			  			<%= image_tag "beerance_kegicon.png", class: 'keg' %>
+			  		</div>
+		  		</div>
+		  	</div>
+		</div>
+	</div>
+	
 </div>
