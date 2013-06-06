@@ -35,14 +35,12 @@ $orange: #ec8420;
 $button_top: #e8a555;
 $button_bottom: #d95f10;
 
-@import 'foundation';
 
 /*-- Fonts
-font-family: 'Source Sans Pro', sans-serif;
 font-family: 'Roboto Slab', serif;
  --*/
 
-body {font-family: 'Source Sans Pro', sans-serif; background: url(beerance_footerbackground.jpg) left bottom !important; height: 100% !important;}
+body {font-family: 'Roboto Slab', serif !important; background: url(beerance_footerbackground.jpg) left bottom !important; height: 100% !important;}
 
 .jPanelMenu-panel {background:none!important;}
 
@@ -199,7 +197,7 @@ li {list-style-type: none;}
   .iphone {padding: 30px 0 0 0;}
   .slogan {padding: 13px 0 0 0px;}
   .pint {padding: 54px 0 0 32px;}
-  h2{font-family: 'Roboto Slab', serif; font-size: 18px;color:$white; text-transform: uppercase;}
+  h2{font-size: 18px;color:$white; text-transform: uppercase;}
 }
 
 .badge-desc {
@@ -217,7 +215,7 @@ li {list-style-type: none;}
 .internalpage {
   .purple_grad{height:250px;}
   .orange_grad{padding-top: 33px;}
-  h1 {font-size: 67px;font-family: 'Roboto Slab', serif;}
+  h1 {font-size: 67px;}
   .info {margin-top: -167px;
 	p {padding: 10px; font-size: 20px; line-height: 29px;color:$dark_oranges;}
   }
@@ -229,9 +227,9 @@ li {list-style-type: none;}
   ul { padding: 0px 40px 0 40px!important;
     li {color:$dark_oranges;} 
   }
-  ol {font-family: 'Roboto Slab', serif!important; color:$light_orange; font-size: 28px; padding:0 0 0 35px;list-style-position: outside!important;font-weight: bold;
+  ol {color:$light_orange; font-size: 28px; padding:0 0 0 35px;list-style-position: outside!important;font-weight: bold;
   	li {list-style-type: decimal!important;}
-    span {font-family: 'Source Sans Pro', sans-serif!important; color:$dark_oranges; font-weight: normal;}
+    span {color:$dark_oranges; font-weight: normal;}
   }
   a.appstore {background-image: url(beerance_appstoreicon.png);width:267px; height:79px; float:left;}
   a.bartry {background-image: url(beerance_try-free-btn.png);width:255px; height:80px; float:left; margin-left: 10px;}
@@ -264,20 +262,18 @@ li {list-style-type: none;}
   .badge {padding-top: 18px;}
   .cta { width: 250px; margin: 23px 0 0 13%; padding-top:0;
     h2 {font-size: 40px;font-weight: 300;line-height: 50px;}
-      span {font-family: 'Roboto Slab', serif; display:block;text-transform: uppercase; font-size: 46px; line-height: 50px;font-weight: bold;margin-bottom: 20px;}
+      span {display:block;text-transform: uppercase; font-size: 46px; line-height: 50px;font-weight: bold;margin-bottom: 20px;}
   }
   p {padding:10px; font-size: 22px; line-height:37px; color:$dark_orange;}
   .beer { padding-left: 39px!important;
     img {margin:5px 5px 0 0; float:left;}
     h2 {color:$medium_orange; float:left; font-size: 36px;padding: 5px 0 0 3px; font-weight: 300;}
     .button {width: 85%; margin: 40px 0 0 8%;}
-    ul {font-family: 'Roboto Slab', serif;}
   }
   .bar { 
   	img {margin:5px 5px 0 0; float:left;}
     h2 {color:$medium_orange; float:left; font-size: 36px;padding: 5px 0 0 3px; font-weight: 300;}
     .button {width: 85%; margin: 12px 0 0 8%;}
-    ul {font-family: 'Roboto Slab', serif;}
   }
   ul {list-style-image: url("beerance_staricon.png"); color:$dark_oranges; clear:both; font-size: 20px; font-weight: 300; line-height: 25px; padding: 20px 0 0 25px;}
     li {padding:7px 0;}

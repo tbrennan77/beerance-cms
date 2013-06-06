@@ -60,7 +60,7 @@
       <div class='row'>
           <%= form_tag sessions_path do %>  
             <div class='large-3 columns'>
-              <%= label_tag :email %>
+              <%= label_tag :email, nil,style: "font-family: 'Roboto Slab', serif !important;"  %>
               <%= email_field_tag :email, params[:email], class: 'required' %>
             </div>
             <div class='large-3 columns'>

@@ -17,7 +17,7 @@
 // We use these to control various global styles
 $body-bg: #FFF;
 // $body-font-color: #222;
-$body-font-family: "Source Sans Pro", "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif !important;
+$body-font-family: "Roboto Slab", "Helvetica Neue", "Helvetica", Helvetica, Arial, serif !important;
 // $body-font-family: "Domine", Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
 // $body-font-weight: normal;
 // $body-font-style: normal;
@@ -1044,5 +1044,7 @@ $total-columns: 12;
 }
 
 @import 'foundation';
-h1, h2, h3, h4, h5 {color: #FFF;}
+h1, h2, h3, h4, h5 {color: #FFF;font-family: 'Roboto Slab', serif;}
 body {height: 100% !important;}
+
+body {font-family: 'Roboto Slab', serif !important; background: url(beerance_footerbackground.jpg) left bottom !important; height: 100% !important;}
