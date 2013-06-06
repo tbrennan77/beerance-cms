@@ -1,14 +1,27 @@
-<h2>My Account</h2>
-<br />
-<h4 class="subheader">for <%= current_user.username %></h4>
+<div class="row">
+  <div class="large-12 columns bar">
+    <%= image_tag "beerance_kegicon.png" %><h2>Your Account</h2>
+    <%= link_to "Billing", "#", class: 'small button radius right' %>
+</div>
 
-<div class='panel'>
-  <b>Email:</b> <%= current_user.username %><br />
-  <b>Name:</b> <%= current_user.owner_name %><br />
-  <b>Phone:</b> <%= number_to_phone current_user.phone, area_code: true %><br />  
-  <hr />
-  <%= link_to "Change Account Information", edit_user_path(current_user) %><br />
-  <%= link_to "Change Password", edit_user_path(current_user) %>
+  </div>
+</div>
+
+<div class='row bar-row'>  
+    <div class="large-12 columns">
+      <h2>Info</h2>
+    </div>
+  
+
+    <div class='large-12 columns'>
+      <b>Email:</b> <%= current_user.username %><br />
+      <b>Name:</b> <%= current_user.owner_name %><br />
+      <b>Phone:</b> <%= number_to_phone current_user.phone, area_code: true %><br />  
+      <br />
+      <%= link_to "Change Account Information", edit_user_path(current_user) %><br />
+      <%= link_to "Change Password", edit_user_path(current_user) %>
+    </div>
+
 </div>
 
 <h3>Statistics</h3>
@@ -23,7 +36,7 @@
 <br />
 <% if current_user.subscription %>
   <div class="row">
-    <div class="large-2 columns panel" style="text-align:center">  
+    <div class="large-2 columns " style="text-align:center">  
       <%= image_tag 'beerance_mugicon.png' %><br /><br /><br /><br /><br /><br /><br />
       <%= current_user.subscription.plan.friendly_name %><br />
       <%= link_to "Change My Plan", '#' %><br />
