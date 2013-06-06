@@ -56,7 +56,7 @@
         <% end %>  
       </div>
     </div>
-    <div class="login hide">
+    <div class="login hide orange_grad">
       <div class='row'>
           <%= form_tag sessions_path do %>  
             <div class='large-3 columns'>
@@ -69,10 +69,9 @@
             </div>
             <div class='large-3 columns'>
               <br />
-              <%= submit_tag "Login", class: 'blue button nice radius' %>
+              <%= submit_tag "Login", class: 'button' %>
             </div>
             <div class='large-3 columns' style='margin-top: 25px'>
-              <%= link_to "Register", sign_up_path, class: 'right' %>
             </div>
         <% end %>  
       </div>
@@ -101,11 +100,12 @@
         <% else %>
           <ul class="right">
             <li class="divider show-for-medium-and-up"></li>
-            <li><%= link_to "Register", "javascript:void(0)", id: 'register', title: "Register" %></li>
+            <li><%= link_to "Register", "javascript:void(0)", id: 'register', title: "Register", class: 'whitelink' %></li>
+            <li class="divider show-for-medium-and-up"></li>
           </ul>
           <ul class="right">
             <li class="divider show-for-medium-and-up"></li>
-            <li><%= link_to "Log In", "javascript:void(0)", id: 'login', title: "Log In" %></li>
+            <li><%= link_to "Log In", "javascript:void(0)", id: 'login', title: "Log In", class: 'whitelink'%></li>
           </ul>
         <% end %> 
         </section>

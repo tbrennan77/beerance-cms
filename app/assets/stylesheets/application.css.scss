@@ -71,6 +71,8 @@ body {font-family: 'Source Sans Pro', sans-serif; background: url(beerance_foote
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff3019', endColorstr='#cf0404',GradientType=0 ); /* IE6-9 */
 }
 
+.whitelink {color:$white!important;}
+
 .field_with_errors input {
   border: 1px dotted red;
 }
@@ -81,7 +83,18 @@ body {font-family: 'Source Sans Pro', sans-serif; background: url(beerance_foote
       li {color:$white;padding: 22px 10px 0 17px;font-size: 15px;
       }
     > ul > .divider {border-right: solid 1px #311308; border-left: solid 1px #62382e;height: 73px; padding:0;}
-    ul.right a {background:none!important;width:auto!important;float:right;color:$light_orange;line-height: 26px!important;font-size: 15px;}
+    ul.right a {background:none!important;width:auto!important;float:right;color:$light_orange;line-height: 26px!important;font-size: 15px;font-weight: normal!important;}
+  }
+}
+
+.contact, .login {background:$white; color:$white; width:100%; padding: 28px 0 10px 0!important;
+  label {color:$white;}
+  input {background-color: #fff!important;outline: none;}
+  input[type="password"],input[type="email"] {padding: 19px 10px!important;}
+  .error label, label.error {;border: 1px solid red;padding: 4px; font-weight: normal;background: #e7e2b7;}
+  a {
+    color: black;
+    text-decoration: underline;
   }
 }
 
@@ -183,7 +196,7 @@ li {list-style-type: none;}
 
 .badge-desc {
   .badge {padding-top: 18px;}
-  p {padding:10px; font-size: 22px; line-height:37px; color:$dark_orange;font-weight: 300;}
+  p {padding: 20px 0 0 0; font-size: 27px; line-height:40px; color:$dark_orange;font-weight: 300;}
 }
 
 .rounded-box {-webkit-border-radius: 40px; -moz-border-radius: 40px; border-radius: 40px;}
@@ -211,44 +224,45 @@ li {list-style-type: none;}
 	text-shadow:-1px -1px 2px rgba(000,000,000,0.5);
 }
 
-.info { background-color: $beige; margin-bottom: -110px;
+.info { background-color: $beige; margin-bottom: -110px!important;
   .columns {padding:9px 0 15px 0;}
   .badge {padding-top: 18px;}
-  .cta 
-    h2 {font-size: 24px;}
-      span {font-family: 'Roboto Slab', serif; display:block;text-transform: uppercase;font-size: 28px;}
-    .button {width: 250px; margin-left: 30px;}
+  .cta { width: 250px; margin: 23px 0 0 13%; padding-top:0;
+    h2 {font-size: 40px;font-weight: 300;line-height: 50px;}
+      span {font-family: 'Roboto Slab', serif; display:block;text-transform: uppercase; font-size: 46px; line-height: 50px;font-weight: bold;margin-bottom: 20px;}
+  }
   p {padding:10px; font-size: 22px; line-height:37px; color:$dark_orange;}
-  .beer {
+  .beer { padding-left: 39px!important;
     img {margin:5px 5px 0 0; float:left;}
-    h2 {color:$medium_orange; float:left; font-size: 27px;padding: 18px 0 0 10px;}
-    .button {width: 70%; margin: 60px 0 0 8%;}
+    h2 {color:$medium_orange; float:left; font-size: 36px;padding: 5px 0 0 3px; font-weight: 300;}
+    .button {width: 85%; margin: 40px 0 0 8%;}
     ul {font-family: 'Roboto Slab', serif;}
   }
   .bar { 
   	img {margin:5px 5px 0 0; float:left;}
-    h2 {color:$medium_orange; float:left; font-size: 27px;padding: 18px 0 0 10px;}
-    .button {width: 70%; margin: 12px 0 0 8%;}
+    h2 {color:$medium_orange; float:left; font-size: 36px;padding: 5px 0 0 3px; font-weight: 300;}
+    .button {width: 85%; margin: 12px 0 0 8%;}
     ul {font-family: 'Roboto Slab', serif;}
   }
-  ul {list-style-image:url('beerance_staricon.png');color:$dark_orange;padding: 20px 0 0 25px; clear:both;}
-    li {padding:5px 0;}
+  ul {list-style-image: url("beerance_staricon.png"); color:$dark_orange; clear:both; font-size: 20px; font-weight: 300; line-height: 25px; padding: 20px 0 0 25px;}
+    li {padding:7px 0;}
 }
 
 
 
-.footer_wrap {background:none!important;height:364px;}
+
+.footer_wrap {background:none!important;height:284px;padding: 150px 0 0 0;}
 /* #footermain */
 #footermain {clear: both; margin-top: 0px; width: 100%; color: white;
-  h2 { font-size: 16px; color: $beige; margin: 0 0 10px 0!important; line-height: 20px; font-size: 26px;}
-  ul {line-height: 130%; margin: 11px 0; float: left; clear: both;
-    li, li a {color: $white; line-height: 20px; font-size: 20px;}
+  h2 { color: $beige; margin: 0 0 10px 0!important; line-height: 20px; font-size: 26px; font-size: 23px; font-weight: 300; letter-spacing: 2px;}
+  ul {line-height: 130%; margin:0; float: left; clear: both;
+    li, li a {color: $white; line-height: 20px; font-size: 16px; font-weight: 300;}
     li:first-child {list-style-type: none; margin-left:0;}
-    li {margin: 0 0 15px 30px; list-style-type: disc; float: left; line-height: 25px;
+    li {margin: 0 0 10px 30px; list-style-type: disc; float: left; line-height: 25px;
       a:hover {color: $white;}
     }
   }
-  .copy {position:absolute; right:0; bottom:20px;}
+  .copy {position:absolute; right:0; bottom:20px;font-size: 12px;}
   form label {color: #888; position: relative; top: -4px;}
   .twelve.columns.centered { font-size: 11px; color: #888; text-align: center;}
   .vcard {border: 0; padding: 0; margin: 0;}
@@ -263,16 +277,6 @@ li {list-style-type: none;}
   }
 }
 
-.contact, .login {
-  background:#a87250; 
-  color:#FFF; 
-  width:100%; 
-  height:140px;
-  a {
-    color: black;
-    text-decoration: underline;
-  }
-}
 .login {padding-top: 40px;}
 .contact {padding-top: 12px;}
 #stripe_error {color: red; padding: 16px; margin: 16px;font-size: 18px;}
