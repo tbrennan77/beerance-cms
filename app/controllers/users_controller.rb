@@ -61,8 +61,8 @@ class UsersController < ApplicationController
     if special.save
       get_specials
       respond_to do |format|
-        format.js
-        format.html {redirect_to profile_path, notice: 'Ended beerance'}
+        format.js { flash.now.notice = "Ended Special" }
+        format.html {redirect_to profile_path, notice: 'Ended Special'}
       end      
     else
       flash[:error] = "Something went wrong"
@@ -76,8 +76,8 @@ class UsersController < ApplicationController
     if special.save
       get_specials
       respond_to do |format|
-        format.js
-        format.html { redirect_to profile_path, notice: 'Reactivated Beerance'}
+        format.js { flash.now.notice = "Reactivated Special" }
+        format.html { redirect_to profile_path, notice: 'Reactivated Special'}
       end
     else
       flash[:error] = "Something went wrong"

@@ -1,2 +1,3 @@
-$('.ajax-container').html('<%= j render("archives") %>');
+$('.ajax-container').html('<div class="alert-box success"><%= flash[:notice] %></div><%= j render("archives") %>');
 $('#ajax_bar').fadeOut();
+$('.alert-box.success').hide().fadeIn('slow').delay(4000).fadeOut();

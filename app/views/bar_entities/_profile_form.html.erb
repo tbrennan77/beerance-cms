@@ -13,6 +13,6 @@
     <br />
     <%= render partial: 'form', locals: {f: f} %>
 
-    <%= f.submit "Add Bar", class: 'button nice radius' %>
+    <%= f.submit "Add Bar", class: 'button nice radius' %> <%= link_to "Cancel", "javascript:void(0)", class: 'cancel-new-bar' %>
   <% end %>  
 </fieldset>

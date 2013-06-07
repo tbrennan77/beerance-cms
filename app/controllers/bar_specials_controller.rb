@@ -26,7 +26,7 @@ class BarSpecialsController < ApplicationController
     if bs.update_attributes params[:bar_specials]  
       get_specials    
       respond_to do |format|
-        format.js { }
+        format.js { flash.now.notice = "Updated Special" }
         format.html
       end
     else

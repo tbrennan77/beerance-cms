@@ -1,6 +1,24 @@
 <% title "My Beerances - " %>
 <%= render partial: 'shared/user_subnav' %>
 <style>
+.alert-box.success {
+  position: fixed;
+  z-index: 999;
+  text-align: center;
+  width: 300px;
+  left: 40%;
+  border-radius: 3px;
+  background: #5da423; /* Old browsers */
+  background: -moz-linear-gradient(top,  #5da423 0%, #398235 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#5da423), color-stop(100%,#398235)); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top,  #5da423 0%,#398235 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top,  #5da423 0%,#398235 100%); /* Opera 11.10+ */
+  background: -ms-linear-gradient(top,  #5da423 0%,#398235 100%); /* IE10+ */
+  background: linear-gradient(to bottom,  #5da423 0%,#398235 100%); /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#5da423', endColorstr='#398235',GradientType=0 ); /* IE6-9 */
+  box-shadow: 0 1px 3px #333;
+}
+
 h4 a {color: #AAA;}
 input.hide {display: none; margin-left: 6px;margin-bottom: 0 !important; margin-top: -8px;}
 label {color: white; text-align: center;font-size: 16px;}
@@ -12,7 +30,7 @@ label {color: white; text-align: center;font-size: 16px;}
 .hour-label { margin-top: 4px !important; }
 .rounded-box {padding: 20px;min-height: 400px;}
 .specials > div > div, .archives > div > div {text-align: center;}
-form > div {text-align: center; height: 35px;}
+form.edit_bar_specials > div {text-align: center; height: 35px;}
 .specials > div, .archives > div {
   padding: 2px;
   border-left: 1px solid #7A4225;
@@ -99,6 +117,10 @@ $('input.hide').live('blur', function() {
     $(this).closest('form').submit();
   }
 })
+
+$('.cancel-new-bar').live('click', function() {
+  $('#new_bar_entity').parent().fadeOut().delay(1000).remove();
+});
 </script>
 
 <div class="purple_grad">
@@ -162,7 +184,7 @@ $('input.hide').live('blur', function() {
             <div class="large-6 columns"> 
             <p>  
               <%= f.label :bar_id, "Select your bar" %><br />  
-              <%= f.select :bar_id, BarEntity.where(bar_owner_id: current_user.id).map {|b| [b.bar_name, b.id]}, include_blank: true %>  
+              <%= f.select :bar_id, BarEntity.where(bar_owner_id: current_user.id).map {|b| [b.bar_name, b.id]}, prompt: 'Choose A Bar' %>  
             </p>  
             <p>  
               <%= f.label :special_description %><br />  

@@ -45,5 +45,5 @@ $(document).live('ajax:beforeSend', function(event, xhr, settings) {
 });
 
 $(document).live('ajax:complete', function(event, xhr, settings) {  
-  $("#ajax_bar").fadeOut("slow");
+  $("#ajax_bar").fadeOut("slow");  
 });

@@ -5,6 +5,7 @@
   </div>
 </div>
 
+<% unless @inactive_specials.empty? %>
 <div class="row">
     <div class="large-12 columns archives">
       <div class="row thead">
@@ -52,3 +53,6 @@
     </div>
   </div>
 </div>
+<% else %>
+  <h2 style='text-align: center; width: 100%;margin-top: 20px;'>You have no archived specials</h2>
+<% end %>
