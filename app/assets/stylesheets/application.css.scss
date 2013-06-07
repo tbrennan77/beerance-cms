@@ -51,8 +51,8 @@ body {font-family: 'Roboto Slab', serif !important; background: url(beerance_foo
 
 .highlightbackground{
 	background-color: $highlightbackground;
-	margin: 0 -15px 23px -15px;
-	padding: 0 15px;
+	margin: 0 -40px 0 -40px;
+	padding: 10px 15px
 }
 
 #logo {
@@ -115,6 +115,12 @@ fieldset {background: #FFF;}
   h2 {color: red;}
   ul {padding-left: 18px;}
 }
+
+.amount {text-align: center;-webkit-transition:color 0.15s ease-in-out;  -moz-transition:color 0.15s ease-in-out;  -o-transition:color 0.15s ease-in-out;  transition:color 0.15s ease-in-out;}
+
+.amount:hover {color: #a87250;}
+
+.form-field select {width: 49%}
 
 .field_with_errors {
   label {color:red;}
@@ -216,7 +222,9 @@ li {list-style-type: none;}
   .purple_grad{height:250px;}
   .orange_grad{padding-top: 33px;}
   h1 {font-size: 67px;}
-  .info {margin-top: -167px;
+  h3 {color:$dark_oranges;}
+  h5 {color:$dark_oranges;}
+  .info {margin-top: -167px; padding: 5px 25px;
 	p {padding: 10px; font-size: 20px; line-height: 29px;color:$dark_oranges;}
   }
   h2 {color:$dark_oranges;font-weight:300;}
@@ -267,12 +275,12 @@ li {list-style-type: none;}
   p {padding:10px; font-size: 22px; line-height:37px; color:$dark_orange;}
   .beer { padding-left: 39px!important;
     img {margin:5px 5px 0 0; float:left;}
-    h2 {color:$medium_orange; float:left; font-size: 36px;padding: 5px 0 0 3px; font-weight: 300;}
-    .button {width: 85%; margin: 40px 0 0 8%;}
+    h2 {color:$medium_orange; float:left; font-size: 33px;padding: 5px 0 0 3px; font-weight: 300;}
+    .button {width: 85%; margin: 43px 0 0 8%;}
   }
   .bar { 
   	img {margin:5px 5px 0 0; float:left;}
-    h2 {color:$medium_orange; float:left; font-size: 36px;padding: 5px 0 0 3px; font-weight: 300;}
+    h2 {color:$medium_orange; float:left; font-size: 33px;padding: 5px 0 0 3px; font-weight: 300;}
     .button {width: 85%; margin: 12px 0 0 8%;}
   }
   ul {list-style-image: url("beerance_staricon.png"); color:$dark_oranges; clear:both; font-size: 20px; font-weight: 300; line-height: 25px; padding: 20px 0 0 25px;}
@@ -310,7 +318,7 @@ li {list-style-type: none;}
 
 .login {padding-top: 40px;}
 .contact {padding-top: 12px;}
-#stripe_error {color: red; padding: 16px; margin: 16px;font-size: 18px;}
+#stripe_error {color: red; line-height:20px; margin: 16px;font-size: 18px;}
 .alert-box.notice {
   z-index: 999;
   text-align: center;

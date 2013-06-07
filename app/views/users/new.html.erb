@@ -1,128 +1,144 @@
-<style>
-  .amount {text-align: center;-webkit-transition:color 0.15s ease-in-out;  
-   -moz-transition:color 0.15s ease-in-out;  
-   -o-transition:color 0.15s ease-in-out;  
-   transition:color 0.15s ease-in-out;}
-  .amount:hover {color: #a87250;}
-  .form-field select {width: 49%}
-</style>
+<% title 'Sign Up - ' %>
+			<div class="row">
+				<div class='large-12 columns'>
+					<h3>Step 1</h3>
+					<h5>Your Personal Information:</h5>
+					<%= form_for @user do |f| %>
+					<% if @user.errors.any? %>
+						<div class="error_messages">
+							<h4>Form is invalid</h4>
+							<ul>
+								<% for message in @user.errors.full_messages %>
+								<li><%= message[0..15] == '400 {"code"=>202' ? "Username has already been taken" : message.gsub('Username', 'Email') %></li>
+								<% end %>
+							</ul>
+						</div>
+					<% end %>
+				</div>
+				<div class='large-4 columns'>
+					<%= f.label :email %><br />
+					<%= f.email_field :username, placeholder: 'master@jedi.com', class: 'required' %>
+					<%= f.label :owner_name, "Your Name" %><br />
+					<%= f.text_field :owner_name, placeholder: 'Luke S. Walker', class: 'required' %>
+					<%= f.label :owner_phone, "Business Phone Number" %><br />
+					<%= f.phone_field :owner_phone, placeholder: '216-123-4567', class: 'required' %>
+				</div>
+				<div class='large-1 columns'></div>
+				<div class='large-4 columns'>
+				<%= f.label :password %><br />
+				<%= f.password_field :password, class: 'required' %>
+				<%= f.label :password_confirmation %><br />
+				<%= f.password_field :password_confirmation, class: 'required' %>
+				<%= f.hidden_field :stripe_card_token %>
+				</div>
+			<div class='large-3 columns'></div>
+		</div>
+		<div class="row">
+			<div class='large-12 columns'>
+				<h3>Step 2</h3>
+				<h5>Package Selection:</h5>
+				<div class="row">
+					<% SubscriptionPlan.order("friendly_name").each do |p| %>
+					<div class="large-4 columns">
+						<article>
+							<label class="amount">
+								<h5><%= p.friendly_name %></h5>
+								<%= image_tag p.image %><br />
+								<%= f.radio_button :subscription_plan_id, p.id %>
+								<span><%= number_to_currency p.amount/100 %></span>
+							</label>
+						</article>
+					</div>
+					<% end %>
+				</div>
+			</div>
+		</div>
+		<div class='row'>
+			<div class='large-12 columns'>
+				<h3>Step 3</h3>
+				<h5>Payment Information:</h5>
+				<% if @user.stripe_card_token %>
+					<h4>Credit card has been provided.</h4>
+				<% else %>
+				<div id="stripe_error">
+					<noscript>JavaScript is not enabled and is required for this form. First enable it in your web browser settings.</noscript>
+				</div>
+			</div>
+		</div>
+		<div class='row'>
+			<div class='large-4 columns'>    
+				<%= label_tag :card_number %>
+				<%= phone_field_tag :card_number, "3141592653589793", name: nil %>
+			</div>
+			<div class='large-2 columns'>
+				<%= label_tag :card_code, "(CVV)" %>
+				<%= phone_field_tag :card_code, "123",  name: nil, class: "input-text small", maxlength: 4 %>
+			</div>
+			<div class='large-6 columns'></div>
+		</div>
+		<div class='row'>
+			<div class="form-field">
+				<div class='large-5 columns'>
+					<%= label_tag :card_month, "Expiration Date" %><br />
+					<%= select_month nil, {add_month_numbers: true}, {name: nil, id: 'card_month'} %>
+					<%= select_year nil, {start_year: Date.today.year, end_year: Date.today.year+15}, {name: nil, id: 'card_year'} %>
+				</div>
+					<% end %>
+				<div class='large-7 columns'></div>
+			</div>
+		</div>
+		<div class='row'>
+			<div class='large-12 columns'>
+				<p>Your 30-day free trial lasts until midnight on <%= DateTime.now.advance(days: 30).strftime("%b %-d, %Y") %>. If you don't want to continue using Beerance, just cancel before the trial ends and you won't be charged (we'll email you 5 days before the trial ends to remind you). Otherwise, you'll pay just the monthly cost for the service as long as your account is open. You can upgrade, downgrade, or cancel anytime.</p>
+			</div>
+		</div>
+		<div class='row'>
+			<div class='large-12 columns'>
+				<label>
+					<%= f.check_box :newsletter_subscription, checked: true %> Sign up for our newsletter
+				</label>
+			</div>
+		</div>
+		<div class='row'>
+			<div class='large-12 columns'>
+				<p>By clicking you agree to the <%= link_to "Terms of Service", 'javascript:void(0)' %>, <%= link_to "Privacy", 'javascript:void(0)' %>, and <%= link_to "Refund policies", 'javascript:void(0)' %>.</p>
+				<%= f.submit "Start My Free Trial", class: 'button radius' %>
+				<% end %>
+			</div>
+		</div>
+		
 
-<h3>Step 1</h3>
-<h5 class='subheader'>Your Personal Information:</h5>
-<%= form_for @user do |f| %>
-  <% if @user.errors.any? %>
-    <div class="error_messages">
-      <h4>Form is invalid</h4>
-      <ul>
-        <% for message in @user.errors.full_messages %>
-          <li><%= message[0..15] == '400 {"code"=>202' ? "Username has already been taken" : message.gsub('Username', 'Email') %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
-  <div class='row'>
-    <div class='large-5 large-offset-1 columns'>
-      <%= f.label :email %><br />
-      <%= f.email_field :username, placeholder: 'master@jedi.com', class: 'required' %>
-      <%= f.label :owner_name, "Your Name" %><br />
-      <%= f.text_field :owner_name, placeholder: 'Luke S. Walker', class: 'required' %>
-      <%= f.label :owner_phone, "Business Phone Number" %><br />
-      <%= f.phone_field :owner_phone, placeholder: '216-123-4567', class: 'required' %>
-    </div>
-    <div class='large-5 columns'>
-      <%= f.label :password %><br />
-      <%= f.password_field :password, class: 'required' %>
-      <%= f.label :password_confirmation %><br />
-      <%= f.password_field :password_confirmation, class: 'required' %>
 
-      <%= f.hidden_field :stripe_card_token %>
-    </div>
-  </div>
 
-<br />
-<br />
 
-<h3>Step 2</h3>
-<h5 class='subheader'>Package Selection:</h5>
- <div class="row">
-  <% SubscriptionPlan.order("friendly_name").each do |p| %>
-    <div class="large-4 columns">
-        <article>
-          <label class="amount">
-            <h5><%= p.friendly_name %></h5>
-            <%= image_tag p.image %><br />
-            <%= f.radio_button :subscription_plan_id, p.id %>
-            <span><%= number_to_currency p.amount/100 %></span>
-          </label>
-        </article>
-    </div>
-  <% end %>
-  </div>
 
-<br />
-<br />
 
-<h3>Step 3</h3>
-<h5 class='subheader'>Payment Information:</h5>
 
-<% if @user.stripe_card_token %>
-  <h4>Credit card has been provided.</h4>
-<% else %>
-<div id="stripe_error">
-  <noscript>JavaScript is not enabled and is required for this form. First enable it in your web browser settings.</noscript>
-</div>
-<div class='row'>
-  <div class='large-6 large-offset-1 columns'>    
-    <div class='row'>
-      <div class='large-8 columns'>    
-        <%= label_tag :card_number %>
-        <%= phone_field_tag :card_number, "4242424242424242", name: nil %>
-      </div>
-      <div class='large-4 columns'>
-        <%= label_tag :card_code, "(CVV)" %>
-        <%= phone_field_tag :card_code, "123",  name: nil, class: "input-text small", maxlength: 4 %>
-      </div>
-    </div>
-    <div class="form-field">
-      <%= label_tag :card_month, "Expiration Date" %><br />
-      <%= select_month nil, {add_month_numbers: true}, {name: nil, id: 'card_month'} %>
-      <%= select_year nil, {start_year: Date.today.year, end_year: Date.today.year+15}, {name: nil, id: 'card_year'} %>
-    </div>
-    <br />
-  </div>
-</div>
-<% end %>
 
-<br />
-<br />
 
-<div class='row'>
-  <div class='large-12 columns'>
-    Your 30-day free trial lasts until midnight on <%= DateTime.now.advance(days: 30).strftime("%b %-d, %Y") %>. If you don't want to continue using Beerance, just cancel before the trial ends and you won't be charged (we'll email you 5 days before the trial ends to remind you). Otherwise, you'll pay just the monthly cost for the service as long as your account is open. You can upgrade, downgrade, or cancel anytime.
-  </div>
-</div>
 
-<br />
-<br />
 
-<div class='row'>
-  <div class='large-11 large-offset-1 columns'>
-    <label>
-      <%= f.check_box :newsletter_subscription, checked: true %> Sign up for our newsletter
-    </label>
-  </div>
-</div>
 
-<br />
-<br />
 
-<div class='row'>
-  <div class='large-11 large-offset-1 columns'>
-    By clicking you agree to the <%= link_to "Terms of Service", 'javascript:void(0)' %>, <%= link_to "Privacy", 'javascript:void(0)' %>, and <%= link_to "Refund policies", 'javascript:void(0)' %>.
-  </div>
-</div>
 
-<br />
-<br />
-<%= f.submit "Start My Free Trial", class: 'button radius' %>
-<% end %>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
