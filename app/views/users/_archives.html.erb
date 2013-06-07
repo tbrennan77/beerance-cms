@@ -29,8 +29,11 @@
       </div>
       <% @inactive_specials.each do |bs| %>
       <div class="row">
+        <%= form_for bs, html: { data: {remote: true } } do |f| %>
+        <%= f.hidden_field :bar_id %>
         <div class="large-2 columns">
-          <%= bs.special_description %>
+          <%= f.label :special_description, bs.special_description %>
+          <%= f.text_field :special_description, class: 'hide' %>
         </div>
         <div class="large-2 columns">
           IPA
@@ -47,6 +50,7 @@
         <div class="large-2 columns">
           <%= link_to "Reactivate", reactivate_beerance_path(bs), class: 're-activate', data: {remote: true} %>
         </div>
+        <% end %>
       </div>
       <% end %>
     </div>

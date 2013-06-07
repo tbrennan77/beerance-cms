@@ -19,6 +19,22 @@ class BarSpecialsController < ApplicationController
     end  
   end
 
+  def update
+    bs = BarSpecials.find params[:id]
+    if bs.update_attributes params[:bar_specials]  
+      get_specials    
+      respond_to do |format|
+        format.js { flash[:notice] = ""; }
+        format.html
+      end
+    else
+      respond_to do |format|
+        format.js { flash[:error] = "Something went wrong!"; }
+        format.html
+      end
+    end
+  end
+
   def destroy
     bar_entity = BarSpecials.find params[:id]
     bar_entity.destroy
@@ -62,4 +78,19 @@ class BarSpecialsController < ApplicationController
     redirect_to log_out_path unless special.bar.user.id == current_user.id
   end
 
+def get_specials
+    @bar_entities = BarEntity.where bar_owner_id: current_user.id
+    @active_specials = []
+    @inactive_specials = []
+    
+    @bar_entities.each do |be|
+      be.bar_specials.each do |s|
+        if s.active?
+          @active_specials << s
+        else
+          @inactive_specials << s
+        end
+      end
+    end
+  end
 end

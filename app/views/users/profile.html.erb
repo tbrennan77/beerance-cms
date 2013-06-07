@@ -2,6 +2,7 @@
 <%= render partial: 'shared/user_subnav' %>
 <style>
 h4 a {color: #AAA;}
+input.hide {display: none}
 .content {padding-bottom: 0 !important;}
 .hour-label { margin-top: 4px !important; }
 .rounded-box {padding: 20px;min-height: 400px;}
@@ -77,6 +78,18 @@ fieldset {
   color: #c26816;
 }
 </style>
+<script>
+$('label').live('click', function() {
+  $(this).hide();
+  $(this).next('input.hide').show();
+});
+
+$('input.hide').live('blur', function() {
+  $(this).hide();
+  $(this).prev('label').show();
+  $(this).closest('form').submit();
+})
+</script>
 
 <div class="purple_grad">
   <div class="row home-promo">

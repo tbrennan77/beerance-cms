@@ -5,6 +5,7 @@
   </div>
 </div>
 
+<% unless @active_specials.empty? %>
 <div class="row">
   <div class="large-12 columns specials">
     <div class="row thead">
@@ -28,9 +29,10 @@
       </div>
     </div>
     <% @active_specials.each do |bs| %>
+    <%= form_for bs, html: { data: {remote: true } } do |f| %>
     <div class="row">
       <div class="large-2 columns">
-        <%= bs.special_description %>
+        <%= f.label :special_description, bs.special_description %>
       </div>
       <div class="large-2 columns">
         IPA
@@ -49,6 +51,10 @@
       </div>
     </div>
     <% end %>
+    <% end %>
   </div>
 </div>
 </div>
+<% else %>
+  <h2 style='text-align: center; width: 100%;margin-top: 20px;'>You have no specials</h2>
+<% end %>
