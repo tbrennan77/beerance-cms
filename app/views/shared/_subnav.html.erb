@@ -28,10 +28,11 @@ $('#subnav a').live('click', function() {
 <div id="subnav">
   <div class='row'>
     <div class="large-12 columns">
-      <%= link_to "Current Specials", current_specials_path, class: 'current', data: {remote: true} %>
-      <%= link_to "Archive", archived_specials_path, data: {remote: true} %>
-      <%= link_to "My Bars", bar_list_path, data: {remote: true} %>
-      <%= link_to "Account Details", account_path, data: {remote: true} %>
+      <%= link_to "Get the App", get_the_app_path, class: 'current' %>            
+      <%= link_to "How It Works", how_it_works_path %>            
+      <%= link_to "For Bar Owners", for_bar_owners_path %>            
+      <%= link_to "Pricing", pricing_path %>            
+      <%= link_to "Support", support_path %>
     </div>
   </div>
 </div>

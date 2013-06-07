@@ -50,7 +50,7 @@
 						<li>Any town, any city, any country</li>
 						<li>Share your favorite specials via Facebook and Twitter</li>
 					</ul>
-					<a href="#" class="button">How it Works</a>
+					<%= link_to "How it Works", how_it_works_path, class: 'button' %>
 		  		</div>
 		  		<div class="large-4 columns bar">
 		  			<%= image_tag "beerance_baricon.png"%><h2>Bar Owners</h2>
@@ -67,10 +67,12 @@
 					<%= link_to "Sign Up for FREE!", sign_up_path, class: 'button' %>
 			  	</div>
 		  		<div class="large-4 columns">
+			  		<%= link_to sign_up_path do %>
 			  		<div class="button cta">
 			  			<h2><span>Bar<br />Owners</span>Sign up<br />today<br />and get<br />2 months<br />FREE!</h2>
 			  			<%= image_tag "beerance_kegicon.png", class: 'keg' %>
 			  		</div>
+			  		<% end %>
 		  		</div>
 		  	</div>
 		</div>

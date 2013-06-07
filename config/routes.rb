@@ -6,9 +6,13 @@ Beerance::Application.routes.draw do
   get '/tos' => 'home#tos', as: 'tos'
   get '/privacy' => 'home#privacy', as: 'privacy'
   get '/about' => 'home#about', as: 'about'
-  get '/support' => 'home#contact', as: 'support'
   get '/recent-updates' => 'home#recent_updates', as: 'recent_updates'
+  
+  get '/get_the_app' => 'home#get_the_app', as: 'get_the_app'
   get '/how_it_works' => 'home#how_it_works', as: 'how_it_works'
+  get '/support' => 'home#support', as: 'support'
+  get '/pricing' => 'home#pricing', as: 'pricing'
+  get '/for_bar_owners' => 'home#for_bar_owners', as: 'for_bar_owners'  
 
   get "log-in" => "sessions#new", :as => "log_in"  
   get "log-out" => "sessions#destroy", :as => "log_out"  
