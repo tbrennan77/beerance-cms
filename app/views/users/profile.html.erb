@@ -2,13 +2,14 @@
 <%= render partial: 'shared/user_subnav' %>
 <style>
 h4 a {color: #AAA;}
-input.hide {display: none; margin-bottom: 0 !important;}
+input.hide {display: none; margin-bottom: 0 !important; margin-top: -4px;}
 label {color: white; text-align: center;font-size: 16px;}
+
 .content {padding-bottom: 0 !important;}
 .hour-label { margin-top: 4px !important; }
 .rounded-box {padding: 20px;min-height: 400px;}
 .specials > div > div, .archives > div > div {text-align: center;}
-form > div {text-align: center;}
+form > div {text-align: center; height: 43px;}
 .specials > div, .archives > div {
   padding: 2px;
   border-left: 1px solid #7A4225;
@@ -91,6 +92,7 @@ $('input.hide').live('blur', function() {
   $(this).prev('label').show();
   
   if ($(this).val() != $(this).prev('label').text()){
+    $(this).parent().parent().parent().fadeTo('fast', 0.2);
     $(this).closest('form').submit();
   }
 })
