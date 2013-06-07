@@ -21,15 +21,18 @@ class BarSpecialsController < ApplicationController
 
   def update
     bs = BarSpecials.find params[:id]
+    params[:bar_specials][:sale_price] = params[:bar_specials][:sale_price].to_f
+    params[:bar_specials][:beer_size] = params[:bar_specials][:beer_size].to_i
     if bs.update_attributes params[:bar_specials]  
       get_specials    
       respond_to do |format|
-        format.js { flash[:notice] = ""; }
+        format.js { }
         format.html
       end
     else
+      get_specials    
       respond_to do |format|
-        format.js { flash[:error] = "Something went wrong!"; }
+        format.js { raise bs.inspect.to_s }
         format.html
       end
     end

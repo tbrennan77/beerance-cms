@@ -29,28 +29,24 @@
       </div>
       <% @inactive_specials.each do |bs| %>
       <div class="row">
-        <%= form_for bs, html: { data: {remote: true } } do |f| %>
-        <%= f.hidden_field :bar_id %>
         <div class="large-2 columns">
-          <%= f.label :special_description, bs.special_description %>
-          <%= f.text_field :special_description, class: 'hide' %>
+          <%= bs.special_description %>
         </div>
         <div class="large-2 columns">
           IPA
         </div>
         <div class="large-1 columns">
-          <%= number_to_currency bs.sale_price %>
+          <%= number_to_currency(bs.sale_price) %>
         </div>
         <div class="large-1 columns">
-           <%= bs.beer_size %>oz
+           <%= "#{bs.beer_size}oz" %>
         </div>
         <div class="large-4 columns">
-          <%= bs.bar_name %>
+          <%= bs.bar_name %>          
         </div>
         <div class="large-2 columns">
           <%= link_to "Reactivate", reactivate_beerance_path(bs), class: 're-activate', data: {remote: true} %>
         </div>
-        <% end %>
       </div>
       <% end %>
     </div>
