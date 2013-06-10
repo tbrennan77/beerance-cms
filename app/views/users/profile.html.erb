@@ -1,106 +1,5 @@
 <% title "My Beerances - " %>
-<%= render partial: 'shared/user_subnav' %>
-<style>
-.alert-box.success {
-  position: fixed;
-  z-index: 999;
-  text-align: center;
-  width: 300px;
-  left: 40%;
-  border-radius: 3px;
-  background: #5da423; /* Old browsers */
-  background: -moz-linear-gradient(top,  #5da423 0%, #398235 100%); /* FF3.6+ */
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#5da423), color-stop(100%,#398235)); /* Chrome,Safari4+ */
-  background: -webkit-linear-gradient(top,  #5da423 0%,#398235 100%); /* Chrome10+,Safari5.1+ */
-  background: -o-linear-gradient(top,  #5da423 0%,#398235 100%); /* Opera 11.10+ */
-  background: -ms-linear-gradient(top,  #5da423 0%,#398235 100%); /* IE10+ */
-  background: linear-gradient(to bottom,  #5da423 0%,#398235 100%); /* W3C */
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#5da423', endColorstr='#398235',GradientType=0 ); /* IE6-9 */
-  box-shadow: 0 1px 3px #333;
-}
 
-h4 a {color: #AAA;}
-input.hide {display: none; margin-left: 6px;margin-bottom: 0 !important; margin-top: -8px;}
-label {color: white; text-align: center;font-size: 16px;}
-
-.specials div,.archives div {
-  padding: 8px 0 8px 0 !important;
-}
-.content {padding-bottom: 0 !important;}
-.hour-label { margin-top: 4px !important; }
-.rounded-box {padding: 20px;min-height: 400px;}
-.specials > div > div, .archives > div > div {text-align: center;}
-form.edit_bar_specials > div {text-align: center; height: 35px;}
-.specials > div, .archives > div {
-  padding: 2px;
-  border-left: 1px solid #7A4225;
-  border-right: 1px solid #7A4225;
-  border-bottom: 1px solid #7A4225;
-}
-.specials > div:nth-child(odd), .archives > div:nth-child(odd) {background: #7A4225;}
-.specials > div:nth-child(even), .archives > div:nth-child(even) {background: tan;}
-.specials > div.thead, .archives > div.thead {background: #311308;}
-.orange_grad > div {color: white;}
-.info .beer .button {
-  margin: 0;
-  width: 150px;
-  margin-bottom: 20px;
-}
-#ajax_bar {
-  background: #FFF;
-}
-.remove:hover {
-  color: tan;
-  -webkit-transition: color .25s ease-in-out;
-  transition: color .25s ease-in-out;
-}
-.re-activate {
-  color: #c26816;
-}
-
-.re-activate:hover {
-  color: #c26816;
-  text-decoration: underline;
-}
-.remove {
-  background: #311308;
-  border-radius: 20px;
-  padding: 5px 10px;
-  color: white;
-  text-decoration: none;
-}
-
-#ajax_bar {
-  background: transparent !important;
-  text-align: center;
-  color: #7A4225;
-  width: 220px;
-  height: 200px;
-  position: fixed;
-  left: 40%;
-  top: 36%;
-  z-index: 999;
-  padding: 38px;
-  background-position: 75px 90px;
-  background-repeat: no-repeat;
-  border: none;
-  box-shadow: none;
-  border-radius: 4px;
-  background: none;
-}
-
-.bar-row {
-  background: white;
-  margin-bottom: 4px;
-  color: #c26816;
-  border-radius: 22px;
-}
-
-fieldset {
-  border-radius: 22px;
-  color: #c26816;
-}
-</style>
 <script>
 $('label').live('click', function() {
   $(this).hide();
@@ -123,45 +22,46 @@ $('.cancel-new-bar').live('click', function() {
 });
 </script>
 
-<div class="orange_grad">
-  <div class="row badge-desc">
+<div class="row badge-desc">
     <br />
-  </div>
-  <div class="row info rounded-box">
-    <div class='large-12 columns'>
-      <div class="row">
-        <div class="large-12 columns beer">
-          <div class='ajax-container'>
-            <%= render partial: 'current_specials' %>
-          </div>          
-          </div>
+</div>
+  
+<div class="row home-promo">
+	<div class='large-12 columns'>
+    	<h3>Welcome, <%= current_user.owner_name %></h3>
+    </div>
+</div>
+
+<div class='large-12 columns'>
+	<div class="row">
+    	<div class="large-12 columns beer">
+        	<div class='ajax-container'>
+            	<%= render partial: 'current_specials' %>
+            </div>          
         </div>
     </div>
-  <br />
-  </div>
 </div>
-        
-</div>
-    <div id="new_special" class="reveal-modal xlarge">
-      <h2 style='color: #c26816;'>Add a new Special</h2>
-      <p class="lead">Simply fill out the form.</p>
-      <hr />
-      <div class='row'>
-        <div class='twelve columns'>
-          <style>
+
+<div id="new_special" class="reveal-modal xlarge">
+	<h2 style='color: #c26816;'>Add a new Special</h2>
+    <p class="lead">Simply fill out the form.</p>
+    <hr />
+	<div class='row'>
+    <div class='twelve columns'>
+    	<style>
             label.active img {border: 2px solid brown;box-shadow: 0 1px 3px #CCC}
             label.active img:hover {border: 2px solid brown;}
             input[type="radio"],  span.custom.radio {display: none;}
-          </style>
-          <script>
+        </style>
+        <script>
             $(document).ready(function() {
               $('input[type="radio"]').live('change', function() {
                 $('label').removeClass('active');
                 $(this).parent().addClass('active');
               });
             });
-          </script>
-          <fieldset>
+        </script>
+        <fieldset>
           <%= form_for @bar_special, html: {class: 'custom'} do |f| %>  
             <% if @bar_special.errors.any? %>  
               <div class="error_messages">  

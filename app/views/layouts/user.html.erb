@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
+<!--[if lt IE 7 ]> <html class="ie6" lang="en"> <style>input {display:inline-block !important;}</style><![endif]-->
+<!--[if IE 7 ]>    <html class="ie7" lang="en"> <style>input {display:inline-block !important;}</style><![endif]-->
+<!--[if IE 8 ]>    <html class="ie8" lang="en"> <style>input {display:inline-block !important;}</style><![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--> <html lang="en"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8" />
+  
+  <!-- Uncomment to make IE8 render like IE7 -->
+  <!-- <meta http-equiv="X-UA-Compatible" content="IE=7" /> -->
+  
+  <!-- Set the viewport width to device width for mobile -->
+  <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no, width=device-width" />  
+  <title><%= yield(:title) %>BeeranceApp.com</title>
+  
+  <!-- Included CSS Files -->
+  <%= stylesheet_link_tag "application" %>
+  
+  <!-- Included JS Files  -->
+  <%= javascript_include_tag "https://js.stripe.com/v1/", "application" %>
+  <%= csrf_meta_tags %>
+  <%= tag :meta, :name => "stripe-key", :content => STRIPE_PUBLIC_KEY %>
+  <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700|Roboto+Slab:400,300,700' rel='stylesheet' type='text/css'>
+</head>
+  <body>
+    <% if flash[:notice] %>
+      <div class='alert-box notice'><%= flash[:notice] %></div>
+    <% end %>
+    <div id="ajax_bar"><%= image_tag "ajax-loader.gif" %><br /><br />loading...</div>
+    
+    <div class="contact hide">
+      <div class='row'>
+          <%= form_tag sessions_path do %>  
+            <div class='large-3 columns'>
+              <%= label_tag :name %>
+              <%= text_field_tag :name, nil, class: 'input-text required' %>
+              <%= label_tag :email %>
+              <%= email_field_tag :contact_email, params[:contact_email], class: 'input-text required' %>
+            </div>
+            <div class='large-4 columns'>
+              <%= label_tag :message %>
+              <%= text_area_tag :message, nil, rows: 5, class: 'required', style: 'height:auto' %>
+            </div>
+            <div class='large-2 columns'>
+              <br />
+              <br />
+              <%= submit_tag "Submit", class: 'blue button nice radius' %>
+            </div>
+            <div class='large-3 columns' style='font-size: 14px;'>
+              <h6>Contact Info:</h6>
+              <p>
+                lorem impos kdfjlkj odsifjdsiojf dsiofjiod siodfjdiso ifdojdsfijds.
+              </p>
+            </div>
+        <% end %>  
+      </div>
+    </div>
+    <div class="login hide orange_grad">
+      <div class='row'>
+          <%= form_tag sessions_path do %>  
+            <div class='large-3 columns'>
+              <%= label_tag :email, nil,style: "font-family: 'Roboto Slab', serif !important;"  %>
+              <%= email_field_tag :email, params[:email], class: 'required' %>
+            </div>
+            <div class='large-3 columns'>
+              <%= label_tag :password %>
+              <%= password_field_tag :password, nil, class: 'required' %>
+            </div>
+            <div class='large-3 columns'>
+              <br />
+              <%= submit_tag "Login", class: 'button' %>
+            </div>
+            <div class='large-3 columns' style='margin-top: 25px'>
+            </div>
+        <% end %>  
+      </div>
+    </div>
+
+    <nav class="top-bar">
+      <section class="top-bar-section" id="menu">
+      <a href="/" id="logo"></a>
+       <% if current_user %>  
+          <ul class="right">
+            <li class="divider show-for-medium-and-up"></li>
+            <li><%= link_to "My Account", profile_path %>  </li>
+            <li class="divider show-for-medium-and-up"></li>
+          </ul>
+        <% if current_user.admin? %>
+          <ul class="right">
+            <li class="divider show-for-medium-and-up"></li>
+            <li><%= link_to "Admin Portal", admin_path %></li>
+          </ul>
+        <% end %>
+
+        <ul class="right">
+            <li class="divider show-for-medium-and-up"></li>
+            <li>Hello, <%= current_user.owner_name %><%= link_to "(Log out)", log_out_path %></li>
+        </ul>
+        <% else %>
+          <ul class="right">
+            <li class="divider show-for-medium-and-up"></li>
+            <li><%= link_to "Register", "javascript:void(0)", id: 'register', title: "Register", class: 'whitelink' %></li>
+            <li class="divider show-for-medium-and-up"></li>
+          </ul>
+          <ul class="right">
+            <li class="divider show-for-medium-and-up"></li>
+            <li><%= link_to "Log In", "javascript:void(0)", id: 'login', title: "Log In", class: 'whitelink'%></li>
+          </ul>
+        <% end %> 
+        </section>
+    </nav>
+
+
+
+        <% if flash[:error] %>
+          <div data-alert class='alert-box alert'>
+            <%= flash[:error] %>
+            <a href="#" class="close">&times;</a>
+          </div>
+        <% end %>
+
+		
+		<%= render partial: 'shared/user_subnav' %>
+		<div class="internalpage_user">
+			<div class="orange_grad">
+				<div class="row info rounded-box">
+
+			        <%= yield %>
+        
+				</div>
+			</div>
+		</div>
+		
+
+
+
+    <div class="footer_wrap">
+    	<div class="row">      
+			<div class="large-12 columns">
+				<footer id="footermain" class="container">
+					<div class="hide-for-small">
+            <ul>
+  						<li><h2>Support:</h2></li>
+  						<li>FAQs</li>
+  						<li>Blog</li>
+  						<li>Twitter</li>
+  						<li>Email Us</li>
+  					</ul>
+  					<ul>
+  						<li><h2>Follow Us:</h2></li>
+  						<li><a href="#">Facebook</a></li>
+  						<li><a href="#">Twitter</a></li>
+  						<li><a href="#">LinkedIn</a></li>
+  					</ul>
+  					<ul>
+  						<li><h2>You Should Know:</h2></li>
+  						<li><%= link_to "Terms of Use", tos_path %></li>
+  						<li><%= link_to "Privacy Policy", privacy_path %></li>
+  						<li><%= link_to "Recent Updates", recent_updates_path, class: 'large-6' %></li>
+  					</ul>
+  					<span class="copy">© <%= Date.today.year %> Beerance Company LLC</span>
+          </div>
+          <div class="row spacing top bottom show-for-small">
+            <dl>
+              <dd><%= link_to "About", "about_path", :title => "About" %></dd>
+              <dd><%= link_to "Media", "broadcast_path", :title => "Media" %></dd>
+              <dd><%= link_to "Privacy Policy", privacy_path %></dd>
+              <dd><%= link_to "Terms of Use", tos_path %></dd>
+              <% if current_user %>
+              <dd><%= link_to "My Account", "edit_user_path", :title => "My account" %>
+              <dd><%= link_to "Sign Out", log_out_path, :title => "Sign out" %></dd>
+              <% else %>
+              <dd><%= link_to "Sign In", log_in_path, :title => "Sign in" %></dd>
+              <% end %>
+            </dl>
+            <span class="text-align: center">© <%= Date.today.year %> Beerance Company LLC</span>
+          </div>
+				</footer>
+			</div>
+		</div>
+	</div>
+  </body>
+</html>

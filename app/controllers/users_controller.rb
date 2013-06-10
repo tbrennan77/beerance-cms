@@ -3,6 +3,8 @@ class UsersController < ApplicationController
   before_filter :require_admin, except: %w{new edit update create profile show current_specials archived_specials bars end_beerance reactivate_beerance}
   before_filter :verify_create_parameters, only: %w{create}
   before_filter :get_specials, only: %w{profile current_specials archived_specials bars}
+  
+  layout 'user'
 
   def index
     @users = User.all
@@ -39,7 +41,7 @@ class UsersController < ApplicationController
 
   def new  
     @user = User.new
-	render layout: 'interior'
+	render layout: 'user'
   end  
     
   def create    
