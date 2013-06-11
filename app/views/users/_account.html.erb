@@ -1,75 +1,54 @@
-<div class="row">
-  <div class="large-12 columns bar">
-    <%= image_tag "beerance_kegicon.png" %><h2>Your Account</h2>
-    <%= link_to "Billing", "#", class: 'small button radius right' %>
-</div>
-
-  </div>
-</div>
-
-<div class='row bar-row'>  
-    <div class="large-12 columns">
-      <h2>Info</h2>
+<div class="row heading">
+    <div class="large-9 columns bar">
+      <%= image_tag "beerance_kegicon.png" %><h2><%= current_user.owner_name %>'s Account</h2>
     </div>
-  
-    <div class='large-12 columns'>
-      <b>Email:</b> <%= current_user.username %><br />
-      <b>Name:</b> <%= current_user.owner_name %><br />
-      <b>Phone:</b> <%= number_to_phone current_user.phone, area_code: true %><br />  
-      <br />
-      <%= link_to "Change Account Information", edit_user_path(current_user) %><br />
-      <%= link_to "Change Password", edit_user_path(current_user) %>
+    <div class="large-3 columns">
+      <%= link_to "Billing", "#", class: 'button' %>
     </div>
 </div>
 
-<br />
-
-<div class='row bar-row'>  
-    <div class="large-12 columns">
-      <h2>Statistics</h2>
+<div class='row'>  
+    <div class="large-12 columns user_info">
+        <h2>Info</h2>
+        <span><b>Name:</b> <%= current_user.owner_name %></span>
+        <span><b>Email:</b> <%= current_user.username %></span>
+        <span><b>Phone:</b> <%= number_to_phone current_user.phone, area_code: true %></span>
+        <span><%= link_to "Change Account Information", edit_user_path(current_user) %></span>
+        <span><%= link_to "Change Password", edit_user_path(current_user) %></span>
     </div>
+</div>
+<div class='row'>  
     <div class="large-12 columns">
-      <ul>
-        <li>You manage <%= pluralize @total_bars, 'bar' %></li>
-        <li>You've posted <%= pluralize @total_specials, 'Beerance', 'Beerances' %></li>
-        <li>Member Since: <%= current_user.createdAt.to_date.strftime("%-m/%-d/%Y") %></li>
-      </ul>
+        <h2>Statistics</h2>
+        <ul>
+        	<li>You manage <%= pluralize @total_bars, 'bar' %></li>
+			<li>You've posted <%= pluralize @total_specials, 'Beerance', 'Beerances' %></li>
+			<li>Member Since: <%= current_user.createdAt.to_date.strftime("%-m/%-d/%Y") %></li>
+        </ul>
     </div>
-  </div>
 </div>
 
-<br />
-
-<div class='row bar-row'>  
+<div class='row'>  
     <div class="large-12 columns">
-      <h2>My Plan</h2>
+        <h2>My Plan</h2>
+	    <% if current_user.subscription %>
+        <div class="row">
+            <div class="large-3 columns user_info" style="text-align:center">  
+                <%= image_tag 'beerance_mugicon.png' %><br />
+                <span><%= current_user.subscription.plan.friendly_name %></span>
+                <span><%= link_to "Change My Plan", '#' %></span>
+            </div>
+			<div class="large-9 columns user_info">  
+            	<span><%= number_to_currency current_user.subscription.plan.amount/100 %></span>
+				<span>Cost per month: <%= number_to_currency current_user.subscription.plan.cost_per_month %></span>
+				<span>You have <b><%= pluralize current_user.subscription.days_remaining, 'day' %></b> remaining</span>
+			</div>
+		</div>
+		<% else %>
+		<p style="text-align:center;">
+    		It looks like you don't have a plan yet :(
+			<%= link_to "Choose A Plan", '#', class: 'button radius' %>
+		</p>
+		<% end %>
     </div>
-
-    <div class="large-12 columns">
-    <% if current_user.subscription %>
-      <div class="row">
-        <div class="large-2 columns " style="text-align:center">  
-          <%= image_tag 'beerance_mugicon.png' %><br /><br /><br /><br /><br /><br /><br />
-          <%= current_user.subscription.plan.friendly_name %><br />
-          <%= link_to "Change My Plan", '#' %><br />
-        </div>
-        <div class="large-9 columns">  
-          <br />
-          <br />
-          <%= number_to_currency current_user.subscription.plan.amount/100 %><br />
-          Cost per month: <%= number_to_currency current_user.subscription.plan.cost_per_month %>
-          <br />
-          <br />
-          You have <b><%= pluralize current_user.subscription.days_remaining, 'day' %></b> remaining
-        </div>
-      </div>
-    <% else %>
-      <p style="text-align:center;">
-        It looks like you don't have a plan yet :(
-        <br />
-        <br />
-        <%= link_to "Choose A Plan", '#', class: 'button radius' %>
-      </p>
-    <% end %>
-  </div>
 </div>
