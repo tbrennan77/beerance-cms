@@ -30,7 +30,8 @@ class UsersController < ApplicationController
     @bar_special = BarSpecials.new    
   end
 
-  def bars    
+  def bars
+    @bar_entity = BarEntity.new  
   end
 
   def current_specials    
