@@ -8,53 +8,67 @@
 </div>
 
 <% unless @inactive_specials.empty? %>
-<div class="row">
-    <div class="large-12 columns archives">
-      <div class="row thead">
-        <div class='large-2 columns'>
-          <b>Name</b>
-        </div>
-        <div class='large-2 columns'>
-          <b>Style</b>
-        </div>
-        <div class='large-1 columns'>
-          <b>Price</b>
-        </div>
-        <div class='large-1 columns'>
-          <b>Size</b>
-        </div>
-        <div class='large-4 columns'>
-          <b>Location</b>
-        </div>
-        <div class='large-2 columns'>
-          <b>Reactivate</b>
-        </div>
-      </div>
-      <% @inactive_specials.each do |bs| %>
-      <div class="row">
-        <div class="large-2 columns">
-          <%= bs.special_description %>
-        </div>
-        <div class="large-2 columns">
-          IPA
-        </div>
-        <div class="large-1 columns">
-          <%= number_to_currency(bs.sale_price) %>
-        </div>
-        <div class="large-1 columns">
-           <%= "#{bs.beer_size}oz" %>
-        </div>
-        <div class="large-4 columns">
-          <%= bs.bar_name %>          
-        </div>
-        <div class="large-2 columns">
-          <%= link_to "Reactivate", reactivate_beerance_path(bs), class: 're-activate', data: {remote: true} %>
-        </div>
-      </div>
-      <% end %>
-    </div>
-  </div>
+
+
+
+
+
+
+
+<div class="beerance_list">
+	<div class="row hide-for-small purple_grad">
+		<div class="large-5 columns">
+			Name
+		</div>
+		<div class="large-1 columns">
+			Price
+		</div>
+		<div class="large-1 columns">
+			Size
+		</div>
+		<div class="large-3 columns">
+			Location
+		</div>
+		<div class="large-2 columns align-center">
+			Reactivate
+		</div>
+	</div>
+		
+	<% @inactive_specials.each do |bs| %>
+	
+
+		
+	<div class="row">
+		<div class="large-5 columns">
+			<span class="show-for-small">Name: </span>
+			<%= bs.special_description %>
+		</div>
+		<div class="large-1 columns">
+			<span class="show-for-small">Price: </span>
+			<%= number_to_currency(bs.sale_price) %>
+		</div>
+		<div class="large-1 columns">
+			<span class="show-for-small">Size: </span>
+			<%= "#{bs.beer_size}oz" %>
+		</div>
+		<div class="large-3 columns">
+			<span class="show-for-small">Location: </span>
+			<%= bs.bar_name %>
+		</div>
+		<div class="large-2 columns align-center">
+			<span class="show-for-small">Reactivate: </span>
+			<%= link_to "Reactivate", reactivate_beerance_path(bs), class: 're-activate', data: {remote: true} %>
+		</div>
+	</div>
+	<% end %> 
 </div>
-<% else %>
+
+
+
+
+
+      
+  
+     <% else %>
   <h3 style='text-align: center;'>You have no archived specials</h3>
 <% end %>
