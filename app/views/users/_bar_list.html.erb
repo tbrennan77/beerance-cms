@@ -18,23 +18,35 @@
     <% end %>  
   </fieldset>
 <% else %>
-  <br />
+
   
-  <% @bar_entities.each do |bar| %>
-  <div id="bar-<%= bar.id %>" class="row bar-row">
-    <div class="large-12 columns"><h2><%= bar.bar_name %> <small><%= link_to "edit", edit_bar_entity_path(bar) %> / <%= link_to "delete", bar, method: :delete, data: {confirm: "Are you sure?"}, remote: true %></small></h2></div>
-    <div class="large-12 columns">
-      <%= bar.bar_addr1 %><br />
-      <% unless bar.bar_addr2.blank? %>
-        <%= bar.bar_addr2 %><br />
-      <% end %>
-      <%= bar.bar_city %>, <%= bar.bar_state %>
-      <br /><%= bar.bar_zip %><br /><br />
-      <%= number_to_phone bar.bar_phone, area_code: true %><br />
-      <%= link_to bar.bar_url, "#{bar.bar_url}", target: :_blank %>
-      <br />
+<% @bar_entities.each do |bar| %>
+	<div id="bar-<%= bar.id %>" class="row" style="border-bottom: 1px solid #3e130d; margin-bottom: 20px;">
+  		<div class="row">
+	  		<div class="large-12 columns">
+		  		<h2><%= bar.bar_name %>
+		  			<small>
+    					<%= link_to "edit", edit_bar_entity_path(bar) %> / 
+						<%= link_to "delete", bar, method: :delete, data: {confirm: "Are you sure?"}, remote: true %>
+					</small>
+				</h2>
+			</div>
+		</div>
+		<div class="row">
+    		<div class="large-6 columns user_info" style="padding-left:35px;">
+				<span><%= bar.bar_addr1 %></span>
+					<% unless bar.bar_addr2.blank? %>
+				<span><%= bar.bar_addr2 %></span>
+					<% end %>
+				<span><%= bar.bar_city %>, <%= bar.bar_state %></span>
+				<span><%= bar.bar_zip %></span>
+			</div>
+			<div class="large-6 columns user_info">
+				<span><%= number_to_phone bar.bar_phone, area_code: true %></span>
+				<span><%= link_to bar.bar_url, "#{bar.bar_url}", target: :_blank %></span>
+			</div>
+		</div>
     </div>   
   </div>
-  <br />
   <% end %>
 <% end %>

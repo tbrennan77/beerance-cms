@@ -8,6 +8,124 @@
 </div>
 
 <% unless @active_specials.empty? %>
+
+<div class="beerance_list">
+	<div class="row hide-for-small purple_grad">
+		<div class="large-5 columns">
+			Name
+		</div>
+		<div class="large-1 columns">
+			Price
+		</div>
+		<div class="large-1 columns">
+			Size
+		</div>
+		<div class="large-4 columns">
+			Location
+		</div>
+		<div class="large-1 columns align-center">
+			Remove
+		</div>
+	</div>
+		
+	<% @active_specials.each do |bs| %>
+	<%= form_for bs, html: { data: {remote: true } } do |f| %>
+	<%= f.hidden_field :bar_id %>
+		
+	<div class="row">
+		<div class="large-5 columns">
+			<span class="show-for-small">Name: </span>
+			<%= f.label :special_description, bs.special_description %>
+		<%= f.text_field :special_description, class: 'input-text hide' %>
+		</div>
+		<div class="large-1 columns">
+			<span class="show-for-small">Price: </span>
+			<%= f.label :sale_price, number_to_currency(bs.sale_price) %>
+		<%= f.text_field :sale_price, class: 'input-text hide' %>
+		</div>
+		<div class="large-1 columns">
+			<span class="show-for-small">Size: </span>
+			<%= f.label :beer_size, "#{bs.beer_size}oz" %>
+		<%= f.text_field :beer_size, class: 'input-text hide' %>
+		</div>
+		<div class="large-4 columns">
+			<span class="show-for-small">Location: </span>
+			<%= bs.bar_name %>
+		</div>
+		<div class="large-1 columns align-center">
+			<span class="show-for-small">Remove: </span>
+			<%= link_to "X", end_beerance_path(bs), class: 'remove', data: {remote: true} %>
+		</div>
+	</div>
+	<% end %> 
+	<% end %>
+</div>
+
+<!--
+<table id="specials_list">
+  <thead>
+    <tr class="purple_grad">
+      <th>Name</th>
+      <th>Style</th>
+      <th>Price</th>
+      <th>Size</th>
+      <th class="hide show-for-small">Location</th>
+      <th>Remove</th>
+    </tr>
+  </thead>
+  
+  <tbody>
+  <% @active_specials.each do |bs| %>
+  <%= form_for bs, html: { data: {remote: true } } do |f| %>
+  <%= f.hidden_field :bar_id %>
+    <tr>
+      <td>
+      	  <%= f.label :special_description, bs.special_description %>
+          <%= f.text_field :special_description, class: 'input-text hide' %>
+      </td>
+      <td>
+	      IPA
+      </td>
+      <td>
+	      <%= f.label :sale_price, number_to_currency(bs.sale_price) %>
+          <%= f.text_field :sale_price, class: 'input-text hide' %>
+      </td>
+      <td>
+	      <%= f.label :beer_size, "#{bs.beer_size}oz" %>
+          <%= f.text_field :beer_size, class: 'input-text hide' %>
+      </td>
+      <td>
+	      <%= bs.bar_name %>
+      </td>
+      <td>
+	      <%= link_to "X", end_beerance_path(bs), class: 'remove', data: {remote: true} %>
+      </td>
+    </tr> <% end %> <% end %>
+  </tbody>
+  
+</table>
+ 
+
+
+
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+<!--
+
+
+
+
 <div class="row">
   <div class="large-12 columns specials">
     <div class="row thead">
@@ -60,7 +178,16 @@
     <% end %>
   </div>
 </div>
-</div>
+
+
+-->
+
+
+
+
+
+
+
 <% else %>
-  <h2 style='text-align: center;'>You have no specials</h2>
+  <h3 style='text-align: center;'>You have no specials.</h3>
 <% end %>
