@@ -4,6 +4,7 @@ class BarEntitiesController < ApplicationController
   before_filter :confirm_number_of_bars, only: %w{new create}
   before_filter :set_times, only: %w{create update}
 
+  layout 'user'
   def new  
     @bar_entity = BarEntity.new  
   end  
