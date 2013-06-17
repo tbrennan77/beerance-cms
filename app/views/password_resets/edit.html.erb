@@ -1,5 +1,5 @@
 <div class="large-6 columns">
-  <h2>Reset Password</h2>
+  <h3>Reset Password</h3>
   <%= form_for @user, url: password_reset_path(params[:id]) do |f| %>
     <div class="form-field">
       <%= f.password_field :password, placeholder: "Password" %>
