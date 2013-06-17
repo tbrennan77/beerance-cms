@@ -1,0 +1,67 @@
+<% if flash[:notice] %>
+  <div class='alert-box notice'><%= flash[:notice] %></div>
+<% end %>
+
+<div id="ajax_bar"><%= image_tag "ajax-loader.gif" %><br /><br />loading...</div>   
+
+<div class="login hide orange_grad">
+  <div class='row'>
+      <%= form_tag sessions_path do %>  
+        <div class='large-3 columns'>
+          <%= label_tag :email, nil,style: "font-family: 'Roboto Slab', serif !important;"  %>
+          <%= email_field_tag :email, params[:email], class: 'required' %>
+        </div>
+        <div class='large-3 columns'>
+          <%= label_tag :password %>
+          <%= password_field_tag :password, nil, class: 'required' %>
+        </div>
+        <div class='large-6 columns'>
+          <br />
+          <%= submit_tag "Login", class: 'button' %>
+          <%= link_to "forgot password?", new_password_reset_path %>
+        </div>
+    <% end %>  
+  </div>
+</div>
+
+<nav class="top-bar">
+  <section class="top-bar-section" id="menu">
+  <a href="/" id="logo"></a>
+   <% if current_user %>  
+      <ul class="right">
+        <li class="divider show-for-medium-and-up"></li>
+        <li><%= link_to "My Account", profile_path %>  </li>
+        <li class="divider show-for-medium-and-up"></li>
+      </ul>
+    <% if current_user.admin? %>
+      <ul class="right">
+        <li class="divider show-for-medium-and-up"></li>
+        <li><%= link_to "Admin Portal", admin_path %></li>
+      </ul>
+    <% end %>
+
+    <ul class="right">
+        <li class="divider show-for-medium-and-up"></li>
+        <li>Hello, <%= current_user.owner_name %><%= link_to "(Log out)", log_out_path %></li>
+    </ul>
+    <% else %>
+      <ul class="right">
+        <li class="divider show-for-medium-and-up"></li>
+        <li><%= link_to "Register", sign_up_path, id: 'register', title: "Register", class: 'whitelink' %></li>
+        <li class="divider show-for-medium-and-up"></li>
+      </ul>
+      <ul class="right">
+        <li class="divider show-for-medium-and-up"></li>
+        <li><%= link_to "Log In", "javascript:void(0)", id: 'login', title: "Log In", class: 'whitelink'%></li>
+      </ul>
+    <% end %> 
+    </section>
+</nav>
+
+
+<% if flash[:error] %>
+  <div data-alert class='alert-box alert'>
+    <%= flash[:error] %>
+    <a href="#" class="close">&times;</a>
+  </div>
+<% end %>
