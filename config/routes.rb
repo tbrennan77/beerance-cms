@@ -25,7 +25,7 @@ Beerance::Application.routes.draw do
   get '/my-beerances/archived-specials' => "users#archived_specials", as: 'archived_specials'
   get '/my-beerances/bar-list' => "users#bars", as: 'bar_list'
   
-  get "sign-up" => "users#new", :as => "sign_up"  
+  get "/register" => "users#new", :as => "sign_up"  
   root :to => "home#index"  
   resources :users  
   resources :sessions 
