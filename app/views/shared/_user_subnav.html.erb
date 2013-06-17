@@ -39,8 +39,10 @@ $('.subnav a').live('click', function(e) {
 <div class='subnav hide-for-small'>
   <div class='row'>
     <div class="large-12 columns">
+      <% if current_user.bars.count > 0 %>
       <%= link_to "Current Specials", current_specials_path, class: 'current', data: {remote: true} %>
       <%= link_to "Archive", archived_specials_path, data: {remote: true} %>
+      <% end %>
       <%= link_to "My Bars", bar_list_path, data: {remote: true} %>
       <%= link_to "Account Details", account_path, data: {remote: true} %>
     </div>
