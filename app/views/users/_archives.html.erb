@@ -15,12 +15,15 @@
 			Name
 		</div>
 		<div class="large-1 columns">
+			Color
+		</div>
+		<div class="large-1 columns">
 			Price
 		</div>
 		<div class="large-1 columns">
 			Size
 		</div>
-		<div class="large-3 columns">
+		<div class="large-2 columns">
 			Location
 		</div>
 		<div class="large-2 columns align-center">
@@ -37,6 +40,10 @@
 			<span class="show-for-small">Name: </span>
 			<%= bs.special_description %>
 		</div>
+		<div class="large-1 columns color">
+			<span class="show-for-small">Color: </span>
+				<%= beer_color_image bs.beer_color %>
+		</div>
 		<div class="large-1 columns">
 			<span class="show-for-small">Price: </span>
 			<%= number_to_currency(bs.sale_price) %>
@@ -45,7 +52,7 @@
 			<span class="show-for-small">Size: </span>
 			<%= "#{bs.beer_size}oz" %>
 		</div>
-		<div class="large-3 columns">
+		<div class="large-2 columns">
 			<span class="show-for-small">Location: </span>
 			<%= bs.bar_name %>
 		</div>

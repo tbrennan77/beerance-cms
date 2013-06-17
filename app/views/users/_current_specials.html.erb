@@ -15,12 +15,15 @@
 			Name
 		</div>
 		<div class="large-1 columns">
+			Color
+		</div>
+		<div class="large-1 columns">
 			Price
 		</div>
 		<div class="large-1 columns">
 			Size
 		</div>
-		<div class="large-4 columns">
+		<div class="large-3 columns">
 			Location
 		</div>
 		<div class="large-1 columns align-center">
@@ -38,6 +41,10 @@
 			<%= f.label :special_description, bs.special_description %>
 			<%= f.text_field :special_description, class: 'input-text hide' %>
 		</div>
+		<div class="large-1 columns color">
+			<span class="show-for-small">Color: </span>
+			  <%= beer_color_image bs.beer_color %>
+		</div>
 		<div class="large-1 columns">
 			<span class="show-for-small">Price: </span>
 			<%= f.label :sale_price, number_to_currency(bs.sale_price) %>
@@ -48,7 +55,7 @@
 			<%= f.label :beer_size, "#{bs.beer_size}oz" %>
 			<%= f.text_field :beer_size, class: 'input-text hide' %>
 		</div>
-		<div class="large-4 columns">
+		<div class="large-3 columns">
 			<span class="show-for-small">Location: </span>
 			<%= bs.bar_name %>
 		</div>
