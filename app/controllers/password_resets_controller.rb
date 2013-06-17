@@ -1,8 +1,7 @@
 class PasswordResetsController < ApplicationController
   before_filter :check_password, :only => %w{update}
   before_filter :block_employees, :except => %w{new}
-  
-  layout "interior"
+    
   def new
   end
   
