@@ -1,0 +1,21 @@
+<div class='large-12 columns'>
+  <div class="row">
+      <div class="large-12 columns">
+          <div class='ajax-container'>
+              <h3>Reset Password</h3>
+              <h5 class="subheader">Enter your email address to reset your password.</h5>
+              <hr />
+              <div class=" plain">
+                <%= form_tag password_resets_path, :method => :post, :class => "nice" do |f| %>
+                  <div class="form-field">
+                    <%= email_field_tag :email, params[:email], :placeholder => "email@example.com", :class => "input-text medium", required: '' %>
+                  </div>
+                  <div class="actions">
+                    <%= submit_tag "Send Password Reset Email", :class => "button medium yellow ", :style => "width: 254px;" %>
+                  </div>
+                <% end %>
+              </div>
+            </div>          
+        </div>
+    </div>
+</div>

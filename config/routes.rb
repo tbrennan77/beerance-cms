@@ -1,4 +1,7 @@
 Beerance::Application.routes.draw do
+  resources :password_resets, path: 'password-resets'
+  get "/send-password-reset" => "password_resets#new", :as => "new_password_reset"
+
   get '/end-beerance/:id' => 'users#end_beerance', as: 'end_beerance'
   get '/reactive-beerance/:id' => 'users#reactivate_beerance', as: 'reactivate_beerance'
 

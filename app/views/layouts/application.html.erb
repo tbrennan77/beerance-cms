@@ -29,33 +29,6 @@
     <% end %>
     <div id="ajax_bar"><%= image_tag "ajax-loader.gif" %><br /><br />loading...</div>
     
-    <div class="contact hide">
-      <div class='row'>
-          <%= form_tag sessions_path do %>  
-            <div class='large-3 columns'>
-              <%= label_tag :name %>
-              <%= text_field_tag :name, nil, class: 'input-text required' %>
-              <%= label_tag :email %>
-              <%= email_field_tag :contact_email, params[:contact_email], class: 'input-text required' %>
-            </div>
-            <div class='large-4 columns'>
-              <%= label_tag :message %>
-              <%= text_area_tag :message, nil, rows: 5, class: 'required', style: 'height:auto' %>
-            </div>
-            <div class='large-2 columns'>
-              <br />
-              <br />
-              <%= submit_tag "Submit", class: 'blue button nice radius' %>
-            </div>
-            <div class='large-3 columns' style='font-size: 14px;'>
-              <h6>Contact Info:</h6>
-              <p>
-                lorem impos kdfjlkj odsifjdsiojf dsiofjiod siodfjdiso ifdojdsfijds.
-              </p>
-            </div>
-        <% end %>  
-      </div>
-    </div>
     <div class="login hide orange_grad">
       <div class='row'>
           <%= form_tag sessions_path do %>  
@@ -67,11 +40,10 @@
               <%= label_tag :password %>
               <%= password_field_tag :password, nil, class: 'required' %>
             </div>
-            <div class='large-3 columns'>
+            <div class='large-6 columns'>
               <br />
               <%= submit_tag "Login", class: 'button' %>
-            </div>
-            <div class='large-3 columns' style='margin-top: 25px'>
+              <%= link_to "forgot password?", new_password_reset_path %>
             </div>
         <% end %>  
       </div>
@@ -100,7 +72,7 @@
         <% else %>
           <ul class="right">
             <li class="divider show-for-medium-and-up"></li>
-            <li><%= link_to "Register", "javascript:void(0)", id: 'register', title: "Register", class: 'whitelink' %></li>
+            <li><%= link_to "Register", sign_up_path, id: 'register', title: "Register", class: 'whitelink' %></li>
             <li class="divider show-for-medium-and-up"></li>
           </ul>
           <ul class="right">

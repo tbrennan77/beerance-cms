@@ -14,7 +14,7 @@
         <span><b>Email:</b> <%= current_user.username %></span>
         <span><b>Phone:</b> <%= number_to_phone current_user.phone, area_code: true %></span>
         <span><%= link_to "Change Account Information", edit_user_path(current_user) %></span>
-        <span><%= link_to "Change Password", edit_user_path(current_user) %></span>
+        <span><%= link_to "Change Password", new_password_reset_path %></span>
     </div>
 </div>
 <div class='row'>  

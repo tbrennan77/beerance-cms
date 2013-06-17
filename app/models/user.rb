@@ -1,6 +1,6 @@
 class User < ParseUser
   attr_accessor :stripe_card_token
-  fields :email, :newsletter_subscription, :username, :owner_name, :owner_phone, :account_type, :expiration_date, :user_favorites, :createdAt, :admin, :stripe_customer_id, :subscription_plan_id
+  fields :email, :newsletter_subscription, :username, :owner_name, :owner_phone, :account_type, :expiration_date, :user_favorites, :createdAt, :admin, :stripe_customer_id, :subscription_plan_id, :password_reset_token, :password_reset_sent_at
 
   EMAIL_REGEX = /[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}/i
 
@@ -47,6 +47,23 @@ class User < ParseUser
 
   def phone
     owner_phone.gsub(/[^\d]/, '')
+  end
+
+  def generate_token(column)
+    begin
+      self[column] = SecureRandom.urlsafe_base64
+    end while User.exists?(column => self[column])
+  end
+
+  def password_reset_sent_at
+    Time.parse self.attributes["password_reset_sent_at"]["iso"]
+  end
+
+  def send_password_reset
+    self.password_reset_token = SecureRandom.urlsafe_base64
+    self.password_reset_sent_at = Time.zone.now
+    save
+    Notifier.password_reset(self).deliver
   end
 
   def bars

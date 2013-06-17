@@ -1,8 +1,5 @@
-<h3>Log in</h3>
-<h4 class="subheader">Start your clearance!</h4>
-<hr />
+<h2>Log in</h2>
 
-<fieldset>
 <%= form_tag sessions_path do %>  
   <p>  
     <%= label_tag :email %><br />  
@@ -13,5 +10,4 @@
     <%= password_field_tag :password, nil, class: 'required' %>  
   </p>  
   <p><%= submit_tag "Log in", class: 'button nice radius' %></p>  
-<% end %>  
-</fieldset>
+<% end %>
