@@ -1,5 +1,5 @@
 class Notifier < ActionMailer::Base
-  default from: "Beerance<notifications@beeranceapp.com>"
+  default from: "Beerance Special<notifications@beerancespecial.com>"
 
   def signup(user)
     @user = user
@@ -8,6 +8,6 @@ class Notifier < ActionMailer::Base
 
    def password_reset(user)
     @user = user
-    mail(:from => "no-reply@beeranceapp.com", :to => @user.username, :subject => "Password reset")
+    mail(:from => "Beerance Special<no-reply@beerancespecial.com>", :to => @user.username, :subject => "Password reset")
   end
 end
