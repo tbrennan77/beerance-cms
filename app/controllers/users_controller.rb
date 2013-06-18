@@ -3,11 +3,17 @@ class UsersController < ApplicationController
   before_filter :require_admin, except: %w{new edit update create profile show current_specials archived_specials bars end_beerance reactivate_beerance}
   before_filter :verify_create_parameters, only: %w{create}
   before_filter :get_specials, only: %w{profile current_specials archived_specials bars}
+  before_filter :confirm_active_subscription, only: %w{reactivate_beerance}
   
   layout 'user'
 
   def index
     @users = User.all
+  end
+
+  def admin_show
+    @user = User.find params[:id]
+    @customer = Stripe::Customer.retrieve @user.stripe_customer_id
   end
 
   def show    
@@ -143,6 +149,13 @@ class UsersController < ApplicationController
           @inactive_specials << s
         end
       end
+    end
+  end
+
+  def confirm_active_subscription
+    customer = Stripe::Customer.retrieve current_user.strip_customer_id
+    unless customer.subscription.status == "active"
+      redirect_to billing_path, notice: 'Reactivate your account to post beerances'
     end
   end
 end

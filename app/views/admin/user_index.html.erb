@@ -1,0 +1,42 @@
+<style>
+tbody tr:hover {background: #F7E2B8;}
+</style>
+<h3>List of Users</h3>
+<h4 class="subheader">Admin view only of course :)</h4>
+<hr />
+
+<table>
+  <thead>
+    <tr>
+      <th>Username</th>
+      <th>Admin?</th>
+      <th>Actions</th>
+      <th>Danger Zone!</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @users.each do |u| %>
+    <% unless u.owner_name.blank? %>
+    <tr>
+      <td><%= link_to u.username, admin_user_path(u) %></td>
+      <td><%= u.admin? ? 'yes' : '' %></td>
+      <td>
+        <%= link_to "Edit", edit_user_path(u) %>
+      </td>
+      <td>
+        <% if u.id == current_user.id %>
+          This is YOU!
+        <% else %>
+          <%= link_to "Delete", user_path(u), method: 'delete', data: {confirm: "Are you sure?"} %> | 
+          <% if u.admin? %>
+            <%= link_to "Remove Admin", remove_admin_path(id: u.id) %>
+          <% else %>
+            <%= link_to "Make Admin", make_admin_path(id: u.id) %>
+          <% end %>
+        <% end %>
+      </td>
+    </tr>
+    <% end %>
+  <% end %>
+  </tbody>
+</table>
