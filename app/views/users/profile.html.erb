@@ -33,7 +33,11 @@ $(document).ready(function() {
 	<div class="row">
     	<div class="large-12 columns">
         	<div class='ajax-container'>
-            	<%= render partial: 'current_specials' %>
+              <% if current_user.bars.count > 0 %>
+                <%= render partial: 'current_specials' %>
+              <% else %>
+              	<%= render partial: 'bars' %>
+              <% end %>
             </div>          
         </div>
     </div>

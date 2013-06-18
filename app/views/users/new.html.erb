@@ -9,7 +9,7 @@
 							<h4>Form is invalid</h4>
 							<ul>
 								<% for message in @user.errors.full_messages %>
-								<li><%= message[0..15] == '400 {"code"=>202' ? "Username has already been taken" : message.gsub('Username', 'Email') %></li>
+								<li><%= message.gsub('202 username', 'Email') %></li>
 								<% end %>
 							</ul>
 						</div>
@@ -68,7 +68,7 @@
 		<div class='row'>
 			<div class='large-4 columns'>    
 				<%= label_tag :card_number %>
-				<%= phone_field_tag :card_number, "3141592653589793", name: nil %>
+				<%= phone_field_tag :card_number, "4242424242424242", name: nil %>
 			</div>
 			<div class='large-2 columns'>
 				<%= label_tag :card_code, "(CVV)" %>
