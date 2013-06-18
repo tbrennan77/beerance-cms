@@ -285,10 +285,20 @@ li {list-style-type: none;}
 	.orange_grad > div {color: white;}
 	.info .beer .button {margin: 0;width: 150px;margin-bottom: 20px;}
 	
-	.remove:hover {color: tan;-webkit-transition: color .25s ease-in-out;transition: color .25s ease-in-out;}
-	.re-activate {color: #c26816;}
-	.re-activate:hover {color: #c26816;text-decoration: underline;}
-	.remove {background: #311308;border-radius: 20px;padding: 5px 10px;color: white;text-decoration: none;}
+	
+	
+	.remove {background: url(remove_icon.png);width: 24px;height: 24px;display: inline-block;margin-top: -10px;}
+	.remove:hover {transform:translate(1px, 1px);-moz-transform:translate(1px, 1px);-ms-transform:translate(1px, 1px);-webkit-transform:translate(1px, 1px);-o-transform:translate(1px, 1px);}
+	
+	
+	
+	
+	.re-activate {background: url(reactivate_icon.png);width: 24px;height: 27px;display: inline-block;margin-top: -13px;}
+	.re-activate:hover {transform:translate(1px, 1px);-moz-transform:translate(1px, 1px);-ms-transform:translate(1px, 1px);-webkit-transform:translate(1px, 1px);-o-transform:translate(1px, 1px);}
+	
+	
+	
+	
 	
 	#ajax_bar {
 	  background: transparent !important;
@@ -392,7 +402,7 @@ select {-webkit-appearance:none;-moz-appearance:none;appearance:none;height: 32p
   span {float: left;padding-right: 13px;}
   form {margin:0;}
   form:nth-child(even) .row {background-color: #cebd98;}
-  .row {padding: 15px 0 15px 0px;
+  .row {padding: 15px 0 15px 0px;border-bottom: 1px solid #3e130d;
     .columns {padding: 10px 0 5px 10px;}
     input.input-text {position: absolute;left: 2px;top: 10px;width: 80%;}
     .color { padding: 0 0 0 22px;
@@ -431,6 +441,8 @@ $small: "only screen and (max-width:"#{$small-screen}")";
 	  .remove {padding: 4px 9px;font-size: 13px;}
 	  .orange_grad {padding:0;}
 	  .rounded-box {padding:0;border-radius: 0px;}
+	  .remove {margin-top: -4px;}
+	  .re-activate{}
 	  .heading {
 		img {display:none;}
 		h2 {margin-left: 10px; float:none;font-size: 33px;font-weight: bold;margin: 0;}
