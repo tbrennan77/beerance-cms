@@ -7,9 +7,9 @@ jQuery ->
 
 subscription =
   setupForm: ->
-    $('#new_user').submit ->
+    $('#edit_card').submit ->
       $('input[type="submit"]').attr('disabled', true)
-      if $('#card_number').length
+      if $('#card_number').length || $('#card_number').val() == ''
         subscription.processCard()
         false
       else
@@ -28,11 +28,14 @@ subscription =
       expMonth: $('#card_month').val()
       expYear: $('#card_year').val()
     Stripe.createToken(card, subscription.handleStripeResponse)
+    console.log("name: "+card.name+"\naddr1: "+card.address_line1+"\naddr2: "+card.address_line2+"\ncity: "+card.address_city+"\nstate: "+card.address_state+"\nZip: "+card.address_zip)
 
   handleStripeResponse: (status, response) ->
     if status == 200
-      $('#user_stripe_card_token').val(response.id)
-      $('#new_user')[0].submit()
-    else
-      $('#stripe_error').text(response.error.message)
+      $('#stripe_error').text('')
+      console.log(response.id)
+      $('#stripe_card_token').val(response.id)
+      $('#edit_card')[0].submit()    
+    else      
+      $('#stripe_error').text(response.error.message.replace("The card object must have a value for 'number'", 'Please enter a credit card number'))
       $('input[type="submit"]').attr('disabled', false)

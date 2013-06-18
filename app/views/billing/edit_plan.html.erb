@@ -1,0 +1,28 @@
+<style>
+label.selected img { border: 1px solid blue;}
+</style>
+<script>
+  $('label').live('click', function() {
+    $('label').removeClass('selected');
+    $(this).addClass('selected');
+  });
+</script>
+<%= form_tag update_plan_path do %>
+  <h5>Package Selection:</h5>
+  <div class="row">
+    <% SubscriptionPlan.order("friendly_name").each do |p| %>
+    <div class="large-4 columns">
+      <article>
+        <label class="amount <%= 'selected' if current_user.subscription_plan.id == p.id %>">
+          <h5><%= p.friendly_name %></h5>
+          <%= image_tag p.image %><br />
+          <%= radio_button_tag :subscription_plan_id, p.id, selected: (current_user.subscription_plan.id == p.id) %>
+          <span><%= number_to_currency p.amount/100 %></span>
+        </label>
+      </article>
+    </div>
+    <% end %>
+  </div>
+
+  <%= submit_tag "Change Plan", class: 'button' %>
+<% end %>

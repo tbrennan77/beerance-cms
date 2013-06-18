@@ -1,24 +1,38 @@
-class Subscription < ParseResource::Base
-  fields :user_id, :subscription_plan_id, :expiration_date
+class Subscription
+  attr_reader :json
 
-  validates_presence_of :user_id, :subscription_plan_id  
-
-  before_save :set_expiration
-
-  def plan
-    SubscriptionPlan.find subscription_plan_id
+  def initialize(json)
+    @json=json
   end
 
-  def set_expiration
-    end_date = Date.today.advance months: plan.length_in_months
-    self.expiration_date = DateTime.new(end_date.year, end_date.month, end_date.day)
+  def end_date
+    Time.at json.current_period_end
+  end
+
+  def start_date
+    Time.at json.current_period_start
+  end
+
+  def name
+    json.plan.name
+  end
+
+  def nice_name
+    case name
+    when '12_months'
+      "Gold"
+    when '6_months'
+      "Silver"
+    when '3_months'
+      "Bronze"
+    end
+  end
+
+  def amount
+    json.plan.amount/100
   end
 
   def days_remaining
-    (Date.new(expiration_date.year, expiration_date.month, expiration_date.day)-Date.today).to_i
-  end
-
-  def subscription_plan
-    SubscriptionPlan.find subscription_plan_id
+    (end_date.to_date-Date.today).to_i
   end
 end

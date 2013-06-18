@@ -1,0 +1,35 @@
+<style>
+.subnav {
+  background: rgb(43, 13, 7);
+  color: white;
+  padding: 20px;
+}
+.subnav a { 
+  color: white;
+  padding: 8px 20px;
+  border-radius: 8px;
+  margin-right: 28px;
+}
+.subnav a.current, .subnav a:hover { 
+  background-color: rgb(122, 66, 37);
+  -webkit-transition: background-color .25s ease-in-out;
+  transition: background-color .25s ease-in-out;
+}
+
+.subnav.show-for-small a {
+  margin-right: 0;
+  color: white;
+}
+.subnav.show-for-small a.current {
+  color: white !important;
+}
+</style>
+<div class='subnav hide-for-small'>
+  <div class='row'>
+    <div class="large-12 columns">
+      <%= link_to "Billing", billing_overview_path, class: is_current?('index') %>
+      <%= link_to "Change Card", edit_card_path, class: is_current?('edit_card') %>
+      <%= link_to "Change Plan", edit_plan_path, class: is_current?('edit_plan') %>
+    </div>
+  </div>
+</div>

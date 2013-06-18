@@ -3,8 +3,12 @@ module ApplicationHelper
     content_for :title, page_title.to_s
   end
 
-   def is_current?(action)
+  def is_current?(action)
     "current" if params[:action] == action
+  end
+
+  def are_current?(actions)
+   "current" if actions.include? params[:action]
   end
 
   def states

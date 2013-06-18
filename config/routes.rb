@@ -1,4 +1,12 @@
 Beerance::Application.routes.draw do
+  # Billing
+  resources :billings
+  get '/billing' => 'billing#index', as: 'billing_overview'
+  get '/billing/change-plan' => 'billing#edit_plan', as: 'edit_plan'
+  post '/billing/update-plan' => 'billing#update_plan', as: 'update_plan'
+  get '/billing/change-card' => 'billing#edit_card', as: 'edit_card'
+  post '/billing/update-card' => 'billing#update_card', as: 'update_card'
+
   # Password resests
   resources :password_resets, path: 'password-resets'
   get "/send-password-reset" => "password_resets#new", :as => "new_password_reset"
@@ -29,7 +37,7 @@ Beerance::Application.routes.draw do
   get '/my-beerances/current-specials' => "users#current_specials", as: 'current_specials'
   get '/my-beerances/archived-specials' => "users#archived_specials", as: 'archived_specials'
   get '/my-beerances/bar-list' => "users#bars", as: 'bar_list'
-  get "/register" => "users#new", :as => "sign_up"  
+  get "/register" => "users#new", :as => "sign_up"    
   
   # Bar entities
   resources :bar_entities, path: 'bars'
@@ -43,6 +51,8 @@ Beerance::Application.routes.draw do
   get '/admin' => "admin#index", as: 'admin'
   match '/admin/make-admin' => 'users#make_admin', as: 'make_admin'
   match '/admin/remove-admin' => 'users#remove_admin', as: 'remove_admin'
+  match '/admin/users' => 'admin#user_index', as: 'users'
+  match '/admin/users/:id' => 'admin#user_show', as: 'admin_user'
 
   # Charges
   resources :charges, path: 'subscriptions'
