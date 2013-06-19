@@ -1,5 +1,8 @@
 <style>
-label.selected img { border: 1px solid blue;}
+label.selected img {
+  border: 3px solid #2B0D07;
+  padding: 33px;
+}
 </style>
 <script>
   $('label').live('click', function() {
@@ -8,7 +11,7 @@ label.selected img { border: 1px solid blue;}
   });
 </script>
 <%= form_tag update_plan_path do %>
-  <h5>Package Selection:</h5>
+  <h5>Plan Selection:</h5>
   <div class="row">
     <% SubscriptionPlan.order("friendly_name").each do |p| %>
     <div class="large-4 columns">
@@ -26,3 +29,9 @@ label.selected img { border: 1px solid blue;}
 
   <%= submit_tag "Change Plan", class: 'button' %>
 <% end %>
+
+<ul>
+  <li>Changing your plan charges your card immediateley.</li>
+  <li>If you downgrade a plan, you will be refunded your difference and charged the amount of the new plan.</li>
+  <li>Changing your plan restarts your subscription start date to the day you change plans.</li>
+</ul>
