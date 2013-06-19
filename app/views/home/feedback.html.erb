@@ -1,0 +1,40 @@
+<% title 'Feedback - ' %>
+
+<style>
+textarea {height:150px;}
+</style>
+
+<div class='row'>
+		<div class='large-5 push-7 large columns'>
+    	<p></p><p>Thank you all for taking the time to send us feedback.  Please take a few minutes to review the site and send us your feedback by filling out the form to the left.</p>
+    		  <div class="row hide-for-small">
+						  <div class="large-7 large-centered columns"><%= image_tag "beerance_badge.png", class: 'badge' %></div>
+					</div>
+    </div>
+    
+    <div class='large-7 pull-5 large columns'>
+      <fieldset style="margin:0;">
+      <%= form_tag '', data: {remote: true} do %>
+
+          <%= label_tag :owner_name, "Your Name" %><br />
+          <%= text_field_tag :owner_name, params[:owner_name], placeholder: 'John Smith', class: 'required' %>
+          
+          <%= label_tag :email, "Your Email" %><br />
+          <%= email_field_tag :email, params[:email], placeholder: 'email@example.com', class: 'required' %>
+
+          <%= label_tag :owner_phone, "Phone Number" %><br />
+          <%= phone_field_tag :owner_phone, params[:owner_phone], placeholder: '216-123-4567' %>
+
+          <%= label_tag :feedback_type, "Feedback Category" %><br />
+          <%= select_tag :feedback_type, options_for_select(["Design", "Error", "Suggestion", "Request", "Other"]), prompt: 'Select One' %>
+
+        	<%= label_tag :comment, "Your Comment" %><br />
+					<%= text_area_tag :comment %>
+
+          <%= submit_tag "Submit", class: 'button' %>
+
+      <% end %>
+      </fieldset>
+    </div>
+    
+  </div>

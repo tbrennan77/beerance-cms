@@ -22,6 +22,7 @@ Beerance::Application.routes.draw do
   get '/privacy' => 'home#privacy', as: 'privacy'
   get '/about' => 'home#about', as: 'about'
   get '/recent-updates' => 'home#recent_updates', as: 'recent_updates'
+  get '/feedback' => 'home#feedback', as: 'feedback'
 
   # Sessions
   resources :sessions 

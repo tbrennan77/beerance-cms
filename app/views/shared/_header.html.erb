@@ -28,6 +28,10 @@
   <section class="top-bar-section" id="menu">
   <a href="/" id="logo"></a>
    <% if current_user %>  
+      <ul class="right show-for-medium-and-up">
+        <li><%= link_to "Send Us Feedback", feedback_path %></li>
+        <li class="divider"></li>
+      </ul>
       <ul class="right">
         <li class="divider show-for-medium-and-up"></li>
         <li><%= link_to "My Account", profile_path %>  </li>
@@ -44,6 +48,7 @@
         <li class="divider show-for-medium-and-up"></li>
         <li>Hello, <%= current_user.owner_name %><%= link_to "(Log out)", log_out_path %></li>
     </ul>
+    
     <% else %>
       <ul class="right">
         <li class="divider show-for-medium-and-up"></li>
@@ -54,6 +59,7 @@
         <li class="divider show-for-medium-and-up"></li>
         <li><%= link_to "Log In", "javascript:void(0)", id: 'login', title: "Log In", class: 'whitelink'%></li>
       </ul>
+      
     <% end %> 
     </section>
 </nav>
