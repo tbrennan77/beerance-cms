@@ -14,11 +14,12 @@ jQuery ->
     original_input_value = $(this).next('input.hide').val()
 
   $('input.hide').live 'blur', ->
-    $(this).hide()
-    $(this).prev('label').show()    
     if $(this).val() != original_input_value
       $('.ajax-container').fadeOut('fast')
       $(this).parent().parent().parent().submit()
+    else
+      $(this).hide()
+      $(this).prev('label').show()  
 
   $('.cancel-new-bar').live 'click', ->
     $('#new_bar_entity').parent().fadeOut().delay(1000).remove()

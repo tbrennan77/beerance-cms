@@ -32,38 +32,44 @@
 	</div>
 		
 	<% @inactive_specials.each do |bs| %>
-	
+	<%= form_for bs, html: { data: {remote: true } } do |f| %>
+	<%= f.hidden_field :bar_id %>
 
-		
 	<div class="row">
 		<div class="large-5 columns">
 			<span class="show-for-small">Name: </span>
-			<%= bs.special_description %>
+			<%= f.label :special_description, bs.special_description %>
+			<%= f.text_field :special_description, class: 'input-text hide' %>
 		</div>
 		<div class="large-1 columns color">
 			<span class="show-for-small">Color: </span>
-				<%= beer_color_image bs.beer_color %>
+			  <%= beer_color_image bs.beer_color %>
 		</div>
 		<div class="large-1 columns">
 			<span class="show-for-small">Price: </span>
-			<%= number_to_currency(bs.sale_price) %>
+			<%= f.label :sale_price, number_to_currency(bs.sale_price) %>
+			<%= f.text_field :sale_price, class: 'input-text hide' %>
 		</div>
 		<div class="large-1 columns">
 			<span class="show-for-small">Size: </span>
-			<%= "#{bs.beer_size}oz" %>
+			<%= f.label :beer_size, "#{bs.beer_size}oz" %>
+			<%= f.text_field :beer_size, class: 'input-text hide' %>
 		</div>
-		<div class="large-2 columns">
+		<div class="large-3 columns">
 			<span class="show-for-small">Location: </span>
 			<%= bs.bar_name %>
 		</div>
-		<div class="large-2 columns align-center">
+		<div class="large-1 columns align-center">
 			<span class="show-for-small">Reactivate: </span>
 			<%= link_to "", reactivate_beerance_path(bs), class: 're-activate', data: {remote: true} %>
 		</div>
 	</div>
 	<% end %> 
+	<% end %>
 </div> 
   
 <% else %>
   <h3 style='text-align: center;'>You have no archived specials</h3>
 <% end %>
+
+<%= render partial: 'users/new_special' %>

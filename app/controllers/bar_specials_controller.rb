@@ -19,20 +19,22 @@ class BarSpecialsController < ApplicationController
     end  
   end
 
-  def update
+  def update    
     bs = BarSpecials.find params[:id]
     params[:bar_specials][:sale_price] = params[:bar_specials][:sale_price].to_f
     params[:bar_specials][:beer_size] = params[:bar_specials][:beer_size].to_i
     if bs.update_attributes params[:bar_specials]  
-      get_specials    
+      get_specials
       respond_to do |format|
-        format.js { flash.now.notice = "Updated Special" }
+        format.js { 
+          flash.now.notice = "Updated Special"
+          @bar_special = BarSpecials.new
+        }
         format.html
       end
     else
-      get_specials    
       respond_to do |format|
-        format.js { raise bs.inspect.to_s }
+        format.js
         format.html
       end
     end
@@ -81,7 +83,7 @@ class BarSpecialsController < ApplicationController
     redirect_to log_out_path unless special.bar.user.id == current_user.id
   end
 
-def get_specials
+  def get_specials
     @bar_entities = BarEntity.where bar_owner_id: current_user.id
     @active_specials = []
     @inactive_specials = []

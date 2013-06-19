@@ -34,6 +34,7 @@
 	<% @active_specials.each do |bs| %>
 	<%= form_for bs, html: { data: {remote: true } } do |f| %>
 	<%= f.hidden_field :bar_id %>
+	<%= f.hidden_field :current_page, value: true %>
 		
 	<div class="row">
 		<div class="large-5 columns">
@@ -71,3 +72,5 @@
 <% else %>
   <h3 style='text-align: center;'>You have no specials.</h3>
 <% end %>
+
+<%= render partial: 'users/new_special' %>

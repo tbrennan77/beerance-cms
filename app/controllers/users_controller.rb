@@ -31,17 +31,19 @@ class UsersController < ApplicationController
 
   def profile
     @bar_entity = BarEntity.new
-    @bar_special = BarSpecials.new    
+    @bar_special = BarSpecials.new
   end
 
   def bars
     @bar_entity = BarEntity.new  
   end
 
-  def current_specials    
+  def current_specials
+    @bar_special = BarSpecials.new
   end
 
   def archived_specials
+    @bar_special = BarSpecials.new
   end
 
   def new  
@@ -63,6 +65,7 @@ class UsersController < ApplicationController
   end
 
   def end_beerance
+    @bar_special = BarSpecials.new
     special = BarSpecials.find params[:id]
     special.end_special
     if special.save
@@ -78,6 +81,7 @@ class UsersController < ApplicationController
   end
 
   def reactivate_beerance
+    @bar_special = BarSpecials.new
     special = BarSpecials.find params[:id]
     special.reactivate_special
     if special.save
