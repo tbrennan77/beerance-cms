@@ -5,7 +5,7 @@
     <div class=" plain">
       <%= form_tag password_resets_path, method: :post do |f| %>
         <div class="form-field">
-          <%= email_field_tag :email, params[:email], placeholder: "email@example.com", required: '' %>
+          <%= email_field_tag :email, (current_user.username if current_user), placeholder: "email@example.com", required: '' %>
         </div>
         <div class="actions">
           <%= submit_tag "Send Password Reset Email", class: "button small " %>
