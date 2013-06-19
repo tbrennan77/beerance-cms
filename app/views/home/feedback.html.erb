@@ -14,22 +14,22 @@ textarea {height:150px;}
     
     <div class='large-7 pull-5 large columns'>
       <fieldset style="margin:0;">
-      <%= form_tag '', data: {remote: true} do %>
+      <%= form_tag send_feedback_path do %>
 
-          <%= label_tag :owner_name, "Your Name" %><br />
-          <%= text_field_tag :owner_name, params[:owner_name], placeholder: 'John Smith', class: 'required' %>
+          <%= label_tag :name, "Your Name" %><br />
+          <%= text_field_tag :name, params[:name], placeholder: 'John Smith', class: 'required' %>
           
           <%= label_tag :email, "Your Email" %><br />
           <%= email_field_tag :email, params[:email], placeholder: 'email@example.com', class: 'required' %>
 
-          <%= label_tag :owner_phone, "Phone Number" %><br />
-          <%= phone_field_tag :owner_phone, params[:owner_phone], placeholder: '216-123-4567' %>
+          <%= label_tag :phone, "Phone Number" %><br />
+          <%= phone_field_tag :phone, params[:phone], placeholder: '216-123-4567' %>
 
-          <%= label_tag :feedback_type, "Feedback Category" %><br />
-          <%= select_tag :feedback_type, options_for_select(["Design", "Error", "Suggestion", "Request", "Other"]), prompt: 'Select One' %>
+          <%= label_tag :category, "Feedback Category" %><br />
+          <%= select_tag :category, options_for_select(["Design", "Error", "Suggestion", "Request", "Other"]), prompt: 'Select One' %>
 
         	<%= label_tag :comment, "Your Comment" %><br />
-					<%= text_area_tag :comment %>
+					<%= text_area_tag :comment, params[:comment] %>
 
           <%= submit_tag "Submit", class: 'button' %>
 

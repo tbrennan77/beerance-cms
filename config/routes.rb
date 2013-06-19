@@ -23,6 +23,7 @@ Beerance::Application.routes.draw do
   get '/about' => 'home#about', as: 'about'
   get '/recent-updates' => 'home#recent_updates', as: 'recent_updates'
   get '/feedback' => 'home#feedback', as: 'feedback'
+  post '/send-feedback' => 'home#send_feedback', as: 'send_feedback'
 
   # Sessions
   resources :sessions 
