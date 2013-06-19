@@ -35,4 +35,12 @@ class Subscription
   def days_remaining
     (end_date.to_date-Date.today).to_i
   end
+
+  def status
+    json.status
+  end
+
+  def active?
+    status == "active" ? true : false
+  end
 end

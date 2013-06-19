@@ -152,9 +152,8 @@ class UsersController < ApplicationController
     end
   end
 
-  def confirm_active_subscription
-    customer = Stripe::Customer.retrieve current_user.strip_customer_id
-    unless customer.subscription.status == "active"
+  def confirm_active_subscription    
+    unless current_user.subscription.active?
       redirect_to billing_path, notice: 'Reactivate your account to post beerances'
     end
   end
