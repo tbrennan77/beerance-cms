@@ -100,7 +100,7 @@ class UsersController < ApplicationController
     params[:user][:username].downcase!
     @user = User.find params[:id]    
     if @user.update_attributes params[:user]
-      redirect_to user_path(@user)
+      redirect_to profile_path
     else
       render :edit
     end
