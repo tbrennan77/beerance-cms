@@ -1,34 +1,5 @@
 <% title "My Beerances - " %>
 
-<script>
-$('label').live('click', function() {
-  $(this).hide();
-  $(this).next('input.hide').show();
-  $(this).next('input.hide').focus();
-});
-
-$('input.hide').live('blur', function() {
-  $(this).hide();
-  $(this).prev('label').show();
-  
-  if ($(this).val() != $(this).prev('label').text()){
-    $('.ajax-container').fadeOut('fast');
-    $(this).closest('form').submit();
-  }
-})
-
-$('.cancel-new-bar').live('click', function() {
-  $('#new_bar_entity').parent().fadeOut().delay(1000).remove();
-});
-
-$(document).ready(function() {
-    $('input[type="radio"]').live('change', function() {
-        $('label').removeClass('active');
-		$(this).parent().addClass('active');
-    });
-});
-</script>
-
 <div class='large-12 columns'>
 	<div class="row">
     	<div class="large-12 columns">

@@ -5,6 +5,31 @@ jQuery ->
   Stripe.setPublishableKey($('meta[name="stripe-key"]').attr('content'))
   subscription.setupForm()
 
+  original_input_value = ""
+
+  $('label').live 'click', ->
+    $(this).hide()
+    $(this).next('input.hide').show()
+    $(this).next('input.hide').focus();
+    original_input_value = $(this).next('input.hide').val()
+    console.log(original_input_value)
+
+  $('input.hide').live 'blur', ->
+    $(this).hide()
+    $(this).prev('label').show()    
+    if $(this).val() != original_input_value
+      $('.ajax-container').fadeOut('fast')
+      $(this).parent().parent().parent().submit()
+      console.log($(this)[0].value)
+      console.log(original_input_value)
+
+  $('.cancel-new-bar').live 'click', ->
+    $('#new_bar_entity').parent().fadeOut().delay(1000).remove()
+
+  $('input[type="radio"]').live 'change', ->
+    $('label').removeClass('active')
+    $(this).parent().addClass('active')
+
 subscription =
   setupForm: ->
     $('#new_user').submit ->
