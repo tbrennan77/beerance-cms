@@ -6,8 +6,8 @@ class BillingController < ApplicationController
   end
 
   def update_plan
-    plan = SubscriptionPlan.find(params[:subscription_plan_id])
-    current_user.update_plan(plan)
+    plan = SubscriptionPlan.find(params[:subscription_plan_id])    
+    current_user.update_plan(plan) unless current_user.subscription_plan_id == plan.id
     redirect_to billing_overview_path
   end
 

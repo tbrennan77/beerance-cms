@@ -1,25 +1,41 @@
 <style>
-label.selected img {
-  border: 3px solid #2B0D07;
-  padding: 33px;
-}
+  input[type="radio"]:checked img {
+    border: 3px solid #2B0D07;  
+  }
+  .selected img { border: none !important; }
+  .selected h5, .selected span {
+    color: white;
+  }
+  .selected:hover { cursor: default;}
+  .selected {
+    border-radius: 8px;
+    background: #75392a;
+    padding: 0px 10px 20px 10px;
+  }
+  .selected:before {
+    content: "Current Plan";
+    color: #75392a;
+    position: relative;
+    top: -30px;
+    font-weight: bold;
+  }
 </style>
+
 <script>
-  $('label').live('click', function() {
-    $('label').removeClass('selected');
-    $(this).addClass('selected');
-  });
+$('.selected').click(function() {
+  return false;
+})
 </script>
+
 <%= form_tag update_plan_path do %>
-  <h5>Plan Selection:</h5>
   <div class="row">
-    <% SubscriptionPlan.order("friendly_name").each do |p| %>
+    <% SubscriptionPlan.order("amount").each do |p| %>
     <div class="large-4 columns">
       <article>
         <label class="amount <%= 'selected' if current_user.subscription_plan.id == p.id %>">
           <h5><%= p.friendly_name %></h5>
-          <%= image_tag p.image %><br />
           <%= radio_button_tag :subscription_plan_id, p.id, selected: (current_user.subscription_plan.id == p.id) %>
+          <%= image_tag p.image %><br />
           <span><%= number_to_currency p.amount/100 %></span>
         </label>
       </article>
@@ -27,11 +43,11 @@ label.selected img {
     <% end %>
   </div>
 
-  <%= submit_tag "Change Plan", class: 'button' %>
+  <%= submit_tag "Change Plan", class: 'button', data: {confirm: "Do you really want to change your plan?"} %>
 <% end %>
 
 <ul>
-  <li>Changing your plan charges your card immediateley.</li>
+  <li>Changing your plan charges your card immediately.</li>
   <li>If you downgrade a plan, you will be refunded your difference and charged the amount of the new plan.</li>
   <li>Changing your plan restarts your subscription start date to the day you change plans.</li>
 </ul>
