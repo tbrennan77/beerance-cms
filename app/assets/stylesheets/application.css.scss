@@ -392,7 +392,8 @@ select {-webkit-appearance:none;-moz-appearance:none;appearance:none;height: 32p
   form:nth-child(even) .row {background-color: #dcd2aa;}
   .row {padding: 15px 0 15px 0px;border-bottom: 1px solid #3e130d;
     .columns {padding: 10px 0 5px 10px;}
-    input.input-text {position: absolute;left: 2px;top: 10px;width: 80%;}
+    .input-text {position: absolute;left: 2px;top: 10px;width: 80%;}
+    select.input-text {top: 1px;}
     .color { padding: 0 0 0 22px;
       img{width:13px!important;height:auto!important;margin:0!important;}
     }

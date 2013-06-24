@@ -9,11 +9,11 @@ jQuery ->
 
   $('label').live 'click', ->
     $(this).hide()
-    $(this).next('input.hide').show()
-    $(this).next('input.hide').focus();
-    original_input_value = $(this).next('input.hide').val()
+    $(this).next('.hide').show()
+    $(this).next('.hide').focus();
+    original_input_value = $(this).next('.hide').val()
 
-  $('input.hide').live 'blur', ->
+  $('.hide').live 'blur', ->
     if $(this).val() != original_input_value
       $('.ajax-container').fadeOut('fast')
       $(this).parent().parent().parent().submit()
