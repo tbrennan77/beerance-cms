@@ -7,13 +7,13 @@ jQuery ->
 
   original_input_value = ""
 
-  $('label').live 'click', ->
+  $('.edit_bar_specials label').live 'click', ->
     $(this).hide()
     $(this).next('.hide').show()
     $(this).next('.hide').focus();
     original_input_value = $(this).next('.hide').val()
 
-  $('.hide').live 'blur', ->
+  $('.edit_bar_specials .hide').live 'blur', ->
     if $(this).val() != original_input_value
       $('.ajax-container').fadeOut('fast')
       $(this).parent().parent().parent().submit()
