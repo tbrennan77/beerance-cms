@@ -2,6 +2,13 @@
   <div class='alert-box notice'><%= flash[:notice] %></div>
 <% end %>
 
+<% if flash[:error] %>
+  <div data-alert class='alert-box alert'>
+    <%= flash[:error] %>
+    <a href="#" class="close">&times;</a>
+  </div>
+<% end %>
+
 <div id="ajax_bar"><%= image_tag "ajax-loader.gif" %><br /><br />loading...</div>   
 
 <div class="login hide orange_grad">
@@ -63,11 +70,3 @@
     <% end %> 
     </section>
 </nav>
-
-
-<% if flash[:error] %>
-  <div data-alert class='alert-box alert'>
-    <%= flash[:error] %>
-    <a href="#" class="close">&times;</a>
-  </div>
-<% end %>

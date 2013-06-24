@@ -253,21 +253,8 @@ li {list-style-type: none;}
 	  .content {float: left;width: 100%;}
 	}
 	.alert-box.success {
-	  position: fixed;
-	  z-index: 999;
-	  text-align: center;
-	  padding: 10px 50px;
-	  left: 40%;
-	  border-radius: 3px;
-	  background: #5da423; /* Old browsers */
-	  background: -moz-linear-gradient(top,  #5da423 0%, #398235 100%); /* FF3.6+ */
-	  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#5da423), color-stop(100%,#398235)); /* Chrome,Safari4+ */
-	  background: -webkit-linear-gradient(top,  #5da423 0%,#398235 100%); /* Chrome10+,Safari5.1+ */
-	  background: -o-linear-gradient(top,  #5da423 0%,#398235 100%); /* Opera 11.10+ */
-	  background: -ms-linear-gradient(top,  #5da423 0%,#398235 100%); /* IE10+ */
-	  background: linear-gradient(to bottom,  #5da423 0%,#398235 100%); /* W3C */
-	  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#5da423', endColorstr='#398235',GradientType=0 ); /* IE6-9 */
-	  box-shadow: 0 1px 3px #333;
+	  left: 0;
+    text-align: center;
 	}
 
 	label.active img {border: 2px solid brown;box-shadow: 0 1px 3px #CCC}
@@ -413,8 +400,17 @@ select {-webkit-appearance:none;-moz-appearance:none;appearance:none;height: 32p
   .row:nth-child(even) {background-color: #dcd2aa;}
 }
 
+.alert-box {
+  position: fixed !important;
+  top: 129px !important;
+  width: 100% !important;
 
+}
 
+.notice {
+  color: white !important;
+  background: #a87250 !important;
+}
 
 
 
@@ -454,20 +450,6 @@ $medium: "only screen and (max-width:"#{$medium-screen}")";
 
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 $small: "only screen and (max-width:"#{$small-screen}")";
 
 @media #{$small} {
@@ -506,21 +488,4 @@ $small: "only screen and (max-width:"#{$small-screen}")";
   }
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
