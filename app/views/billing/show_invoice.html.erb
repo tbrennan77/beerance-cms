@@ -1,0 +1,51 @@
+<style>
+table {border:none;}
+
+tr.total {
+  background: none !important;
+  border: none;
+}
+tr.total td:first-child { background: #E7E2B7 !important; border: none !important; }
+tr.total td {
+  background: #E7E2B7 !important;
+}
+tr.total td:last-child {
+  background: #DDD !important;
+}
+</style>
+
+<% title "Invoices - " %>
+
+<h2>Invoice for <%= Time.at(@invoice.date).strftime("%B %d, %Y") %></h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Invoice Date:</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th><%= Time.at(@invoice.date).strftime("%B %d, %Y") %></th>
+    </tr>
+  </thead>
+  </tbody>      
+    <% @invoice.lines.each do |l| %>      
+      <tr>
+        <td colspan="4"><%= l.type %></td>
+        <td><%= l.description %></td>
+        <td><%= number_to_currency l.amount/100.to_f %></td>
+      </tr>
+    <% end %>
+    <tr class='total'>
+      <td colspan="4"></td>
+      <td align="right">Subtotal:</td>
+      <td><%= number_to_currency @invoice.subtotal/100.to_f %></td>
+    </tr>
+    <tr class='total'>
+      <td colspan="4"></td>
+      <td align="right">Total:</td>
+      <td><%= number_to_currency @invoice.total/100.to_f %></td>
+    </tr>
+  </tbody>
+</table>

@@ -1,0 +1,38 @@
+<style>
+tr.hide {
+  background: #DDD !important;
+  border-bottom: 1px solid #AAA;
+}
+tr.hide:last-child {
+  border-bottom: none;  
+}
+</style>
+
+<% title "Invoices - " %>
+
+<h2>Invoices</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Invoice Date</th>
+      <th>Period Start Date</th>
+      <th>Period End Date</th>
+      <th>Subtotal</th>
+      <th>Total</th>
+      <th></th>
+    </tr>
+  </thead>
+  </tbody>
+  <% @customer.invoices.each do |i| %>
+    <tr>
+      <td><%= Time.at(i.date).strftime("%B %d, %Y") %></td>
+      <td><%= Time.at(i.period_start).strftime("%B %d, %Y") %></td>
+      <td><%= Time.at(i.period_end).strftime("%B %d, %Y") %></td>
+      <td><%= number_to_currency i.subtotal/100.to_f %></td>
+      <td><%= number_to_currency i.total/100.to_f %></td>
+      <td><%= link_to "details", show_invoice_path(id: i.id) %></td>
+    </tr>    
+  <% end %>
+  </tbody>
+</table>

@@ -5,6 +5,10 @@ jQuery ->
   Stripe.setPublishableKey($('meta[name="stripe-key"]').attr('content'))
   subscription.setupForm()
 
+  $('a.detail-link').click ->
+    id_class = "." + $(this).data('class')
+    $(id_class).fadeToggle('fast')
+
 subscription =
   setupForm: ->
     $('#edit_card').submit ->

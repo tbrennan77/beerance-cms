@@ -2,6 +2,8 @@ Beerance::Application.routes.draw do
   # Billing
   resources :billings
   get '/billing' => 'billing#index', as: 'billing_overview'
+  get '/billing/invoices' => 'billing#invoices', as: 'invoices'
+  get '/billing/invoices/:id' => 'billing#show_invoice', as: 'show_invoice'
   get '/billing/change-plan' => 'billing#edit_plan', as: 'edit_plan'
   post '/billing/update-plan' => 'billing#update_plan', as: 'update_plan'
   get '/billing/change-card' => 'billing#edit_card', as: 'edit_card'
