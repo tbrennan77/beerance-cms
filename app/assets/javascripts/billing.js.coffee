@@ -28,12 +28,10 @@ subscription =
       expMonth: $('#card_month').val()
       expYear: $('#card_year').val()
     Stripe.createToken(card, subscription.handleStripeResponse)
-    console.log("name: "+card.name+"\naddr1: "+card.address_line1+"\naddr2: "+card.address_line2+"\ncity: "+card.address_city+"\nstate: "+card.address_state+"\nZip: "+card.address_zip)
 
   handleStripeResponse: (status, response) ->
     if status == 200
       $('#stripe_error').text('')
-      console.log(response.id)
       $('#stripe_card_token').val(response.id)
       $('#edit_card')[0].submit()    
     else      

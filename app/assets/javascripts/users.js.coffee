@@ -54,8 +54,9 @@ subscription =
 
   handleStripeResponse: (status, response) ->
     if status == 200
+      $('#stripe_error').text('')
       $('#user_stripe_card_token').val(response.id)
       $('#new_user')[0].submit()
     else
-      $('#stripe_error').text(response.error.message)
+      $('#stripe_error').text(response.error.message.replace("The card object must have a value for 'number'", 'Please enter a credit card number'))      
       $('input[type="submit"]').attr('disabled', false)
