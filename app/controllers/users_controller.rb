@@ -3,7 +3,7 @@ class UsersController < ApplicationController
   before_filter :require_admin, except: %w{new edit update create profile show current_specials archived_specials bars end_beerance reactivate_beerance}
   before_filter :verify_create_parameters, only: %w{create}
   before_filter :get_specials, only: %w{profile current_specials archived_specials bars}
-  before_filter :confirm_active_subscription, only: %w{reactivate_beerance}  
+  before_filter :confirm_active_subscription, only: %w{reactivate_beerance}
 
   def index
     @users = User.all
@@ -14,19 +14,19 @@ class UsersController < ApplicationController
     @customer = Stripe::Customer.retrieve @user.stripe_customer_id
   end
 
-  def show    
+  def show
     @total_specials = 0
     bar_entities = BarEntity.where(bar_owner_id: current_user.id)
 
     bar_entities.each do |be|
       @total_specials += be.bar_specials.count
     end
-    
+
     @total_bars = bar_entities.count
     respond_to do |format|
         format.js
         format.html
-      end 
+      end
   end
 
   def profile
@@ -35,7 +35,7 @@ class UsersController < ApplicationController
   end
 
   def bars
-    @bar_entity = BarEntity.new  
+    @bar_entity = BarEntity.new
   end
 
   def current_specials
@@ -46,9 +46,10 @@ class UsersController < ApplicationController
     @bar_special = BarSpecials.new
   end
 
-  def new  
+  def new
     @user = User.new
-  end  
+    render layout: "application"
+  end
     
   def create    
     if @user.save_with_payment
