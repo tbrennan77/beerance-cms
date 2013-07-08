@@ -1,33 +1,34 @@
 <% title 'Email List Signup - ' %>
 
 <div class='row'>
-		<div class='large-5 push-7 large columns'>
-    	<p></p><p>Use this page to signup people for our mailing list which will alert them when the app is ready.</p>
-    		  <div class="row hide-for-small">
-						  <div class="large-7 large-centered columns"><%= image_tag "beerance_badge.png", class: 'badge' %></div>
-					</div>
+	<div class='large-5 push-7 large columns'>
+    	<p>Use this page to signup people for our mailing list which will alert them when the app is ready.</p>
+		<div class="row hide-for-small">
+			<div class="large-7 large-centered columns">
+				<%= image_tag "beerance_badge.png", class: 'badge' %>
+			</div>
+		</div>
     </div>
     
     <div class='large-7 pull-5 large columns'>
-      <fieldset style="margin:0;">
-      <%= form_tag send_feedback_path do %>
-
-          <%= label_tag :name, "Their Name" %><br />
-          <%= text_field_tag :name, params[:name], placeholder: 'John Smith', class: 'required' %>
-          
-          <%= label_tag :email, "Their Email" %><br />
-          <%= email_field_tag :email, params[:email], placeholder: 'email@example.com', class: 'required' %>
-
-          <%= label_tag :category, "Select your name" %><br />
-          <%= select_tag :category, options_for_select(["Brian Willse", "Mark Nead", "Gary Cintron", "Carrie Nagy", "Seth Tipton", "Dillon Hafer", "Jacob Wadenpfuhl" ]), prompt: 'Select One' %>
-          
-          <%= label_tag :other_name, "Enter your name if it's not on the list" %><br />
-          <%= email_field_tag :other_name, params[:other_name], placeholder: 'John Doe' %>
-
-          <%= submit_tag "Submit", class: 'button' %>
-
-      <% end %>
-      </fieldset>
-    </div>
-    
-  </div>
+    	<fieldset style="margin:0;">
+	        <%= form_tag send_feedback_path do %>
+	
+	        	<%= label_tag :name, "Their Name (optional)" %><br />
+	            <%= text_field_tag :name, params[:name], placeholder: 'John Smith' %>
+	          
+	            <%= label_tag :email, "Their Email" %><br />
+	            <%= email_field_tag :email, params[:email], placeholder: 'email@example.com', class: 'required' %>
+	
+	            <%= label_tag :category, "Select your name" %><br />
+	            <%= select_tag :category, options_for_select(["Brian Willse", "Mark Nead", "Gary Cintron", "Carrie Nagy", "Seth Tipton", "Dillon Hafer", "Jacob Wadenpfuhl" ]), prompt: 'Select One' %>
+	          
+	            <%= label_tag :other_name, "Enter your name if it's not on the list" %><br />
+	            <%= email_field_tag :other_name, params[:other_name], placeholder: 'John Doe' %>
+	
+	            <%= submit_tag "Submit", class: 'button' %>
+	
+			<% end %>
+		</fieldset>
+	</div>
+</div>

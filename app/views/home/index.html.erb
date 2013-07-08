@@ -5,17 +5,30 @@
 			<%= image_tag "beerance_iphone.png", class: 'iphone' %>
 		</div>
 		<div class="large-5 columns">
-			<%= image_tag "beerance_tagline.png", class: 'slogan'%>
+			<%= image_tag "comingsoon.png", class: 'slogan', style: 'padding: 39px 0 30px 0;'%>
 			<div class="row">
-				<div class='large-12 columns'>
-					<div class="row">
-						<div class="large-6 columns">
+				<div class='large-12 columns' style="margin-top: 31px;padding:0;">
+					<!--<div class="row">-->
+					
+						<!--<div class="large-6 columns">
 							<h2>Beer Drinkers</h2>
 		  				</div>
 		  				<div class="large-6 columns">
 			  				<h2>Bar Owners</h2>
-		  				</div>
-		  			</div>
+		  				</div>-->
+		  				
+		  				<fieldset style="margin:0;background:none;border:none;padding:0">
+			  				<%= form_tag send_feedback_path do %>
+			  				
+			  				<p style="color:#e7e2b7;">Sign up today to receive news and release date updates.</p>
+			  				<%= email_field_tag :email, params[:email], placeholder: 'youremail@example.com', class: 'required' %>
+
+			  				<%= submit_tag "Submit", class: 'button' %>
+
+			  				<% end %>
+			  			</fieldset>
+      
+		  			<!--</div>-->
 		  		</div>
 		  	</div>
 		</div>
@@ -50,7 +63,7 @@
 						<li>Any town, any city, any country</li>
 						<li>Share your favorite specials via Facebook and Twitter</li>
 					</ul>
-					<%= link_to "How it Works", how_it_works_path, class: 'button' %>
+					<!--<%= link_to "How it Works", how_it_works_path, class: 'button' %>-->
 		  		</div>
 		  		<div class="large-4 columns bar">
 		  			<%= image_tag "beerance_baricon.png"%><h2>Bar Owners</h2>
@@ -64,16 +77,28 @@
 						<li>Connect to mobile users</li>
 						<li>Attract new customers</li>
 					</ul>					
-					<%= link_to "Sign Up for FREE!", sign_up_path, class: 'button' %>
+					<!--<%= link_to "Sign Up for FREE!", sign_up_path, class: 'button' %>-->
 			  	</div>
-		  		<div class="large-4 columns">
+		  		<!--<div class="large-4 columns">
 			  		<%= link_to sign_up_path do %>
 			  		<div class="button cta">
 			  			<h2><span>Bar<br />Owners</span>Sign up<br />today<br />and get<br />2 months<br />FREE!</h2>
 			  			<%= image_tag "beerance_kegicon.png", class: 'keg' %>
 			  		</div>
 			  		<% end %>
+		  		</div>-->
+		  		
+		  		
+		  		<div class="large-4 columns">
+			  		<%= link_to how_it_works_path do %>
+			  		<div class="button cta">
+			  			<h2><span>How<br />It<br />Works<br /></span></h2><h3>Click here to learn more about the app.</h3>
+			  			<%= image_tag "beerance_kegicon.png", class: 'keg' %>
+			  		</div>
+			  		<% end %>
 		  		</div>
+
+
 		  	</div>
 		</div>
 	</div>

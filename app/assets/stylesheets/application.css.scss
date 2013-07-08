@@ -55,6 +55,10 @@ body {font-family: 'Roboto Slab', serif !important; background: url(beerance_foo
 	padding: 10px 15px
 }
 
+.error label, label.error {
+	color: #c60f13!important;
+}
+
 #logo {
 	background: url(beerance_logo.png);
 	position:absolute;
