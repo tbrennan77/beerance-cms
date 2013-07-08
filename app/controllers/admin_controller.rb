@@ -14,10 +14,6 @@ class AdminController < ApplicationController
   end
 
   def news_subscriptions
-    @news_subscriptions = NewsSubscription.all
-    respond_to do |format|
-      format.html
-      format.csv { send_data NewsSubscription.to_csv }      
-    end
+    @news_subscriptions = NewsSubscription.all    
   end  
 end

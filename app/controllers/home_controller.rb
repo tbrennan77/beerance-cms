@@ -4,6 +4,7 @@ class HomeController < ApplicationController
   layout 'interior'
   
   def index
+    remember_location
     @news_subscription = NewsSubscription.new
     render layout: 'marketing'
   end
@@ -25,6 +26,7 @@ class HomeController < ApplicationController
   end
 
   def signup
+    remember_location
     @news_subscription = NewsSubscription.new
     @promoters = find_promoters
   end
@@ -34,11 +36,8 @@ class HomeController < ApplicationController
     params[:news_subscription][:promoter_name] = new_name unless new_name.blank?
     @news_subscription = NewsSubscription.new params[:news_subscription]
     if @news_subscription.save
-      if params[:admin_page].present?
-        redirect_to signup_path, notice: 'Added email subscription'
-      else
-        redirect_to root_path, notice: 'We will let you know soon!'
-      end
+      @news_subscription.subscribe_to_mailchimp
+      redirect_to back
     else
       @promoters = find_promoters
       render 'signup'

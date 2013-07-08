@@ -19,4 +19,19 @@ class ApplicationController < ActionController::Base
       redirect_to root_path
     end
   end
+  
+  def remember_location
+    session[:back_paths] ||= []
+    unless session[:back_paths].last == request.fullpath
+      session[:back_paths] << request.fullpath
+    end
+
+    # make sure that the array doesn't bloat too much
+    session[:back_paths] = session[:back_paths][-10..-1]
+  end
+
+  def back
+    session[:back_paths] ||= []
+    session[:back_paths].pop || :back
+  end  
 end  

@@ -1,13 +1,11 @@
 <h3>List of News Subscriptions</h3>
-<h4 class="subheader">with export to CSV for <%= link_to "MailChimp", 'https://login.mailchimp.com/', target: :_blank %></h4>
+<h4 class="subheader">with export to CSV for <%= link_to "MailChimp", 'https://login.mailchimp.com/?username=beerancespecial', target: :_blank %></h4>
 <hr />
-
-<%= link_to "Export for MailChimp", news_subscriptions_path(format: "csv"), class: 'button' %>
 
 <ul>
   <% @news_subscriptions.each do |ns| %>
     <% unless ns.subscriber_email.blank? %>
-      <li><%= ns.subscriber_name + " - " %><%= ns.subscriber_email %></li>
+      <li><%#= ns.subscriber_name + " - " %><%= ns.subscriber_email %></li>
     <% end %>
   <% end %>
 </ul>

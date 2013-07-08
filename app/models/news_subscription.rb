@@ -2,14 +2,7 @@ class NewsSubscription < ParseResource::Base
   fields :subscriber_name, :subscriber_email, :promoter_name
   validates_presence_of :subscriber_email
 
-  def self.to_csv(options = {})
-    CSV.generate(options) do |csv|
-      csv << ["Name", "Email"]
-      all.each do |ns|
-        unless ns.subscriber_email.blank?
-          csv << ns.attributes.values_at(*%w{subscriber_name subscriber_email})
-        end
-      end
-    end
+  def subscribe_to_mailchimp
+    MAIL_CHIMP.lists.subscribe({id: NEWS_LIST_ID, email: {email: self.subscriber_email}})
   end
 end
