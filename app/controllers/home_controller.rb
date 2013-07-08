@@ -34,7 +34,7 @@ class HomeController < ApplicationController
     params[:news_subscription][:promoter_name] = new_name unless new_name.blank?
     @news_subscription = NewsSubscription.new params[:news_subscription]
     if @news_subscription.save
-      @news_subscription.subscribe_to_mailchimp
+      #@news_subscription.subscribe_to_mailchimp
       redirect_to back
     else
       @promoters = find_promoters
