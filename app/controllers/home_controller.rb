@@ -1,8 +1,10 @@
 class HomeController < ApplicationController
-	
+	before_filter :find_promoters
+
   layout 'interior'
   
   def index
+    @news_subscription = NewsSubscription.new
     render layout: 'marketing'
   end
 
@@ -20,5 +22,30 @@ class HomeController < ApplicationController
     }    
     Notifier.feedback(feedback).deliver
     redirect_to root_path, notice: 'Thank you for your feedback!'
+  end
+
+  def signup
+    @news_subscription = NewsSubscription.new
+    @promoters = find_promoters
+  end
+
+  def new_signup
+    new_name = params[:other_promoter_name]
+    params[:news_subscription][:promoter_name] = new_name unless new_name.blank?
+    @news_subscription = NewsSubscription.new params[:news_subscription]
+    if @news_subscription.save
+      if params[:admin_page].present?
+        redirect_to signup_path, notice: 'Added email subscription'
+      else
+        redirect_to root_path, notice: 'We will let you know soon!'
+      end
+    else
+      @promoters = find_promoters
+      render 'signup'
+    end
+  end
+
+  def find_promoters
+    NewsSubscription.all.map(&:promoter_name).uniq.compact.sort
   end
 end

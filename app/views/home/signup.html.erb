@@ -12,22 +12,21 @@
     
     <div class='large-7 pull-5 large columns'>
     	<fieldset style="margin:0;">
-	        <%= form_tag send_feedback_path do %>
-	
-	        	<%= label_tag :name, "Their Name (optional)" %><br />
-	            <%= text_field_tag :name, params[:name], placeholder: 'John Smith' %>
-	          
-	            <%= label_tag :email, "Their Email" %><br />
-	            <%= email_field_tag :email, params[:email], placeholder: 'email@example.com', class: 'required' %>
-	
-	            <%= label_tag :category, "Select your name" %><br />
-	            <%= select_tag :category, options_for_select(["Brian Willse", "Mark Nead", "Gary Cintron", "Carrie Nagy", "Seth Tipton", "Dillon Hafer", "Jacob Wadenpfuhl" ]), prompt: 'Select One' %>
-	          
-	            <%= label_tag :other_name, "Enter your name if it's not on the list" %><br />
-	            <%= email_field_tag :other_name, params[:other_name], placeholder: 'John Doe' %>
-	
-	            <%= submit_tag "Submit", class: 'button' %>
-	
+	      <%= form_for @news_subscription, url: new_signup_path do |f| %>
+        	<%= f.label :subscriber_name, "Their Name (optional)" %><br />
+          <%= f.text_field :subscriber_name, placeholder: 'John Smith' %>
+        
+          <%= f.label :subscriber_email, "Their Email" %><br />
+          <%= f.email_field :subscriber_email, placeholder: 'email@example.com', class: 'required' %>
+
+          <%= f.label :promoter_name, "Select your name" %><br />
+          <%= f.select :promoter_name, @promoters.map {|p| p }, prompt: 'Select One' %>
+        
+          <%= label_tag :other_promoter_name, "Enter your name if it's not on the list" %><br />
+          <%= text_field_tag :other_promoter_name, params[:other_promoter_name], placeholder: 'John Doe' %>
+
+					<%= hidden_field_tag :admin_page, true %>
+          <%= submit_tag "Submit", class: 'button' %>
 			<% end %>
 		</fieldset>
 	</div>

@@ -18,13 +18,10 @@
 		  				</div>-->
 		  				
 		  				<fieldset style="margin:0;background:none;border:none;padding:0">
-			  				<%= form_tag send_feedback_path do %>
-			  				
-			  				<p style="color:#e7e2b7;">Sign up today to receive news and release date updates.</p>
-			  				<%= email_field_tag :email, params[:email], placeholder: 'youremail@example.com', class: 'required' %>
-
-			  				<%= submit_tag "Submit", class: 'button' %>
-
+			  				<%= form_for @news_subscription, url: new_signup_path do |f| %>			  				
+				  				<p style="color:#e7e2b7;">Sign up today to receive news and release date updates.</p>
+				  				<%= f.email_field :subscriber_email, placeholder: 'youremail@example.com', class: 'required' %>
+				  				<%= submit_tag "Submit", class: 'button' %>
 			  				<% end %>
 			  			</fieldset>
       

@@ -26,6 +26,8 @@ Beerance::Application.routes.draw do
   get '/recent-updates' => 'home#recent_updates', as: 'recent_updates'
   get '/feedback' => 'home#feedback', as: 'feedback'
   post '/send-feedback' => 'home#send_feedback', as: 'send_feedback'
+  get '/sign-up' => 'home#signup', as: 'signup'
+  post '/new-sign-up' => 'home#new_signup', as: 'new_signup'
 
   # Sessions
   resources :sessions 
