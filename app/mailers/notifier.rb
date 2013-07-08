@@ -13,6 +13,6 @@ class Notifier < ActionMailer::Base
 
   def feedback(feedback)
     @feedback = feedback
-    mail(:from => "Beerance Feedback<feedback@beerancespecial.com>", :to => 'stipton@boondockwalker.com,dh@dillonhafer.com', :subject => "Feedback - #{@feedback[:category]}")
+    mail(:from => "Beerance Feedback<feedback@beerancespecial.com>", :to => 'stipton@boondockwalker.com,dh@dillonhafer.com', :subject => "Feedback - #{feedback.category}")
   end
 end

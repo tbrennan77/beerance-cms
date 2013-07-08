@@ -491,13 +491,13 @@
                                     <table border="0" style="border: 1px solid #333; background: white; padding: 15px;" cellpadding="0" cellspacing="0" width="100%" id="templateBody">
                                         <tr>
                                             <td valign="top" class="bodyContent" mc:edit="body_content">
-                                                <h1>Feedback from <%= @feedback[:name] %></h1>
+                                                <h1>Feedback from <%= @feedback.name %></h1>
                                                 <h3>Here's what he said:</h3>                                                
-                                                Name: <%= @feedback[:name] %><br />
-                                                Email: <%= @feedback[:email] %><br />
-                                                Phone: <%= @feedback[:phone] %><br />
-                                                Category: <%= @feedback[:category] %><br />
-                                                Comment: <%= @feedback[:comment] %><br />
+                                                Name: <%= @feedback.name %><br />
+                                                Email: <%= @feedback.email %><br />
+                                                Phone: <%= @feedback.phone %><br />
+                                                Category: <%= @feedback.category %><br />
+                                                Comment: <%= @feedback.comment %><br />
                                                 <br />
                                             </td>
                                         </tr>

@@ -14,24 +14,24 @@ textarea {height:150px;}
     
     <div class='large-7 pull-5 large columns'>
       <fieldset style="margin:0;">
-      <%= form_tag send_feedback_path do %>
+      <%= form_for @feedback, url: send_feedback_path do |f| %>
 
-          <%= label_tag :name, "Your Name" %><br />
-          <%= text_field_tag :name, params[:name], placeholder: 'John Smith', class: 'required' %>
+          <%= f.label :name, "Your Name" %><br />
+          <%= f.text_field :name, placeholder: 'John Smith', class: 'required' %>
           
-          <%= label_tag :email, "Your Email" %><br />
-          <%= email_field_tag :email, params[:email], placeholder: 'email@example.com', class: 'required' %>
+          <%= f.label :email, "Your Email" %><br />
+          <%= f.email_field :email, placeholder: 'email@example.com', class: 'required' %>
 
-          <%= label_tag :phone, "Phone Number" %><br />
-          <%= phone_field_tag :phone, params[:phone], placeholder: '216-123-4567' %>
+          <%= f.label :phone, "Phone Number" %><br />
+          <%= f.phone_field :phone, placeholder: '216-123-4567' %>
 
-          <%= label_tag :category, "Feedback Category" %><br />
-          <%= select_tag :category, options_for_select(["Design", "Error", "Suggestion", "Request", "Other"]), prompt: 'Select One' %>
+          <%= f.label :category, "Feedback Category" %><br />
+          <%= f.select :category, %w{Design Error Suggestion Request Other}, prompt: 'Select One' %>
 
-        	<%= label_tag :comment, "Your Comment" %><br />
-					<%= text_area_tag :comment, params[:comment] %>
+        	<%= f.label :comment, "Your Comment" %><br />
+					<%= f.text_area :comment %>
 
-          <%= submit_tag "Submit", class: 'button' %>
+          <%= f.submit "Submit", class: 'button' %>
 
       <% end %>
       </fieldset>

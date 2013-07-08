@@ -13,14 +13,12 @@ class HomeController < ApplicationController
 	  render layout: 'application'
   end
 
+  def feedback
+    @feedback = Feedback.new
+  end
+
   def send_feedback
-    feedback = {
-      name: params[:name],
-      email: params[:email],
-      phone: params[:phone],
-      category: params[:category],
-      comment: params[:comment]
-    }    
+    feedback = Feedback.new params[:feedback]
     Notifier.feedback(feedback).deliver
     redirect_to root_path, notice: 'Thank you for your feedback!'
   end
