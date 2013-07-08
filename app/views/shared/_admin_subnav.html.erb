@@ -29,7 +29,7 @@
     <div class="large-12 columns">
       <%= link_to "Admin Panel", admin_path, class: is_current?('index') %>
       <%= link_to "User List", users_path, class: are_current?(%w{user_index user_show}) %>
-      <%= link_to "News Subscriptions", users_path, class: are_current?(%w{user_index user_show}) %>
+      <%= link_to "News Subscriptions", news_subscriptions_path, class: is_current?('news_subscriptions') %>
     </div>
   </div>
 </div>

@@ -1,0 +1,13 @@
+<h3>List of News Subscriptions</h3>
+<h4 class="subheader">with export to CSV for <%= link_to "MailChimp", 'http://mailchimp.com' %></h4>
+<hr />
+
+<%= link_to "Export for MailChimp", '', class: 'button' %>
+
+<ul>
+  <% @news_subscriptions.each do |ns| %>
+    <% unless ns.subscriber_email.blank? %>
+      <li><%= ns.subscriber_name %> - <%= ns.subscriber_email %></li>
+    <% end %>
+  <% end %>
+</ul>

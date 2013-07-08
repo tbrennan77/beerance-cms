@@ -12,4 +12,8 @@ class AdminController < ApplicationController
     @user = User.find params[:id]
     @customer = @user.stripe_customer
   end
+
+  def news_subscriptions
+    @news_subscriptions = NewsSubscription.all
+  end
 end

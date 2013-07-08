@@ -59,6 +59,7 @@ Beerance::Application.routes.draw do
   match '/admin/remove-admin' => 'users#remove_admin', as: 'remove_admin'
   match '/admin/users' => 'admin#user_index', as: 'users'
   match '/admin/users/:id' => 'admin#user_show', as: 'admin_user'
+  get '/admin/news-subscriptions' => 'admin#news_subscriptions', as: 'news_subscriptions'
 
   # Charges
   resources :charges, path: 'subscriptions'
