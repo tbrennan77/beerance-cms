@@ -192,7 +192,7 @@ li {list-style-type: none;}
 }
 
 .home-promo {
-  .iphone {padding: 30px 0 0 0;}
+  .iphone {padding: 38px 0 0 0;}
   .slogan {padding: 13px 0 0 0px;}
   .pint {padding: 54px 0 0 32px;}
   h2{font-size: 18px;color:$white; text-transform: uppercase;}
@@ -343,15 +343,13 @@ a.button {
     span {display:block;text-transform: uppercase; font-size: 46px; line-height: 50px;font-weight: bold;margin-bottom: 20px;}
   }
   p {padding:10px; font-size: 22px; line-height:37px; color:$dark_orange;}
-  .beer { padding-left: 39px!important;
+  .beer, .bar {
     img {margin:5px 5px 0 0; float:left;}
     h2 {color:$medium_orange; float:left; font-size: 33px;padding: 5px 0 0 3px; font-weight: 300;}
     .button {width: 85%; margin: 43px 0 0 8%;}
   }
   .bar { 
-  	img {margin:5px 5px 0 0; float:left;}
-    h2 {color:$medium_orange; float:left; font-size: 33px;padding: 5px 0 0 3px; font-weight: 300;}
-    .button {width: 85%; margin: 12px 0 0 8%;}
+    .button {margin: 12px 0 0 8%;}
   }
   ul {list-style-image: url("beerance_staricon.png"); color:$dark_oranges; clear:both; font-size: 20px; font-weight: 300; line-height: 25px; padding: 20px 0 0 25px;}
     li {padding:7px 0;}
