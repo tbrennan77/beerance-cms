@@ -220,7 +220,7 @@ li {list-style-type: none;}
   .info {margin-top: -167px; padding: 5px 25px; min-height: 600px;
 	p {padding: 10px; font-size: 20px; line-height: 29px;color:$dark_oranges;}
   }
-  h2 {color:$dark_oranges;font-weight:300;}
+  h2 {color:$dark_oranges;font-weight:300;margin-bottom:0;}
   .asd {
 	img {float:left;}
 	h2 {float:left;margin-left:15px;}
@@ -235,6 +235,7 @@ li {list-style-type: none;}
   a.appstore {background-image: url(beerance_appstoreicon.png);width:267px; height:79px; float:left;}
   a.bartry {background-image: url(beerance_try-free-btn.png);width:255px; height:80px; float:left; margin-left: 10px;}
   fieldset {background:none;border:none;}
+  .hiw_iphone {margin-left: -20px;}
 }
 
 .internalpage_user {
@@ -481,17 +482,31 @@ $small: "only screen and (max-width:"#{$small-screen}")";
 	  .rounded-box {padding:0;border-radius: 0px;}
 	  .remove {margin-top: -4px;}
 	  .re-activate {margin-top: -7px;}
+	  h1 {font-size: 45px;}
 	  .heading {
 		img {display:none;}
 		h2 {margin-left: 10px; float:none;font-size: 33px;font-weight: bold;margin: 0;}
 		.columns {text-align: center;}
 	  }
 	} 
+	
+	.internalpage {
+	  h1 {font-size: 45px;}
+	  .purple_grad{height: 210px;}
+	  .hiw_iphone {margin-left: 0px;}
+	  ol, .info p, .info ul {font-size: 18px;}
+	}
 
   .side-nav { padding:0!important;
     li {border-bottom: 1px solid #FFF;padding-bottom: 5px;font-size: 18px!important;}
     li:first-child {border-top: 1px solid #FFF;padding-top: 5px;}
     li.active a {color:#FFF!important; font-weight: normal!important;}
+  }
+  
+  .badge-desc p {font-size: 18px;line-height: 30px;}
+  .info {
+  	ul {font-size: 18px;}
+  	.cta {width:100%;margin:0;}
   }
 
 }

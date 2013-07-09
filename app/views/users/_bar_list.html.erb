@@ -14,7 +14,7 @@
       <br />
       <%= render partial: 'bar_entities/form', locals: {f: f} %>
 
-      <%= f.submit "Add Bar", class: 'button nice radius' %>
+      <%= f.submit "Add Bar", class: 'button' %>
     <% end %>  
   </fieldset>
 <% else %>
@@ -23,7 +23,7 @@
 <% @bar_entities.each do |bar| %>
 	<div id="bar-<%= bar.id %>" class="row" style="border-bottom: 1px solid #3e130d; margin-bottom: 20px;">
   		<div class="row">
-	  		<div class="large-12 columns user-info">
+	  		<div class="large-12 columns user-info" style ="padding-bottom:0;">
 		  		<h2><%= bar.bar_name %>
 		  			<small>
     					<%= link_to "edit", edit_bar_entity_path(bar) %> / 
