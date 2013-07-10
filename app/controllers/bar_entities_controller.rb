@@ -3,10 +3,10 @@ class BarEntitiesController < ApplicationController
   before_filter :confirm_correct_user, except: %w{new index create}
   before_filter :set_times, only: %w{create update}
 
-  layout 'user'
+  layout 'users'
 
   def new  
-    @bar_entity = BarEntity.new  
+    @bar_entity = BarEntity.new    
   end  
     
   def create
