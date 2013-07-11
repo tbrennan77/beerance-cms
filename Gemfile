@@ -9,9 +9,10 @@ gem 'modernizr-rails'
 gem 'jquery-rails'
 gem 'animate-rails'
 
-# Parse and Stripe
+# Parse and Stripe and New Relic
 gem 'parse_resource', "~> 1.8.0"
 gem 'stripe'
+gem 'newrelic_rpm'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
