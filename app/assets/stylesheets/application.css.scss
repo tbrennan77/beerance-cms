@@ -206,6 +206,8 @@ li {list-style-type: none;}
   h2{font-size: 18px;color:$white; text-transform: uppercase;}
 }
 
+
+
 .badge-desc {
   .badge {padding-top: 18px;}
   p {padding: 20px 0 0 0; font-size: 27px; line-height:40px; color:$dark_oranges;font-weight: 300;}
@@ -550,7 +552,9 @@ $small: "only screen and (max-width:"#{$small-screen}")";
     li.active a {color:#FFF!important; font-weight: normal!important;}
   }
   
-  
+  .section-container.auto section:last-child .title, .section-container.auto .section:last-child .title {
+	margin-left: 0px!important;
+  }
   
   .badge-desc p {font-size: 18px;line-height: 30px;}
   .info {
