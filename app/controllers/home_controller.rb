@@ -4,7 +4,6 @@ class HomeController < ApplicationController
   layout 'interior'
   
   def index
-    remember_location
     @news_subscription = NewsSubscription.new
     render layout: 'marketing'
   end
@@ -23,8 +22,7 @@ class HomeController < ApplicationController
     redirect_to root_path, notice: 'Thank you for your feedback!'
   end
 
-  def signup
-    remember_location
+  def signup    
     @news_subscription = NewsSubscription.new
     @promoters = find_promoters
   end
@@ -34,15 +32,14 @@ class HomeController < ApplicationController
     params[:news_subscription][:promoter_name] = new_name unless new_name.blank?
     @news_subscription = NewsSubscription.new params[:news_subscription]
     if @news_subscription.save
-      #@news_subscription.subscribe_to_mailchimp
-      redirect_to back
+      @news_subscription.subscribe_to_mailchimp
+      redirect_to :back, notice: "Thank you for signing up!"
     else
-      @promoters = find_promoters
-      render 'signup'
+      redirect_to :back, notice: "#{@news_subscription.errors.full_messages.first}"
     end
   end
 
   def find_promoters
     NewsSubscription.all.map(&:promoter_name).uniq.compact.sort
-  end
+  end  
 end

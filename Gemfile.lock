@@ -1,14 +1,4 @@
 GIT
-  remote: https://github.com/adelevie/parse_resource.git
-  revision: 9067d5dc489e7fff019173d970dcadcde1282119
-  specs:
-    parse_resource (1.8.0)
-      activemodel
-      activesupport
-      json
-      rest-client
-
-GIT
   remote: https://github.com/amro/gibbon.git
   revision: 1984a40b7c2748e63d4653ab02b33f61ad1a195d
   specs:
@@ -106,6 +96,11 @@ GEM
     multi_xml (0.5.4)
     nokogiri (1.6.0)
       mini_portile (~> 0.5.0)
+    parse_resource (1.8.0)
+      activemodel
+      activesupport
+      json
+      rest-client
     polyglot (0.3.3)
     rack (1.4.5)
     rack-cache (1.2)
@@ -174,7 +169,7 @@ DEPENDENCIES
   gibbon!
   jquery-rails
   modernizr-rails
-  parse_resource!
+  parse_resource (~> 1.8.0)
   rails (= 3.2.13)
   sass-rails (~> 3.2.3)
   stripe!
