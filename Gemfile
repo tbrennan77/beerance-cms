@@ -7,6 +7,7 @@ gem 'gibbon', :git => 'https://github.com/amro/gibbon.git'
 gem "combined_time_select", "~> 0.0.1"
 gem 'modernizr-rails'
 gem 'jquery-rails'
+gem 'animate-rails'
 
 # Parse and Stripe
 gem 'parse_resource', "~> 1.8.0"
