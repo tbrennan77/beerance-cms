@@ -22,6 +22,9 @@
               <li><%= link_to "Recent Updates", recent_updates_path, class: 'large-6' %></li>
             </ul>-->
             <span class="copy hide-for-small">© <%= Date.today.year %> Beerance Company LLC</span>
+            
+            <%= link_to "Send Us Feedback", "feedback", :title => "Send Us Feedback", class: 'copy feedbackfooter' %>
+            <%= link_to "Log In", log_in_path, :title => "Log in", class: 'copy loginfooter' %>
           </div>
           <!--<div class="row spacing top bottom show-for-small">
             <dl>

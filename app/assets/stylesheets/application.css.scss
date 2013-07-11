@@ -55,6 +55,12 @@ body {font-family: 'Roboto Slab', serif !important; background: url(beerance_foo
 	padding: 10px 15px
 }
 
+#subnav {background: rgb(43, 13, 7);color: white;padding: 20px;}
+#subnav a { color: white;padding: 8px 20px;border-radius: 8px;margin: 0 14px;
+}
+#subnav a.current, #subnav a:hover { background-color: rgb(122, 66, 37);-webkit-transition: background-color .25s ease-in-out;transition: background-color .25s ease-in-out;
+}
+
 .error label, label.error {
 	color: #c60f13!important;
 }
@@ -80,6 +86,8 @@ body {font-family: 'Roboto Slab', serif !important; background: url(beerance_foo
   background: linear-gradient(to bottom,  #ff3019 0%,#cf0404 100%); /* W3C */
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff3019', endColorstr='#cf0404',GradientType=0 ); /* IE6-9 */
 }
+
+.cancel-new-bar {float: right;}
 
 .whitelink {color:$white!important;}
 
@@ -192,9 +200,9 @@ li {list-style-type: none;}
 }
 
 .home-promo {
-  .iphone {padding: 38px 0 0 0;}
+  .iphone {padding: 74px 0 0 0;}
   .slogan {padding: 13px 0 0 0px;}
-  .pint {padding: 54px 0 0 32px;}
+  .pint {padding: 100px 0 0 32px;}
   h2{font-size: 18px;color:$white; text-transform: uppercase;}
 }
 
@@ -382,6 +390,10 @@ a.button {
   }
 }
 
+.feedbackfooter{bottom: 35px!important;color:#FFF;}
+.loginfooter{bottom: 52px!important;color:#FFF;}
+.feedbackfooter:hover,.loginfooter:hover{color:#FFF;}
+
 .login {padding-top: 40px;}
 .contact {padding-top: 12px;}
 #stripe_error {color: red; line-height:20px; margin: 16px;font-size: 18px;}
@@ -420,13 +432,43 @@ select {-webkit-appearance:none;-moz-appearance:none;appearance:none;height: 32p
   background: #a87250 !important;
 }
 
+.section-container.auto section.active .title, .section-container.auto .section.active .title {
+	background-color: #dc7c22 !important;
+}
 
+.section-container section .title, .section-container .section .title, .section-container.auto section .title, .section-container.auto .section .title {
+	background-color: #f7e1b8 !important;
+}
+
+.section-container section .content, .section-container .section .content, .section-container.auto section .content, .section-container.auto .section .content {
+	background-color: #dc7c22 !important;
+}
+
+.section-container section .title a, .section-container .section .title a, .section-container.auto section .title a, .section-container.auto .section .title a {
+	color: #3c120c !important;
+	font-size: 1em !important;
+	padding: 0.4375em !important;
+}
+
+.section-container.auto section:last-child .title, .section-container.auto .section:last-child .title {
+	margin-left: 25px!important;
+}
+
+.home-promo .section-container fieldset, .home-promo .section-container form {
+	margin:0;
+	padding:0;
+}
+
+.home-promo .section-container input.button, .home-promo .section-container button.button {
+	margin-bottom:0;
+}
 
 /*----- MEDIA QUERIES -----*/
 $medium: "only screen and (max-width:"#{$medium-screen}")";
 
 @media #{$medium} {
-
+  
+  	
   .beerance_list {
 	  span {font-weight: bold; width: 90px; text-align: left;}
 	  .row {
@@ -444,8 +486,7 @@ $medium: "only screen and (max-width:"#{$medium-screen}")";
 	  .remove {margin-top: -4px;}
 	  .re-activate {margin-top: -7px;}
 	  .heading {
-		  img {display:none;}
-		  h2 {margin-left: 10px; float:none;font-size: 33px;font-weight: bold;margin: 0;}
+
 		  .columns {text-align: center;}
 	  }
 	} 
@@ -461,7 +502,10 @@ $medium: "only screen and (max-width:"#{$medium-screen}")";
 $small: "only screen and (max-width:"#{$small-screen}")";
 
 @media #{$small} {
-
+  #subnav {
+    a {padding: 3px 6px;margin: 0 5px;}
+  }
+  #footermain ul li:first-child {width: 100%;margin-bottom: 0;}
   .beerance_list {
 	  .align-center {text-align: left;}
 	  .row {border-bottom: 2px solid $dark_oranges;padding-bottom: 20px;}
@@ -475,6 +519,9 @@ $small: "only screen and (max-width:"#{$small-screen}")";
 	    }
 	  }
 	}
+	
+	#footermain .feedbackfooter{bottom:85px;color:#FFF;right: 9px;}
+	#footermain .loginfooter{right: 9px;}
 	
 	.internalpage_user {
 	  .remove {padding: 4px 9px;font-size: 13px;}
@@ -502,6 +549,8 @@ $small: "only screen and (max-width:"#{$small-screen}")";
     li:first-child {border-top: 1px solid #FFF;padding-top: 5px;}
     li.active a {color:#FFF!important; font-weight: normal!important;}
   }
+  
+  
   
   .badge-desc p {font-size: 18px;line-height: 30px;}
   .info {
