@@ -29,7 +29,7 @@ gem "animate-rails"
 
 # Parse and Stripe
 gem 'parse_resource', "~> 1.8.0"
-gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
+gem 'stripe'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
