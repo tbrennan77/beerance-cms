@@ -55,7 +55,7 @@ Beerance::Application.configure do
     :address              => "smtpout.asia.secureserver.net",
     :port                 => 465,
     :domain               => 'www.beeranceapp.com',
-    :user_name            => 'info@beeranceapp.com',
+    :user_name            => 'noreply@beeranceapp.com',
     :password             => 'Hopgoblin$',
     :authentication       => 'plain',
     :enable_starttls_auto => true  }

@@ -15,5 +15,10 @@ class AdminController < ApplicationController
 
   def news_subscriptions
     @news_subscriptions = NewsSubscription.all    
-  end  
+  end
+
+  def send_test_email
+    Notifier.test_email(params[:email]).deliver
+    redirect_to test_email_path, notice: 'Test email sent!'
+  end
 end

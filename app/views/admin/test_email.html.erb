@@ -1,0 +1,6 @@
+<h2>Send a test email</h2>
+<br />
+<%= form_tag send_test_email_path do %>
+  <%= email_field_tag :email, nil, placeholder: 'Enter an email address to send a test email' %>
+  <%= submit_tag "Send Email", class: 'button' %>
+<% end %>
