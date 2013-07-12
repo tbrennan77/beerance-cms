@@ -15,7 +15,7 @@ class NewsSubscription < ParseResource::Base
   end
 
   def validates_uniqueness_of_subscriber_email
-    parse_object = NewsSubscription.where(:subscriber_email => self.subscriber_email )
+    parse_object = NewsSubscription.where(:subscriber_email => self.subscriber_email).where(:subscriber_type => self.subscriber_type)
     if parse_object.length > 0
       self.errors[:email] << "has already been subscribed"
       return false
