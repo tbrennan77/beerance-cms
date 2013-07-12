@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_filter :require_user, except: %w{new create}
+  before_filter :require_user, except: %w{new1 create1}
   before_filter :require_admin, except: %w{new edit update create profile show current_specials archived_specials bars end_beerance reactivate_beerance}
   before_filter :verify_create_parameters, only: %w{create}
   before_filter :get_specials, only: %w{profile current_specials archived_specials bars}

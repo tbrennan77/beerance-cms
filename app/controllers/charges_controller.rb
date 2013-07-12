@@ -1,5 +1,6 @@
 class ChargesController < ApplicationController
   before_filter :set_plan, only: %w{create}
+  before_filter :require_user
 
   def new
   end

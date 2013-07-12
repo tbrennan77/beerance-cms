@@ -1,5 +1,6 @@
 class HomeController < ApplicationController
 	before_filter :find_promoters
+  before_filter :require_admin, except: %w{index how_it_works privacy feedback send_feedback new_signup signup find_subscriber_email_id find_promoters}
 
   layout 'interior'
   
