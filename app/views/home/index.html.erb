@@ -24,8 +24,9 @@
 						    <div class="content" data-section-content>
 					  			<fieldset style="background:none;border:none;padding-top:0;padding-bottom:0;">
 						  			<%= form_for @news_subscription, url: new_signup_path do |f| %>			  				
-						  			<%= f.email_field :subscriber_email, placeholder: 'youremail@example.com', class: 'required' %>
-						  			<%= submit_tag "Submit", class: 'button' %>
+						  				<%= f.hidden_field :subscriber_type, value: "bar_drinker" %>
+							  			<%= f.email_field :subscriber_email, placeholder: 'youremail@example.com', class: 'required' %>
+							  			<%= submit_tag "Submit", class: 'button' %>
 						  			<% end %>
 						  		</fieldset>
 						    </div>
@@ -35,8 +36,9 @@
 						    <div class="content" data-section-content>
 					  			<fieldset style="background:none;border:none;padding-top:0;padding-bottom:0;">
 						  			<%= form_for @news_subscription, url: new_signup_path do |f| %>			  				
-						  			<%= f.email_field :subscriber_email, placeholder: 'youremail@example.com', class: 'required' %>
-						  			<%= submit_tag "Submit", class: 'button' %>
+							  			<%= f.hidden_field :subscriber_type, value: "bar_owner" %>
+							  			<%= f.email_field :subscriber_email, placeholder: 'youremail@example.com', class: 'required' %>
+							  			<%= submit_tag "Submit", class: 'button' %>
 						  			<% end %>
 						  		</fieldset>							      
 						    </div>

@@ -3,9 +3,16 @@
 <hr />
 
 <ul>
+  <% MailChimpList.all.each do |l| %>
+    <li>List ID: <%= l.id %> - List Name: <%= l.name %></li>
+  <% end %>
+</ul>
+
+<ul>
   <% @news_subscriptions.each do |ns| %>
     <% unless ns.subscriber_email.blank? %>
       <li><%#= ns.subscriber_name + " - " %><%= ns.subscriber_email %></li>
     <% end %>
   <% end %>
 </ul>
+
