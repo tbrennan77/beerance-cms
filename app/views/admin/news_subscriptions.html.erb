@@ -1,5 +1,4 @@
 <h3>List of News Subscriptions</h3>
-<h4 class="subheader">with export to CSV for <%= link_to "MailChimp", 'https://login.mailchimp.com/?username=beerancespecial', target: :_blank %></h4>
 <hr />
 
 <ul>
@@ -8,11 +7,23 @@
   <% end %>
 </ul>
 
+<div class="large-6 columns">
 <ul>
-  <% @news_subscriptions.each do |ns| %>
+  <h3>Drinkers</h3>
+  <% @drinker_news_subscriptions.each do |ns| %>
     <% unless ns.subscriber_email.blank? %>
-      <li><%#= ns.subscriber_name + " - " %><%= ns.subscriber_email %></li>
+      <li><%= ns.subscriber_email %></li>
     <% end %>
   <% end %>
 </ul>
-
+</div>
+<div class="large-6 columns">
+<ul>
+  <h3>Owners</h3>
+  <% @owner_news_subscriptions.each do |ns| %>
+    <% unless ns.subscriber_email.blank? %>
+      <li><%= ns.subscriber_email %></li>
+    <% end %>
+  <% end %>
+</ul>
+</div>

@@ -14,7 +14,8 @@ class AdminController < ApplicationController
   end
 
   def news_subscriptions
-    @news_subscriptions = NewsSubscription.all    
+    @owner_news_subscriptions = NewsSubscription.where(subscriber_type: 'bar_owner')
+    @drinker_news_subscriptions = NewsSubscription.where(subscriber_type: 'bar_drinker')
   end
 
   def send_test_email
