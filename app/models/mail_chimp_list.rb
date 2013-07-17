@@ -17,7 +17,7 @@ class MailChimpList
     lists
   end
 
-  def subscribe(list_id, email)
+  def self.subscribe(list_id, email)
     MAIL_CHIMP.lists.subscribe({id: list_id, email: {email: email}})
   end
 end
