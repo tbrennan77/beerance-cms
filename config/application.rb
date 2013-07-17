@@ -51,11 +51,5 @@ module Beerance
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
-
-    # Exception Handling
-    config.middleware.use "::ExceptionNotifier",
-      :email_prefix => "[ERROR] ",
-      :sender_address => %{"Beerance Exception" <errors@beeranceapp.com>},
-      :exception_recipients => %w{dh@dillonhafer.com}
   end
 end

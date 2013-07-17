@@ -69,4 +69,12 @@ Beerance::Application.configure do
 
   # Send deprecation notices to registered listeners
   config.active_support.deprecation = :notify
+
+  # Exceptions
+  Beerance::Application.config.middleware.use ExceptionNotification::Rack,
+  :email => {
+    :email_prefix => "[ERROR] ",
+    :sender_address => %{"Beerance Exception" <errors@beeranceapp.com>},
+    :exception_recipients => %w{dh@dillonhafer.com}
+  }
 end
