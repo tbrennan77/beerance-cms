@@ -32,12 +32,10 @@ class HomeController < ApplicationController
     new_name = params[:other_promoter_name]    
     
     @news_subscription = NewsSubscription.new params[:news_subscription]
-    @news_subscription.promoter_name = new_name unless new_name.blank?
-    
-    email_id = find_subscriber_email_id(params[:news_subscription][:subscriber_type])
+    @news_subscription.promoter_name = new_name unless new_name.blank?    
     
     if @news_subscription.save
-      @news_subscription.subscribe_to_mailchimp(email_id)
+      @news_subscription.subscribe_to_mailchimp
       redirect_to :back, notice: "Thank you for signing up!"
     else
       redirect_to :back, notice: "#{@news_subscription.errors.full_messages.first}"
