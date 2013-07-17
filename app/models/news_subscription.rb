@@ -10,9 +10,8 @@ class NewsSubscription < ParseResource::Base
     self.subscriber_email = self.subscriber_email.downcase
   end
 
-  def subscribe_to_mailchimp
-    list_id = 
-    MailChimpList.subscribe(list_id, self.subscriber_email)    
+  def subscribe_to_mailchimp    
+    MailChimpList.subscribe(mail_chimp_list_id, self.subscriber_email)    
   end
 
   def validates_uniqueness_of_subscriber_email
