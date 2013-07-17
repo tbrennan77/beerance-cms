@@ -8,15 +8,20 @@ class Notifier < ActionMailer::Base
 
   def password_reset(user)
     @user = user
-    mail(:from => "BeeranceApp<noreply@beeranceapp.com>", :to => @user.username, :subject => "Password reset")
+    mail(:from => "noreply@beeranceapp.com", :to => @user.username, :subject => "Password reset")
   end
 
   def feedback(feedback)
     @feedback = feedback
-    mail(:from => "BeeranceApp Feedback<feedback@beeranceapp.com>", :to => 'stipton@boondockwalker.com,dh@dillonhafer.com', :subject => "Feedback - #{feedback.category}")
+    mail(:from => "noreply@beeranceapp.com", :to => 'stipton@boondockwalker.com,dh@dillonhafer.com', :subject => "Feedback - #{feedback.category}")
   end
 
   def test_email(email)
-    mail(:from => "BeeranceApp Test<test@beeranceapp.com>", :to => email, :subject => "Test Email")
+    mail(:from => "noreply@beeranceapp.com", :to => email, :subject => "Test Email")
+  end
+
+  def password_changed(user)
+    @user = user
+    mail(:from => "noreply@beeranceapp.com", :to => @user.email, :subject => "Your password has changed")
   end
 end

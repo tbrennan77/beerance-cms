@@ -19,7 +19,7 @@ class AdminController < ApplicationController
   end
 
   def send_test_email
-    Notifier.test_email(params[:email]).deliver
+    Notifier.test_email(current_user.username).deliver
     redirect_to test_email_path, notice: 'Test email sent!'
   end
 end

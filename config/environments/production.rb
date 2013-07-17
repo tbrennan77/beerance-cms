@@ -53,12 +53,12 @@ Beerance::Application.configure do
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
     :address              => "smtpout.asia.secureserver.net",
-    :port                 => 465,
+    :port                 => 80,
     :domain               => 'www.beeranceapp.com',
     :user_name            => 'noreply@beeranceapp.com',
     :password             => 'Hopgoblin$',
     :authentication       => 'plain',
-    :enable_starttls_auto => true  }
+    :enable_starttls_auto => false  }
 
   # Enable threaded mode
   # config.threadsafe!
