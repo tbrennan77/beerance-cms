@@ -61,7 +61,12 @@ Beerance::Application.routes.draw do
   match '/admin/users/:id' => 'admin#user_show', as: 'admin_user'
   get '/admin/news-subscriptions' => 'admin#news_subscriptions', as: 'news_subscriptions'
   get '/admin/test-email' => 'admin#test_email', as: 'test_email'
-  post '/admin/send-test-email' => 'admin#send_test_email', as: 'send_test_email'
+  
+  # Test emails
+  get '/admin/test_feedback' => 'admin#test_feedback', as: 'test_feedback'
+  get '/admin/test_password_change' => 'admin#test_password_change', as: 'test_password_change'
+  get '/admin/test_password_reset' => 'admin#test_password_reset', as: 'test_password_reset'
+  get '/admin/test_signup' => 'admin#test_signup', as: 'test_signup'
 
   # Charges
   resources :charges, path: 'subscriptions'

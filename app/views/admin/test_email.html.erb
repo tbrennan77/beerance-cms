@@ -1,5 +1,7 @@
 <h2>Send a test email</h2>
 <br />
-<%= form_tag send_test_email_path do %>
-  <%= submit_tag "Send Email", class: 'button' %>
-<% end %>
+
+<%= link_to "Test Feedback", test_feedback_path, class: 'button' %>
+<%= link_to "Test Password Changed", test_password_change_path, class: 'button' %>
+<%= link_to "Test Password Reset", test_password_reset_path, class: 'button' %>
+<%= link_to "Test Signup", test_signup_path, class: 'button' %>

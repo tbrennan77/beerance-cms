@@ -16,12 +16,8 @@ class Notifier < ActionMailer::Base
     mail(:from => "noreply@beeranceapp.com", :to => 'stipton@boondockwalker.com,dh@dillonhafer.com', :subject => "Feedback - #{feedback.category}")
   end
 
-  def test_email(email)
-    mail(:from => "noreply@beeranceapp.com", :to => email, :subject => "Test Email")
-  end
-
   def password_changed(user)
     @user = user
-    mail(:from => "noreply@beeranceapp.com", :to => @user.email, :subject => "Your password has changed")
+    mail(:from => "noreply@beeranceapp.com", :to => @user.username, :subject => "Your password has changed")
   end
 end
