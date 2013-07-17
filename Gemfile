@@ -8,11 +8,11 @@ gem "combined_time_select", "~> 0.0.1"
 gem 'modernizr-rails'
 gem 'jquery-rails'
 gem 'animate-rails'
+gem 'exception_notification'
 
 # Parse and Stripe and New Relic
 gem 'parse_resource', "~> 1.8.0"
 gem 'stripe'
-gem 'newrelic_rpm'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'

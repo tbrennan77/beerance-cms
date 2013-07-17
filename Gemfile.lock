@@ -64,6 +64,9 @@ GEM
       compass (>= 0.12.2, < 0.14)
     dynamic_form (1.1.4)
     erubis (2.7.0)
+    exception_notification (4.0.0)
+      actionmailer (>= 3.0.4)
+      activesupport (>= 3.0.4)
     execjs (1.4.0)
       multi_json (~> 1.0)
     fssm (0.2.10)
@@ -86,7 +89,6 @@ GEM
     modernizr-rails (2.6.2.3)
     multi_json (1.7.7)
     multi_xml (0.5.4)
-    newrelic_rpm (3.6.0.83)
     nokogiri (1.6.0)
       mini_portile (~> 0.5.0)
     parse_resource (1.8.0)
@@ -161,11 +163,11 @@ DEPENDENCIES
   combined_time_select (~> 0.0.1)
   compass-rails
   dynamic_form
+  exception_notification
   geocoder
   gibbon!
   jquery-rails
   modernizr-rails
-  newrelic_rpm
   parse_resource (~> 1.8.0)
   rails (= 3.2.13)
   sass-rails (~> 3.2.3)
