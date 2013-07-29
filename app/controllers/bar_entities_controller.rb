@@ -20,7 +20,7 @@ class BarEntitiesController < ApplicationController
 
     if @bar_entity.save
       respond_to do |format|
-        format.html { redirect_to profile_path(partial: 'bars'), :notice => "Added Bar!" }
+        format.html { redirect_to bar_entities_path, :notice => "Added Bar!" }
         format.js
       end
 
@@ -40,7 +40,7 @@ class BarEntitiesController < ApplicationController
     if @bar_entity.update_attributes params[:bar_entity]     
       @bar_entity.ensure_fields
       @bar_entity.save
-      redirect_to profile_path(partial: 'bars'), notice: 'Updated Bar'
+      redirect_to bar_entities_path, notice: 'Updated Bar'
     else
       render :edit
     end

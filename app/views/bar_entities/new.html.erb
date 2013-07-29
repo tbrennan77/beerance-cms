@@ -1,9 +1,8 @@
-<style>
-.hour-label { margin-top: 4px !important; }
-</style>
-<h3>Add a new bar</h3>
-<h4 class="subheader">Fill out the form below</h4>
-<hr />
+<div class="row heading">
+    <div class="large-9 columns">
+        <img alt="Beerance_baricon" src="/assets/beerance_baricon.png"><h2>Add a new bar</h2>
+    </div>
+</div>
 
 <fieldset>
 <%= form_for @bar_entity, html: {class: ''} do |f| %>  
@@ -109,6 +108,6 @@
             <p>Your 30-day free trial lasts until midnight on <%= DateTime.now.advance(days: 30).strftime("%b %-d, %Y") %>. If you don't want to continue using Beerance, just cancel before the trial ends and you won't be charged (we'll email you 5 days before the trial ends to remind you). Otherwise, you'll pay just the monthly cost for the service as long as your account is open. You can upgrade, downgrade, or cancel anytime.</p>
           </div>
         </div>
-  <%= f.submit "Add Bar", class: 'button' %>  <%= link_to "Cancel", bar_entities_path, class: 'button' %>
+  <%= f.submit "Add New Bar", class: 'button' %>  <%= link_to "Cancel", bar_entities_path, class: 'button' %>
 <% end %>  
 </fieldset>

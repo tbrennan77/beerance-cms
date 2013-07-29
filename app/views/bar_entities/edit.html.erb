@@ -1,7 +1,9 @@
-<style>
-.hour-label { margin-top: 4px !important; }
-</style>
-<h3>Edit <%= @bar_entity.bar_name %></h3>  
+<div class="row heading">
+    <div class="large-9 columns">
+        <img alt="Beerance_baricon" src="/assets/beerance_baricon.png"><h2>Edit <%= @bar_entity.bar_name %></h2>
+    </div>
+</div>
+
 <fieldset>
 <%= form_for @bar_entity do |f| %>  
   <% if @bar_entity.errors.any? %>  
