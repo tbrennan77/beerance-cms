@@ -36,41 +36,41 @@ Beerance::Application.routes.draw do
   
   # Users
   resources :users  
-  get '/end-beerance/:id' => 'users#end_beerance', as: 'end_beerance'
-  get '/reactive-beerance/:id' => 'users#reactivate_beerance', as: 'reactivate_beerance'
-  get '/my-beerances/current-specials' => "users#current_specials", as: 'current_specials'
-  get '/my-beerances/archived-specials' => "users#archived_specials", as: 'archived_specials'  
-  match "/my-beerances" => "users#profile", as: "profile"
-  get "/account-details" => "users#show", :as => "account_details"    
-  get "/register" => "users#new", :as => "sign_up"    
+  get   '/register'                       => 'users#new', :as => 'sign_up'    
+  get   '/account-details'                => 'users#show', :as => 'account_details'    
+  get   '/end-beerance/:id'               => 'users#end_beerance', as: 'end_beerance'
+  get   '/reactive-beerance/:id'          => 'users#reactivate_beerance', as: 'reactivate_beerance'
+  get   '/my-beerances/current-specials'  => 'users#current_specials', as: 'current_specials'
+  get   '/my-beerances/archived-specials' => 'users#archived_specials', as: 'archived_specials'  
+  match '/my-beerances'                   => 'users#profile', as: 'profile'
   
   # Bar entities
   resources :bar_entities, path: 'bars'
   
   # Bar Specials
   resources :bar_specials, path: 'bar-specials'
-  match 'bar-specials' => "bar_specials#index", as: 'bar_specials_index'
-  match 'bar-specials/new' => "bar_specials#new", as: 'new_bar_special'
+  match 'bar-specials'     => 'bar_specials#index', as: 'bar_specials_index'
+  match 'bar-specials/new' => 'bar_specials#new', as: 'new_bar_special'
 
   # Admin panel
-  get '/admin' => "admin#index", as: 'admin'
-  match '/admin/make-admin' => 'users#make_admin', as: 'make_admin'
-  match '/admin/remove-admin' => 'users#remove_admin', as: 'remove_admin'
-  match '/admin/users' => 'admin#user_index', as: 'admin_users'
-  match '/admin/users/:id' => 'admin#user_show', as: 'admin_user'
-  get '/admin/news-subscriptions' => 'admin#news_subscriptions', as: 'news_subscriptions'
-  get '/admin/test-email' => 'admin#test_email', as: 'test_email'
+  get   '/admin'                    => 'admin#index', as: 'admin'
+  get   '/admin/test-email'         => 'admin#test_email', as: 'test_email'
+  get   '/admin/news-subscriptions' => 'admin#news_subscriptions', as: 'news_subscriptions'
+  match '/admin/users'              => 'admin#user_index', as: 'admin_users'
+  match '/admin/users/:id'          => 'admin#user_show', as: 'admin_user'
+  match '/admin/make-admin'         => 'users#make_admin', as: 'make_admin'
+  match '/admin/remove-admin'       => 'users#remove_admin', as: 'remove_admin'
   
   # Test emails
-  get '/admin/test_feedback' => 'admin#test_feedback', as: 'test_feedback'
+  get '/admin/test_signup'          => 'admin#test_signup', as: 'test_signup'
+  get '/admin/test_feedback'        => 'admin#test_feedback', as: 'test_feedback'
+  get '/admin/test_password_reset'  => 'admin#test_password_reset', as: 'test_password_reset'
   get '/admin/test_password_change' => 'admin#test_password_change', as: 'test_password_change'
-  get '/admin/test_password_reset' => 'admin#test_password_reset', as: 'test_password_reset'
-  get '/admin/test_signup' => 'admin#test_signup', as: 'test_signup'
 
   # Charges
   resources :charges, path: 'subscriptions'
-  get '/cancel-subscription' => "charges#cancel_subscription", as: 'cancel_subscription'
+  get '/cancel-subscription' => 'charges#cancel_subscription', as: 'cancel_subscription'
   
   # Root Path
-  root :to => "home#index"  
+  root :to => 'home#index'  
 end
