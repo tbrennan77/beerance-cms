@@ -1,5 +1,5 @@
 class User < ParseUser  
-  fields :email, :newsletter_subscription, :username, :owner_name, :owner_phone, :account_type, :expiration_date, :user_favorites, :createdAt, :admin, :stripe_customer_id, :subscription_plan_id, :password_reset_token, :password_reset_sent_at
+  fields :email, :newsletter_subscription, :username, :owner_name, :owner_phone, :account_type, :user_favorites, :createdAt, :admin, :password_reset_token, :password_reset_sent_at
 
   EMAIL_REGEX = /[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}/i
 
@@ -13,7 +13,7 @@ class User < ParseUser
     length: {minimum: 6},
     on: :create
   
-  validates_presence_of :owner_name, :owner_phone, :subscription_plan_id
+  validates_presence_of :owner_name, :owner_phone
 
   def admin?; self.admin==true; end
   def make_admin; self.admin=true;self.save; end
@@ -63,6 +63,10 @@ class User < ParseUser
 
   def bars
     BarEntity.where(bar_owner_id: id)
+  end
+
+  def bars?
+    bars.count > 0 ? true : false
   end
 
   def subscription

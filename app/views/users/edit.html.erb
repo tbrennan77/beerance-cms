@@ -1,5 +1,10 @@
-<h3>Edit Account Information</h3>  
-<hr />
+<% title "Account Details - " %>
+
+<div class="row heading">
+    <div class="large-9 columns">
+        <img alt="Beerance_baricon" src="/assets/beerance_kegicon.png"><h2>Update Account Information</h2>
+    </div>
+</div>
 
 <%= form_for @user do |f| %>  
   <% if @user.errors.any? %>  
@@ -17,14 +22,14 @@
     <%= f.label :email %><br />  
     <%= f.email_field :username %>  
 
-    <%= f.label :owner_name %><br />  
+    <%= f.label :owner_name, "Name" %><br />  
     <%= f.text_field :owner_name %>  
 
-    <%= f.label :owner_phone %><br />  
+    <%= f.label :owner_phone, "Phone" %><br />  
     <%= f.phone_field :owner_phone %>  
   
   <p>
-    <%= f.submit "Update User", class: 'small button nice radius' %>
-    <%= link_to "Cancel", profile_path, class: 'alert small button nice radius' %> 
+    <%= f.submit "Update Account Information", class: 'small button' %>
+    <%= link_to "Cancel", account_details_path, class: 'alert small button' %> 
   </p>
 <% end %>  

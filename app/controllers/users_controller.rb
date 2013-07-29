@@ -1,8 +1,8 @@
 class UsersController < ApplicationController
-  before_filter :require_user, except: %w{new1 create1}
-  before_filter :require_admin, except: %w{new edit update create profile show current_specials archived_specials bars end_beerance reactivate_beerance}
+  before_filter :require_user, except: %w{new create}
+  before_filter :require_admin, except: %w{new edit update create profile show current_specials archived_specials end_beerance reactivate_beerance}
   before_filter :verify_create_parameters, only: %w{create}
-  before_filter :get_specials, only: %w{profile current_specials archived_specials bars}
+  before_filter :get_specials, only: %w{profile current_specials archived_specials}
   before_filter :confirm_active_subscription, only: %w{reactivate_beerance}
 
   def index
@@ -29,13 +29,9 @@ class UsersController < ApplicationController
       end
   end
 
-  def profile
-    @bar_entity = BarEntity.new
+  def profile    
     @bar_special = BarSpecials.new
-  end
-
-  def bars
-    @bar_entity = BarEntity.new
+    redirect_to new_bar_entity_path unless current_user.bars?
   end
 
   def current_specials
@@ -46,16 +42,17 @@ class UsersController < ApplicationController
     @bar_special = BarSpecials.new
   end
 
+# Basic CRUD actions
   def new
     @user = User.new
     render layout: "application"
   end
     
   def create    
-    if @user.save_with_payment
+    if @user.save
       session[:user_id] = @user.id
       Notifier.signup(@user).deliver
-      redirect_to profile_path
+      redirect_to bar_entities_path
     else
       render "new"
     end
@@ -65,6 +62,23 @@ class UsersController < ApplicationController
     @user = User.find params[:id]
   end
 
+  def update
+    params[:user][:username].downcase!
+    @user = User.find params[:id]    
+    if @user.update_attributes params[:user]
+      redirect_to account_details_path
+    else
+      render :edit
+    end
+  end
+
+  def destroy
+    user = User.find params[:id]
+    user.destroy
+    redirect_to users_path
+  end
+
+# Beerance Actions
   def end_beerance
     @bar_special = BarSpecials.new
     special = BarSpecials.find params[:id]
@@ -97,22 +111,7 @@ class UsersController < ApplicationController
     end
   end
 
-  def update
-    params[:user][:username].downcase!
-    @user = User.find params[:id]    
-    if @user.update_attributes params[:user]
-      redirect_to profile_path
-    else
-      render :edit
-    end
-  end
-
-  def destroy
-    user = User.find params[:id]
-    user.destroy
-    redirect_to users_path
-  end
-
+# Admin Actions
   def make_admin
     user = User.find params[:id]
     user.make_admin
@@ -125,18 +124,16 @@ class UsersController < ApplicationController
     redirect_to users_path, notice: 'Updated User'
   end
 
+# Before Filters
   def verify_create_parameters
     @user = User.new(params[:user])
-    @user.stripe_card_token = params[:user][:stripe_card_token]    
-    @user.subscription_plan_id = params[:user][:subscription_plan_id]    
     @user.username.downcase!
     @user.newsletter_subscription = !@user.newsletter_subscription.to_i.zero?
     if params[:user][:password] != params[:user][:password_confirmation]
       @user.errors.add :password, "did not match confirmation."
       render 'new'
     end
-    params[:user].delete :password_confirmation
-    params[:user].delete :stripe_card_token
+    params[:user].delete :password_confirmation    
   end
 
   def get_specials

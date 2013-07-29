@@ -8,8 +8,8 @@ class BarEntitiesController < ApplicationController
   end  
 
   def index
-    @bar_entities = BarEntity.all#where bar_owner_id: current_user.id
-    redirect_to new_bar_entity_path if @bar_entities.blank?    
+    @bar_entities = BarEntity.where bar_owner_id: current_user.id
+    redirect_to new_bar_entity_path unless current_user.bars?
   end
     
   def create
@@ -51,7 +51,7 @@ class BarEntitiesController < ApplicationController
     bar_entity.destroy
     @id = params[:id]
     respond_to do |format|
-      format.html {redirect_to profile_path}
+      format.html {redirect_to bar_entities_path}
       format.js
     end
   end

@@ -1,52 +1,56 @@
-<% title 'Sign Up - ' %>
+<% title 'Register - ' %>
+
 			<div class="row">
-				<div class='large-12 columns'>
-					<h3>Step 1</h3>
-					<h5>Your Personal Information:</h5>
+				<div class='large-12 columns'>					
+					<div class="row heading">
+				    <div class="large-9 columns">
+			        <img alt="Beerance_baricon" src="/assets/beerance_baricon.png"><h2>Join Beerance</h2>
+				    </div>
+			    </div>
 					<%= form_for @user do |f| %>
-					<% if @user.errors.any? %>
-						<div class="error_messages">
-							<h4>Form is invalid</h4>
-							<ul>
-								<% for message in @user.errors.full_messages %>
-								<li><%= message.gsub('202 username', 'Email') %></li>
-								<% end %>
-							</ul>
-						</div>
-					<% end %>
-				</div>
-				<div class='large-4 columns'>
-					<%= f.label :email %><br />
-					<%= f.email_field :username, placeholder: 'master@jedi.com', class: 'required' %>
-					<%= f.label :owner_name, "Your Name" %><br />
-					<%= f.text_field :owner_name, placeholder: 'Luke S. Walker', class: 'required' %>
-					<%= f.label :owner_phone, "Business Phone Number" %><br />
-					<%= f.phone_field :owner_phone, placeholder: '216-123-4567', class: 'required' %>
-				</div>
-				<div class='large-1 columns'></div>
-				<div class='large-4 columns'>
-				<%= f.label :password %><br />
-				<%= f.password_field :password, class: 'required' %>
-				<%= f.label :password_confirmation %><br />
-				<%= f.password_field :password_confirmation, class: 'required' %>				
-				</div>
-			<div class='large-3 columns'></div>
-		</div>
+						<% if @user.errors.any? %>
+							<div class="error_messages">
+								<h4>Form is invalid</h4>
+								<ul>
+									<% for message in @user.errors.full_messages %>
+									<li><%= message.gsub('202 username', 'Email') %></li>
+									<% end %>
+								</ul>
+							</div>
+						<% end %>
+					<div class='large-4 columns'>
+						<%= f.label :email %><br />
+						<%= f.email_field :username, placeholder: 'master@jedi.com', class: 'required' %>
+						<%= f.label :owner_name, "Your Name" %><br />
+						<%= f.text_field :owner_name, placeholder: 'Luke S. Walker', class: 'required' %>
+						<%= f.label :owner_phone, "Business Phone Number" %><br />
+						<%= f.phone_field :owner_phone, placeholder: '216-123-4567', class: 'required' %>
+					</div>
+					<div class='large-1 columns'></div>
+					<div class='large-4 columns'>
+						<%= f.label :password %><br />
+						<%= f.password_field :password, class: 'required' %>
+						<%= f.label :password_confirmation %><br />
+						<%= f.password_field :password_confirmation, class: 'required' %>				
+					</div>
+					<div class='large-3 columns'></div>				
 		
-		<div class='row'>
-			<div class='large-12 columns'>
-				<label>
-					<%= f.check_box :newsletter_subscription, checked: true %> Sign up for our newsletter
-				</label>
+			<div class='row'>
+				<div class='large-12 columns'>
+					<label>
+						<%= f.check_box :newsletter_subscription, checked: true %> Sign up for our newsletter
+					</label>
+				</div>
 			</div>
-		</div>
-		<div class='row'>
-			<div class='large-12 columns'>
-				<p>By clicking you agree to the <%= link_to "Terms of Service", 'javascript:void(0)' %>, <%= link_to "Privacy", 'javascript:void(0)' %>, and <%= link_to "Refund policies", 'javascript:void(0)' %>.</p>
-				<%= f.submit "Start My Free Trial", class: 'button radius' %>
-				<% end %>
+			<div class='row'>
+				<div class='large-12 columns'>
+					<p>By clicking you agree to the <%= link_to "Terms of Service", tos_path %>, <%= link_to "Privacy", privacy_path %>, and <%= link_to "Refund policies", 'javascript:void(0)' %>.</p>
+					<%= f.submit "Join Beerance", class: 'button' %>
+				</div>
 			</div>
+			<% end %>
 		</div>
+	</div>
 		
 
 

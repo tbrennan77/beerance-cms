@@ -26,7 +26,7 @@ $('.subnav a').live('click', function(e) {
   <ul class="side-nav">
     <li class="active"><%= link_to "Current Specials", current_specials_path, class: 'current', data: {remote: true} %></li>
     <li><%= link_to "Archive", archived_specials_path, data: {remote: true} %></li>
-    <li><%= link_to "My Bars", bar_list_path, data: {remote: true} %></li>
+    <li><%= link_to "My Bars", bar_entities_path, data: {remote: true} %></li>
     <li><%= link_to "Account Details", account_path, data: {remote: true} %></li>
   </ul>
 </div>

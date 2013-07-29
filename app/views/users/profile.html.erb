@@ -4,11 +4,7 @@
 	<div class="row">
     	<div class="large-12 columns">
         	<div class='ajax-container'>
-              <% if current_user.bars.count > 0 %>
-                <%= render partial: params[:partial] || 'current_specials' %>
-              <% else %>
-              	<%= render partial: 'bars' %>
-              <% end %>
+              <%= render partial: 'current_specials' %>
             </div>          
         </div>
     </div>
