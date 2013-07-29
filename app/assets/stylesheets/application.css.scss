@@ -253,7 +253,7 @@ li {list-style-type: none;}
   .heading {
 	  img {float:left;height: 50px;}
 	  h2 {float:left; margin-left:15px;}
-	  .button {width:100%!important;color:#FFF!important;}
+	  .orange {width:100%!important;color:#FFF!important;}
   }
   h3 {margin:0;padding:0;font-size: 20px;}
 	h4 a {color: #AAA;}
@@ -317,7 +317,7 @@ li {list-style-type: none;}
 	.specials > div:nth-child(even), .archives > div:nth-child(even) {background: tan;}
 	.specials > div.thead, .archives > div.thead {background: #311308;}
 	.orange_grad > div {color: white;}
-	.info .beer .button {margin: 0;width: 150px;margin-bottom: 20px;}
+	.info .beer .orange {margin: 0;width: 150px;margin-bottom: 20px;}
 	
 	.remove {background: url(remove_icon.png);width: 24px;height: 24px;display: inline-block;margin-top: -10px;}
 	.remove:hover {transform:translate(1px, 1px);-moz-transform:translate(1px, 1px);-ms-transform:translate(1px, 1px);-webkit-transform:translate(1px, 1px);-o-transform:translate(1px, 1px);}
@@ -330,8 +330,6 @@ li {list-style-type: none;}
     transition: all .5s ease-in-out;
 	}
 	.re-activate:hover {transform:rotate(-30deg);-moz-transform:rotate(-30deg);-ms-transform:rotate(-30deg);-webkit-transform:rotate(-30deg);-o-transform:rotate(-30deg);}
-	
-	
 	
 	#ajax_bar {
 	  background: transparent !important;
@@ -355,31 +353,40 @@ li {list-style-type: none;}
 	fieldset {background:none;border:none;}
 }
 
-a.button {
-  color: #FFFFFF !important;
-}
-
 .button {
-	font-family: Arial, Helvetica, sans-serif;
-	font-size: 30px;
-	color: #ffffff!important;
-	padding: 10px 10px;
-	background: -moz-linear-gradient(top,#eab05a 0%,#cb641a);
-	background: -webkit-gradient(linear, left top, left bottom, from(#eab05a),to(#cb641a));
-	-moz-border-radius: 10px;
-	-webkit-border-radius: 10px;
-	border-radius: 10px;
-	border: 1px solid #904513!important;
-	-moz-box-shadow:-1px 1px 3px rgba(000,000,000,0.2),inset 0px 0px 1px rgba(255,255,255,0.7);
-	-webkit-box-shadow:-1px 1px 3px rgba(000,000,000,0.2),inset 0px 0px 1px rgba(255,255,255,0.7);
-	box-shadow:-1px 1px 3px rgba(000,000,000,0.2),inset 0px 0px 1px rgba(255,255,255,0.7);
-	text-shadow:-1px -1px 2px rgba(000,000,000,0.5);
+  &.orange {
+    $color: #CFC9A4; 
+    color: #FFFFFF;
+    text-shadow: 0 1px 1px rgba(0,0,0,0.7);    
+    font-family: Arial, Helvetica, sans-serif;
+    border: 1px solid #904513 !important;
+    background: -moz-linear-gradient(top, #eab05a 0%, #cb641a);
+    background: -webkit-gradient(linear, left top, left bottom, from(#eab05a),to(#cb641a));
+    
+    &.nice {border: 1px solid darken(#904513,10%);}
+    &:hover, &:focus {
+      background: -moz-linear-gradient(top, darken(#eab05a,7%) 0%, darken(#cb641a,7%));
+      background: -webkit-gradient(linear, left top, left bottom, from(darken(#eab05a,7%)),to(darken(#cb641a,7%)));
+    }
+  }
 }
 
+.shadow {
+  -moz-box-shadow:-1px 1px 3px rgba(000,000,000,0.2),inset 0px 0px 1px rgba(255,255,255,0.7);
+  -webkit-box-shadow:-1px 1px 3px rgba(000,000,000,0.2),inset 0px 0px 1px rgba(255,255,255,0.7);
+  box-shadow:-1px 1px 3px rgba(000,000,000,0.2),inset 0px 0px 1px rgba(255,255,255,0.7);
+  text-shadow:-1px -1px 2px rgba(000,000,000,0.5);
+}
+
+.radius {
+  -moz-border-radius: 10px !important;
+  -webkit-border-radius: 10px !important;
+  border-radius: 10px !important;
+}
 .info { background-color: $beige; margin-bottom: -110px!important;
   .columns {padding:9px 0 15px 0;}
   .badge {padding-top: 18px;}
-  .cta { width: 250px; margin: 23px 0 0 13%; padding-top:0;
+  .cta { width: 250px; padding-top:0;
     h2 {font-size: 40px;font-weight: 300;line-height: 50px;}
     span {display:block;text-transform: uppercase; font-size: 46px; line-height: 50px;font-weight: bold;margin-bottom: 20px;}
   }
@@ -387,10 +394,10 @@ a.button {
   .beer, .bar {
     img {margin:5px 5px 0 0; float:left;}
     h2 {color:$medium_orange; float:left; font-size: 33px;padding: 5px 0 0 3px; font-weight: 300;}
-    .button {width: 85%; margin: 43px 0 0 8%;}
+    .orange {width: 85%; margin: 43px 0 0 8%;}
   }
   .bar { 
-    .button {margin: 12px 0 0 8%;}
+    .orange {margin: 12px 0 0 8%;}
   }
   ul {list-style-image: url("beerance_staricon.png"); color:$dark_oranges; clear:both; font-size: 20px; font-weight: 300; line-height: 25px; padding: 20px 0 0 25px;}
     li {padding:7px 0;}
@@ -491,7 +498,7 @@ select {-webkit-appearance:none;-moz-appearance:none;appearance:none;height: 32p
 	padding:0;
 }
 
-.home-promo .section-container input.button, .home-promo .section-container button.button {
+.home-promo .section-container input.orange, .home-promo .section-container button.orange {
 	margin-bottom:0;
 }
 
