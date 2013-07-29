@@ -1,10 +1,9 @@
 source 'https://rubygems.org'
 
 gem 'rails', '3.2.13'
-gem 'dynamic_form'
 gem 'geocoder'
 gem 'gibbon', :git => 'https://github.com/amro/gibbon.git'
-gem "combined_time_select", "~> 0.0.1"
+gem 'combined_time_select', '~> 0.0.1'
 gem 'modernizr-rails'
 gem 'jquery-rails'
 gem 'animate-rails'
