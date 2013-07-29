@@ -38,12 +38,13 @@ Beerance::Application.routes.draw do
   resources :users  
   get '/end-beerance/:id' => 'users#end_beerance', as: 'end_beerance'
   get '/reactive-beerance/:id' => 'users#reactivate_beerance', as: 'reactivate_beerance'
-  get "/my-beerances" => "users#profile", as: "profile"
+  match "/my-beerances" => "users#profile", as: "profile"
   get "/my-account" => "users#show", as: "account"
   get '/my-beerances/current-specials' => "users#current_specials", as: 'current_specials'
   get '/my-beerances/archived-specials' => "users#archived_specials", as: 'archived_specials'
   get '/my-beerances/bar-list' => "users#bars", as: 'bar_list'
   get "/register" => "users#new", :as => "sign_up"    
+  get "/account-details" => "users#show", :as => "account_details"    
   
   # Bar entities
   resources :bar_entities, path: 'bars'

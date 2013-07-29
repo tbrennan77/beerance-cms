@@ -272,8 +272,38 @@ li {list-style-type: none;}
     text-align: center;
 	}
 
-	label.active img {border: 2px solid brown;box-shadow: 0 1px 3px #CCC}
-	label.active img:hover {border: 2px solid brown;}
+  .plan-box {
+    h5 { color: white}
+
+    &.active {
+      background: #ac7016; /* Old browsers */
+      background: -moz-linear-gradient(top,  #ac7016 0%, #793b0f 100%); /* FF3.6+ */
+      background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ac7016), color-stop(100%,#793b0f)); /* Chrome,Safari4+ */
+      background: -webkit-linear-gradient(top,  #ac7016 0%,#793b0f 100%); /* Chrome10+,Safari5.1+ */
+      background: -o-linear-gradient(top,  #ac7016 0%,#793b0f 100%); /* Opera 11.10+ */
+      background: -ms-linear-gradient(top,  #ac7016 0%,#793b0f 100%); /* IE10+ */
+      background: linear-gradient(to bottom,  #ac7016 0%,#793b0f 100%); /* W3C */
+      filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ac7016', endColorstr='#793b0f',GradientType=0 ); /* IE6-9 */
+    }
+
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 30px;
+    color: white !important;
+    padding: 10px 0;
+    width: 50%;
+    margin: 20px auto;
+    background: -moz-linear-gradient(top, #eab05a 0%, #cb641a);
+    background: -webkit-gradient(linear, left top, left bottom, from(#eab05a), to(#cb641a));
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    border: 1px solid #904513 !important;
+    -moz-box-shadow: -1px 1px 3px rgba(0, 0, 0, 0.2), inset 0px 0px 1px rgba(255, 255, 255, 0.7);
+    -webkit-box-shadow: -1px 1px 3px rgba(0, 0, 0, 0.2), inset 0px 0px 1px rgba(255, 255, 255, 0.7);
+    box-shadow: -1px 1px 3px rgba(0, 0, 0, 0.2), inset 0px 0px 1px rgba(255, 255, 255, 0.7);
+    text-shadow: -1px -1px 2px rgba(0, 0, 0, 0.5);    
+  }
+
 	input[type="radio"],  span.custom.radio {display: none;}
 	input.hide {display: none; margin-left: 6px;margin-bottom: 0 !important; margin-top: -8px;}
 	
@@ -564,3 +594,32 @@ $small: "only screen and (max-width:"#{$small-screen}")";
 
 }
 
+.subnav {
+  background: rgb(43, 13, 7);
+  color: white;
+  padding: 20px;
+  a { 
+    color: white;
+    padding: 8px 20px;
+    border-radius: 8px;
+    margin-right: 28px;
+
+    &.current, &:hover {
+      color: white;
+      background-color: rgb(122, 66, 37);
+      -webkit-transition: background-color .25s ease-in-out;
+      transition: background-color .25s ease-in-out;      
+    }
+  }
+
+  &.show-for-small {
+    a {
+      margin-right: 0;
+      color: white;
+
+      &.current {
+        color: white !important;        
+      }
+    }
+  }
+}

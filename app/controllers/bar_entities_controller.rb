@@ -1,13 +1,16 @@
 class BarEntitiesController < ApplicationController
   before_filter :require_user
   before_filter :confirm_correct_user, except: %w{new index create}
-  before_filter :set_times, only: %w{create update}
-
-  layout 'users'
+  before_filter :set_times, only: %w{create update}  
 
   def new  
     @bar_entity = BarEntity.new    
   end  
+
+  def index
+    @bar_entities = BarEntity.where bar_owner_id: current_user.id
+    redirect_to new_bar_entity_path if @bar_entities.blank?    
+  end
     
   def create
     params[:bar_entity].assert_valid_keys %w{bar_name bar_phone bar_url bar_addr1 bar_addr2 bar_city bar_state bar_zip hours_mon hours_tues hours_wed hours_thur hours_fri hours_sat hours_sun}
@@ -17,7 +20,7 @@ class BarEntitiesController < ApplicationController
 
     if @bar_entity.save
       respond_to do |format|
-        format.html { redirect_to profile_path, :notice => "Added Bar!" }
+        format.html { redirect_to profile_path(partial: 'bars'), :notice => "Added Bar!" }
         format.js
       end
 
@@ -37,7 +40,7 @@ class BarEntitiesController < ApplicationController
     if @bar_entity.update_attributes params[:bar_entity]     
       @bar_entity.ensure_fields
       @bar_entity.save
-      redirect_to profile_path, notice: 'Updated Bar'
+      redirect_to profile_path(partial: 'bars'), notice: 'Updated Bar'
     else
       render :edit
     end

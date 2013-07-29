@@ -3,7 +3,7 @@
 </style>
 <h3>Edit <%= @bar_entity.bar_name %></h3>  
 <fieldset>
-<%= form_for @bar_entity, html: {class: 'custom'} do |f| %>  
+<%= form_for @bar_entity do |f| %>  
   <% if @bar_entity.errors.any? %>  
     <div class="error_messages">  
       <h4>Form is invalid</h4>  
@@ -17,6 +17,6 @@
 
   <%= render partial: 'form', locals: {f: f} %>
 
-  <%= f.submit "Update Bar", class: 'button' %> <%= link_to "Cancel", profile_path, class: 'button' %>
+  <%= f.submit "Update Bar", class: 'button' %> <%= link_to "Cancel", bar_entities_path, class: 'button' %>
 <% end %>  
 </fieldset>
