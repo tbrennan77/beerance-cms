@@ -1,4 +1,5 @@
 class BarEntity < ParseResource::Base
+  attr_accessor :stripe_card_token
   fields :bar_owner_id,
         :bar_name,
         :bar_phone,
