@@ -110,6 +110,6 @@
             <p>Your 30-day free trial lasts until midnight on <%= DateTime.now.advance(days: 30).strftime("%b %-d, %Y") %>. If you don't want to continue using Beerance, just cancel before the trial ends and you won't be charged (we'll email you 5 days before the trial ends to remind you). Otherwise, you'll pay just the monthly cost for the service as long as your account is open. You can upgrade, downgrade, or cancel anytime.</p>
           </div>
         </div>
-  <%= f.submit "Add New Bar", class: 'button' %>  <%= link_to "Cancel", bar_entities_path, class: 'button' %>
+  <%= f.submit "Add New Bar", class: 'button radius shadow' %>  <%= link_to "Cancel", bar_entities_path, class: 'red button radius' %>
 <% end %>  
 </fieldset>
