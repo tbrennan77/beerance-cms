@@ -25,4 +25,9 @@ module UsersHelper
   def my_bars(number)
     "My "+ pluralize(number, 'Bar').gsub(/[\d]/, '')
   end
+
+  def current_subnav(partial, link)
+    return 'current' if partial.blank? && link == 'current_specials'
+    partial == link ? 'current' : ''
+  end
 end

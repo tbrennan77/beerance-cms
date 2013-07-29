@@ -1,5 +1,4 @@
-class User < ParseUser
-  attr_accessor :stripe_card_token
+class User < ParseUser  
   fields :email, :newsletter_subscription, :username, :owner_name, :owner_phone, :account_type, :expiration_date, :user_favorites, :createdAt, :admin, :stripe_customer_id, :subscription_plan_id, :password_reset_token, :password_reset_sent_at
 
   EMAIL_REGEX = /[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}/i
@@ -22,10 +21,6 @@ class User < ParseUser
 
   def save_with_payment
     if valid?
-      self.save
-      s = Subscription.create subscription_plan_id: self.subscription_plan_id, user_id: self.id
-      s.set_expiration
-
       customer = Stripe::Customer.create(
         card:  stripe_card_token,
         plan:  s.plan.name,
@@ -34,7 +29,7 @@ class User < ParseUser
       charge = Stripe::Charge.create(
         customer:    customer.id,
         amount:      s.plan.amount,
-        description: 'Rails Stripe customer',
+        description: 'Beerance Subscription',
         currency:    'usd'
       )
       self.stripe_customer_id = customer.id
