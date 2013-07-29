@@ -221,7 +221,7 @@ li {list-style-type: none;}
 --*/
 
 .internalpage, .internalpage_user {
-  a {color:#f57b20!important;}
+  a {color:#f57b20;}
   .purple_grad{height:250px;}
   .orange_grad{padding-top: 33px;}
   h1 {font-size: 67px;}
@@ -354,11 +354,11 @@ li {list-style-type: none;}
 }
 
 .button {
-  &.orange {
+  &.orange, & {
     $color: #CFC9A4; 
-    color: #FFFFFF;
+    color: #FFFFFF !important;
     text-shadow: 0 1px 1px rgba(0,0,0,0.7);    
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Roboto Slab', Arial, Helvetica, sans-serif;
     border: 1px solid #904513 !important;
     background: -moz-linear-gradient(top, #eab05a 0%, #cb641a);
     background: -webkit-gradient(linear, left top, left bottom, from(#eab05a),to(#cb641a));
