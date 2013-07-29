@@ -19,11 +19,7 @@ class BarEntitiesController < ApplicationController
     @bar_entity.set_geo_location
 
     if @bar_entity.save
-      respond_to do |format|
-        format.html { redirect_to bar_entities_path, :notice => "Added Bar!" }
-        format.js
-      end
-
+      redirect_to bar_entities_path, :notice => "Added Bar"
     else  
       render "new"  
     end  
@@ -49,11 +45,7 @@ class BarEntitiesController < ApplicationController
   def destroy
     bar_entity = BarEntity.find params[:id]
     bar_entity.destroy
-    @id = params[:id]
-    respond_to do |format|
-      format.html {redirect_to bar_entities_path}
-      format.js
-    end
+    redirect_to bar_entities_path, notice: 'Deleted Bar'
   end
 
   private
