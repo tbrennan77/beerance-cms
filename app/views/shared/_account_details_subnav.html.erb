@@ -1,0 +1,18 @@
+<div class='subnav hide-for-small'>
+  <div class='row'>
+    <div class="large-12 columns">      
+      <%= link_to "My Account", profile_path %>
+      <%= link_to "My Bars", bar_entities_path %>      
+      <%= link_to "Account Details", account_details_path, class: 'current' %>
+      <%= link_to "Billing", billing_overview_path %>
+    </div>
+  </div>
+</div>
+
+<div class='subnav show-for-small'>
+  <ul class="side-nav">
+    <li class="active"><%= link_to "Current Specials", current_specials_path, class: 'current', data: {remote: true} %></li>
+    <li><%= link_to "Archive", archived_specials_path, data: {remote: true} %></li>
+    <li><%= link_to "My Bars", bar_entities_path, data: {remote: true} %></li>
+  </ul>
+</div>

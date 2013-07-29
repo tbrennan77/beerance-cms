@@ -23,10 +23,7 @@ class UsersController < ApplicationController
     end
 
     @total_bars = bar_entities.count
-    respond_to do |format|
-        format.js
-        format.html
-      end
+    render layout: 'account_details'    
   end
 
   def profile    
