@@ -8,7 +8,7 @@ class BarEntitiesController < ApplicationController
   end  
 
   def index
-    @bar_entities = BarEntity.where bar_owner_id: current_user.id
+    @bar_entities = BarEntity.all#where bar_owner_id: current_user.id
     redirect_to new_bar_entity_path if @bar_entities.blank?    
   end
     
