@@ -5,29 +5,6 @@ jQuery ->
   Stripe.setPublishableKey($('meta[name="stripe-key"]').attr('content'))
   subscription.setupForm()
 
-  original_input_value = ""
-
-  $('.edit_bar_specials label').live 'click', ->
-    $(this).hide()
-    $(this).next('.hide').show()
-    $(this).next('.hide').focus();
-    original_input_value = $(this).next('.hide').val()
-
-  $('.edit_bar_specials .hide').live 'blur', ->
-    if $(this).val() != original_input_value
-      $('.ajax-container').fadeOut('fast')
-      $(this).parent().parent().parent().submit()
-    else
-      $(this).hide()
-      $(this).prev('label').show()  
-
-  $('.cancel-new-bar').live 'click', ->
-    $('#new_bar_entity').parent().fadeOut().delay(1000).remove()
-
-  $('input[type="radio"]').live 'change', ->
-    $('label').removeClass('active')
-    $(this).parent().addClass('active')
-
 subscription =
   setupForm: ->
     $('#new_user').submit ->
@@ -61,7 +38,7 @@ subscription =
       $('#stripe_error').text(response.error.message.replace("The card object must have a value for 'number'", 'Please enter a credit card number'))      
       $('input[type="submit"]').attr('disabled', false)
 
-$('select').live 'change', ->
+$('.hour-label select').live 'change', ->
   selects = $(this).parent().parent().find('select')
 
   if $(this).val() == 'Closed'

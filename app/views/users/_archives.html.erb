@@ -1,10 +1,7 @@
 <div class="row heading">
   <div class="large-9 columns">
     <%= image_tag "beerance_mugicon.png" %><h2>Archived Specials</h2>
-  </div>
-  <div class="large-3 columns">
-    <%= link_to "New Special", "#", data: {reveal_id: "new_special"}, title: "New Special", class: 'button radius shadow' %>
-  </div>
+  </div>  
 </div>
 
 <% unless @inactive_specials.empty? %>
@@ -65,11 +62,9 @@
 		</div>
 	</div>
 	<% end %> 
-	<% end %>
-</div> 
-  
+	<% end %> 
+</div>
+
 <% else %>
   <h3 style='text-align: center;'>You have no archived specials</h3>
 <% end %>
-
-<%= render partial: 'users/new_special' %>

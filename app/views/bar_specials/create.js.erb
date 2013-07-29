@@ -1,0 +1,4 @@
+$('.ajax-container').html('<div class="alert-box success"><%= flash[:notice] %></div><%= j render("users/current_specials") %>').fadeIn();
+
+$('#ajax_bar').fadeOut();
+$('.alert-box.success').hide().fadeIn('slow').delay(4000).fadeOut();

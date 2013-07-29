@@ -3,11 +3,9 @@
     <%= image_tag "beerance_mugicon.png" %><h2>Current Specials</h2>
   </div>
   <div class="large-3 columns">
-    <%= link_to "New Special", "#", data: {reveal_id: "new_special"}, title: "New Special", class: 'button radius shadow' %>
+    <%= link_to "New Special", "javascript:void(0)", title: "New Special", class: 'button radius shadow new-special' %>
   </div>
 </div>
-
-<% unless @active_specials.empty? %>
 
 <div class="beerance_list">
 	<div class="row hide-for-small purple_grad">
@@ -32,45 +30,74 @@
 	</div>
 		
 	<% @active_specials.each do |bs| %>
-	<%= form_for bs, html: { data: {remote: true } } do |f| %>
-	<%= f.hidden_field :bar_id %>
-	<%= f.hidden_field :current_page, value: true %>
-		
-	<div class="row">
-		<div class="large-5 columns">
-			<span class="show-for-small">Name: </span>
-			<%= f.label :special_description, bs.special_description %>
-			<%= f.text_field :special_description, class: 'input-text hide' %>
-		</div>
-		<div class="large-1 columns color">
-			<span class="show-for-small">Color: </span>
-			  <%= beer_color_image bs.beer_color %>
-		</div>
-		<div class="large-1 columns">
-			<span class="show-for-small">Price: </span>
-			<%= f.label :sale_price, number_to_currency(bs.sale_price) %>
-			<%= f.text_field :sale_price, class: 'input-text hide' %>
-		</div>
-		<div class="large-1 columns">
-			<span class="show-for-small">Size: </span>
-			<%= f.label :beer_size, "#{bs.beer_size}oz" %>
-			<%= f.select :beer_size, (3..26).map{|n|n}, {}, class: 'input-text hide' %>
-		</div>
-		<div class="large-3 columns">
-			<span class="show-for-small">Location: </span>
-			<%= bs.bar_name %>
-		</div>
-		<div class="large-1 columns align-center">
-			<span class="show-for-small">Remove: </span>
-			<%= link_to "", end_beerance_path(bs), class: 'remove', data: {remote: true} %>
-		</div>
-	</div>
-	<% end %> 
+		<%= form_for bs, html: { data: {remote: true } } do |f| %>
+			<%= f.hidden_field :bar_id %>
+			<%= f.hidden_field :current_page, value: true %>
+			
+			<div class="row">
+				<div class="large-5 columns">
+					<span class="show-for-small">Name: </span>
+					<%= f.label :special_description, bs.special_description %>
+					<%= f.text_field :special_description, class: 'input-text hide' %>
+				</div>
+				<div class="large-1 columns color">
+					<span class="show-for-small">Color: </span>
+					  <%= beer_color_image bs.beer_color %>
+				</div>
+				<div class="large-1 columns">
+					<span class="show-for-small">Price: </span>
+					<%= f.label :sale_price, number_to_currency(bs.sale_price) %>
+					<%= f.text_field :sale_price, class: 'input-text hide' %>
+				</div>
+				<div class="large-1 columns">
+					<span class="show-for-small">Size: </span>
+					<%= f.label :beer_size, "#{bs.beer_size}oz" %>
+					<%= f.select :beer_size, (3..26).map{|n|n}, {}, class: 'input-text hide' %>
+				</div>
+				<div class="large-3 columns">
+					<span class="show-for-small">Location: </span>
+					<%= bs.bar_name %>
+				</div>
+				<div class="large-1 columns align-center">
+					<span class="show-for-small">Remove: </span>
+					<%= link_to "", end_beerance_path(bs), class: 'remove', data: {remote: true} %>
+				</div>
+			</div>
+		<% end %> 
 	<% end %>
+
+		<%= form_for @bar_special, html: { class: 'hide', data: {remote: true} } do |f| %>			
+			<div class="row">
+				<div class="large-4 columns">
+					<span class="show-for-small">Name: </span>					
+					<%= f.text_field :special_description, placeholder: 'Name', class: 'input-text' %>
+				</div>
+				<div class="large-2 columns new-color">
+					<span class="show-for-small">Color: </span>
+					  <%= f.select :beer_color, [['Black', 0], ['Red', 1], ['Pale', 2], ['Amber', 3] ], prompt: 'Color' %>
+				</div>
+				<div class="large-1 columns">
+					<span class="show-for-small">Price: </span>					
+					<%= f.text_field :sale_price, placeholder: '3.99', class: 'input-text' %>
+				</div>
+				<div class="large-1 columns">
+					<span class="show-for-small">Size: </span>					
+					<%= f.select :beer_size, (3..26).map{|n|n}, prompt: 'Size' , class: 'input-text' %>
+				</div>
+				<div class="large-3 columns">
+					<span class="show-for-small">Location: </span>
+					<%= f.select :bar_id, current_user.bars.map {|b| [b.bar_name, b.id]}, prompt: 'Choose A Bar'  %>
+				</div>
+				<div class="large-1 columns align-center">
+					<span class="show-for-small">Remove: </span>
+					<%= f.submit "Add", class: 'small button radius shadow' %>
+				</div>
+			</div>
+		<% end %> 
 </div>
 
-<% else %>
-  <h3 style='text-align: center;'>You have no specials.</h3>
+<% if @active_specials.empty? %>
+	<br />
+	<br />
+	<h3 style='text-align: center;'>You have no current specials</h3>
 <% end %>
-
-<%= render partial: 'users/new_special' %>

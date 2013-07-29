@@ -13,7 +13,11 @@ class BarSpecialsController < ApplicationController
     params[:bar_specials].assert_valid_keys WRITABLE_ATTRIBUTES
     @bar_special = BarSpecials.new params[:bar_specials]
     if @bar_special.save
-      redirect_to profile_path, :notice => "Added Special!"  
+      get_specials
+      respond_to do |f|
+        f.html {redirect_to profile_path, :notice => "Added Special!"}
+        f.js { flash.now.notice = "Add new special"; @bar_special = BarSpecials.new}
+      end
     else  
       render "new"  
     end  
