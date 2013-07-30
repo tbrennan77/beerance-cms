@@ -28,6 +28,34 @@
 			Remove
 		</div>
 	</div>
+		<%= form_for @bar_special, html: { class: 'hide', data: {remote: true} } do |f| %>			
+			<div class="row">
+				<div class="large-4 columns">
+					<span class="show-for-small">Name: </span>					
+					<%= f.text_field :special_description, placeholder: 'Name', class: 'input-text' %>
+				</div>
+				<div class="large-2 columns new-color">
+					<span class="show-for-small">Color: </span>
+					  <%= f.select :beer_color, [['Black', 0], ['Red', 1], ['Pale', 2], ['Amber', 3] ], prompt: 'Color' %>
+				</div>
+				<div class="large-1 columns">
+					<span class="show-for-small">Price: </span>					
+					<%= f.text_field :sale_price, placeholder: '3.99', class: 'input-text' %>
+				</div>
+				<div class="large-1 columns">
+					<span class="show-for-small">Size: </span>					
+					<%= f.select :beer_size, (3..26).map{|n|n}, prompt: 'Size' , class: 'input-text' %>
+				</div>
+				<div class="large-3 columns">
+					<span class="show-for-small">Location: </span>
+					<%= f.select :bar_id, current_user.bars.map {|b| [b.bar_name, b.id]}, prompt: 'Choose A Bar'  %>
+				</div>
+				<div class="large-1 columns align-center">
+					<span class="show-for-small">Remove: </span>
+					<%= f.submit "Add", class: 'small button radius shadow' %>
+				</div>
+			</div>
+		<% end %> 
 		
 	<% @active_specials.each do |bs| %>
 		<%= form_for bs, html: { data: {remote: true } } do |f| %>
@@ -66,34 +94,6 @@
 		<% end %> 
 	<% end %>
 
-		<%= form_for @bar_special, html: { class: 'hide', data: {remote: true} } do |f| %>			
-			<div class="row">
-				<div class="large-4 columns">
-					<span class="show-for-small">Name: </span>					
-					<%= f.text_field :special_description, placeholder: 'Name', class: 'input-text' %>
-				</div>
-				<div class="large-2 columns new-color">
-					<span class="show-for-small">Color: </span>
-					  <%= f.select :beer_color, [['Black', 0], ['Red', 1], ['Pale', 2], ['Amber', 3] ], prompt: 'Color' %>
-				</div>
-				<div class="large-1 columns">
-					<span class="show-for-small">Price: </span>					
-					<%= f.text_field :sale_price, placeholder: '3.99', class: 'input-text' %>
-				</div>
-				<div class="large-1 columns">
-					<span class="show-for-small">Size: </span>					
-					<%= f.select :beer_size, (3..26).map{|n|n}, prompt: 'Size' , class: 'input-text' %>
-				</div>
-				<div class="large-3 columns">
-					<span class="show-for-small">Location: </span>
-					<%= f.select :bar_id, current_user.bars.map {|b| [b.bar_name, b.id]}, prompt: 'Choose A Bar'  %>
-				</div>
-				<div class="large-1 columns align-center">
-					<span class="show-for-small">Remove: </span>
-					<%= f.submit "Add", class: 'small button radius shadow' %>
-				</div>
-			</div>
-		<% end %> 
 </div>
 
 <% if @active_specials.empty? %>

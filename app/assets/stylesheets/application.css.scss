@@ -375,7 +375,6 @@ li {list-style-type: none;}
     background: -moz-linear-gradient(top, #eab05a 0%, #cb641a);
     background: -webkit-gradient(linear, left top, left bottom, from(#eab05a),to(#cb641a));
     
-    &.nice {border: 1px solid darken(#904513,10%);}
     &:hover, &:focus {
       background: -moz-linear-gradient(top, darken(#eab05a,7%) 0%, darken(#cb641a,7%));
       background: -webkit-gradient(linear, left top, left bottom, from(darken(#eab05a,7%)),to(darken(#cb641a,7%)));

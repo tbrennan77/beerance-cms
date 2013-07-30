@@ -1,6 +1,8 @@
 class BarEntity < ParseResource::Base
   attr_accessor :stripe_card_token
   fields :bar_owner_id,
+        :stripe_customer_id,
+        :subscription_plan_id,
         :bar_name,
         :bar_phone,
         :bar_url,
@@ -32,7 +34,7 @@ class BarEntity < ParseResource::Base
         :sun_start,
         :sun_end
 
-  validates_presence_of :bar_name, :bar_location, :bar_phone, :bar_url, :bar_addr1, :bar_city, :bar_state, :bar_zip, :hours_mon, :hours_tues, :hours_wed, :hours_thur, :hours_fri, :hours_sat, :hours_sun
+  validates_presence_of :bar_name, :stripe_customer_id, :subscription_plan_id, :bar_location, :bar_phone, :bar_url, :bar_addr1, :bar_city, :bar_state, :bar_zip, :hours_mon, :hours_tues, :hours_wed, :hours_thur, :hours_fri, :hours_sat, :hours_sun
   before_save :ensure_fields
 
   def set_phone_number
@@ -77,5 +79,30 @@ class BarEntity < ParseResource::Base
     set_url
     set_geo_location
     update_specials
+  end
+
+  def subscription_plan
+    SubscriptionPlan.find subscription_plan_id
+  end
+
+  def save_with_payment
+    if valid?
+      customer = Stripe::Customer.create(
+        card:  stripe_card_token,
+        plan:  self.subscription_plan.name,
+        email: self.user.username
+      )
+      charge = Stripe::Charge.create(
+        customer:    customer.id,
+        amount:      s.plan.amount,
+        description: self.bar_name,
+        currency:    'usd'
+      )
+      self.stripe_customer_id = customer.id
+      self.save
+    end
+  rescue Stripe::InvalidRequestError => e    
+    errors.add :base, "There was a problem with your credit card."
+    false
   end
 end

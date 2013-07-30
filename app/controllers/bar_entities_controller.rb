@@ -18,7 +18,7 @@ class BarEntitiesController < ApplicationController
     @bar_entity.set_bar_owner current_user.id
     @bar_entity.set_geo_location
 
-    if @bar_entity.save
+    if @bar_entity.save_with_payment
       redirect_to bar_entities_path, :notice => "Added Bar"
     else  
       render "new"  
