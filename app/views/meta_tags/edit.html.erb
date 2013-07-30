@@ -1,8 +1,10 @@
 <h2>Edit meta tags for SEO</h2>
 <div style="padding: 8px">
-<%= form_for @meta_tag do |f| %>
-  <%= f.label :text, "Meta Tags" %>
-  <%= f.text_area :text, style: 'height: 200px', class: 'radius' %>
-  <%= f.submit "Save", class: 'orange button radius shadow' %>
-<% end %>
+    <%= form_for @meta_tag do |f| %>
+      <%= f.label :text, "Meta Tags" %>
+      <pre>
+        <%= f.text_area :text, style: 'height: 200px; overflow: overflow', class: 'radius' %>
+      </pre>
+      <%= f.submit "Save", class: 'orange button radius shadow' %>
+    <% end %>
 </div>
