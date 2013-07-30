@@ -32,9 +32,8 @@
 
   <!-- Set the viewport width to device width for mobile -->
   <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no, width=device-width" />  
-  <title><%= yield(:title) %>Beerance App</title>  
-  <meta name="description" content="Connecting beer drinkers to great craft beer specials at bars and restaurants in your local area.!" />
-  <meta name="keywords" content="app for beer, beerance, beer app, beer iPhone app, craft beer app, beerance app, beer special app, beeranceapp, app for beer drinkers, beer on sale app, beer specials, free beer app, download beer app, on sale beer app" />
+  <title><%= yield(:title) %>Beerance App</title>
+  <%= MetaTag.first.text %>
   
   <!-- Included CSS Files -->
   <%= stylesheet_link_tag "application" %>

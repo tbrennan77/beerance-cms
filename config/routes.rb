@@ -1,4 +1,8 @@
 Beerance::Application.routes.draw do
+  # Meta tags
+  get '/admin/meta-tags/edit' => 'meta_tags#edit', as: 'edit_meta_tag'
+  resources :meta_tags
+
   # Billing
   resources :billings
   get  '/billing'              => 'billing#index', as: 'billing_overview'
