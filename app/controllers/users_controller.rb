@@ -113,13 +113,13 @@ class UsersController < ApplicationController
   def make_admin
     user = User.find params[:id]
     user.make_admin
-    redirect_to users_path, notice: 'Updated User'
+    redirect_to admin_users_path, notice: 'Updated User'
   end
 
   def remove_admin
     user = User.find params[:id]
     user.remove_admin
-    redirect_to users_path, notice: 'Updated User'
+    redirect_to admin_users_path, notice: 'Updated User'
   end
 
 # Before Filters

@@ -1,6 +1,6 @@
 class PasswordResetsController < ApplicationController
   before_filter :check_password, :only => %w{update}
-  #before_filter :block_employees, :except => %w{new}
+  before_filter :block_employees, :except => %w{new}
     
   def new
   end
