@@ -88,6 +88,7 @@ GEM
     modernizr-rails (2.6.2.3)
     multi_json (1.7.7)
     multi_xml (0.5.4)
+    newrelic_rpm (3.6.0.83)
     nokogiri (1.6.0)
       mini_portile (~> 0.5.0)
     parse_resource (1.8.0)
@@ -166,6 +167,7 @@ DEPENDENCIES
   gibbon!
   jquery-rails
   modernizr-rails
+  newrelic_rpm
   parse_resource (~> 1.8.0)
   rails (= 3.2.13)
   sass-rails (~> 3.2.3)
