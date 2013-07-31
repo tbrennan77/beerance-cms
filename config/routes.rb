@@ -4,14 +4,14 @@ Beerance::Application.routes.draw do
   resources :meta_tags
 
   # Billing  
-  get  '/billing'              => 'billing#index', as: 'billing_overview'
-  get  '/billing/bars/:id'     => 'billing#show', as: 'show_billing'
-  get  '/billing/bars/:id/invoices'     => 'billing#invoices', as: 'invoices'
+  get  '/billing'                           => 'billing#index', as: 'billing_overview'
+  get  '/billing/bars/:id'                  => 'billing#show', as: 'show_billing'
+  get  '/billing/change-plan/:id'           => 'billing#edit_plan', as: 'edit_plan'
+  get  '/billing/change-card/:id'           => 'billing#edit_card', as: 'edit_card'
+  get  '/billing/bars/:id/invoices'         => 'billing#invoices', as: 'invoices'
   get  '/billing/bars/invoices-details/:id' => 'billing#show_invoice', as: 'show_invoice'
-  get  '/billing/change-plan/:id'  => 'billing#edit_plan', as: 'edit_plan'
-  get  '/billing/change-card/:id'  => 'billing#edit_card', as: 'edit_card'
-  post '/billing/update-plan/:id'  => 'billing#update_plan', as: 'update_plan'
-  post '/billing/update-card/:id'  => 'billing#update_card', as: 'update_card'
+  post '/billing/update-plan/:id'           => 'billing#update_plan', as: 'update_plan'
+  post '/billing/update-card/:id'           => 'billing#update_card', as: 'update_card'
 
   # Password resests
   get '/send-password-reset' => 'password_resets#new', :as => 'new_password_reset'
