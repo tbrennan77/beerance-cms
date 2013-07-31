@@ -6,35 +6,34 @@ textarea {height:150px;}
 
 <div class='row'>
 	<div class='large-5 push-7 large columns'>
-    	<p></p>
-    	<p>Thank you all for taking the time to send us feedback.  Please take a few minutes to review the site and send us your feedback by filling out the form to the left.</p>
-    	<div class="row hide-for-small">
+  	<p></p>
+    <p>Thank you for taking the time to send us feedback.  Please take a few minutes to review the site and send us your feedback by filling out the form.</p>
+    <div class="row hide-for-small">
 			<div class="large-7 large-centered columns"><%= image_tag "beerance_badge.png", class: 'badge' %></div>
 		</div>
-    </div>
-    
-    <div class='large-7 pull-5 large columns'>
-	      <fieldset style="margin:0;">
-		      <%= form_for @feedback, url: send_feedback_path do |f| %>
-		
-		          <%= f.label :name, "Your Name" %><br />
-		          <%= f.text_field :name, placeholder: 'John Smith', class: 'required' %>
-		          
-		          <%= f.label :email, "Your Email" %><br />
-		          <%= f.email_field :email, placeholder: 'email@example.com', class: 'required' %>
-		
-		          <%= f.label :phone, "Phone Number" %><br />
-		          <%= f.phone_field :phone, placeholder: '216-123-4567' %>
-		
-		          <%= f.label :category, "Feedback Category" %><br />
-		          <%= f.select :category, %w{Design Error Suggestion Request Other}, prompt: 'Select One' %>
-		
-		        	<%= f.label :comment, "Your Comment" %><br />
-							<%= f.text_area :comment %>
-		
-		          <%= f.submit "Submit", class: 'button' %>
-		
-		      <% end %>
-	      </fieldset>
-    </div>
+  </div>
+  <div class='large-7 pull-5 large columns'>
+      <fieldset style="margin:0;">
+	      <%= form_for @feedback, url: send_feedback_path do |f| %>
+	
+	          <%= f.label :name, "Your Name" %><br />
+	          <%= f.text_field :name, placeholder: 'John Smith', class: 'required' %>
+	          
+	          <%= f.label :email, "Your Email" %><br />
+	          <%= f.email_field :email, placeholder: 'email@example.com', class: 'required' %>
+	
+	          <%= f.label :phone, "Phone Number" %><br />
+	          <%= f.phone_field :phone, placeholder: '216-123-4567' %>
+	
+	          <%= f.label :category, "Feedback Category" %><br />
+	          <%= f.select :category, %w{Design Error Suggestion Request Other}, prompt: 'Select One' %>
+	
+	        	<%= f.label :comment, "Your Comment" %><br />
+						<%= f.text_area :comment %>
+	
+	          <%= f.submit "Submit", class: 'button' %>
+	
+	      <% end %>
+      </fieldset>
+  </div>
 </div>
