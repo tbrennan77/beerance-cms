@@ -1,16 +1,19 @@
 <script>
-$('#subnav a').live('click', function() {
-  $('#subnav a').each( function() {
+$('.subnav a[data-remote="true"]').live('click', function(e) {  
+  $('.ajax-container').fadeOut()
+  $('.subnav a').each( function() {
     $(this).removeClass('current');
+    $(this).removeClass('active');
+    $(this).removeAttr('disabled');
   });
-  $(this).addClass('current');
+  $(this).addClass('current');  
 })
 </script>
 
-<div id="subnav">
+<div class='subnav'>
   <div class='row'>
-    <div class="large-12 columns">
-      <a href="/">Home</a>|
+    <div class="large-12 columns">      
+      <%= link_to "Home", root_path, class: is_current?('index') %>
       <%#= link_to "Get the App", get_the_app_path, class: is_current?('get_the_app') %>
       <%= link_to "How It Works", how_it_works_path, class: is_current?('how_it_works') %>
       <%#= link_to "For Bar Owners", for_bar_owners_path, class: is_current?('for_bar_owners') %>

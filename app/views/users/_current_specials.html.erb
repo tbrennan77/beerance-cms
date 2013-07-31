@@ -1,6 +1,6 @@
 <div class="row heading">
   <div class="large-9 columns">
-    <%= image_tag "beerance_mugicon.png" %><h2>Current Specials</h2>
+    <%= image_tag "beerance_mugicon.png" %><h2>Current Specials</h2><span class="clicktoedit">*Click to make changes live</span>
   </div>
   <div class="large-3 columns">
     <%= link_to "New Special", "javascript:void(0)", title: "New Special", class: 'button radius shadow new-special' %>
@@ -10,16 +10,16 @@
 <div class="beerance_list">
 	<div class="row hide-for-small purple_grad">
 		<div class="large-5 columns">
-			Name
+			Name*
 		</div>
 		<div class="large-1 columns">
 			Color
 		</div>
 		<div class="large-1 columns">
-			Price
+			Price*
 		</div>
 		<div class="large-1 columns">
-			Size
+			Size*
 		</div>
 		<div class="large-3 columns">
 			Location
@@ -63,7 +63,7 @@
 			
 			<div class="row">
 				<div class="large-5 columns">
-					<span class="show-for-small">Name: </span>
+					<span class="show-for-small">Name*: </span>
 					<%= f.label :special_description, bs.special_description %>
 					<%= f.text_field :special_description, class: 'input-text hide' %>
 				</div>
@@ -72,12 +72,12 @@
 					  <%= beer_color_image bs.beer_color %>
 				</div>
 				<div class="large-1 columns">
-					<span class="show-for-small">Price: </span>
+					<span class="show-for-small">Price*: </span>
 					<%= f.label :sale_price, number_to_currency(bs.sale_price) %>
 					<%= f.text_field :sale_price, class: 'input-text hide' %>
 				</div>
 				<div class="large-1 columns">
-					<span class="show-for-small">Size: </span>
+					<span class="show-for-small">Size*: </span>
 					<%= f.label :beer_size, "#{bs.beer_size}oz" %>
 					<%= f.select :beer_size, (3..26).map{ |n| ["#{n}oz",n] }, {} , class: 'input-text hide' %>
 				</div>
