@@ -1,7 +1,9 @@
 class BillingController < ApplicationController
   before_filter :require_user
+  before_filter :confirm_correct_user, except: %w{index}
 
-  def index    
+  def index 
+    redirect_to new_bar_entity_path unless current_user.bars?   
   end
 
   def show
@@ -41,5 +43,9 @@ class BillingController < ApplicationController
     else
       render 'edit_card'
     end      
+  end
+
+  def confirm_correct_user
+    redirect_to log_out_path unless BarEntity.find(params[:id]).bar_owner_id == current_user.id
   end
 end
