@@ -5,6 +5,15 @@ jQuery ->
   Stripe.setPublishableKey($('meta[name="stripe-key"]').attr('content'))
   subscription.setupForm()
 
+  $(document).ready ->
+    selects = $('.hour-label').find('select')
+    selects.each ->    
+      if $(this).val() == 'Closed'
+        $(this)[0].selectedIndex = 1
+        $(this).parent().parent().find('select')[1].selectedIndex = 0
+        $(this).parent().removeClass('large-6').addClass('large-12').focus()
+        $(this).parent().parent().find('select').last().hide()
+
 subscription =
   setupForm: ->
     $('#new_bar_entity').submit ->
@@ -42,10 +51,10 @@ $('.hour-label select').live 'change', ->
   selects = $(this).parent().parent().find('select')
 
   if $(this).val() == 'Closed'
-    selects[0].selectedIndex = 1
-    selects[1].selectedIndex = 0
-    $(selects[0]).parent().removeClass('large-6').addClass('large-12').focus()
-    $(selects[1]).hide()
+    selects.first()[0].selectedIndex = 1
+    selects.last()[0].selectedIndex = 0
+    selects.first().parent().removeClass('large-6').addClass('large-12').focus()
+    selects.last().hide()
   else
-    $(selects[0]).parent().removeClass('large-12').addClass('large-6')
-    $(selects[1]).show()
+    selects.first().parent().removeClass('large-12').addClass('large-6')
+    selects.last().show()
