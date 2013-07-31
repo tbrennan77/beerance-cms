@@ -13,7 +13,7 @@ class BarEntitiesController < ApplicationController
   end
     
   def create
-    params[:bar_entity].assert_valid_keys %w{bar_name bar_phone bar_url bar_addr1 bar_addr2 bar_city bar_state bar_zip hours_mon hours_tues hours_wed hours_thur hours_fri hours_sat hours_sun}
+    params[:bar_entity].assert_valid_keys %w{bar_name stripe_card_token subscription_plan_id bar_phone bar_url bar_addr1 bar_addr2 bar_city bar_state bar_zip hours_mon hours_tues hours_wed hours_thur hours_fri hours_sat hours_sun}
     @bar_entity = BarEntity.new params[:bar_entity]
     @bar_entity.set_bar_owner current_user.id
     @bar_entity.set_geo_location

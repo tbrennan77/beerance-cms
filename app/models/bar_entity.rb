@@ -34,7 +34,7 @@ class BarEntity < ParseResource::Base
         :sun_start,
         :sun_end
 
-  validates_presence_of :bar_name, :stripe_customer_id, :subscription_plan_id, :bar_location, :bar_phone, :bar_url, :bar_addr1, :bar_city, :bar_state, :bar_zip, :hours_mon, :hours_tues, :hours_wed, :hours_thur, :hours_fri, :hours_sat, :hours_sun
+  validates_presence_of :bar_name, :subscription_plan_id, :bar_location, :bar_phone, :bar_url, :bar_addr1, :bar_city, :bar_state, :bar_zip, :hours_mon, :hours_tues, :hours_wed, :hours_thur, :hours_fri, :hours_sat, :hours_sun
   before_save :ensure_fields
 
   def set_phone_number
@@ -88,16 +88,18 @@ class BarEntity < ParseResource::Base
   def save_with_payment
     if valid?
       customer = Stripe::Customer.create(
-        card:  stripe_card_token,
+        card:  self.stripe_card_token,
         plan:  self.subscription_plan.name,
-        email: self.user.username
+        email: self.user.username,
+        description: self.bar_name
       )
-      charge = Stripe::Charge.create(
-        customer:    customer.id,
-        amount:      s.plan.amount,
-        description: self.bar_name,
-        currency:    'usd'
-      )
+      #charge = Stripe::Charge.create(
+      #  customer:    customer.id,
+      #  amount:      self.subscription_plan.amount,
+      #  description: self.bar_name,
+      #  currency:    'usd'
+      #)
+      self.stripe_card_token = nil
       self.stripe_customer_id = customer.id
       self.save
     end

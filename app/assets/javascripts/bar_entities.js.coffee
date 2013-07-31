@@ -7,7 +7,7 @@ jQuery ->
 
 subscription =
   setupForm: ->
-    $('#new_user').submit ->
+    $('#new_bar_entity').submit ->
       $('input[type="submit"]').attr('disabled', true)
       if $('#card_number').length
         subscription.processCard()
@@ -32,8 +32,8 @@ subscription =
   handleStripeResponse: (status, response) ->
     if status == 200
       $('#stripe_error').text('')
-      $('#user_stripe_card_token').val(response.id)
-      $('#new_user')[0].submit()
+      $('#bar_entity_stripe_card_token').val(response.id)
+      $('#new_bar_entity')[0].submit()
     else
       $('#stripe_error').text(response.error.message.replace("The card object must have a value for 'number'", 'Please enter a credit card number'))      
       $('input[type="submit"]').attr('disabled', false)
