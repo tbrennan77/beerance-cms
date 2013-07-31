@@ -1,6 +1,6 @@
 class BarEntity < ParseResource::Base
-  attr_accessor :stripe_card_token
   fields :bar_owner_id,
+        :stripe_card_token,
         :stripe_customer_id,
         :subscription_plan_id,
         :bar_name,
@@ -47,9 +47,14 @@ class BarEntity < ParseResource::Base
 
   def set_geo_location
     geo = Geocoder.search("#{self.bar_addr1}, #{self.bar_city}, #{self.bar_state} #{self.bar_zip}")
-    lat = geo.first.data['geometry']['location']['lat']
-    lng = geo.first.data['geometry']['location']['lng']
-    self.bar_location = ParseGeoPoint.new :latitude => lat, :longitude => lng    
+    
+    unless geo.blank?    
+      lat = geo.first.data['geometry']['location']['lat']
+      lng = geo.first.data['geometry']['location']['lng']
+      self.bar_location = ParseGeoPoint.new :latitude => lat, :longitude => lng
+    else      
+      return false
+    end
   end
 
   def update_specials
