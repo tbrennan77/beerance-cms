@@ -43,9 +43,9 @@ class BarEntitiesController < ApplicationController
   end
 
   def destroy
-    bar_entity = BarEntity.find params[:id]
-    bar_entity.destroy
-    redirect_to bar_entities_path, notice: 'Deleted Bar'
+    #bar_entity = BarEntity.find params[:id]
+    #bar_entity.destroy
+    #redirect_to bar_entities_path, notice: 'Deleted Bar'
   end
 
   private
