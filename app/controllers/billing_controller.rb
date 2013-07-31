@@ -1,22 +1,24 @@
 class BillingController < ApplicationController
   before_filter :require_user
-  before_filter :confirm_correct_user, except: %w{index}
+  before_filter :confirm_correct_user, except: %w{index show_invoice}
+
 
   def index 
     redirect_to new_bar_entity_path unless current_user.bars?   
+  end
+
+  def invoices
+    @bar = BarEntity.find params[:id]
   end
 
   def show
     @bar = BarEntity.find params[:id]    
   end
 
-  def invoices
-    @customer = Stripe::Customer.retrieve current_user.stripe_customer_id
-  end
-
-  def show_invoice
+  def show_invoice    
     @invoice = Stripe::Invoice.retrieve params[:id]
-    if @invoice.customer != current_user.stripe_customer_id
+    
+    if BarEntity.where(stripe_customer_id: @invoice.customer).first.bar_owner_id != current_user.id
       redirect_to log_out_path
     end
   end
@@ -47,5 +49,9 @@ class BillingController < ApplicationController
 
   def confirm_correct_user
     redirect_to log_out_path unless BarEntity.find(params[:id]).bar_owner_id == current_user.id
+  end
+
+  def confirm_correct_user_for_invoice
+
   end
 end

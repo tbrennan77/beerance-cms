@@ -24,7 +24,7 @@ tr.hide:last-child {
     </tr>
   </thead>
   </tbody>
-  <% @customer.invoices.each do |i| %>
+  <% @bar.stripe_customer.invoices.each do |i| %>
     <tr>
       <td><%= Time.at(i.date).strftime("%B %d, %Y") %></td>
       <td><%= Time.at(i.period_start).strftime("%B %d, %Y") %></td>

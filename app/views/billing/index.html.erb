@@ -2,6 +2,6 @@
 
 <% current_user.bars.each do |bar| %>
 
-  <li><%= bar.bar_name %> | <%= link_to "Details", show_billing_path(bar.id) %></li>
+  <li><%= bar.bar_name %> | <%= link_to "Details", show_billing_path(bar.id) %> | <%= link_to "Invoices", invoices_path(bar.id) %></li>
 
 <% end %>
