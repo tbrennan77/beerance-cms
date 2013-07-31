@@ -539,7 +539,7 @@ $medium: "only screen and (max-width:"#{$medium-screen}")";
   .beerance_list {
 	  span {font-weight: bold; width: 90px; text-align: left;}
 	  .row {
-	    input.input-text {;margin-right:30px;}
+	    input.input-text {margin-right:30px;}
 	    .color {padding: 10px 0 5px 10px!important;
 		    img {margin-top: -7px!important;}
 	    }
@@ -571,17 +571,17 @@ $small: "only screen and (max-width:"#{$small-screen}")";
 
   #newspecial {
     select {
-	  left: 90px !important;
-	  margin-right: 30px;
-	  position: absolute;
-	  top: 10px;
-	  width: 73%;
-	}
-	.input-text {
-	  width: 73%;
-	}
-	.columns {height: 52px;
-      span {padding-top: 7px;}
+  	  left: 90px !important;
+  	  margin-right: 30px;
+  	  position: absolute;
+  	  top: 10px;
+  	  width: 73%;
+  	}
+  	.input-text {
+  	  width: 73%;
+  	}
+  	.columns {height: 52px;
+        span {padding-top: 7px;}
     }
     .new-color {
       padding: 9px 0 0 9px;

@@ -18,7 +18,7 @@
               <h2><%= bar.bar_name %>
                 <small>
                   <%= link_to "edit", edit_bar_entity_path(bar) %> / 
-                <%= link_to "delete", bar, method: :delete, data: {confirm: "Are you sure?"}, remote: true %>
+                  <%= link_to "delete", bar, method: :delete, data: {confirm: "Are you sure?"} %>
               </small>
             </h2>
           </div>
@@ -34,7 +34,8 @@
             <span><%= link_to bar.bar_url, "#{bar.bar_url}", target: :_blank %></span>
           </div>
           <div class="large-6 columns user_info">
-            <span>Plan: Gold Plan</span>
+            <span>Plan: <%= bar.subscription_plan.friendly_name %></span>
+            <span>Status: <%= bar.subscription.status.capitalize %></span>
             <span><%= number_to_phone bar.bar_phone, area_code: true %></span>
             <span><%= link_to "Change Plan", billing_overview_path %></span>
             <span><%= link_to "Update Billing Information", billing_overview_path %></span>

@@ -13,7 +13,7 @@
       <h4>Form is invalid</h4>  
       <ul>  
         <% for message in @bar_entity.errors.full_messages %>  
-          <li><%= message %></li>  
+          <li><%= bar_error message %></li>
         <% end %>  
       </ul>  
     </div>  

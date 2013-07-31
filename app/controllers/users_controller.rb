@@ -58,6 +58,7 @@ class UsersController < ApplicationController
 
   def edit
     @user = User.find params[:id]
+    render layout: 'account_details'
   end
 
   def update
