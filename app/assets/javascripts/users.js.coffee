@@ -16,11 +16,4 @@ jQuery ->
       $(this).parent().parent().parent().submit()
     else
       $(this).hide()
-      $(this).prev('label').show()  
-
-  $('.cancel-new-bar').live 'click', ->
-    $('#new_bar_entity').parent().fadeOut().delay(1000).remove()
-
-  $('input[type="radio"]').live 'change', ->
-    $('label').removeClass('active')
-    $(this).parent().addClass('active')
+      $(this).prev('label').show()

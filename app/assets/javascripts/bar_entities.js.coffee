@@ -58,3 +58,7 @@ $('.hour-label select').live 'change', ->
   else
     selects.first().parent().removeClass('large-12').addClass('large-6')
     selects.last().show()
+
+$('input[type="radio"]').live 'change', ->
+  $('label').removeClass('active')  
+  $(this).parent().parent().parent().find('label.amount').addClass('active')
