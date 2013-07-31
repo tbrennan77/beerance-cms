@@ -31,7 +31,7 @@
     </div>  
   <% end %>  
   <p>  
-    <%= f.label :bar_id, "Select your bar" %><br />  
+    <%= f.label :bar_id, "Select your bar" %><br />
     <%= f.select :bar_id, BarEntity.where(bar_owner_id: current_user.id).map {|b| [b.bar_name, b.id]} %>  
   </p>  
   <p>  

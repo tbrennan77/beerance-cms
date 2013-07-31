@@ -322,7 +322,7 @@ li {list-style-type: none;}
 	.specials div,.archives div {padding: 8px 0 8px 0 !important;}
 	.content {padding-bottom: 0 !important;}
 	.hour-label { margin-top: 4px !important; }
-	.rounded-box {padding: 20px;}
+	.rounded-box {padding: 20px;min-height: 775px;}
 	.specials > div > div, .archives > div > div {text-align: center;}
 	.specials > div, .archives > div {padding: 2px;border-left: 1px solid #7A4225;border-right: 1px solid #7A4225;border-bottom: 1px solid #7A4225;}
 	.specials > div:nth-child(odd), .archives > div:nth-child(odd) {background: #7A4225;}
@@ -535,11 +535,14 @@ $medium: "only screen and (max-width:"#{$medium-screen}")";
 
 @media #{$medium} {
   
+
+  	
+  	
   	
   .beerance_list {
 	  span {font-weight: bold; width: 90px; text-align: left;}
 	  .row {
-	    input.input-text {left: 90px!important;margin-right:30px;}
+	    input.input-text {;margin-right:30px;}
 	    .color {padding: 10px 0 5px 10px!important;
 		    img {margin-top: -7px!important;}
 	    }
@@ -569,6 +572,26 @@ $medium: "only screen and (max-width:"#{$medium-screen}")";
 $small: "only screen and (max-width:"#{$small-screen}")";
 
 @media #{$small} {
+
+  #newspecial {
+    select {
+	  left: 90px !important;
+	  margin-right: 30px;
+	  position: absolute;
+	  top: 10px;
+	  width: 73%;
+	}
+	.input-text {
+	  width: 73%;
+	}
+	.columns {height: 52px;
+      span {padding-top: 7px;}
+    }
+    .new-color {
+      padding: 9px 0 0 9px;
+    }
+  }
+  
   #subnav {
     a {padding: 3px 6px;margin: 0 5px;}
   }
