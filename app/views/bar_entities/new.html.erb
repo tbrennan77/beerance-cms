@@ -13,7 +13,7 @@
       <h2>Form is invalid</h2>  
       <ul>  
         <% for message in @bar_entity.errors.full_messages %>  
-          <li><%= message.gsub("Bar location can't be blank", "Unable to geocode address") %></li>
+          <li><%= bar_error message %></li>
         <% end %>  
       </ul>  
     </div>  
