@@ -1,6 +1,7 @@
 <% title "Change Card - " %>
-<%= form_tag update_card_path, id: 'edit_card' do %>
+<%= form_tag update_card_path(@bar.id), id: 'edit_card' do %>
   <%= hidden_field_tag :stripe_card_token %>
+  <h2>Update card for: <%= @bar.bar_name %></h2>
   <h5>Card Information:</h5>
   <div class="row">
     <div class='large-6 offset-by-6 columns'>    
@@ -33,7 +34,7 @@
   <div class="row">
     <div class='large-4 columns'>    
       <%= label_tag :card_number %>
-      <%= phone_field_tag :card_number, nil, name: nil, placeholder: '4242424242424242', required: '' %>
+      <%= phone_field_tag :card_number, '4242424242424242', name: nil, placeholder: '4242424242424242', required: '' %>
     </div>
     <div class='large-2 columns'>
       <%= label_tag :card_code, "(CVV)" %>
@@ -53,6 +54,6 @@
   </div>
 
   <p id="stripe_error"></p>
-  <%= submit_tag "Update Card Info", class: 'button' %>
-  <%= link_to "Cancel", billing_overview_path, class: 'button' %>
+  <%= submit_tag "Update Card Info", class: 'button radius shadow' %>
+  <%= link_to "Cancel", billing_overview_path, class: 'red button radius shadow' %>
 <% end %>

@@ -37,8 +37,8 @@
             <span>Plan: <%= bar.subscription_plan.friendly_name %></span>
             <span>Status: <%= bar.subscription.status.capitalize %></span>
             <span><%= number_to_phone bar.bar_phone, area_code: true %></span>
-            <span><%= link_to "Change Plan", billing_overview_path %></span>
-            <span><%= link_to "Update Billing Information", billing_overview_path %></span>
+            <span><%= link_to "Change Plan", edit_plan_path(bar.id) %></span>
+            <span><%= link_to "Update Billing Information", edit_card_path(bar.id) %></span>
           </div>
         </div>
         </div>   

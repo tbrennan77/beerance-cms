@@ -3,15 +3,15 @@ Beerance::Application.routes.draw do
   get '/admin/meta-tags/edit' => 'meta_tags#edit', as: 'edit_meta_tag'
   resources :meta_tags
 
-  # Billing
-  resources :billings
+  # Billing  
   get  '/billing'              => 'billing#index', as: 'billing_overview'
+  get  '/billing/bars/:id'     => 'billing#show', as: 'show_billing'
   get  '/billing/invoices'     => 'billing#invoices', as: 'invoices'
   get  '/billing/invoices/:id' => 'billing#show_invoice', as: 'show_invoice'
-  get  '/billing/change-plan'  => 'billing#edit_plan', as: 'edit_plan'
-  get  '/billing/change-card'  => 'billing#edit_card', as: 'edit_card'
-  post '/billing/update-plan'  => 'billing#update_plan', as: 'update_plan'
-  post '/billing/update-card'  => 'billing#update_card', as: 'update_card'
+  get  '/billing/change-plan/:id'  => 'billing#edit_plan', as: 'edit_plan'
+  get  '/billing/change-card/:id'  => 'billing#edit_card', as: 'edit_card'
+  post '/billing/update-plan/:id'  => 'billing#update_plan', as: 'update_plan'
+  post '/billing/update-card/:id'  => 'billing#update_card', as: 'update_card'
 
   # Password resests
   get '/send-password-reset' => 'password_resets#new', :as => 'new_password_reset'

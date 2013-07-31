@@ -1,8 +1,11 @@
 class BillingController < ApplicationController
   before_filter :require_user
 
-  def index
-    @customer = Stripe::Customer.retrieve current_user.stripe_customer_id
+  def index    
+  end
+
+  def show
+    @bar = BarEntity.find params[:id]    
   end
 
   def invoices
@@ -17,13 +20,26 @@ class BillingController < ApplicationController
   end
 
   def update_plan
+    @bar = BarEntity.find params[:id]    
     plan = SubscriptionPlan.find(params[:subscription_plan_id])
-    current_user.update_plan(plan) unless current_user.subscription_plan_id == plan.id
-    redirect_to billing_overview_path
+    @bar.update_plan(plan) unless @bar.subscription_plan_id == plan.id
+    redirect_to show_billing_path(@bar.id), notice: 'Updated plan'
+  end
+
+  def edit_plan
+    @bar = BarEntity.find params[:id]
+  end
+
+  def edit_card
+    @bar = BarEntity.find params[:id]
   end
 
   def update_card
-    current_user.update_card(params[:stripe_card_token])
-    redirect_to billing_overview_path, notice: 'Updated Card Info'
+    @bar = BarEntity.find params[:id]
+    if @bar.update_card(params[:stripe_card_token])
+      redirect_to show_billing_path(@bar.id), notice: 'Updated Card Info'
+    else
+      render 'edit_card'
+    end      
   end
 end

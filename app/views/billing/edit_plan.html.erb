@@ -1,41 +1,14 @@
-<style>
-  input[type="radio"]:checked img {
-    border: 3px solid #2B0D07;  
-  }
-  .selected h5, .selected span {
-    color: white;
-  }
-  .selected:hover { cursor: default;}
-  .selected {
-    border-radius: 8px;
-    background: #75392a;
-    padding: 0px 10px 20px 10px;
-  }
-  .selected:before {
-    content: "Current Plan";
-    color: #75392a;
-    position: relative;
-    top: -30px;
-    font-weight: bold;
-  }
-</style>
-
-<script>
-$('.selected').click(function() {
-  return false;
-})
-</script>
-
 <h2>Change Your Plan</h2>
 <br />
-<%= form_tag update_plan_path do %>
+<%= form_tag update_plan_path(@bar.id) do %>
   <div class="row">
     <% SubscriptionPlan.order("amount").each do |p| %>
     <div class="large-4 columns">
       <article>
-        <label class="amount <%= 'selected' if current_user.subscription_plan.id == p.id %>">
+        <label class="amount plan-box <%= 'active' if @bar.subscription_plan.id == p.id %>">
+          <%= "<br />Current Plan".html_safe if @bar.subscription_plan.id == p.id %>
           <h5><%= p.friendly_name %></h5>
-          <%= radio_button_tag :subscription_plan_id, p.id, selected: (current_user.subscription_plan.id == p.id) %>
+          <%= radio_button_tag :subscription_plan_id, p.id, (@bar.subscription_plan.id == p.id) %>
           <%= image_tag p.image %><br />
           <span><%= number_to_currency p.amount/100 %></span>
         </label>
@@ -44,8 +17,8 @@ $('.selected').click(function() {
     <% end %>
   </div>
 
-  <%= submit_tag "Change Plan", class: 'button', data: {confirm: "Do you really want to change your plan?"} %>
-  <%= link_to "Cancel", billing_overview_path, class: 'button' %>
+  <%= submit_tag "Change Plan", class: 'button radius shadow', data: {confirm: "Do you really want to change your plan?"} %>
+  <%= link_to "Cancel", billing_overview_path, class: 'red button radius shadow' %>
 <% end %>
 
 <ul>

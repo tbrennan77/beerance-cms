@@ -1,33 +1,7 @@
 <% title "Billing - " %>
 
-<div class='row'>  
-    <div class="large-12 columns">
-      <h2>Plan</h2>      
-      <div class="row">
-        <div class="large-3 columns user_info" style="text-align:center">  
-            <%= image_tag 'beerance_mugicon.png' %><br />
-            <span><%= current_user.subscription.nice_name %> </span>                
-            <span><%= link_to "Change My Plan", edit_plan_path %></span>
-        </div>
-        <div class="large-9 columns user_info">  
-          <span><%= number_to_currency current_user.subscription.amount %></span>
-          <span>Cost per month: <%= number_to_currency current_user.subscription_plan.cost_per_month %></span>
-          <span>You have <b><%= pluralize current_user.subscription.days_remaining, 'day' %></b> remaining</span>
-          <span>Ends on <b><%= current_user.subscription.end_date.strftime("%B %d, %Y") %></b></span>
-        </div>
-      </div>    
-    </div>
-</div>
+<% current_user.bars.each do |bar| %>
 
-<div class='row'>  
-    <div class="large-12 columns">
-      <h2>Payment Info</h2>      
-        <div class="row">
-          <div class="large-12 columns user_info">
-            <span><%= @customer.active_card.name %></span>
-            <span><%= @customer.active_card.type %> - **** **** **** <%= @customer.active_card.last4 %></span>
-            <span><%= link_to "Update Payment Info", edit_card_path %></span>
-          </div>
-        </div>    
-    </div>
-</div>
+  <li><%= bar.bar_name %> | <%= link_to "Details", show_billing_path(bar.id) %></li>
+
+<% end %>
