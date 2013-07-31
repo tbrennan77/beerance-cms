@@ -2,12 +2,13 @@
 
 <div class='row'>  
     <div class="large-12 columns">
-      <h2>Plan</h2>      
+    <h2>Plan for <%= @bar.bar_name %></h2>
       <div class="row">
-        <div class="large-3 columns user_info" style="text-align:center">  
+        <div class="large-3 columns user_info" style="text-align:center;padding-top: 29px;">  
             <%= image_tag 'beerance_mugicon.png' %><br />
             <span><%= @bar.subscription.nice_name %> </span>                
             <span><%= link_to "Change My Plan", edit_plan_path(@bar.id) %></span>
+            <span><%= link_to "Cancel My Plan", edit_plan_path(@bar.id), data: {confirm: "Are you sure you would like to cancel your plan?"} %></span>
         </div>
         <div class="large-9 columns user_info">
           <span>Status: <%= @bar.subscription.status.capitalize %></span>
@@ -15,6 +16,7 @@
           <span>Cost per month: <%= number_to_currency @bar.subscription_plan.cost_per_month %></span>
           <span>You have <b><%= pluralize @bar.subscription.days_remaining, 'day' %></b> remaining</span>
           <span>Ends on <b><%= @bar.subscription.end_date.strftime("%B %d, %Y") %></b></span>
+          <span style="font-size: 12px;padding: 0 0 0 10px;"><em>Your plan is set to auto renew for another <%= @bar.subscription_plan.length_in_months %> months</em></span>
         </div>
       </div>    
     </div>
@@ -25,7 +27,7 @@
       <h2>Payment Info</h2>      
         <div class="row">
           <div class="large-12 columns user_info">
-            <span><%= @bar.stripe_customer.active_card.name %></span>
+            <span>Name: <%= @bar.stripe_customer.active_card.name %></span>
             <span><%= @bar.stripe_customer.active_card.type %> - **** **** **** <%= @bar.stripe_customer.active_card.last4 %></span>
             <span><%= link_to "Update Payment Info", edit_card_path(@bar.id) %></span>
           </div>
