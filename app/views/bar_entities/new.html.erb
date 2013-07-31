@@ -28,7 +28,7 @@
             <h3>Step 2</h3>
             <h5>Package Selection:</h5>
             <div class="row">
-              <% SubscriptionPlan.order("friendly_name").each do |p| %>
+              <% SubscriptionPlan.order("amount").each do |p| %>
               <div class="large-4 columns ">
                 <article>
                   <label class="amount plan-box <%= 'active' if @bar_entity.subscription_plan_id == p.id %>">
