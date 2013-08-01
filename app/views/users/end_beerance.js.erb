@@ -1,3 +1,5 @@
-$('.ajax-container').html('<div class="alert-box success"><%= flash[:notice] %></div><%= j render("current_specials") %>');
+$('.alert-box.notice').remove();
+$('#ajax_bar').before('<div class="alert-box notice"><%= flash[:notice] %></div>');
+$('.ajax-container').html('<%= j render("current_specials") %>');
 $('#ajax_bar').fadeOut();
-$('.alert-box.success').hide().fadeIn('slow').delay(4000).fadeOut();
+$('.alert-box.notice').hide().fadeIn('slow').delay(4000).fadeOut();
