@@ -6,6 +6,7 @@ class BarEntityTest < ActiveSupport::TestCase
   def setup    
     @bar = BarEntity.new(
         bar_owner_id: "1",
+        subscription_plan_id: SubscriptionPlan.first.id,
         bar_name: 'Rocky River Brewing Company',
         bar_phone: '2165551234',
         bar_url: 'http://www.google.com',
