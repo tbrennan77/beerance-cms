@@ -4,6 +4,7 @@ class UsersController < ApplicationController
   before_filter :verify_create_parameters, only: %w{create}
   before_filter :get_specials, only: %w{profile current_specials archived_specials}
   before_filter :confirm_active_subscription, only: %w{reactivate_beerance}
+  before_filter :confirm_correct_user_for_activation, only: %w{reactivate_beerance}
 
   def index
     @users = User.all
@@ -101,7 +102,7 @@ class UsersController < ApplicationController
     if special.save
       get_specials
       respond_to do |format|
-        format.js { flash.now.notice = "Reactivated Special" }
+        format.js { flash.now.notice = "" }
         format.html { redirect_to profile_path, notice: 'Reactivated Special'}
       end
     else
@@ -151,9 +152,26 @@ class UsersController < ApplicationController
     end
   end
 
+  def confirm_correct_user_for_activation
+    special = BarSpecials.find params[:id]
+    redirect_to log_out_path unless special.bar.user.id == current_user.id
+  end
+
   def confirm_active_subscription    
-    #unless current_user.subscription.active?
-    #  redirect_to billing_path, notice: 'Reactivate your account to post beerances'
-    #end
+    bar = BarSpecials.find(params[:id]).bar
+    
+    if request.xhr?
+      script = <<-END_SCRIPT
+        $('.alert-box.notice').remove();
+        $('#ajax_bar').before('<div class="alert-box notice">Your subscription is not active!</div>');
+        $('.alert-box.notice').hide().fadeIn('slow').delay(4000).fadeOut();
+      END_SCRIPT
+
+      if !bar.subscription.active?
+        render js: script
+      end        
+    else
+      redirect_to profile_path, notice: 'Your subscription is not active' unless bar.subscription.active?
+    end
   end
 end

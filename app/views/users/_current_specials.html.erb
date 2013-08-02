@@ -48,7 +48,7 @@
 				</div>
 				<div class="large-3 columns">
 					<span class="show-for-small">Location: </span>
-					<%= f.select :bar_id, current_user.bars.map {|b| [b.bar_name, b.id]}, prompt: 'Choose A Bar'  %>
+					<%= f.select :bar_id, current_user.bars.map {|b| [b.bar_name, b.id] }, prompt: 'Choose A Bar'  %>
 				</div>
 				<div class="large-1 columns align-center">
 					<%= f.submit "Add", class: 'small button radius shadow' %>

@@ -2,8 +2,8 @@ class BarSpecialsController < ApplicationController
   WRITABLE_ATTRIBUTES = %w{ bar_id special_description sale_price beer_color beer_size }
 
   before_filter :require_user
-  before_filter :confirm_correct_user, except: %w{new end_beerance reactivate_beerance}
-  before_filter :confirm_correct_user_for_activation, only: %w{end_beerance reactivate_beerance}
+  before_filter :confirm_correct_user, except: %w{new}
+  before_filter :confirm_active_subscription, only: %w{create}
 
   def new  
     @bar_special = BarSpecials.new    
@@ -16,7 +16,7 @@ class BarSpecialsController < ApplicationController
       get_specials
       respond_to do |f|
         f.html {redirect_to profile_path, :notice => "Added Special!"}
-        f.js { flash.now.notice = "Add new special"; @bar_special = BarSpecials.new}
+        f.js { flash.now.notice = "Added Special!"; @bar_special = BarSpecials.new}
       end
     else  
       render "new"  
@@ -50,41 +50,30 @@ class BarSpecialsController < ApplicationController
     redirect_to profile_path
   end
 
-  def end_beerance
-    special = BarSpecials.find params[:id]
-    special.end_special
-    if special.save
-      respond_to do |format|
-        format.js
-        format.html {redirect_to profile_path, notice: 'Ended beerance'}
-      end      
-    else
-      flash[:error] = "Something went wrong"
-      redirect_to profile_path
-    end
-  end
-
-  def reactivate_beerance
-    special = BarSpecials.find params[:id]
-    special.reactivate_special
-    if special.save
-      respond_to do |format|
-        format.js
-        format.html { redirect_to profile_path, notice: 'Reactivated Beerance'}
-      end
-    else
-      flash[:error] = "Something went wrong"
-      redirect_to profile_path
-    end
-  end
-
   def confirm_correct_user
     redirect_to log_out_path unless BarEntity.find(params[:bar_specials][:bar_id]).bar_owner_id == current_user.id
   end
 
-  def confirm_correct_user_for_activation
-    special = BarSpecials.find params[:id]
-    redirect_to log_out_path unless special.bar.user.id == current_user.id
+  def confirm_active_subscription
+    if params[:action] == 'reactivate_special'
+      bar = BarSpecials.find(params[:id]).bar
+    else 
+      bar = BarEntity.find(params[:bar_specials][:bar_id])
+    end
+
+    if request.xhr?
+      script = <<-END_SCRIPT
+        $('.alert-box.notice').remove();
+        $('#ajax_bar').before('<div class="alert-box notice">Your subscription is not active!</div>');
+        $('.alert-box.notice').hide().fadeIn('slow').delay(4000).fadeOut();
+      END_SCRIPT
+
+      if !bar.subscription.active?
+        render js: script
+      end        
+    else
+      redirect_to profile_path, notice: 'Your subscription is not active' unless bar.subscription.active?
+    end
   end
 
   def get_specials
