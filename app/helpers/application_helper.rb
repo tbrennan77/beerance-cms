@@ -12,7 +12,7 @@ module ApplicationHelper
   end
 
   def format_plan(bar)
-    if bar.subscription.active?
+    if !bar.subscription_plan_id.blank? && bar.subscription.active?
       bar.subscription_plan.friendly_name
     else
       'No Plan'

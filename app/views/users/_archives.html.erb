@@ -58,7 +58,11 @@
 		</div>
 		<div class="large-1 columns align-center">
 			<span class="show-for-small">Reactivate: </span>
-			<%= link_to "", reactivate_beerance_path(bs), class: 're-activate', data: {remote: true} %>
+			<% if bs.bar.subscription.active? %>
+				<%= link_to "", reactivate_beerance_path(bs), class: 're-activate', data: {remote: true} %>
+			<% else %>
+			-
+			<% end %>
 		</div>
 	</div>
 	<% end %> 

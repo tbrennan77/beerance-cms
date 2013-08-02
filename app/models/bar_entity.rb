@@ -89,7 +89,7 @@ class BarEntity < ParseResource::Base
   def update_plan(plan)    
     unless stripe_customer_id.nil?
       customer = Stripe::Customer.retrieve(stripe_customer_id)
-      customer.update_subscription(:plan => plan.name)
+      customer.update_subscription(plan: plan.name, trial_end: 'now')
       self.subscription_plan_id = plan.id
       self.save
     end

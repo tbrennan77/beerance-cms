@@ -12,6 +12,7 @@ Beerance::Application.routes.draw do
   get  '/billing/bars/invoices-details/:id' => 'billing#show_invoice', as: 'show_invoice'
   post '/billing/update-plan/:id'           => 'billing#update_plan', as: 'update_plan'
   post '/billing/update-card/:id'           => 'billing#update_card', as: 'update_card'
+  get  '/cancel-subscription/:id'           => 'billing#cancel_subscription', as: 'cancel_subscription'
 
   # Password resests
   get '/send-password-reset' => 'password_resets#new', :as => 'new_password_reset'
@@ -71,10 +72,6 @@ Beerance::Application.routes.draw do
   get '/admin/test_password_reset'  => 'admin#test_password_reset', as: 'test_password_reset'
   get '/admin/test_password_change' => 'admin#test_password_change', as: 'test_password_change'
 
-  # Charges
-  resources :charges, path: 'subscriptions'
-  get '/cancel-subscription/:id' => 'charges#cancel_subscription', as: 'cancel_subscription'
-  
   # Root Path
   root :to => 'home#index'  
 end

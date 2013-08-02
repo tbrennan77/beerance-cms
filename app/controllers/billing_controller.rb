@@ -47,6 +47,13 @@ class BillingController < ApplicationController
     end      
   end
 
+  def cancel_subscription
+    @bar = BarEntity.find params[:id]
+    @bar.cancel_subscription
+    @bar.update_attributes subscription_plan_id: ''   
+    redirect_to show_billing_path(@bar.id), notice: 'We are so sad to see you go :('
+  end
+
   def confirm_correct_user
     redirect_to log_out_path unless BarEntity.find(params[:id]).bar_owner_id == current_user.id
   end
