@@ -30,10 +30,13 @@ class ChargesController < ApplicationController
   end
 
   def cancel_subscription
-    cancel = `curl https://api.stripe.com/v1/customers/#{current_user.stripe_customer_id}/subscription \
-   -u #{Stripe.api_key}: \
-   -X DELETE`
-   redirect_to profile_path, notice: 'We are so sad to see you go :('
+    @bar = BarEntity.find params[:id]
+    cancel = `curl https://api.stripe.com/v1/customers/#{@bar.stripe_customer_id}/subscription \
+    -u #{Stripe.api_key}: \
+    -X DELETE`
+
+   @bar.update_attributes subscription_plan_id: ''   
+   redirect_to show_billing_path(@bar.id), notice: 'We are so sad to see you go :('
   end
 
   private

@@ -41,6 +41,10 @@ class Subscription
   end
 
   def active?
-    status == "active" ? true : false
+    if self.json
+      (status == "active" || status == "trialing") ? true : false
+    else
+      false
+    end
   end
 end

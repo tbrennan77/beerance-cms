@@ -73,7 +73,7 @@ Beerance::Application.routes.draw do
 
   # Charges
   resources :charges, path: 'subscriptions'
-  get '/cancel-subscription' => 'charges#cancel_subscription', as: 'cancel_subscription'
+  get '/cancel-subscription/:id' => 'charges#cancel_subscription', as: 'cancel_subscription'
   
   # Root Path
   root :to => 'home#index'  

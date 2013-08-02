@@ -3,12 +3,17 @@
 <div class='row'>  
     <div class="large-12 columns">
     <h2>Plan for <%= @bar.bar_name %></h2>
+<% unless @bar.subscription.active? %>
+<p class="centered" style="text-align:center"><br /><br /><br />You don't have an active subscription<br /><br /><%= link_to "Renew subscription", edit_plan_path(@bar.id), class: 'button radius shadow' %></p>
+</div>
+</div>
+<% else %>
       <div class="row">
         <div class="large-3 columns user_info" style="text-align:center;padding-top: 29px;">  
             <%= image_tag 'beerance_mugicon.png' %><br />
             <span><%= @bar.subscription.nice_name %> </span>                
             <span><%= link_to "Change My Plan", edit_plan_path(@bar.id) %></span>
-            <span><%= link_to "Cancel My Plan", edit_plan_path(@bar.id), data: {confirm: "Are you sure you would like to cancel your plan?"} %></span>
+            <span><%= link_to "Cancel My Plan", cancel_subscription_path(@bar.id), data: {confirm: "Are you sure you would like to cancel your plan?"} %></span>
         </div>
         <div class="large-9 columns user_info">
           <span>Status: <%= @bar.subscription.status.capitalize %></span>
@@ -34,3 +39,4 @@
         </div>    
     </div>
 </div>
+<% end %>

@@ -5,10 +5,10 @@
     <% SubscriptionPlan.order("amount").each do |p| %>
     <div class="large-4 columns">
       <article>
-        <label class="amount plan-box <%= 'active' if @bar.subscription_plan.id == p.id %>">
-          <%= "<br />Current Plan".html_safe if @bar.subscription_plan.id == p.id %>
+        <label class="amount plan-box <%= 'active' if @bar.subscription_plan_id == p.id %>">
+          <%= "<br />Current Plan".html_safe if @bar.subscription_plan_id == p.id %>
           <h5><%= p.friendly_name %></h5>
-          <%= radio_button_tag :subscription_plan_id, p.id, (@bar.subscription_plan.id == p.id) %>
+          <%= radio_button_tag :subscription_plan_id, p.id, (@bar.subscription_plan_id == p.id) %>
           <%= image_tag p.image %><br />
           <span><%= number_to_currency p.amount/100 %></span>
         </label>

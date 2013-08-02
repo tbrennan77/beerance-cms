@@ -11,6 +11,18 @@ module ApplicationHelper
    "current" if actions.include? params[:action]
   end
 
+  def format_plan(bar)
+    if bar.subscription.active?
+      bar.subscription_plan.friendly_name
+    else
+      'No Plan'
+    end
+  end
+
+  def format_status(subscription)
+    subscription.active? ? subscription.status.capitalize : 'Not Active'
+  end
+
   def states
     @states = [
          [ "Alabama", "AL" ],
