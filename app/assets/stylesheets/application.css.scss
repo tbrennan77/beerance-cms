@@ -247,8 +247,11 @@ li {list-style-type: none;}
   ul { padding: 0px 40px 0 40px!important;
     li {color:$dark_oranges;} 
   }
-  ul.special-bar { padding-left: 60px!important; 
-    &:hover {cursor: pointer;}
+  ul.special-bar { padding-left: 75px!important; 
+    margin-bottom: -2px;
+    padding-top: 60px!important;
+    &:hover {cursor: pointer; opacity: 0.8}
+    li {color: white;}
   }   
   ol {color:$light_orange; font-size: 28px; padding:0 0 0 35px;list-style-position: outside!important;font-weight: bold;
   	li {list-style-type: decimal!important;}

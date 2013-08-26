@@ -17,7 +17,8 @@ label.small {
   border-radius: 0 8px 8px 0;
 }
 .star {
-  list-style-image: url("beerance_staricon.png");
+  margin-left: 20px;
+  list-style-image: url("assets/beerance_staricon.png");
 }
 </style>
 
@@ -59,7 +60,7 @@ $(document).ready(function() {
   <div id='map-canvas'></div>    
 
   <% @specials.each do |s| %>
-  <ul data-reveal-id="<%= s.id %>" class="special-bar" style="background: url('<%= asset_path s.beer_image %>');background-repeat: no-repeat;background-position-y: 12px;">
+  <ul data-reveal-id="<%= s.id %>" class="special-bar" style="background-image: url('<%= asset_path s.beer_image %>'), url(assets/darkshelf.png);background-position: 15px 65px, left;background-repeat: no-repeat, no-repeat;">
     <li><b><%= s.special_description %></b></li>
     <li class='star'><%= s.bar_name %></li>
     <li><%= s.beer_size %> oz. - <%= s.distance_from(@location) %> miles away</li>
