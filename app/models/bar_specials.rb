@@ -30,35 +30,14 @@ class BarSpecials < ParseResource::Base
       greater_than: 0
     }
 
-  before_save :ensure_fields
+  before_save :set_expiration_date
 
   def set_expiration_date    
-    self.expiration_date = DateTime.now.tomorrow.beginning_of_day.advance(years: 1, hours: 9)
-  end
-
-  def set_geo_location
-    self.bar_location = BarEntity.find(self.bar_id).bar_location
-  end
-
-  def set_bar_name
-    self.bar_name = BarEntity.find(self.bar_id).bar_name
-  end
-
-  def ensure_formats
-    self.beer_color = self.beer_color.to_i
-    self.sale_price = self.sale_price.to_f
-    self.beer_size  = self.beer_size.to_i
+    self.expiration_date = DateTime.now.tomorrow.beginning_of_day.advance(years: 1, hours: 9) unless self.expiration_date
   end
 
   def active?
     self.expiration_date > Time.now
-  end
-
-  def ensure_fields
-    set_expiration_date unless expiration_date
-    set_bar_name
-    set_geo_location
-    ensure_formats
   end
 
   def end_special
@@ -92,5 +71,14 @@ class BarSpecials < ParseResource::Base
     when 3
       'amber.png'
     end
+  end
+
+  def self.format_attributes(attrs)
+    attrs[:bar_name]   = BarEntity.find(attrs[:bar_id]).bar_name if attrs.has_key? :bar_id    
+    attrs[:bar_location] = BarEntity.find(attrs[:bar_id]).bar_location if attrs.has_key? :bar_id
+    attrs[:sale_price] = attrs[:sale_price].to_f if attrs.has_key?(:sale_price)
+    attrs[:beer_color] = attrs[:beer_color].to_i if attrs.has_key?(:beer_color)
+    attrs[:beer_size]  = attrs[:beer_size].to_i  if attrs.has_key?(:beer_size)
+    attrs
   end
 end

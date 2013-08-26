@@ -123,7 +123,7 @@ class BarEntity < ParseResource::Base
 
   def subscription
     Subscription.new(stripe_customer.subscription)
-  end
+  end  
 
   def subscription_plan
     SubscriptionPlan.find subscription_plan_id

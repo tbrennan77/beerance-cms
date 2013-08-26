@@ -1,8 +1,8 @@
 <% if params[:bar_specials][:current_page] %>
-  $('.ajax-container').html('<div class="alert-box success"><%= flash[:notice] %></div><%= j render("users/current_specials") %>').fadeIn();
+  $('.ajax-container').html('<div class="alert-box notice"><%= flash[:notice] %></div><%= j render("users/current_specials") %>').fadeIn();
 <% else %>
-  $('.ajax-container').html('<div class="alert-box success"><%= flash[:notice] %></div><%= j render("users/archives") %>').fadeIn();
+  $('.ajax-container').html('<div class="alert-box notice"><%= flash[:notice] %></div><%= j render("users/archives") %>').fadeIn();
 <% end %>
 
 $('#ajax_bar').fadeOut();
-$('.alert-box.success').hide().fadeIn('slow').delay(4000).fadeOut();
+$('.alert-box.notice').hide().fadeIn('slow').delay(4000).fadeOut();
