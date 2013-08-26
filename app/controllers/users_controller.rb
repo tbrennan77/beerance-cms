@@ -14,15 +14,7 @@ class UsersController < ApplicationController
     @customer = Stripe::Customer.retrieve @user.stripe_customer_id
   end
 
-  def show
-    @total_specials = 0
-    bar_entities = BarEntity.where(bar_owner_id: current_user.id)
-
-    bar_entities.each do |be|
-      @total_specials += be.bar_specials.count
-    end
-
-    @total_bars = bar_entities.count
+  def show    
     render layout: 'account_details'    
   end
 
