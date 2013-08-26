@@ -4,7 +4,7 @@
   </div>  
 </div>
 
-<% unless @inactive_specials.empty? %>
+<% unless current_user.inactive_specials.empty? %>
 
 <div class="beerance_list">
 	<div class="row hide-for-small purple_grad">
@@ -28,7 +28,7 @@
 		</div>
 	</div>
 		
-	<% @inactive_specials.each do |bs| %>
+	<% current_user.inactive_specials.each do |bs| %>
 	<%= form_for bs, html: { data: {remote: true } } do |f| %>
 	<%= f.hidden_field :bar_id %>
 

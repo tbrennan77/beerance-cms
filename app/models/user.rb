@@ -44,6 +44,26 @@ class User < ParseUser
     BarEntity.where(bar_owner_id: id)
   end
 
+  def specials
+    specials = []
+    bars.each do |bar|
+      bar.bar_specials.each {|s| specials << s }
+    end
+    specials
+  end
+
+  def active_specials
+    active_specials = []
+    specials.each {|s| active_specials << s if s.active? }
+    active_specials
+  end
+
+  def inactive_specials
+    inactive_specials = []
+    specials.each {|s| inactive_specials << s unless s.active? }
+    inactive_specials
+  end
+
   def bars?
     bars.count > 0 ? true : false
   end  

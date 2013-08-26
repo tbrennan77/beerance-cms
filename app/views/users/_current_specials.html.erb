@@ -56,7 +56,7 @@
 			</div>
 		<% end %> 
 		
-	<% @active_specials.each do |bs| %>
+	<% current_user.active_specials.each do |bs| %>
 		<%= form_for bs, html: { data: {remote: true } } do |f| %>
 			<%= f.hidden_field :bar_id %>
 			<%= f.hidden_field :current_page, value: true %>
@@ -95,7 +95,7 @@
 
 </div>
 
-<% if @active_specials.empty? %>
+<% if current_user.active_specials.empty? %>
 	<br />
 	<br />
 	<h3 style='text-align: center;'>You have no current specials</h3>

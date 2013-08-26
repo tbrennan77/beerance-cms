@@ -1,8 +1,7 @@
 class UsersController < ApplicationController
   before_filter :require_user, except: %w{new create}
   before_filter :require_admin, except: %w{new edit update create profile show current_specials archived_specials end_beerance reactivate_beerance}
-  before_filter :verify_create_parameters, only: %w{create}
-  before_filter :get_specials, only: %w{profile current_specials archived_specials}
+  before_filter :verify_create_parameters, only: %w{create}  
   before_filter :confirm_active_subscription, only: %w{reactivate_beerance}  
   before_filter :confirm_correct_user_for_activation, only: %w{reactivate_beerance}
 
@@ -84,7 +83,6 @@ class UsersController < ApplicationController
     special = BarSpecials.find params[:id]
     special.end_special
     if special.save
-      get_specials
       respond_to do |format|
         format.js { flash.now.notice = "Ended Special" }
         format.html {redirect_to profile_path, notice: 'Ended Special'}
@@ -100,7 +98,6 @@ class UsersController < ApplicationController
     special = BarSpecials.find params[:id]
     special.reactivate_special
     if special.save
-      get_specials
       respond_to do |format|
         format.js { flash.now.notice = "" }
         format.html { redirect_to profile_path, notice: 'Reactivated Special'}
@@ -134,22 +131,6 @@ class UsersController < ApplicationController
       render 'new'
     end
     params[:user].delete :password_confirmation    
-  end
-
-  def get_specials
-    @bar_entities = BarEntity.where bar_owner_id: current_user.id
-    @active_specials = []
-    @inactive_specials = []
-    
-    @bar_entities.each do |be|
-      be.bar_specials.each do |s|
-        if s.active?
-          @active_specials << s
-        else
-          @inactive_specials << s
-        end
-      end
-    end
   end
 
   def confirm_correct_user_for_activation
