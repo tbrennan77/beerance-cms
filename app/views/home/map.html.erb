@@ -55,7 +55,7 @@ $(document).ready(function() {
 });
 </script>
 <div class='large-8 columns'>
-  <h5 class='centered'>Map <%= request.remote_ip %></h5>
+  <h5 class='centered'>Map</h5>
   <div id='map-canvas'></div>    
 
   <% @specials.each do |s| %>
@@ -94,7 +94,7 @@ $(document).ready(function() {
 
 <div class='large-4 columns'>
   <h5 class='centered'><%= @city %></h5>
-  <%= form_tag '', method: 'get' do %>
+  <%= form_tag '' do %>
      <div class='row'>
       <div class="large-10 large-centered columns">
         <%= label_tag :zip %>
