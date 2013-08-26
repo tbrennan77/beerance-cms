@@ -3,7 +3,6 @@ class UsersController < ApplicationController
   before_filter :require_admin, except: %w{new edit update create profile show current_specials archived_specials end_beerance reactivate_beerance}
   before_filter :verify_create_parameters, only: %w{create}  
   before_filter :confirm_active_subscription, only: %w{reactivate_beerance}  
-  before_filter :confirm_correct_user_for_activation, only: %w{reactivate_beerance}
 
   def index
     @users = User.all
@@ -72,31 +71,25 @@ class UsersController < ApplicationController
 # Beerance Actions
   def end_beerance
     @bar_special = BarSpecials.new
-    special = BarSpecials.find params[:id]
+    special = current_user.specials.find { |d| d.id == params[:id] }
     special.end_special
     if special.save
       respond_to do |format|
         format.js { flash.now.notice = "Ended Special" }
         format.html {redirect_to profile_path, notice: 'Ended Special'}
       end      
-    else
-      flash[:error] = "Something went wrong"
-      redirect_to profile_path
     end
   end
 
   def reactivate_beerance
-    @bar_special = BarSpecials.new
-    special = BarSpecials.find params[:id]
+    @bar_special = BarSpecials.new    
+    special = current_user.specials.find { |d| d.id == params[:id] }
     special.reactivate_special
     if special.save
       respond_to do |format|
-        format.js { flash.now.notice = "" }
+        format.js { flash.now.notice = "Reactivated Special" }
         format.html { redirect_to profile_path, notice: 'Reactivated Special'}
       end
-    else
-      flash[:error] = "Something went wrong"
-      redirect_to profile_path
     end
   end
 
@@ -123,11 +116,6 @@ class UsersController < ApplicationController
       render 'new'
     end
     params[:user].delete :password_confirmation    
-  end
-
-  def confirm_correct_user_for_activation
-    special = BarSpecials.find params[:id]
-    redirect_to log_out_path unless special.bar.user.id == current_user.id
   end
 
   def confirm_active_subscription    
