@@ -35,7 +35,9 @@ $orange: #ec8420;
 $button_top: #e8a555;
 $button_bottom: #d95f10;
 
-
+@mixin shadow {
+  box-shadow: 0 2px 4px #666;
+}
 @mixin transition($type: "color"){
   transition: $type 0.25s ease-in-out; -moz-transition: $type 0.25s ease-in-out; -webkit-transition: $type 0.25s ease-in-out; -o-transition: $type 0.25s ease-in-out;
 }
@@ -245,6 +247,9 @@ li {list-style-type: none;}
   ul { padding: 0px 40px 0 40px!important;
     li {color:$dark_oranges;} 
   }
+  ul.special-bar { padding-left: 60px!important; 
+    &:hover {cursor: pointer;}
+  }   
   ol {color:$light_orange; font-size: 28px; padding:0 0 0 35px;list-style-position: outside!important;font-weight: bold;
   	li {list-style-type: decimal!important;}
     span {color:$dark_oranges; font-weight: normal;}
@@ -391,6 +396,22 @@ li {list-style-type: none;}
       background: -webkit-gradient(linear, left top, left bottom, from(darken($colorA,7%)),to(darken($colorB,7%)));
     }
   }
+  &.brown {
+    $colorA: #752201; 
+    $colorB: #bf6e4e; 
+    color: #FFFFFF !important;
+    text-shadow: 0 1px 1px rgba(0,0,0,0.7);    
+    font-family: 'Roboto Slab', Arial, Helvetica, sans-serif;
+    border: 1px solid #904513 !important;
+    background: -moz-linear-gradient(top, $colorA 0%, $colorB);
+    background: -webkit-gradient(linear, left top, left bottom, from($colorA),to($colorB));
+    
+    &.nice {border: 1px solid darken($colorB,10%);}
+    &:hover, &:focus {
+      background: -moz-linear-gradient(top, darken($colorA,7%) 0%, darken($colorB,7%));
+      background: -webkit-gradient(linear, left top, left bottom, from(darken($colorA,7%)),to(darken($colorB,7%)));
+    }
+  }
 }
 
 .shadow {
@@ -439,7 +460,7 @@ li {list-style-type: none;}
   }
   .copy {position:absolute; right:0; bottom:20px;font-size: 12px;}
   form label {color: #888; position: relative; top: -4px;}
-  .twelve.columns.centered { font-size: 11px; color: #888; text-align: center;}
+  .large-12.columns.centered { font-size: 11px; color: #888; text-align: center;}
   .vcard {border: 0; padding: 0; margin: 0;}
   
   & .show-for-small { font-size: 12px; text-align: center; margin-bottom: 15px; margin-top: 15px;
@@ -716,4 +737,25 @@ $small: "only screen and (max-width:"#{$small-screen}")";
       }
     }
   }
+}
+.full-width {width: 100%;}
+.centered {text-align: center;}
+#map-canvas {
+  margin: 0;
+  padding: 0;
+  height: 400px;
+  width: 100%;
+  border: 5px solid whitesmoke;
+  @include shadow;
+}
+.price {
+  color:white;
+  font-weight: bold;
+  background: url('/assets/price.png');
+  background-repeat: no-repeat;
+  font-size: 14px;
+  padding-left: 6px;
+  position: relative;
+  top: -60px;
+  left: -70px;
 }

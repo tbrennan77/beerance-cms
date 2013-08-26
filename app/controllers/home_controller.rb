@@ -1,12 +1,25 @@
 class HomeController < ApplicationController
 	before_filter :find_promoters
-  before_filter :require_admin, except: %w{index how_it_works privacy feedback send_feedback new_signup signup find_subscriber_email_id find_promoters}
+  before_filter :require_admin, except: %w{map index how_it_works privacy feedback send_feedback new_signup signup find_subscriber_email_id find_promoters}
 
   layout 'interior'
   
   def index
     @news_subscription = NewsSubscription.new
     render layout: 'marketing'
+  end
+
+  def map
+    params[:distance] = params[:distance] ||= 10
+    zip = params[:zip] || request.ip.to_s
+    geo = Geocoder.search(zip)
+    lat = geo.first.data['geometry']['location']['lat']
+    lng = geo.first.data['geometry']['location']['lng']
+    @location = [lat, lng]
+    
+    @city = geo.first.data['address_components'][1]['long_name']        
+    @specials = BarSpecials.near(:bar_location, @location, maxDistanceInMiles: params[:distance].to_i).all
+    render layout: 'application'
   end
 
   def privacy

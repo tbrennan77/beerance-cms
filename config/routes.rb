@@ -20,6 +20,7 @@ Beerance::Application.routes.draw do
 
   # Home pages
   get  '/tos'            => 'home#tos', as: 'tos'
+  get  '/map'            => 'home#map', as: 'map'
   get  '/about'          => 'home#about', as: 'about'
   get  '/legal'          => 'home#legal', as: 'legal'
   get  '/support'        => 'home#support', as: 'support'

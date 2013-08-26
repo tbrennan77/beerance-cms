@@ -1,0 +1,121 @@
+<% title('Map - ') %>
+<style>
+input[type="radio"] {
+  display: none
+}
+.info ul {
+  list-style-image:none;
+}
+label.small {
+  font-size: 14px !important;
+}
+.button-group li:first-child label {
+  border-radius: 8px 0 0 8px;
+}
+
+.button-group li:last-child label {
+  border-radius: 0 8px 8px 0;
+}
+.star {
+  list-style-image: url("beerance_staricon.png");
+}
+</style>
+
+<script>
+var map;
+function initialize() {
+  var mapOptions = {
+    zoom: 10,
+    center: new google.maps.LatLng(<%= @location[0] %>, <%= @location[1] %>),
+    mapTypeId: google.maps.MapTypeId.ROADMAP
+  };
+  map = new google.maps.Map(document.getElementById('map-canvas'),
+      mapOptions);
+
+  // Iterate through specials  
+  var image = '<%= asset_path "pin.png" %>';
+  <% @specials.each do |s| %>
+    var myLatlng = new google.maps.LatLng(<%= s.bar_location.latitude %>,<%= s.bar_location.longitude %>);
+    var marker = new google.maps.Marker({
+        position: myLatlng,
+        map: map,
+        title: '<%= s.bar.bar_name %>',
+        icon: image
+    });
+  <% end %>
+}
+$(document).ready(function() {
+  $('input[type="radio"]:checked').parent().addClass('brown')
+  $('input[type="radio"]').on('change', function() {
+    $('.button-group').find('label').removeClass('brown');
+    $(this).parent().addClass('brown');
+  })
+
+  initialize();
+});
+</script>
+<div class='large-8 columns'>
+  <h5 class='centered'>Map</h5>
+  <div id='map-canvas'></div>    
+
+  <% @specials.each do |s| %>
+  <ul data-reveal-id="<%= s.id %>" class="special-bar" style="background: url('<%= asset_path s.beer_image %>');background-repeat: no-repeat;background-position-y: 12px;">
+    <li><b><%= s.special_description %></b></li>
+    <li class='star'><%= s.bar_name %></li>
+    <li><%= s.beer_size %> oz. - <%= s.distance_from(@location) %> miles away</li>
+    <div class='price'><%= number_to_currency s.sale_price %></div>
+  </ul>
+  <div id="<%= s.id %>" class="reveal-modal">
+    <h2><%= s.bar_name %></h2>
+    <ul>
+      <li><b>M</b> <%= s.bar.hours_mon %></li>
+      <li><b>T</b> <%= s.bar.hours_tues %></li>
+      <li><b>W</b> <%= s.bar.hours_wed %></li>
+      <li><b>R</b> <%= s.bar.hours_thur %></li>
+      <li><b>F</b> <%= s.bar.hours_fri %></li>
+      <li><b>S</b> <%= s.bar.hours_sat %></li>
+      <li><b>S</b> <%= s.bar.hours_sun %></li>
+    </ul>
+    <a class="small orange button radius" href="<%= s.bar.bar_url %>">Website</a>
+    <a class="small orange button radius" href="https://maps.google.com/?q=<%= s.bar_location.latitude %>,<%= s.bar_location.longitude %>">Directions</a>
+    <a class="small orange button radius" href="tel:<%= s.bar.bar_phone %>">Call</a>
+    <a class="close-reveal-modal">&#215;</a>
+  </div>
+  <% end %>
+
+  <% if @specials.blank? %>
+    <div class='large-4 large-centered columns'>
+      <br />
+      <br />
+      <%= image_tag "nospecials.png" %>
+    </div>
+  <% end %>
+</div>
+
+<div class='large-4 columns'>
+  <h5 class='centered'><%= @city %></h5>
+  <%= form_tag '', method: 'get' do %>
+     <div class='row'>
+      <div class="large-10 large-centered columns">
+        <%= label_tag :zip %>
+        <%= text_field_tag :zip, params[:zip] %>
+      </div>
+      <div class="large-10 large-centered columns">
+        <%= label_tag :distance %>
+      </div>
+    </div>
+    <div class='row'>      
+      <ul class="button-group round even-3">
+        <li><label class="small button"><%= radio_button_tag :distance, 5, (params[:distance].to_i == 5 ? true : false) %> 5 mi.</label></li>
+        <li><label class="small button"><%= radio_button_tag :distance, 10, (params[:distance].to_i == 10 ? true : false) %> 10 mi.</label></li>
+        <li><label class="small button"><%= radio_button_tag :distance, 25, (params[:distance].to_i == 25 ? true : false) %> 25 mi.</label></li>
+      </ul>
+    </div>
+    
+    <div class='row'>      
+      <div class="large-10 large-centered columns">
+        <%= submit_tag "Get Specials", class: 'orange button full-width' %>
+      </div>
+    </div>
+  <% end %>  
+</div>

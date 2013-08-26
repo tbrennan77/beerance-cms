@@ -72,4 +72,25 @@ class BarSpecials < ParseResource::Base
   def bar
     BarEntity.find bar_id
   end
+
+  def location
+    [bar_location.latitude, bar_location.longitude]
+  end
+
+  def distance_from(geopoint)
+    Geocoder::Calculations.distance_between(location, geopoint).round(2)    
+  end
+
+  def beer_image
+    case beer_color
+    when 0
+      'black.png'
+    when 1
+      'red.png'
+    when 2
+      'pale.png'
+    when 3
+      'amber.png'
+    end
+  end
 end
