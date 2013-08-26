@@ -11,22 +11,10 @@ class HomeController < ApplicationController
 
   def map
     params[:distance] = params[:distance] ||= 10
-    
-    if params.has_key?(:zip)
-      geo = Geocoder.search(params[:zip])
-      lat = geo.first.data['geometry']['location']['lat']
-      lng = geo.first.data['geometry']['location']['lng']
-      @city = geo.first.data['address_components'][1]['long_name']        
-    else
-      geo = Geocoder.search(request.remote_ip)
-      lat = geo.first.data['latitude']
-      lng = geo.first.data['longitude']
-      @city = geo.first.data['city']
-    end
-    
-    @location = [lat, lng]
-    
-    @specials = BarSpecials.near(:bar_location, @location, maxDistanceInMiles: params[:distance].to_i).all
+    @location = params[:zip].blank? ? geo_from_ip : geo_from_zip(params[:zip])
+    puts @location.inspect
+    puts "*"*80
+    @specials = BarSpecials.near(:bar_location, [@location[:lat], @location[:lon]], maxDistanceInMiles: params[:distance].to_i).all
     render layout: 'application'
   end
 
@@ -74,5 +62,23 @@ class HomeController < ApplicationController
     when "bar_drinker"
       DRINKER_NEWS_LIST_ID
     end
+  end
+
+  def geo_from_zip(zip)
+    geo = Geocoder.search(zip)
+    location = {}
+    location[:lat]  = geo.first.data['geometry']['location']['lat']
+    location[:lon]  = geo.first.data['geometry']['location']['lng']
+    location[:city] = geo.first.data['address_components'][1]['long_name']        
+    location
+  end
+
+  def geo_from_ip
+    geo = Geocoder.search('98.103.86.54')
+    location = {}
+    location[:lat]  = geo.first.data['latitude']
+    location[:lon]  = geo.first.data['longitude']
+    location[:city] = geo.first.data['city']
+    location
   end
 end

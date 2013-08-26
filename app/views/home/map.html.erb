@@ -21,13 +21,12 @@ label.small {
   list-style-image: url("assets/beerance_staricon.png");
 }
 </style>
-
 <script>
 var map;
 function initialize() {
   var mapOptions = {
     zoom: 10,
-    center: new google.maps.LatLng(<%= @location[0] %>, <%= @location[1] %>),
+    center: new google.maps.LatLng(<%= @location[:lat] %>, <%= @location[:lon] %>),
     mapTypeId: google.maps.MapTypeId.ROADMAP
   };
   map = new google.maps.Map(document.getElementById('map-canvas'),
@@ -63,7 +62,7 @@ $(document).ready(function() {
   <ul data-reveal-id="<%= s.id %>" class="special-bar" style="background-image: url('<%= asset_path s.beer_image %>'), url(assets/darkshelf.png);background-position: 15px 65px, left;background-repeat: no-repeat, no-repeat;">
     <li><b><%= s.special_description %></b></li>
     <li class='star'><%= s.bar_name %></li>
-    <li><%= s.beer_size %> oz. - <%= s.distance_from(@location) %> miles away</li>
+    <li><%= s.beer_size %> oz. - <%= s.distance_from([@location[:lat], @location[:lon]]) %> miles away</li>
     <div class='price'><%= number_to_currency s.sale_price %></div>
   </ul>
   <div id="<%= s.id %>" class="reveal-modal">
@@ -85,16 +84,12 @@ $(document).ready(function() {
   <% end %>
 
   <% if @specials.blank? %>
-    <div class='large-4 large-centered columns'>
-      <br />
-      <br />
-      <%= image_tag "nospecials.png" %>
-    </div>
+    <ul class="special-bar" style="height: 450px; background-image: url('<%= asset_path "nospec.png" %>');background-position: left;background-repeat: no-repeat;"></ul>
   <% end %>
 </div>
 
 <div class='large-4 columns'>
-  <h5 class='centered'><%= @city %></h5>
+  <h5 class='centered'><%= @location[:city] %></h5>
   <%= form_tag '' do %>
      <div class='row'>
       <div class="large-10 large-centered columns">
