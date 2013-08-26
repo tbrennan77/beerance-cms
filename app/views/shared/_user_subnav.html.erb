@@ -12,9 +12,9 @@ $('.subnav a[data-remote="true"]').live('click', function(e) {
 
 <div class='subnav hide-for-small'>
   <div class='row'>
-    <div class="large-12 columns">      
-      <%= link_to "Current Specials", current_specials_path, class: is_current?('profile'), data: {remote: true} %>
-      <%= link_to "Archived Specials", archived_specials_path, class: current_subnav(params[:partial], 'archives'), data: {remote: true} %>
+    <div class="large-12 columns">    
+      <%= link_to "Current Specials", current_specials_path, class: current_subnav('/my-beerances'), data: {remote: true} %>
+      <%= link_to "Archived Specials", archived_specials_path, class: current_subnav('/my-beerances/archived'), data: {remote: true} %>
       <%= link_to "My Bars", bar_entities_path %>      
       <%= link_to "Account Details", account_details_path, class: is_current?('show') %>
       <%= link_to "Billing", billing_overview_path %>

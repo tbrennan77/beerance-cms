@@ -48,6 +48,7 @@ Beerance::Application.routes.draw do
   get   '/my-beerances/current-specials'  => 'users#current_specials', as: 'current_specials'
   get   '/my-beerances/archived-specials' => 'users#archived_specials', as: 'archived_specials'  
   match '/my-beerances'                   => 'users#profile', as: 'profile'
+  match '/my-beerances/archived'          => 'users#profile', as: 'profile_archive'
   
   # Bar entities
   resources :bar_entities, path: 'bars'

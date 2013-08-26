@@ -1,7 +1,7 @@
 class User < ParseUser  
   fields :email, :newsletter_subscription, :username, :owner_name, :owner_phone, :account_type, :user_favorites, :createdAt, :admin, :password_reset_token, :password_reset_sent_at
 
-  EMAIL_REGEX = /[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}/i
+  EMAIL_REGEX = /\A[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}\z/i
 
   validates :username,
     presence: true,    
@@ -46,5 +46,5 @@ class User < ParseUser
 
   def bars?
     bars.count > 0 ? true : false
-  end
+  end  
 end

@@ -1,7 +1,19 @@
 class BarSpecials < ParseResource::Base
-  fields :bar_id, :bar_location, :bar_name, :special_description, :sale_price, :expiration_date, :beer_color, :beer_size
+  fields :bar_id,
+    :bar_location,
+    :bar_name,
+    :special_description,
+    :sale_price,
+    :expiration_date,
+    :beer_color,
+    :beer_size
   
-  validates_presence_of :bar_id, :special_description, :sale_price, :beer_color, :beer_size
+  validates_presence_of :bar_id,
+    :special_description,
+    :sale_price,
+    :beer_color,
+    :beer_size
+  
   validates :sale_price,
     numericality: {greater_than: 0}
 
@@ -21,7 +33,7 @@ class BarSpecials < ParseResource::Base
   before_save :ensure_fields
 
   def set_expiration_date    
-    self.expiration_date = DateTime.now.tomorrow.beginning_of_day.advance(hours: 9)
+    self.expiration_date = DateTime.now.tomorrow.beginning_of_day.advance(years: 1, hours: 9)
   end
 
   def set_geo_location

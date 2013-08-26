@@ -72,3 +72,7 @@
 <% else %>
   <h3 style='text-align: center;'>You have no archived specials</h3>
 <% end %>
+
+<script>
+	window.history.pushState({"html": $('.ajax-container').html(),"pageTitle":document.title},"", '/my-beerances/archived');
+</script>

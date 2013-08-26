@@ -17,3 +17,9 @@ jQuery ->
     else
       $(this).hide()
       $(this).prev('label').show()
+
+  window.onpopstate = (e) ->
+   if e.state
+     console.log('title: '+e.state.html)
+     document.title = e.state.pageTitle
+     $('.ajax-container').html(e.state.html)
