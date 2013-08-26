@@ -95,9 +95,7 @@ class BarEntity < ParseResource::Base
     end
     true
   rescue Stripe::StripeError => e
-    logger.error "Stripe Error: " + e.message
-    errors.add :base, "Unable to update your subscription. #{e.message}."
-    false
+    log_stripe_error(e, "Unable to update your subscription. #{e.message}.")
   end
 
   def update_card(strip_card_token)    
@@ -107,9 +105,7 @@ class BarEntity < ParseResource::Base
     end
     true
   rescue Stripe::StripeError => e
-    logger.error "Stripe Error: " + e.message
-    errors.add :base, "Unable to update your card. #{e.message}."
-    false
+    log_stripe_error("Unable to update your card. #{e.message}.")    
   end
   
   def cancel_subscription    
@@ -118,9 +114,7 @@ class BarEntity < ParseResource::Base
       customer.cancel_subscription(at_period_end: true)
     end 
   rescue Stripe::StripeError => e
-    logger.error "Stripe Error: " + e.message
-    errors.add :base, "Unable to cancel your subscription. #{e.message}."
-    false
+    log_stripe_error(e, "Unable to cancel your subscription. #{e.message}.")    
   end
 
   def stripe_customer
@@ -155,6 +149,14 @@ class BarEntity < ParseResource::Base
     end
   rescue Stripe::InvalidRequestError => e    
     errors.add :base, "There was a problem with your credit card."
+    false
+  end
+
+  private 
+  
+  def log_stripe_error(e, message)
+    logger.error "Stripe Error: " + e.message
+    errors.add :base, message
     false
   end
 end
