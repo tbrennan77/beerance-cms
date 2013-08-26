@@ -55,16 +55,10 @@ class BarEntitiesController < ApplicationController
   end
 
   def set_times
-    params[:bar_entity][:hours_mon]  = cat_times params[:bar_entity][:mon_start], params[:bar_entity][:mon_end]
-    params[:bar_entity][:hours_tues] = cat_times params[:bar_entity][:tue_start], params[:bar_entity][:tue_end]
-    params[:bar_entity][:hours_wed]  = cat_times params[:bar_entity][:wed_start], params[:bar_entity][:wed_end]
-    params[:bar_entity][:hours_thur] = cat_times params[:bar_entity][:thu_start], params[:bar_entity][:thu_end]
-    params[:bar_entity][:hours_fri]  = cat_times params[:bar_entity][:fri_start], params[:bar_entity][:fri_end]
-    params[:bar_entity][:hours_sat]  = cat_times params[:bar_entity][:sat_start], params[:bar_entity][:sat_end]
-    params[:bar_entity][:hours_sun]  = cat_times params[:bar_entity][:sun_start], params[:bar_entity][:sun_end]
-    
-    [:mon_start, :mon_end, :tue_start, :tue_end, :wed_start, :wed_end, :thu_start, :thu_end, :fri_start, :fri_end, :sat_start, :sat_end, :sun_start, :sun_end].each do |key|
-      params[:bar_entity].delete key
+    %w{mon tues wed thur fri sat sun}.each do |d|
+      params[:bar_entity]["hours_#{d}"] = cat_times(params[:bar_entity]["#{d}_start"], params[:bar_entity]["#{d}_end"])
+      params[:bar_entity].delete("#{d}_start")
+      params[:bar_entity].delete("#{d}_end")
     end
   end
 
@@ -74,5 +68,5 @@ class BarEntitiesController < ApplicationController
     else
       "#{open} - #{close}"
     end
-  end
+  end  
 end

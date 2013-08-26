@@ -46,10 +46,10 @@
         <%= f.label :hours_tues, "Tuesday" %>
         <div class='row hour-label'>
           <div class="large-6 columns">
-            <%= f.select :tue_start, times.map {|t| t }, prompt: "-- Open at --", selected: selected_time(f.object.hours_tues)[:open] %>
+            <%= f.select :tues_start, times.map {|t| t }, prompt: "-- Open at --", selected: selected_time(f.object.hours_tues)[:open] %>
           </div>
           <div class="large-6 columns">
-            <%= f.select :tue_end, times.map {|t| t }, prompt: "-- Close at --", selected: selected_time(f.object.hours_tues)[:close] %>
+            <%= f.select :tues_end, times.map {|t| t }, prompt: "-- Close at --", selected: selected_time(f.object.hours_tues)[:close] %>
           </div>
         </div>
         <%= f.label :hours_wed, "Wednesday" %>
@@ -64,10 +64,10 @@
         <%= f.label :hours_thur, "Thursday" %>
         <div class='row hour-label'>
           <div class="large-6 columns">
-            <%= f.select :thu_start, times.map {|t| t }, prompt: "-- Open at --", selected: selected_time(f.object.hours_thur)[:open] %>
+            <%= f.select :thur_start, times.map {|t| t }, prompt: "-- Open at --", selected: selected_time(f.object.hours_thur)[:open] %>
           </div>
           <div class="large-6 columns">
-            <%= f.select :thu_end, times.map {|t| t }, prompt: "-- Close at --", selected: selected_time(f.object.hours_thur)[:close] %>
+            <%= f.select :thur_end, times.map {|t| t }, prompt: "-- Close at --", selected: selected_time(f.object.hours_thur)[:close] %>
           </div>
         </div>
         <%= f.label :hours_fri, "Friday" %>
