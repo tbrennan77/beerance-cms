@@ -55,7 +55,7 @@ $(document).ready(function() {
 });
 </script>
 <div class='large-8 columns'>
-  <h5 class='centered'>Map</h5>
+  <h5 class='centered'>Map <%= request.remote_ip %></h5>
   <div id='map-canvas'></div>    
 
   <% @specials.each do |s| %>
