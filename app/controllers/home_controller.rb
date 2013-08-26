@@ -11,7 +11,7 @@ class HomeController < ApplicationController
 
   def map
     params[:distance] = params[:distance] ||= 10
-    zip = params[:zip] || request.ip.to_s
+    zip = params[:zip] || request.remote_ip.to_s
     geo = Geocoder.search(zip)
     lat = geo.first.data['geometry']['location']['lat']
     lng = geo.first.data['geometry']['location']['lng']
