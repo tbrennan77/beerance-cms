@@ -52,6 +52,14 @@ $(document).ready(function() {
   })
 
   initialize();
+
+  $('ul.special-bar').on('click', function() {
+    var url = '/map/bar-info/' + $(this).data('bar-id');
+
+    $.get(url, function(data) {
+      $('#bar-info').html(data);      
+    });
+  });
 });
 </script>
 <div class='large-8 columns'>
@@ -59,28 +67,12 @@ $(document).ready(function() {
   <div id='map-canvas'></div>    
 
   <% @specials.each do |s| %>
-  <ul data-reveal-id="<%= s.id %>" class="special-bar" style="background-image: url('<%= asset_path s.beer_image %>'), url(assets/darkshelf.png);background-position: 15px 65px, left;background-repeat: no-repeat, no-repeat;">
+  <ul data-reveal-id="bar-info" data-bar-id="<%= s.bar_id %>" class="special-bar" style="background-image: url('<%= asset_path s.beer_image %>'), url(assets/darkshelf.png);background-position: 15px 65px, left;background-repeat: no-repeat, no-repeat;">
     <li><b><%= s.special_description %></b></li>
     <li class='star'><%= s.bar_name %></li>
     <li><%= s.beer_size %> oz. - <%= s.distance_from([@location[:lat], @location[:lon]]) %> miles away</li>
     <div class='price'><%= number_to_currency s.sale_price %></div>
   </ul>
-  <div id="<%= s.id %>" class="reveal-modal">
-    <h2><%= s.bar_name %></h2>
-    <ul>
-      <li><b>M</b> <%= s.bar.hours_mon %></li>
-      <li><b>T</b> <%= s.bar.hours_tues %></li>
-      <li><b>W</b> <%= s.bar.hours_wed %></li>
-      <li><b>R</b> <%= s.bar.hours_thur %></li>
-      <li><b>F</b> <%= s.bar.hours_fri %></li>
-      <li><b>S</b> <%= s.bar.hours_sat %></li>
-      <li><b>S</b> <%= s.bar.hours_sun %></li>
-    </ul>
-    <a class="small orange button radius" href="<%= s.bar.bar_url %>">Website</a>
-    <a class="small orange button radius" href="https://maps.google.com/?q=<%= s.bar_location.latitude %>,<%= s.bar_location.longitude %>">Directions</a>
-    <a class="small orange button radius" href="tel:<%= s.bar.bar_phone %>">Call</a>
-    <a class="close-reveal-modal">&#215;</a>
-  </div>
   <% end %>
 
   <% if @specials.blank? %>
@@ -115,3 +107,5 @@ $(document).ready(function() {
     </div>
   <% end %>  
 </div>
+
+<div id="bar-info" class="reveal-modal"></div>

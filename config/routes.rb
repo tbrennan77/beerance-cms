@@ -31,6 +31,7 @@ Beerance::Application.routes.draw do
   get  '/how-it-works'   => 'home#how_it_works', as: 'how_it_works'
   get  '/recent-updates' => 'home#recent_updates', as: 'recent_updates'
   get  '/for-bar-owners' => 'home#for_bar_owners', as: 'for_bar_owners'  
+  get  '/map/bar-info/:id' => 'home#bar_info', as: 'bar_info'
   post '/new-sign-up'    => 'home#new_signup', as: 'new_signup'
   post '/send-feedback'  => 'home#send_feedback', as: 'send_feedback'
   match '/map'           => 'home#map', as: 'map'

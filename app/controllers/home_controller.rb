@@ -1,6 +1,6 @@
 class HomeController < ApplicationController
 	before_filter :find_promoters
-  before_filter :require_admin, except: %w{map index how_it_works privacy feedback send_feedback new_signup signup find_subscriber_email_id find_promoters}
+  before_filter :require_admin, except: %w{bar_info map index how_it_works privacy feedback send_feedback new_signup signup find_subscriber_email_id find_promoters}
 
   layout 'interior'
   
@@ -16,6 +16,11 @@ class HomeController < ApplicationController
     puts "*"*80
     @specials = BarSpecials.near(:bar_location, [@location[:lat], @location[:lon]], maxDistanceInMiles: params[:distance].to_i).all
     render layout: 'application'
+  end
+
+  def bar_info
+    @bar = BarEntity.find params[:id]
+    render layout: false
   end
 
   def privacy
