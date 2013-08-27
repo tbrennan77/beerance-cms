@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   before_filter :require_user, except: %w{new create}
-  before_filter :require_admin, except: %w{new edit update create profile show current_specials archived_specials end_beerance reactivate_beerance}  
-  before_filter :confirm_active_subscription, only: %w{reactivate_beerance}  
+  before_filter :require_admin, except: %w{new edit update create profile show current_specials archived_specials toggle_beerance}  
+  before_filter :new_bar_special, only: %w{profile current_specials archived_specials toggle_beerance}
 
   def index
     @users = User.all
@@ -17,16 +17,7 @@ class UsersController < ApplicationController
   end
 
   def profile    
-    @bar_special = BarSpecials.new
     redirect_to new_bar_entity_path unless current_user.bars?
-  end
-
-  def current_specials
-    @bar_special = BarSpecials.new
-  end
-
-  def archived_specials
-    @bar_special = BarSpecials.new
   end
 
 # Basic CRUD actions
@@ -68,26 +59,13 @@ class UsersController < ApplicationController
   end
 
 # Beerance Actions
-  def end_beerance
-    @bar_special = BarSpecials.new
-    special = current_user.specials.find { |d| d.id == params[:id] }
-    special.end_special
-    if special.save
+  def toggle_beerance
+    @special = current_user.specials.find { |d| d.id == params[:id] }
+    @special.active? ? @special.end_special : @special.reactivate_special
+    if @special.save
       respond_to do |format|
-        format.js { flash.now.notice = "Ended Special" }
-        format.html {redirect_to profile_path, notice: 'Ended Special'}
-      end      
-    end
-  end
-
-  def reactivate_beerance
-    @bar_special = BarSpecials.new    
-    special = current_user.specials.find { |d| d.id == params[:id] }
-    special.reactivate_special
-    if special.save
-      respond_to do |format|
-        format.js { flash.now.notice = "Reactivated Special" }
-        format.html { redirect_to profile_path, notice: 'Reactivated Special'}
+        format.js   { flash.now.notice = "Updated Special" }
+        format.html { redirect_to profile_path, notice: 'Updated Special' }
       end
     end
   end
@@ -106,27 +84,13 @@ class UsersController < ApplicationController
   end
 
 # Before Filters
-  def confirm_active_subscription    
-    bar = BarSpecials.find(params[:id]).bar
-    
-    if request.xhr?
-      script = <<-END_SCRIPT
-        $('.alert-box.notice').remove();
-        $('#ajax_bar').before('<div class="alert-box notice">Your subscription is not active!</div>');
-        $('.alert-box.notice').hide().fadeIn('slow').delay(4000).fadeOut();
-      END_SCRIPT
-
-      if !bar.subscription.active?
-        render js: script
-      end        
-    else
-      redirect_to profile_path, notice: 'Your subscription is not active' unless bar.subscription.active?
-    end
-  end
-
   def user_params
     params[:user][:username] = params[:user][:username].downcase if params[:user].has_key?(:username)
     params[:user][:newsletter_subscription] = !params[:user][:newsletter_subscription].to_i.zero? if params[:user].has_key?(:newsletter_subscription)
     params[:user]
+  end
+
+  def new_bar_special
+    @bar_special = BarSpecials.new    
   end
 end

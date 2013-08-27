@@ -44,8 +44,8 @@ Beerance::Application.routes.draw do
   resources :users  
   get   '/register'                       => 'users#new', :as => 'sign_up'    
   get   '/account-details'                => 'users#show', :as => 'account_details'    
-  get   '/end-beerance/:id'               => 'users#end_beerance', as: 'end_beerance'
-  get   '/reactive-beerance/:id'          => 'users#reactivate_beerance', as: 'reactivate_beerance'
+  get   '/end-beerance/:id'               => 'users#toggle_beerance', as: 'end_beerance'
+  get   '/reactive-beerance/:id'          => 'users#toggle_beerance', as: 'reactivate_beerance'
   get   '/my-beerances/current-specials'  => 'users#current_specials', as: 'current_specials'
   get   '/my-beerances/archived-specials' => 'users#archived_specials', as: 'archived_specials'  
   match '/my-beerances'                   => 'users#profile', as: 'profile'

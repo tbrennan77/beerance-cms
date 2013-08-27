@@ -30,10 +30,8 @@ class BarSpecials < ParseResource::Base
       greater_than: 0
     }
 
-  before_save :set_expiration_date
-
-  def set_expiration_date    
-    self.expiration_date = DateTime.now.tomorrow.beginning_of_day.advance(years: 1, hours: 9) unless self.expiration_date
+  def set_expiration_date
+    self.expiration_date = DateTime.now.tomorrow.beginning_of_day.advance(years: 1, hours: 9)
   end
 
   def active?
@@ -45,7 +43,7 @@ class BarSpecials < ParseResource::Base
   end
 
   def reactivate_special
-    self.set_expiration_date
+    self.set_expiration_date if bar.subscription.active?
   end
 
   def bar

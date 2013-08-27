@@ -1,0 +1,11 @@
+$('.alert-box.notice').remove();
+$('#ajax_bar').before('<div class="alert-box notice"><%= flash[:notice] %></div>');
+
+<% if @special.active? %>
+  $('.ajax-container').html('<%= j render("archives") %>');
+<% else %>
+  $('.ajax-container').html('<%= j render("current_specials") %>');
+<% end %>
+
+$('#ajax_bar').fadeOut();
+$('.alert-box.notice').hide().fadeIn('slow').delay(4000).fadeOut();

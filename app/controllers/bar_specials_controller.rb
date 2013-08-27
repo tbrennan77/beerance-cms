@@ -7,7 +7,8 @@ class BarSpecialsController < ApplicationController
   end
     
   def create      
-    @bar_special = BarSpecials.new bar_special_params    
+    @bar_special = BarSpecials.new bar_special_params
+    @bar_special.set_expiration_date
     if @bar_special.bar.subscription.active? && @bar_special.save
       respond_to do |f|
         f.html {redirect_to profile_path, :notice => "Added Special!"}
