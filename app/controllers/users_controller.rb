@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   before_filter :require_user, except: %w{new create}
-  before_filter :require_admin, except: %w{new edit update create profile show current_specials archived_specials toggle_beerance}  
-  before_filter :new_bar_special, only: %w{profile current_specials archived_specials toggle_beerance}
+  before_filter :require_admin, except: %w{new edit update create profile show current_specials archived_specials}  
+  before_filter :new_bar_special, only: %w{profile current_specials archived_specials}
 
   def index
     @users = User.all
@@ -56,18 +56,6 @@ class UsersController < ApplicationController
     user = User.find params[:id]
     user.destroy
     redirect_to users_path
-  end
-
-# Beerance Actions
-  def toggle_beerance
-    @special = current_user.specials.find { |d| d.id == params[:id] }
-    @special.active? ? @special.end_special : @special.reactivate_special
-    if @special.save
-      respond_to do |format|
-        format.js   { flash.now.notice = "Updated Special" }
-        format.html { redirect_to profile_path, notice: 'Updated Special' }
-      end
-    end
   end
 
 # Admin Actions

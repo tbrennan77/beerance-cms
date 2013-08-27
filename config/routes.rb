@@ -20,7 +20,6 @@ Beerance::Application.routes.draw do
 
   # Home pages
   get  '/tos'            => 'home#tos', as: 'tos'
-  match '/map'            => 'home#map', as: 'map'
   get  '/about'          => 'home#about', as: 'about'
   get  '/legal'          => 'home#legal', as: 'legal'
   get  '/support'        => 'home#support', as: 'support'
@@ -34,6 +33,7 @@ Beerance::Application.routes.draw do
   get  '/for-bar-owners' => 'home#for_bar_owners', as: 'for_bar_owners'  
   post '/new-sign-up'    => 'home#new_signup', as: 'new_signup'
   post '/send-feedback'  => 'home#send_feedback', as: 'send_feedback'
+  match '/map'           => 'home#map', as: 'map'
 
   # Sessions
   resources :sessions 
@@ -44,8 +44,6 @@ Beerance::Application.routes.draw do
   resources :users  
   get   '/register'                       => 'users#new', :as => 'sign_up'    
   get   '/account-details'                => 'users#show', :as => 'account_details'    
-  get   '/end-beerance/:id'               => 'users#toggle_beerance', as: 'end_beerance'
-  get   '/reactive-beerance/:id'          => 'users#toggle_beerance', as: 'reactivate_beerance'
   get   '/my-beerances/current-specials'  => 'users#current_specials', as: 'current_specials'
   get   '/my-beerances/archived-specials' => 'users#archived_specials', as: 'archived_specials'  
   match '/my-beerances'                   => 'users#profile', as: 'profile'
@@ -56,8 +54,10 @@ Beerance::Application.routes.draw do
   
   # Bar Specials
   resources :bar_specials, path: 'bar-specials'
-  match 'bar-specials'     => 'bar_specials#index', as: 'bar_specials_index'
-  match 'bar-specials/new' => 'bar_specials#new', as: 'new_bar_special'
+  get   '/end-beerance/:id'      => 'bar_specials#toggle_beerance', as: 'end_beerance'
+  get   '/reactive-beerance/:id' => 'bar_specials#toggle_beerance', as: 'reactivate_beerance'
+  match 'bar-specials'           => 'bar_specials#index', as: 'bar_specials_index'
+  match 'bar-specials/new'       => 'bar_specials#new', as: 'new_bar_special'
 
   # Admin panel
   get   '/admin'                    => 'admin#index', as: 'admin'
