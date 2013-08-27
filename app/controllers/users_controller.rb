@@ -1,7 +1,6 @@
 class UsersController < ApplicationController
   before_filter :require_user, except: %w{new create}
-  before_filter :require_admin, except: %w{new edit update create profile show current_specials archived_specials end_beerance reactivate_beerance}
-  before_filter :verify_create_parameters, only: %w{create}  
+  before_filter :require_admin, except: %w{new edit update create profile show current_specials archived_specials end_beerance reactivate_beerance}  
   before_filter :confirm_active_subscription, only: %w{reactivate_beerance}  
 
   def index
@@ -37,7 +36,8 @@ class UsersController < ApplicationController
     render layout: "application"
   end
     
-  def create    
+  def create
+    @user = User.new user_params    
     if @user.save
       session[:user_id] = @user.id
       Notifier.signup(@user).deliver
@@ -52,10 +52,9 @@ class UsersController < ApplicationController
     render layout: 'account_details'
   end
 
-  def update
-    params[:user][:username].downcase!
+  def update    
     @user = User.find params[:id]    
-    if @user.update_attributes params[:user]
+    if @user.update_attributes user_params
       redirect_to account_details_path
     else
       render :edit
@@ -107,17 +106,6 @@ class UsersController < ApplicationController
   end
 
 # Before Filters
-  def verify_create_parameters
-    @user = User.new(params[:user])
-    @user.username.downcase!
-    @user.newsletter_subscription = !@user.newsletter_subscription.to_i.zero?
-    if params[:user][:password] != params[:user][:password_confirmation]
-      @user.errors.add :password, "did not match confirmation."
-      render 'new'
-    end
-    params[:user].delete :password_confirmation    
-  end
-
   def confirm_active_subscription    
     bar = BarSpecials.find(params[:id]).bar
     
@@ -134,5 +122,11 @@ class UsersController < ApplicationController
     else
       redirect_to profile_path, notice: 'Your subscription is not active' unless bar.subscription.active?
     end
+  end
+
+  def user_params
+    params[:user][:username] = params[:user][:username].downcase if params[:user].has_key?(:username)
+    params[:user][:newsletter_subscription] = !params[:user][:newsletter_subscription].to_i.zero? if params[:user].has_key?(:newsletter_subscription)
+    params[:user]
   end
 end

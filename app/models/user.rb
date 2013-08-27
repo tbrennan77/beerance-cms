@@ -13,7 +13,8 @@ class User < ParseUser
     length: {minimum: 6},
     on: :create
   
-  validates_presence_of :owner_name, :owner_phone
+  validates_presence_of :owner_name, :owner_phone, :password
+  validates_length_of :password, minimum: 6
 
   def admin?; self.admin==true; end
   def make_admin; self.admin=true;self.save; end
@@ -66,5 +67,5 @@ class User < ParseUser
 
   def bars?
     bars.count > 0 ? true : false
-  end  
+  end
 end
