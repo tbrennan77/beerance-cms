@@ -36,8 +36,8 @@
 						    <div class="content" data-section-content>
 					  			<fieldset style="background:none;border:none;padding-top:0;padding-bottom:0;">
 						  			<%= form_for @news_subscription, url: new_signup_path do |f| %>			  				
-							  			<%= f.hidden_field :subscriber_type, value: "bar_owner" %>
-							  			<%= f.email_field :subscriber_email, placeholder: 'youremail@example.com', class: 'required' %>
+							  			<%= f.hidden_field :subscriber_type, value: "bar_owner", id: 'owner_subscriber_type' %>
+							  			<%= f.email_field :subscriber_email, id: 'owner_subscriber_email', placeholder: 'youremail@example.com', class: 'required' %>
 							  			<%= submit_tag "Submit", class: 'orange button radius' %>
 						  			<% end %>
 						  		</fieldset>							      
@@ -76,7 +76,7 @@
 						<li>Lists beer style, price, location</li>
 						<li>Based on your location</li>
 						<li>Highlight your favorite spots</li>
-						<li>Any town, any city, any country</li>
+						<li>Any town, any city, any country</li>
 						<li>Share your favorite specials via Facebook and Twitter</li>
 					</ul>
 					<!--<%= link_to "How it Works", how_it_works_path, class: 'button' %>-->
@@ -85,7 +85,7 @@
 		  			<%= image_tag "beerance_baricon.png", height: 82, width: 73 %><h2>Bar Owners</h2>
 		  			<ul>
 						<li>Move inventory quickly</li>
-						<li>Connect with your mobile audience</li>
+						<li>Connect with your mobile audience</li>
 						<li>Announce Beerance Sales daily</li>
 						<li>Easy to use tools</li>
 						<li>Low monthly cost</li>
