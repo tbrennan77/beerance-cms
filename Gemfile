@@ -9,7 +9,6 @@ gem 'modernizr-rails'
 gem 'jquery-rails'
 gem 'animate-rails'
 gem 'exception_notification'
-gem 'newrelic_rpm'
 gem 'unicorn'
 
 # Parse and Stripe and New Relic
