@@ -16,6 +16,7 @@
 
 #config/parse_resource.yml
 #config/initializers/stripe.rb
+config/initializers/secret_token.rb
 
 .DS_Store
 */.DS_Store
