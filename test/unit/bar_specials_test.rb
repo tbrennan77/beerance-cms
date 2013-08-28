@@ -14,35 +14,7 @@ class BarSpecialsTest < ActiveSupport::TestCase
       beer_size: 12)    
   end
 
-  # test validations
-  test "it can create a special" do
-    assert @bar_special.valid?
-  end
-
-  test "should not save special without bar id" do
-    @bar_special.bar_id = nil
-    assert !@bar_special.valid?
-  end
-
-  test "should not save special without description" do
-    @bar_special.special_description = nil
-    assert !@bar_special.valid?
-  end
-
-  test "should not save special without sale price" do
-    @bar_special.sale_price = nil
-    assert !@bar_special.valid?
-  end
-
-  test "should not save special without beer color" do
-    @bar_special.beer_color = nil
-    assert !@bar_special.valid?
-  end
-
-  test "should not save special without beer size" do
-    @bar_special.beer_size = nil
-    assert !@bar_special.valid?
-  end
+ 
 
   # test numericalities
   test "should not save special if beer color is not a number" do

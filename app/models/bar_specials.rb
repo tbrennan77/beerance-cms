@@ -79,4 +79,8 @@ class BarSpecials < ParseResource::Base
     attrs[:beer_size]  = attrs[:beer_size].to_i  if attrs.has_key?(:beer_size)
     attrs
   end
+
+  def bar_entity=(bar_entity)
+    self.bar_id = bar_entity.id
+  end
 end
