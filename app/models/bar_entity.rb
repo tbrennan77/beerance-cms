@@ -32,10 +32,18 @@ class BarEntity < ParseResource::Base
         :sat_start,
         :sat_end,
         :sun_start,
-        :sun_end
+        :sun_end  
 
-  validates_presence_of :bar_name, :subscription_plan_id, :bar_location, :bar_phone, :bar_url, :bar_addr1, :bar_city, :bar_state, :bar_zip, :hours_mon, :hours_tues, :hours_wed, :hours_thur, :hours_fri, :hours_sat, :hours_sun
+  validates_presence_of :bar_name, :subscription_plan_id, :bar_location, :bar_phone, :bar_url, :bar_addr1, :bar_city, :bar_state, :bar_zip, :hours_mon, :hours_tues, :hours_wed, :hours_thur, :hours_fri, :hours_sat, :hours_sun  
   before_save :ensure_fields
+
+  def bar_owner
+    User.find(bar_owner_id)
+  end
+
+  def bar_owner=(user)
+    self.bar_owner_id = user.id
+  end
 
   def set_phone_number
     self.bar_phone = self.bar_phone.gsub(/[^\d]/, "")
@@ -129,6 +137,10 @@ class BarEntity < ParseResource::Base
     SubscriptionPlan.find subscription_plan_id
   end
 
+  def subscription_plan=(subscription_plan)
+    self.subscription_plan_id = subscription_plan.id
+  end
+
   def save_with_payment
     if valid?
       customer = Stripe::Customer.create(
@@ -159,4 +171,10 @@ class BarEntity < ParseResource::Base
     errors.add :base, message
     false
   end
+
+  def self.egg
+    "Hi There :D"
+  end
+
+  alias :user= :bar_owner=
 end

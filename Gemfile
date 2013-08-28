@@ -29,5 +29,12 @@ end
 group :test do
   # Pretty printed test output
   gem 'turn', '0.8.3', :require => false
-  gem 'capybara'
+  gem 'factory_girl'
+  gem 'rspec-rails', '2.13.1'
+  gem 'shoulda-matchers'
+  gem 'selenium-webdriver', '2.0.0'
+  gem 'capybara', '2.1.0'
+  gem 'guard-rspec', '2.5.0'
+  gem 'growl', '1.0.3'
+  gem 'terminal-notifier-guard'
 end
