@@ -1,4 +1,8 @@
 module ApplicationHelper
+  def meta_tags
+    MetaTag.count > 0 ? MetaTag.first.text.html_safe : '<meta />'.html_safe
+  end
+
   def title(page_title)
     content_for :title, page_title.to_s
   end

@@ -43,4 +43,11 @@ RSpec.configure do |config|
   # the seed, which is printed after each run.
   #     --seed 1234
   config.order = "random"
+
+  config.after(:all) { 
+    User.destroy_all
+    BarEntity.destroy_all
+    BarSpecials.destroy_all
+    SubscriptionPlan.destroy_all
+  }
 end

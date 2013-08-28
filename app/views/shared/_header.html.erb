@@ -15,12 +15,12 @@
   <div class='row'>
     <%= form_tag sessions_path do %>  
       <div class='large-3 columns'>
-        <%= label_tag :email, nil,style: "font-family: 'Roboto Slab', serif !important;"  %>
-        <%= email_field_tag :email, params[:email], class: 'required' %>
+        <%= label_tag :quick_email, 'Email',style: "font-family: 'Roboto Slab', serif !important;"  %>
+        <%= email_field_tag :quick_email, params[:email], class: 'required' %>
       </div>
       <div class='large-3 columns'>
-        <%= label_tag :password %>
-        <%= password_field_tag :password, nil, class: 'required' %>
+        <%= label_tag :quick_password, 'Password' %>
+        <%= password_field_tag :quick_password, nil, class: 'required' %>
       </div>
       <div class='large-6 columns'>
         <br />
@@ -63,7 +63,7 @@
 		    <li class="divider show-for-medium-and-up"></li>
 		    <li><%= link_to "Log In", "javascript:void(0)", id: 'login', title: "Log In", class: 'whitelink'%></li>
 		  </ul>
-		  -->
+		-->
 		<% end %> 
   </section>
 </nav>
