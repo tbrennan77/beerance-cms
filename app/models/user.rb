@@ -13,8 +13,9 @@ class User < ParseUser
     length: {minimum: 6},
     on: :create
   
-  validates_presence_of :owner_name, :owner_phone, :password
-  validates_length_of :password, minimum: 6
+  validates_presence_of :owner_name, :owner_phone
+  validates_presence_of :password, on: :create
+  validates_length_of :password, minimum: 6, on: :create
 
   def admin?; self.admin==true; end
   def make_admin; self.admin=true;self.save; end
@@ -37,8 +38,11 @@ class User < ParseUser
   def send_password_reset
     self.password_reset_token = SecureRandom.urlsafe_base64
     self.password_reset_sent_at = Time.zone.now
-    save
-    Notifier.password_reset(self).deliver
+    if self.save
+      Notifier.password_reset(self).deliver
+    else
+      raise "#{self.errors.full_messages}"
+    end
   end
 
   def bars
