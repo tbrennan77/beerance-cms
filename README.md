@@ -65,7 +65,12 @@ rake parse:test:clean
 rake parse:test:all
 ```
 
-Copyright
----------
+## Credits
 
-Copyright (c) 2013 Boondock Walker.
+[![Boondock Walker](http://www.boondockwalker.com/bw-logo.png)](http://www.boondockwalker.com)
+
+BeeranceApp is maintained by [Boondock Walker](http://www.boondockwalker.com)
+
+## License
+
+BeeranceApp is Copyright © 2013 Dillon Hafer and Boondock Walker, LLC. It is free software, and may be redistributed under the terms specified in the MIT-LICENSE file.

@@ -11,8 +11,7 @@ class BarSpecialsTest < ActiveSupport::TestCase
       special_description: "special description",
       sale_price: 3.99,
       beer_color: 1,
-      beer_size: 12)
-    @bar_special.ensure_fields
+      beer_size: 12)    
   end
 
   # test validations
