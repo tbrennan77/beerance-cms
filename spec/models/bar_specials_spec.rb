@@ -19,6 +19,7 @@ describe BarSpecials do
   end
 
   context "toggle function" do
+
     it "should reactivate on toggle if inactive " do
       inactive_bar_special = FactoryGirl.create(:bar_specials, expiration_date: Time.now.advance(days: -1))
       expect {
@@ -38,7 +39,7 @@ describe BarSpecials do
     before { bar_special.save_and_format }
 
     its(:bar_name) { should == bar_special.bar.bar_name }
-    its("bar_location.latitude") { should == bar_special.bar.bar_location.latitude }
+    its("bar_location.latitude")  { should == bar_special.bar.bar_location.latitude  }
     its("bar_location.longitude") { should == bar_special.bar.bar_location.longitude }    
   end
 end
