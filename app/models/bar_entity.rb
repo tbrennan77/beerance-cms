@@ -131,7 +131,12 @@ class BarEntity < ParseResource::Base
 
   def subscription
     Subscription.new(stripe_customer.subscription)
-  end  
+  end
+
+  def active_subscription?
+    return false unless subscription
+    subscription.active?
+  end
 
   def subscription_plan
     SubscriptionPlan.find subscription_plan_id
@@ -170,10 +175,6 @@ class BarEntity < ParseResource::Base
     logger.error "Stripe Error: " + e.message
     errors.add :base, message
     false
-  end
-
-  def self.egg
-    "Hi There :D"
   end
 
   alias :user= :bar_owner=

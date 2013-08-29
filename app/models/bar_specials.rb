@@ -30,24 +30,17 @@ class BarSpecials < ParseResource::Base
       greater_than: 0
     }
 
-  def set_expiration_date
-    self.expiration_date = DateTime.now.tomorrow.beginning_of_day.advance(years: 1, hours: 9)
-  end
-
   def active?
     self.expiration_date > Time.now
-  end
+  end  
 
-  def end_special
-    self.expiration_date = DateTime.now.yesterday.beginning_of_day.advance(hours: 9)
-  end
-
-  def reactivate_special
-    self.set_expiration_date if bar.subscription.active?
-  end
-
-  def bar
-    BarEntity.find bar_id
+  def toggle_activation
+    if active?
+      end_special
+    elsif bar.active_subscription?
+      reactivate_special
+    end
+    save
   end
 
   def location
@@ -71,16 +64,45 @@ class BarSpecials < ParseResource::Base
     end
   end
 
-  def self.format_attributes(attrs)
-    attrs[:bar_name]   = BarEntity.find(attrs[:bar_id]).bar_name if attrs.has_key? :bar_id    
-    attrs[:bar_location] = BarEntity.find(attrs[:bar_id]).bar_location if attrs.has_key? :bar_id
-    attrs[:sale_price] = attrs[:sale_price].to_f if attrs.has_key?(:sale_price)
-    attrs[:beer_color] = attrs[:beer_color].to_i if attrs.has_key?(:beer_color)
-    attrs[:beer_size]  = attrs[:beer_size].to_i  if attrs.has_key?(:beer_size)
-    attrs
+  def save_and_format
+    # Precondition check
+    if !bar.active_subscription?
+      return false
+    end
+    set_expiration_date
+    set_bar_info
+    enforce_types
+    save
+  end
+
+  def bar
+    BarEntity.find bar_id
   end
 
   def bar_entity=(bar_entity)
     self.bar_id = bar_entity.id
+  end  
+
+  private
+
+  def set_expiration_date
+    self.expiration_date = DateTime.now.tomorrow.beginning_of_day.advance(years: 1, hours: 9)
   end
+
+  def set_bar_info
+    self.bar_name = self.bar.bar_name
+    self.bar_location = ParseGeoPoint.new(latitude: self.bar.bar_location.latitude, longitude: self.bar.bar_location.longitude)
+  end
+
+  def enforce_types
+    self.sale_price = self.sale_price.to_f
+    self.beer_color = self.beer_color.to_i
+    self.beer_size = self.beer_size.to_i
+  end
+
+  def end_special
+    self.expiration_date = DateTime.now.yesterday.beginning_of_day.advance(hours: 9)
+  end
+
+  alias_method :reactivate_special, :set_expiration_date
 end

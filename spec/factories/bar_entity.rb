@@ -1,7 +1,7 @@
 FactoryGirl.define do
   factory :bar_entity do
     user
-    subscription_plan
+    subscription_plan    
     bar_name       'Rocky River Brewing Company'
     bar_phone      '2165551234'
     bar_url        'http://www.google.com'
@@ -19,4 +19,9 @@ FactoryGirl.define do
     hours_sat      '7:00am - 10:00pm'
     hours_sun      '7:00am - 10:00pm'
   end
+end
+
+# To simulate active stripe subscription
+class BarEntity
+  def active_subscription?() true end
 end

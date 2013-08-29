@@ -1,18 +1,17 @@
 class BarSpecialsController < ApplicationController
   before_filter :require_user
   before_filter :confirm_correct_user, except: %w{new toggle_beerance}
+  before_filter :instantiate_new_special, except: %w{destroy}
 
-  def new
-    @bar_special = BarSpecials.new
+  def new    
   end
     
   def create      
-    @bar_special = BarSpecials.new bar_special_params
-    @bar_special.set_expiration_date
-    if @bar_special.bar.subscription.active? && @bar_special.save
+    bar_special = BarSpecials.new bar_special_params    
+    if bar_special.save_and_format
       respond_to do |f|
         f.html {redirect_to profile_path, :notice => "Added Special!"}
-        f.js { flash.now.notice = "Added Special!"; @bar_special = BarSpecials.new}
+        f.js { flash.now.notice = "Added Special!"}
       end
     else  
       render "new"  
@@ -20,7 +19,6 @@ class BarSpecialsController < ApplicationController
   end
 
   def update    
-    @bar_special = BarSpecials.new
     bs = BarSpecials.find params[:id]
     if bs.update_attributes( bar_special_params )
       respond_to do |format|
@@ -40,15 +38,19 @@ class BarSpecialsController < ApplicationController
   end
 
   def toggle_beerance
-    @bar_special = BarSpecials.new
-    @special = current_user.specials.find { |d| d.id == params[:id] }
-    @special.active? ? @special.end_special : @special.reactivate_special
-    if @special.save
+    @special = current_user.specials.find { |d| d.id == params[:id] }    
+    if @special.toggle_activation
       respond_to do |format|
         format.js   { flash.now.notice = "Updated Special" }
         format.html { redirect_to profile_path, notice: 'Updated Special' }
       end
     end
+  end
+
+  private
+
+  def instantiate_new_special
+    @bar_special = BarSpecials.new
   end
 
   def confirm_correct_user
@@ -57,5 +59,5 @@ class BarSpecialsController < ApplicationController
 
   def bar_special_params
     BarSpecials.format_attributes(params[:bar_specials])
-  end
+  end  
 end
