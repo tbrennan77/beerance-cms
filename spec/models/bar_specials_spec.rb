@@ -5,7 +5,7 @@ describe BarSpecials do
   let!(:bar_special) { FactoryGirl.create(:bar_specials) }
   subject { bar_special }
 
-  describe "validations" do
+  context "validations" do
     it { should be_an_instance_of(BarSpecials) }
     it { should be_valid }
     it { should validate_presence_of(:bar_id) }
@@ -18,7 +18,7 @@ describe BarSpecials do
     it { should validate_numericality_of(:sale_price) } 
   end
 
-  describe "toggle function" do
+  context "toggle function" do
     it "should reactivate on toggle if inactive " do
       inactive_bar_special = FactoryGirl.create(:bar_specials, expiration_date: Time.now.advance(days: -1))
       expect {
@@ -34,25 +34,11 @@ describe BarSpecials do
     end
   end
 
-  describe "setting parent attributes" do    
-    it "should set its bar_name to its parent's name" do
-      expect {
-        bar_special.save_and_format
-      }.to change {bar_special.bar_name}.to(bar_special.bar.bar_name)
-    end
+  context "setting parent attributes" do    
+    before { bar_special.save_and_format }
 
-    it "should set its latitude to its parent's latitude" do      
-      bar_special.bar_location = nil
-      expect {        
-        bar_special.save_and_format        
-      }.to change {bar_special.bar_location.instance_variable_get('@latitude')}.to(bar_special.bar.bar_location.latitude)
-    end
-
-    it "should set its longitude to its parent's longitude" do      
-      bar_special.bar_location = nil
-      expect {        
-        bar_special.save_and_format        
-      }.to change {bar_special.bar_location.instance_variable_get('@longitude')}.to(bar_special.bar.bar_location.longitude)
-    end
+    its(:bar_name) { should == bar_special.bar.bar_name }
+    its("bar_location.latitude") { should == bar_special.bar.bar_location.latitude }
+    its("bar_location.longitude") { should == bar_special.bar.bar_location.longitude }    
   end
 end

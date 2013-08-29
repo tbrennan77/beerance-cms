@@ -12,8 +12,6 @@ class HomeController < ApplicationController
   def map
     params[:distance] = params[:distance] ||= 10
     @location = params[:zip].blank? ? geo_from_ip : geo_from_zip(params[:zip])
-    puts @location.inspect
-    puts "*"*80
     @specials = BarSpecials.near(:bar_location, [@location[:lat], @location[:lon]], maxDistanceInMiles: params[:distance].to_i).all
     render layout: 'application'
   end
