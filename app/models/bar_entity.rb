@@ -34,8 +34,16 @@ class BarEntity < ParseResource::Base
         :sun_start,
         :sun_end  
 
-  validates_presence_of :bar_name, :subscription_plan_id, :bar_location, :bar_phone, :bar_url, :bar_addr1, :bar_city, :bar_state, :bar_zip, :hours_mon, :hours_tues, :hours_wed, :hours_thur, :hours_fri, :hours_sat, :hours_sun  
-  before_save :ensure_fields
+  validates_presence_of :bar_name, :subscription_plan_id, :bar_location, :bar_phone, :bar_url, :bar_addr1, :bar_city, :bar_state, :bar_zip, :hours_mon, :hours_tues, :hours_wed, :hours_thur, :hours_fri, :hours_sat, :hours_sun    
+
+  after_update :update_specials_after_change
+
+  def update_specials_after_change
+    if (self.bar_addr1_changed?)
+      set_geo_location
+      update_specials
+    end
+  end
 
   def bar_owner
     User.find(bar_owner_id)
@@ -45,15 +53,12 @@ class BarEntity < ParseResource::Base
     self.bar_owner_id = user.id
   end
 
-  def set_phone_number
-    self.bar_phone = self.bar_phone.gsub(/[^\d]/, "")
-  end
-
   def set_url
     self.bar_url = "http://#{self.bar_url.gsub(/(https:\/\/|http:\/\/)/,'')}"
   end
 
   def set_geo_location
+    puts "*"*80
     geo = Geocoder.search("#{self.bar_addr1}, #{self.bar_city}, #{self.bar_state} #{self.bar_zip}")
     
     unless geo.blank?    
@@ -87,8 +92,7 @@ class BarEntity < ParseResource::Base
     self.bar_owner_id = id
   end
 
-  def ensure_fields
-    set_phone_number
+  def format_fields    
     set_url
     set_geo_location
     update_specials
@@ -164,6 +168,8 @@ class BarEntity < ParseResource::Base
       #)
       self.stripe_card_token = nil
       self.stripe_customer_id = customer.id
+      set_url
+      set_geo_location
       self.save
     end
   rescue Stripe::InvalidRequestError => e    

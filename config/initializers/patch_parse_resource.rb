@@ -1,4 +1,6 @@
 class ParseResource::Base     
+  include ActiveModel::ForbiddenAttributesProtection
+
   def save!
     self.save
   end

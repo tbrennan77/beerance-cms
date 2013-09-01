@@ -1,6 +1,5 @@
 class BarEntitiesController < ApplicationController
-  before_filter :require_user
-  before_filter :confirm_correct_user, except: %w{new index create}
+  before_filter :require_user  
   before_filter :set_times, only: %w{create update}  
 
   def new  
@@ -8,15 +7,13 @@ class BarEntitiesController < ApplicationController
   end  
 
   def index
-    @bar_entities = BarEntity.where bar_owner_id: current_user.id
-    redirect_to new_bar_entity_path unless current_user.bars?
+    @bar_entities = current_user.bars.all
+    redirect_to new_bar_entity_path if @bar_entities.blank?
   end
     
-  def create
-    params[:bar_entity].assert_valid_keys %w{bar_name stripe_card_token subscription_plan_id bar_phone bar_url bar_addr1 bar_addr2 bar_city bar_state bar_zip hours_mon hours_tues hours_wed hours_thur hours_fri hours_sat hours_sun}
-    @bar_entity = BarEntity.new params[:bar_entity]
-    @bar_entity.set_bar_owner current_user.id
-    @bar_entity.set_geo_location
+  def create    
+    @bar_entity = BarEntity.new bar_params
+    @bar_entity.set_bar_owner current_user.id    
 
     if @bar_entity.save_with_payment
       redirect_to bar_entities_path, :notice => "Added Bar"
@@ -26,15 +23,13 @@ class BarEntitiesController < ApplicationController
   end
 
   def edit
-    @bar_entity = BarEntity.find(params[:id])
+    @bar_entity = current_user.bars.where(objectId: params[:id]).first
   end
 
-  def update
-    params[:bar_entity].assert_valid_keys %w{bar_name bar_phone bar_url bar_addr1 bar_addr2 bar_city bar_state bar_zip hours_mon hours_tues hours_wed hours_thur hours_fri hours_sat hours_sun}
-    @bar_entity = BarEntity.find(params[:id])
+  def update    
+    @bar_entity = current_user.bars.where(objectId: params[:id]).first
 
-    if @bar_entity.update_attributes params[:bar_entity]     
-      @bar_entity.ensure_fields
+    if @bar_entity.update_attributes bar_params
       @bar_entity.save
       redirect_to bar_entities_path, notice: 'Updated Bar'
     else
@@ -42,16 +37,10 @@ class BarEntitiesController < ApplicationController
     end
   end
 
-  def destroy
-    #bar_entity = BarEntity.find params[:id]
-    #bar_entity.destroy
-    #redirect_to bar_entities_path, notice: 'Deleted Bar'
-  end
-
   private
 
-  def confirm_correct_user
-    redirect_to log_out_path unless BarEntity.find(params[:id]).bar_owner_id == current_user.id
+  def bar_params
+    params.require(:bar_entity).permit(:bar_name, :stripe_card_token, :subscription_plan_id, :bar_phone, :bar_url, :bar_addr1, :bar_addr2, :bar_city, :bar_state, :bar_zip, :hours_mon, :hours_tues, :hours_wed, :hours_thur, :hours_fri, :hours_sat, :hours_sun)
   end
 
   def set_times
@@ -63,10 +52,6 @@ class BarEntitiesController < ApplicationController
   end
 
   def cat_times(open, close)
-    if open == "Closed" || close == "Closed"
-      "Closed"
-    else
-      "#{open} - #{close}"
-    end
+    (open == "Closed" || close == "Closed") ? "Closed" : "#{open} - #{close}"    
   end  
 end
