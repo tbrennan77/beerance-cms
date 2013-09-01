@@ -1,5 +1,5 @@
 class Notifier < ActionMailer::Base
-  default from: "BeeranceApp<noreply@beeranceapp.com>"
+  default from: "noreply@beeranceapp.com"
 
   def signup(user)
     @user = user
@@ -13,7 +13,7 @@ class Notifier < ActionMailer::Base
 
   def feedback(feedback)
     @feedback = feedback
-    mail(:from => "noreply@beeranceapp.com", :to => 'stipton@boondockwalker.com,dh@dillonhafer.com', :subject => "Feedback - #{feedback.category}")
+    mail(:from => "hello@beeranceapp.com", :to => 'stipton@boondockwalker.com,dh@dillonhafer.com', :subject => "Feedback - #{feedback.category}")
   end
 
   def password_changed(user)

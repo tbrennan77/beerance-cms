@@ -1,8 +1,10 @@
 require 'spec_helper'
 
 describe BarEntity do
-
-  let(:bar_entity) { FactoryGirl.create(:bar_entity) }
+  let(:geo) { stub(ParseGeoPoint, latitude: 34.34, longitude: -22.288) }
+  let(:bar_entity) { FactoryGirl.build(:bar_entity) }
+  let(:geo) { ParseGeoPoint.new(latitude: 34.34343, longitude: -81.2999) }
+  before { BarEntity.any_instance.stub(:set_geo_location).and_return(geo) }
   subject { bar_entity }
 
   describe "validations" do

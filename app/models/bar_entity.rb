@@ -134,7 +134,9 @@ class BarEntity < ParseResource::Base
   end
 
   def active_subscription?
-    return false unless subscription
+    unless subscription
+      return false
+    end
     subscription.active?
   end
 

@@ -20,8 +20,3 @@ FactoryGirl.define do
     hours_sun      '7:00am - 10:00pm'
   end
 end
-
-# To simulate active stripe subscription
-class BarEntity
-  def active_subscription?() true end
-end
