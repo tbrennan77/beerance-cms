@@ -11,6 +11,7 @@ gem 'animate-rails'
 gem 'exception_notification'
 gem 'unicorn'
 gem 'strong_parameters'
+gem 'geokit'
 
 # Parse and Stripe and New Relic
 gem 'parse_resource', "~> 1.8.0"

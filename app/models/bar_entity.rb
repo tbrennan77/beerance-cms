@@ -1,4 +1,6 @@
 class BarEntity < ParseResource::Base
+  include GeoKit::Geocoders
+
   fields :bar_owner_id,
         :stripe_card_token,
         :stripe_customer_id,
@@ -57,17 +59,14 @@ class BarEntity < ParseResource::Base
     self.bar_url = "http://#{self.bar_url.gsub(/(https:\/\/|http:\/\/)/,'')}"
   end
 
-  def set_geo_location
-    puts "*"*80
-    geo = Geocoder.search("#{self.bar_addr1}, #{self.bar_city}, #{self.bar_state} #{self.bar_zip}")
-    
-    unless geo.blank?    
-      lat = geo.first.data['geometry']['location']['lat']
-      lng = geo.first.data['geometry']['location']['lng']
-      self.bar_location = ParseGeoPoint.new :latitude => lat, :longitude => lng
-    else      
+  def set_geo_location   
+    res = MultiGeocoder.geocode("#{a.bar_addr1}, #{a.bar_city}, #{a.bar_state} #{a.bar_zip}")
+    if res.success
+      self.bar_location = ParseGeoPoint.new(latitude: res.lat, longitude: res.lng)
+    else
+      errors[:base] << "Geocoding faild. Please check address."
       return false
-    end
+    end    
   end
 
   def update_specials

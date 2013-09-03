@@ -77,6 +77,8 @@ GEM
     formatador (0.2.4)
     fssm (0.2.10)
     geocoder (1.1.8)
+    geokit (1.6.5)
+      multi_json
     growl (1.0.3)
     guard (1.8.2)
       formatador (>= 0.2.4)
@@ -232,6 +234,7 @@ DEPENDENCIES
   exception_notification
   factory_girl
   geocoder
+  geokit
   gibbon!
   growl (= 1.0.3)
   guard-rspec (= 2.5.0)
