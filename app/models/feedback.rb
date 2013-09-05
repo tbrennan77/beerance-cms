@@ -1,17 +1,17 @@
 class Feedback
-  extend ActiveModel::Naming
+  include ActiveModel::Validations
   include ActiveModel::Conversion
-  attr_accessor :name, :email, :phone, :category, :comment
-  
-  def persisted?
-    false
+
+  attr_accessor         :name, :email, :phone, :category, :comment
+  validates_presence_of :name, :email, :phone, :category
+
+  def initialize(attributes={})
+    attributes.each do |name, value|
+      send("#{name}=", value)
+    end    
   end
 
-  def initialize(params={})
-    @name     = params[:name]
-    @email    = params[:email]
-    @phone    = params[:phone]
-    @category = params[:category]
-    @comment  = params[:comment]
+  def persisted?
+    false
   end
 end

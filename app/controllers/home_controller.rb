@@ -34,9 +34,13 @@ class HomeController < ApplicationController
   end
 
   def send_feedback
-    feedback = Feedback.new params[:feedback]
-    Notifier.feedback(feedback).deliver
-    redirect_to root_path, notice: 'Thank you for your feedback!'
+    @feedback = Feedback.new params[:feedback]
+    if @feedback.valid?
+      Notifier.feedback(feedback).deliver
+      redirect_to root_path, notice: 'Thank you for your feedback!'
+    else
+      render :feedback
+    end
   end
 
   def signup    

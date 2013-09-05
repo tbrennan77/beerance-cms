@@ -15,7 +15,16 @@ textarea {height:150px;}
   <div class='large-7 pull-5 large columns'>
       <fieldset style="margin:0;">
 	      <%= form_for @feedback, url: send_feedback_path do |f| %>
-	
+            <% if @feedback.errors.any? %>  
+              <div class="error_messages">  
+                <h3>Feedback form is invalid</h3>  
+                <ul>  
+                  <% for message in @feedback.errors.full_messages %>  
+                    <li><%= bar_error message %></li>
+                  <% end %>  
+                </ul>  
+              </div>  
+            <% end %>  
 	          <%= f.label :name, "Your Name" %><br />
 	          <%= f.text_field :name, placeholder: 'John Smith', class: 'required' %>
 	          
