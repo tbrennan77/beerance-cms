@@ -35,11 +35,11 @@ class User < ParseUser
     Time.parse self.attributes["password_reset_sent_at"]["iso"]
   end
 
-  def send_password_reset
+  def send_password_reset    
     self.password_reset_token = SecureRandom.urlsafe_base64
     self.password_reset_sent_at = Time.zone.now
     if self.save
-      Notifier.password_reset(self).deliver
+      Notifier.password_reset(self).deliver if admin?
     else
       raise "#{self.errors.full_messages}"
     end

@@ -1,6 +1,5 @@
 class PasswordResetsController < ApplicationController
-  before_filter :check_password, :only => %w{update}
-  before_filter :block_employees, :except => %w{new}
+  before_filter :check_password, :only => %w{update}  
     
   def new
   end
@@ -19,10 +18,10 @@ class PasswordResetsController < ApplicationController
   def update
     @user = User.find_by_password_reset_token params[:id]
     if @user.password_reset_sent_at < 2.hours.ago
-      redirect_to new_password_reset_path, :notice => "Password reset has expired."
+      redirect_to root_path, notice: "Password reset has expired."
     elsif @user.update_attributes params[:user]
       Notifier.password_changed(@user).deliver
-      redirect_to root_path, :notice => "Password successfully reset."      
+      redirect_to root_path, notice: "Password successfully reset."      
     else
       render "edit"
     end
@@ -41,14 +40,5 @@ class PasswordResetsController < ApplicationController
       flash[:error] = @password_error
       render "edit"
     end
-  end
-  
-  def block_employees
-    user = User.find_by_email params[:email]
-    unless user.blank?
-      if user.admin?
-        redirect_to "/404"
-      end
-    end
-  end
+  end  
 end
