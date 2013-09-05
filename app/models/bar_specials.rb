@@ -1,4 +1,5 @@
 class BarSpecials < ParseResource::Base
+  include GeoKit::Geocoders
   fields :bar_id,
     :bar_location,
     :bar_name,
@@ -44,11 +45,12 @@ class BarSpecials < ParseResource::Base
   end
 
   def location
-    [bar_location.latitude, bar_location.longitude]
+    bar_info = self.bar
+    MultiGeocoder.geocode("#{bar_info.bar_addr1}, #{bar_info.bar_city}, #{bar_info.bar_state} #{bar_info.bar_zip}")
   end
 
-  def distance_from(geopoint)
-    Geocoder::Calculations.distance_between(location, geopoint).round(2)    
+  def distance_from(geopoint)    
+    location.distance_from(geopoint, unit: :miles).round(2)
   end
 
   def beer_image

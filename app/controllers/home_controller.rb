@@ -12,8 +12,10 @@ class HomeController < ApplicationController
   end
 
   def map
-    params[:distance] = params[:distance] ||= 10
+    params[:distance] ||= 10
     @location = get_geo(params[:zip])
+    puts @location.inspect
+    puts "*"*80
     @specials = BarSpecials.near(:bar_location, [@location[:lat], @location[:lon]], maxDistanceInMiles: params[:distance].to_i).all
     render layout: 'application'
   end
@@ -69,8 +71,10 @@ class HomeController < ApplicationController
     end
   end
 
-  def get_geo(info=request.ip_address)
-    geo = MultiGeocoder.geocode("#{info}")
+  def get_geo(info)
+    geo = MultiGeocoder.geocode(info || '98.103.86.54')
+    puts geo.inspect
+    puts "*"*80
     location = {lat: geo.lat, lon: geo.lng, city: geo.city}
   end  
 end
