@@ -67,7 +67,7 @@ rake parse:test:all
 
 ## Credits
 
-[![Boondock Walker](http://www.boondockwalker.com/bw-logo.png)](http://www.boondockwalker.com)
+[![Boondock Walker](https://farm4.staticflickr.com/3684/9677153149_c7f7cac09d_o.png)](http://www.boondockwalker.com)
 
 BeeranceApp is maintained by [Boondock Walker](http://www.boondockwalker.com)
 
