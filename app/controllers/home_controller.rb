@@ -70,7 +70,7 @@ class HomeController < ApplicationController
   end
 
   def get_geo(info=request.ip_address)
-    geo = MultiGeocoder.geocode(info)
+    geo = MultiGeocoder.geocode("#{info}")
     location = {lat: geo.lat, lon: geo.lng, city: geo.city}
   end  
 end
