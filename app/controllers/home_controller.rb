@@ -72,7 +72,7 @@ class HomeController < ApplicationController
   end
 
   def get_geo(info)
-    geo = MultiGeocoder.geocode(info || '98.103.86.54')
+    geo = MultiGeocoder.geocode(info || request.remote_ip.to_s)
     puts geo.inspect
     puts "*"*80
     location = {lat: geo.lat, lon: geo.lng, city: geo.city}
