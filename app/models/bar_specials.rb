@@ -44,13 +44,8 @@ class BarSpecials < ParseResource::Base
     save
   end
 
-  def location
-    bar_info = self.bar
-    MultiGeocoder.geocode("#{bar_info.bar_addr1}, #{bar_info.bar_city}, #{bar_info.bar_state} #{bar_info.bar_zip}")
-  end
-
   def distance_from(geopoint)    
-    location.distance_from(geopoint, unit: :miles).round(2)
+    bar.location.distance_from(geopoint, unit: :miles).round(2)
   end
 
   def beer_image

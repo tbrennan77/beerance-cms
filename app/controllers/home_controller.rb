@@ -14,8 +14,6 @@ class HomeController < ApplicationController
   def map
     params[:distance] ||= 10
     @location = get_geo(params[:zip])
-    puts @location.inspect
-    puts "*"*80
     @specials = BarSpecials.near(:bar_location, [@location[:lat], @location[:lon]], maxDistanceInMiles: params[:distance].to_i).all
     render layout: 'application'
   end
@@ -77,8 +75,6 @@ class HomeController < ApplicationController
 
   def get_geo(info)
     geo = MultiGeocoder.geocode(info || request.remote_ip.to_s)
-    puts geo.inspect
-    puts "*"*80
     location = {lat: geo.lat, lon: geo.lng, city: geo.city}
   end  
 end

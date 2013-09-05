@@ -17,7 +17,7 @@ describe "Home Pages" do
 
   describe "get map" do
     it "works" do            
-      visit map_path
+      visit map_path(zip: '44114')
       current_path.should == map_path
     end
   end

@@ -59,10 +59,13 @@ class BarEntity < ParseResource::Base
     self.bar_url = "http://#{self.bar_url.gsub(/(https:\/\/|http:\/\/)/,'')}"
   end
 
-  def set_geo_location   
-    res = MultiGeocoder.geocode("#{a.bar_addr1}, #{a.bar_city}, #{a.bar_state} #{a.bar_zip}")
-    if res.success
-      self.bar_location = ParseGeoPoint.new(latitude: res.lat, longitude: res.lng)
+  def location
+    MultiGeocoder.geocode("#{a.bar_addr1}, #{a.bar_city}, #{a.bar_state} #{a.bar_zip}")
+  end
+
+  def set_geo_location       
+    if location
+      self.bar_location = ParseGeoPoint.new(latitude: location.lat, longitude: location.lng)
     else
       errors[:base] << "Geocoding faild. Please check address."
       return false
