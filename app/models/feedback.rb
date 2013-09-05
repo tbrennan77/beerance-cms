@@ -11,7 +11,5 @@ class Feedback
     end    
   end
 
-  def persisted?
-    false
-  end
+  def persisted?() false end
 end
