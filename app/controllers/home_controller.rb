@@ -1,4 +1,6 @@
 class HomeController < ApplicationController
+  include GeoKit::Geocoders
+
 	before_filter :find_promoters
   before_filter :require_admin, except: %w{bar_info map index how_it_works privacy feedback send_feedback new_signup signup find_subscriber_email_id find_promoters}
 
@@ -11,7 +13,7 @@ class HomeController < ApplicationController
 
   def map
     params[:distance] = params[:distance] ||= 10
-    @location = params[:zip].blank? ? geo_from_ip : geo_from_zip(params[:zip])
+    @location = get_geo(params[:zip])
     @specials = BarSpecials.near(:bar_location, [@location[:lat], @location[:lon]], maxDistanceInMiles: params[:distance].to_i).all
     render layout: 'application'
   end
@@ -67,21 +69,8 @@ class HomeController < ApplicationController
     end
   end
 
-  def geo_from_zip(zip)
-    geo = Geocoder.search(zip)
-    location = {}
-    location[:lat]  = geo.first.data['geometry']['location']['lat']
-    location[:lon]  = geo.first.data['geometry']['location']['lng']
-    location[:city] = geo.first.data['address_components'][1]['long_name']        
-    location
-  end
-
-  def geo_from_ip
-    geo = Geocoder.search('98.103.86.54')
-    location = {}
-    location[:lat]  = geo.first.data['latitude']
-    location[:lon]  = geo.first.data['longitude']
-    location[:city] = geo.first.data['city']
-    location
-  end
+  def get_geo(info=request.ip_address)
+    geo = MultiGeocoder.geocode(info)
+    location = {lat: geo.lat, lon: geo.lng, city: geo.city}
+  end  
 end
