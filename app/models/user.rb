@@ -1,4 +1,4 @@
-class User < ParseUser  
+class User < ParseUser
   fields :email, :newsletter_subscription, :username, :owner_name, :owner_phone, :account_type, :user_favorites, :createdAt, :admin, :password_reset_token, :password_reset_sent_at
 
   EMAIL_REGEX = /\A[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}\z/i
@@ -10,12 +10,9 @@ class User < ParseUser
   
   validates :password,
     presence: true,
-    length: {minimum: 6},
-    on: :create
+    length: {minimum: 6}
   
   validates_presence_of :owner_name, :owner_phone
-  validates_presence_of :password, on: :create
-  validates_length_of :password, minimum: 6, on: :create
 
   def admin?; self.admin==true; end
   def make_admin; self.admin=true;self.save; end
@@ -25,14 +22,26 @@ class User < ParseUser
     owner_phone.gsub(/[^\d]/, '')
   end
 
+  def update_password(new_password)    
+    if password_reset_sent_at < 2.hours.ago || admin?
+      return "Password reset has expired."
+    end
+    self.password = new_password
+    if self.valid?
+      self.save
+      Notifier.password_changed(self).deliver      
+      "Password successfully reset." 
+    end
+  end
+
   def generate_token(column)
     begin
       self[column] = SecureRandom.urlsafe_base64
     end while User.exists?(column => self[column])
   end
 
-  def password_reset_sent_at
-    Time.parse self.attributes["password_reset_sent_at"]["iso"]
+  def password_reset_sent_at    
+    Time.parse(self.attributes["password_reset_sent_at"]["iso"])
   end
 
   def send_password_reset    
