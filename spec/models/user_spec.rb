@@ -1,48 +1,17 @@
 require 'spec_helper'
 
 describe User do
-  let(:user) { FactoryGirl.build(:user) }
-  let(:admin_user) { FactoryGirl.build(:user, admin: true) }
+  let(:user) { FactoryGirl.create(:user) }
+  let(:admin_user) { FactoryGirl.create(:user, admin: true) }
   subject { user }
 
   describe "validations" do
     it { should be_an_instance_of(User) }    
     it { should be_valid }
-    it { should validate_presence_of(:username) }    
+    it { should validate_presence_of(:email) }    
     it { should validate_presence_of(:password) }    
-    it { should validate_presence_of(:owner_name) }    
-    it { should validate_presence_of(:owner_phone) }
-  end
-
-  describe "password updates" do
-
-    context "with active reset token" do
-      before {
-        user.password_reset_sent_at = Time.now
-        admin_user.password_reset_sent_at = Time.now
-      }
-
-      it "should not update an admin" do        
-        expect {admin_user.update_password('newpassword')}.to_not change{admin_user.password}
-      end
-      it "should update a non-admin" do
-        expect {user.update_password('newpassword')}.to change{user.password}
-      end
-    end
-
-    context "with inactive reset token" do
-      before {
-        user.password_reset_sent_at = 2.hours.ago
-        admin_user.password_reset_sent_at = 2.hours.ago
-      }
-      it "should not update an admin" do
-        expect {admin_user.update_password('newpassword')}.to_not change{admin_user.password}
-      end
-      it "should not update a non-admin" do
-        expect {user.update_password('newpassword')}.to_not change{user.password}
-      end
-    end
-
+    it { should validate_presence_of(:name) }    
+    it { should validate_presence_of(:phone) }
   end
 
   describe 'admin methods' do

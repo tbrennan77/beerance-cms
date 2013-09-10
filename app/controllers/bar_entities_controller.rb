@@ -13,7 +13,7 @@ class BarEntitiesController < ApplicationController
     
   def create    
     @bar_entity = BarEntity.new bar_params
-    @bar_entity.set_bar_owner current_user.id    
+    @bar_entity.set_bar_owner(current_user.id)
 
     if @bar_entity.save_with_payment
       redirect_to bar_entities_path, :notice => "Added Bar"

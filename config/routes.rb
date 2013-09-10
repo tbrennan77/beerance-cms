@@ -1,4 +1,6 @@
-Beerance::Application.routes.draw do
+Beerance::Application.routes.draw do  
+  devise_for :users, :path => "sessions", :path_names => { :sign_in => 'login', :sign_out => 'logout', :password => 'secret', :confirmation => 'verification', :unlock => 'unblock', :registration => 'register' }
+  
   # Meta tags
   get '/admin/meta-tags/edit' => 'meta_tags#edit', as: 'edit_meta_tag'
   resources :meta_tags
@@ -37,13 +39,13 @@ Beerance::Application.routes.draw do
   match '/map'           => 'home#map', as: 'map'
 
   # Sessions
-  resources :sessions 
-  get 'log-in'  => 'sessions#new', :as => 'log_in'  
-  get 'log-out' => 'sessions#destroy', :as => 'log_out'  
+  #resources :sessions 
+  #get 'log-in'  => 'sessions#new', :as => 'log_in'  
+  #get 'log-out' => 'sessions#destroy', :as => 'log_out'  
   
   # Users
   resources :users  
-  get   '/register'                       => 'users#new', :as => 'sign_up'    
+  #get   '/register'                       => 'users#new', :as => 'sign_up'    
   get   '/account-details'                => 'users#show', :as => 'account_details'    
   get   '/my-beerances/current-specials'  => 'users#current_specials', as: 'current_specials'
   get   '/my-beerances/archived-specials' => 'users#archived_specials', as: 'archived_specials'  

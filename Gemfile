@@ -1,15 +1,15 @@
 ruby '2.0.0'
 source 'https://rubygems.org'
 
-gem 'pg'
 gem 'rails', '3.2.13'
+
+gem 'pg'
+gem 'devise'
 gem 'gibbon', :git => 'https://github.com/amro/gibbon.git'
-gem 'combined_time_select', '~> 0.0.1'
+
 gem 'modernizr-rails'
 gem 'jquery-rails'
-gem 'animate-rails'
 gem 'exception_notification'
-gem 'unicorn'
 gem 'strong_parameters'
 gem 'geokit'
 

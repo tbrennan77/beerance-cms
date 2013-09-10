@@ -1,7 +1,7 @@
 class BarEntity < ParseResource::Base
   include GeoKit::Geocoders
 
-  fields :bar_owner_id,
+  fields :user_id,        
         :stripe_card_token,
         :stripe_customer_id,
         :subscription_plan_id,
@@ -36,7 +36,7 @@ class BarEntity < ParseResource::Base
         :sun_start,
         :sun_end  
 
-  validates_presence_of :bar_name, :subscription_plan_id, :bar_location, :bar_phone, :bar_url, :bar_addr1, :bar_city, :bar_state, :bar_zip, :hours_mon, :hours_tues, :hours_wed, :hours_thur, :hours_fri, :hours_sat, :hours_sun    
+  validates_presence_of :bar_name, :subscription_plan_id, :bar_phone, :bar_url, :bar_addr1, :bar_city, :bar_state, :bar_zip, :hours_mon, :hours_tues, :hours_wed, :hours_thur, :hours_fri, :hours_sat, :hours_sun    
 
   after_update :update_specials_after_change
 
@@ -48,11 +48,11 @@ class BarEntity < ParseResource::Base
   end
 
   def bar_owner
-    User.find(bar_owner_id)
+    User.find(user_id)
   end
 
   def bar_owner=(user)
-    self.bar_owner_id = user.id
+    self.user_id = user.id
   end
 
   def set_url
@@ -60,11 +60,12 @@ class BarEntity < ParseResource::Base
   end
 
   def location
-    MultiGeocoder.geocode("#{a.bar_addr1}, #{a.bar_city}, #{a.bar_state} #{a.bar_zip}")
+    MultiGeocoder.geocode("#{bar_addr1}, #{bar_city}, #{bar_state} #{bar_zip}")
   end
 
   def set_geo_location       
     if location
+      puts location.inspect
       self.bar_location = ParseGeoPoint.new(latitude: location.lat, longitude: location.lng)
     else
       errors[:base] << "Geocoding faild. Please check address."
@@ -87,11 +88,11 @@ class BarEntity < ParseResource::Base
   end
 
   def user
-    User.find self.bar_owner_id
+    User.find(user_id)
   end
 
   def set_bar_owner(id)
-    self.bar_owner_id = id
+    self.user_id = id
   end
 
   def format_fields    
@@ -159,19 +160,14 @@ class BarEntity < ParseResource::Base
       customer = Stripe::Customer.create(
         card:  self.stripe_card_token,
         plan:  self.subscription_plan.name,
-        email: self.user.username,
+        email: self.user.email,
         description: self.bar_name
-      )
-      #charge = Stripe::Charge.create(
-      #  customer:    customer.id,
-      #  amount:      self.subscription_plan.amount,
-      #  description: self.bar_name,
-      #  currency:    'usd'
-      #)
+      )     
       self.stripe_card_token = nil
       self.stripe_customer_id = customer.id
       set_url
       set_geo_location
+      self.subscription_plan_id = self.subscription_plan_id.to_i
       self.save
     end
   rescue Stripe::InvalidRequestError => e    

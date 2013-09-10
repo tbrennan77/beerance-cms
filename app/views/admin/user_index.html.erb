@@ -6,7 +6,7 @@ tbody tr:hover {background: #F7E2B8;}
 <table style="width: 100%;">
   <thead>
     <tr>
-      <th>Username</th>
+      <th>Email</th>
       <th>Admin?</th>
       <th>Actions</th>
       <th>Danger Zone!</th>
@@ -14,9 +14,9 @@ tbody tr:hover {background: #F7E2B8;}
   </thead>
   <tbody>
   <% @users.each do |u| %>
-    <% unless u.owner_name.blank? %>
+    <% unless u.name.blank? %>
     <tr>
-      <td><%= link_to u.username, admin_user_path(u) %></td>
+      <td><%= link_to u.email, admin_user_path(u) %></td>
       <td><%= u.admin? ? 'yes' : '' %></td>
       <td>
         <%= link_to "Edit", edit_user_path(u) %>

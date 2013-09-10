@@ -1,11 +1,8 @@
 class ApplicationController < ActionController::Base  
   protect_from_forgery  
-  helper_method :current_user  
-    
-  private  
-  def current_user  
-    @current_user ||= User.find(session[:user_id]) if session[:user_id]  
-  end  
+  before_filter :configure_permitted_parameters, if: :devise_controller?
+
+  private
 
   def require_user
     if current_user.blank?
@@ -33,5 +30,11 @@ class ApplicationController < ActionController::Base
   def back
     session[:back_paths] ||= []
     session[:back_paths].pop || :back
-  end  
+  end   
+
+  protected
+
+  def configure_permitted_parameters
+    devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(:email, :password, :name, :phone, :newsletter_subscription) }
+  end
 end  

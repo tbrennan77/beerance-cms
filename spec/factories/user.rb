@@ -4,10 +4,10 @@ FactoryGirl.define do
   end
 
   factory :user, aliases: [:bar_owner] do
-    username       { FactoryGirl.generate(:email) }
+    email          { FactoryGirl.generate(:email) }
     password       "johnsonite"
-    owner_name     'Gary Man'
-    owner_phone    '123456789'
+    name           'Gary Man'
+    phone          '123456789'
     admin          false
   end
 end

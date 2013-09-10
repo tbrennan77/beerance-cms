@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
-  before_filter :require_user, except: %w{new create}
-  before_filter :require_admin, except: %w{new edit update create profile show current_specials archived_specials}  
+  before_filter :require_user
+  before_filter :require_admin, except: %w{edit update profile show current_specials archived_specials}  
   before_filter :new_bar_special, only: %w{profile current_specials archived_specials}
 
   def index
@@ -21,23 +21,6 @@ class UsersController < ApplicationController
   end
 
 # Basic CRUD actions
-  def new
-    redirect_to profile_path, notice: 'You already have an account' and return if current_user
-    @user = User.new
-    render layout: "application"
-  end
-    
-  def create
-    @user = User.new user_params    
-    if @user.save
-      session[:user_id] = @user.id
-      Notifier.signup(@user).deliver
-      redirect_to bar_entities_path
-    else
-      render "new"
-    end
-  end
-
   def edit
     @user = User.find params[:id]
     render layout: 'account_details'
@@ -72,12 +55,6 @@ class UsersController < ApplicationController
   end
 
 # Before Filters
-  def user_params
-    params[:user][:username] = params[:user][:username].downcase if params[:user].has_key?(:username)
-    params[:user][:newsletter_subscription] = !params[:user][:newsletter_subscription].to_i.zero? if params[:user].has_key?(:newsletter_subscription)
-    params[:user]
-  end
-
   def new_bar_special
     @bar_special = BarSpecials.new    
   end

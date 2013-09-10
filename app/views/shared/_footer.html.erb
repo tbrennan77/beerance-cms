@@ -24,10 +24,10 @@
             <span class="copy hide-for-small">© <%= Date.today.year %> Beerance Company LLC</span>
             
             <%= link_to "Send Us Feedback", "feedback", :title => "Send Us Feedback", class: 'copy feedbackfooter' %>
-            <% if current_user %>
-              <%= link_to "Log Out", log_out_path, :title => "Log Out", class: 'copy loginfooter' %>
+            <% if user_signed_in? %>
+              <%= link_to "Log Out", destroy_user_session_path, :method => :delete, :title => "Log Out", class: 'copy loginfooter' %>
             <% else %>
-              <%= link_to "Log In", log_in_path, :title => "Log In", class: 'copy loginfooter' %>
+              <%= link_to "Log In", new_user_session_path, :title => "Log In", class: 'copy loginfooter' %>
             <% end %>
           </div>
           <!--<div class="row spacing top bottom show-for-small">
@@ -36,11 +36,11 @@
               <dd><%= link_to "Media", "broadcast_path", :title => "Media" %></dd>
               <dd><%= link_to "Privacy Policy", privacy_path %></dd>
               <dd><%= link_to "Terms of Use", tos_path %></dd>
-              <% if current_user %>
+              <% if user_signed_in? %>
               <dd><%= link_to "My Account", "edit_user_path", :title => "My account" %>
-              <dd><%= link_to "Sign Out", log_out_path, :title => "Sign out" %></dd>
+              <dd><%= link_to "Sign Out", destroy_user_session_path, :method => :delete, :title => "Sign out" %></dd>
               <% else %>
-              <dd><%= link_to "Sign In", log_in_path, :title => "Sign in" %></dd>
+              <dd><%= link_to "Sign In", new_user_session_path, :title => "Sign in" %></dd>
               <% end %>
             </dl>
             <span class="text-align: center">© <%= Date.today.year %> Beerance Company LLC</span>

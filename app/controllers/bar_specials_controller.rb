@@ -54,7 +54,7 @@ class BarSpecialsController < ApplicationController
   end
 
   def confirm_correct_user
-    redirect_to log_out_path unless BarEntity.find(params[:bar_specials][:bar_id]).bar_owner_id == current_user.id
+    redirect_to log_out_path unless BarEntity.find(params[:bar_specials][:bar_id]).user_id == current_user.id
   end
 
   def bar_special_params

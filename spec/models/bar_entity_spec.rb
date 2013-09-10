@@ -11,7 +11,6 @@ describe BarEntity do
     it { should be_an_instance_of(BarEntity) }
     it { should be_valid }
     it { should validate_presence_of(:bar_name)     }    
-    it { should validate_presence_of(:bar_location) }    
     it { should validate_presence_of(:bar_phone)    }    
     it { should validate_presence_of(:bar_url)      }    
     it { should validate_presence_of(:bar_addr1)    }    
