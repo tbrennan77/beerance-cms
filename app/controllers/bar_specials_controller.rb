@@ -7,7 +7,7 @@ class BarSpecialsController < ApplicationController
   end
     
   def create      
-    bar_special = BarSpecials.new bar_special_params    
+    bar_special = BarSpecials.new params[:bar_specials]    
     if bar_special.save_and_format
       respond_to do |f|
         f.html {redirect_to profile_path, :notice => "Added Special!"}
@@ -58,6 +58,9 @@ class BarSpecialsController < ApplicationController
   end
 
   def bar_special_params
-    BarSpecials.format_attributes(params[:bar_specials])
+    params[:bar_specials][:sale_price] = params[:bar_specials][:sale_price].to_f
+    params[:bar_specials][:beer_color] = params[:bar_specials][:beer_color].to_i
+    params[:bar_specials][:beer_size]  = params[:bar_specials][:beer_size].to_i
+    params[:bar_specials]
   end  
 end
