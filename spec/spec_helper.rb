@@ -48,6 +48,5 @@ RSpec.configure do |config|
     User.destroy_all
     BarEntity.destroy_all
     BarSpecials.destroy_all
-    SubscriptionPlan.destroy_all
   }
 end

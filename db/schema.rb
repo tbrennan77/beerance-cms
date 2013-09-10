@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130910183958) do
+ActiveRecord::Schema.define(:version => 20130910194557) do
 
   create_table "meta_tags", :force => true do |t|
     t.text     "text"
@@ -24,6 +24,16 @@ ActiveRecord::Schema.define(:version => 20130910183958) do
     t.string   "subscriber_email"
     t.string   "subscriber_name"
     t.string   "subscriber_type"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
+  end
+
+  create_table "subscription_plans", :force => true do |t|
+    t.integer  "amount"
+    t.string   "friendly_name"
+    t.string   "image"
+    t.integer  "length_in_months"
+    t.string   "name"
     t.datetime "created_at",       :null => false
     t.datetime "updated_at",       :null => false
   end

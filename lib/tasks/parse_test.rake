@@ -7,9 +7,9 @@ namespace :parse do
       puts "Created admin user -- Username: admin@beeranceapp.com, Password: admin"
 
       # Create Subscription Plans      
-      SubscriptionPlan.create(amount: 3000,  friendly_name: 'Plan 1', image: 'red.png', length_in_months: 3, name: '3_months')
-      SubscriptionPlan.create(amount: 5700,  friendly_name: 'Plan 2', image: 'amber.png', length_in_months: 6, name: '6_months')
-      SubscriptionPlan.create(amount: 10200, friendly_name: 'Plan 3', image: 'black.png', length_in_months: 12, name: '12_months')
+      SubscriptionPlan.create(amount: 4500,  friendly_name: 'Bronze', image: 'red.png', length_in_months: 3, name: '3_months')
+      SubscriptionPlan.create(amount: 7200,  friendly_name: 'Silver', image: 'amber.png', length_in_months: 6, name: '6_months')
+      SubscriptionPlan.create(amount: 12000, friendly_name: 'Gold', image: 'black.png', length_in_months: 12, name: '12_months')
       puts "Created subscription plans..."
 
       # Create Meta Tag      
