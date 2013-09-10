@@ -1,3 +1,7 @@
+development:
+  adapter: postgresql
+  database: beerance_dev
+
 test:
   adapter: postgresql
   database: beerance_test

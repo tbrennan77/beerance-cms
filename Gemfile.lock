@@ -121,6 +121,7 @@ GEM
       activesupport
       json
       rest-client
+    pg (0.16.0)
     polyglot (0.3.3)
     pry (0.9.12.2)
       coderay (~> 1.0.5)
@@ -239,6 +240,7 @@ DEPENDENCIES
   jquery-rails
   modernizr-rails
   parse_resource (~> 1.8.0)
+  pg
   rails (= 3.2.13)
   rspec-rails (= 2.13.1)
   sass-rails (~> 3.2.3)
