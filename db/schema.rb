@@ -11,12 +11,21 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130910151717) do
+ActiveRecord::Schema.define(:version => 20130910183958) do
 
   create_table "meta_tags", :force => true do |t|
     t.text     "text"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+  end
+
+  create_table "news_subscriptions", :force => true do |t|
+    t.string   "promoter_name"
+    t.string   "subscriber_email"
+    t.string   "subscriber_name"
+    t.string   "subscriber_type"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
   end
 
 end
