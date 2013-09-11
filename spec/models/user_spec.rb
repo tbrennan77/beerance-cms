@@ -9,7 +9,6 @@ describe User do
     it { should be_an_instance_of(User) }    
     it { should be_valid }
     it { should validate_presence_of(:email) }    
-    it { should validate_presence_of(:password) }    
     it { should validate_presence_of(:name) }    
     it { should validate_presence_of(:phone) }
   end

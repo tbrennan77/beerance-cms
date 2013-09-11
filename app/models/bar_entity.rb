@@ -36,8 +36,8 @@ class BarEntity < ParseResource::Base
         :sun_start,
         :sun_end  
 
-  validates_presence_of :bar_name, :bar_location, :subscription_plan_id, :bar_phone, :bar_url, :bar_addr1, :bar_city, :bar_state, :bar_zip, :hours_mon, :hours_tues, :hours_wed, :hours_thur, :hours_fri, :hours_sat, :hours_sun    
-
+  validates_presence_of :bar_name, :subscription_plan_id, :bar_phone, :bar_url, :bar_addr1, :bar_city, :bar_state, :bar_zip, :hours_mon, :hours_tues, :hours_wed, :hours_thur, :hours_fri, :hours_sat, :hours_sun    
+  validates_presence_of :bar_location, message: 'Geocoding faild. Please check address.'
   after_update :update_specials_after_change
 
   def update_specials_after_change
@@ -64,11 +64,11 @@ class BarEntity < ParseResource::Base
   end
 
   def set_geo_location       
-    if location
+    unless location.lat.blank?
       puts location.inspect
       self.bar_location = ParseGeoPoint.new(latitude: location.lat, longitude: location.lng)
     else
-      errors[:base] << "Geocoding faild. Please check address."
+      self.errors.add :base, "geocoding faild. Please check address."
       return false
     end    
   end
@@ -99,6 +99,7 @@ class BarEntity < ParseResource::Base
     set_url
     set_geo_location
     update_specials
+    self.subscription_plan_id = self.subscription_plan_id.to_i
   end
 
   def update_plan(plan)    
@@ -156,23 +157,26 @@ class BarEntity < ParseResource::Base
   end
 
   def save_with_payment
-    set_geo_location
+    format_fields
+    
     if valid?
-      customer = Stripe::Customer.create(
+      create_stripe_customer
+      self.save
+    end  
+  end
+
+  def create_stripe_customer
+    customer = Stripe::Customer.create(
         card:  self.stripe_card_token,
         plan:  self.subscription_plan.name,
         email: self.user.email,
         description: self.bar_name
-      )     
-      self.stripe_card_token = nil
-      self.stripe_customer_id = customer.id
-      set_url
-      self.subscription_plan_id = self.subscription_plan_id.to_i
-      self.save
-    end
-  rescue Stripe::InvalidRequestError => e    
-    errors.add :base, "There was a problem with your credit card."
-    false
+      )
+    self.stripe_customer_id = customer.id
+    self.stripe_card_token  = nil
+    rescue Stripe::InvalidRequestError => e    
+      errors.add :base, "There was a problem with your credit card."
+      false
   end
 
   private 
