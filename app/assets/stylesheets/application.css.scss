@@ -489,11 +489,16 @@ li {list-style-type: none;}
 	font-size: 18px;
 }
 
+.alert-box {
+  position: absolute !important;
+  top: 129px !important;
+  width: 100% !important;
+}
+
 .alert-box.notice {
 	z-index: 999;
 	text-align: center;
 	top: 47px;
-	position: fixed;
 	width: 100%;
 	border: 0;
 	box-shadow: 0 1px 3px #555;
@@ -502,7 +507,7 @@ li {list-style-type: none;}
 	font-size: 18px;
 	font-weight: normal;
 	color: black;
-	background: #EEE;
+	background: #EEE;  
 }
 
 label {
@@ -546,12 +551,6 @@ select {
       img{width:13px!important;height:auto!important;margin:0!important;}
     }
   }
-}
-
-.alert-box {
-  position: fixed !important;
-  top: 129px !important;
-  width: 100% !important;
 }
 
 .notice {
