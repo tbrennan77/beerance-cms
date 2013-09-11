@@ -36,7 +36,7 @@ class BarEntity < ParseResource::Base
         :sun_start,
         :sun_end  
 
-  validates_presence_of :bar_name, :subscription_plan_id, :bar_phone, :bar_url, :bar_addr1, :bar_city, :bar_state, :bar_zip, :hours_mon, :hours_tues, :hours_wed, :hours_thur, :hours_fri, :hours_sat, :hours_sun    
+  validates_presence_of :bar_name, :bar_location, :subscription_plan_id, :bar_phone, :bar_url, :bar_addr1, :bar_city, :bar_state, :bar_zip, :hours_mon, :hours_tues, :hours_wed, :hours_thur, :hours_fri, :hours_sat, :hours_sun    
 
   after_update :update_specials_after_change
 
@@ -156,6 +156,7 @@ class BarEntity < ParseResource::Base
   end
 
   def save_with_payment
+    set_geo_location
     if valid?
       customer = Stripe::Customer.create(
         card:  self.stripe_card_token,
@@ -166,7 +167,6 @@ class BarEntity < ParseResource::Base
       self.stripe_card_token = nil
       self.stripe_customer_id = customer.id
       set_url
-      set_geo_location
       self.subscription_plan_id = self.subscription_plan_id.to_i
       self.save
     end

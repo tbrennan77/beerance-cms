@@ -1,7 +1,10 @@
+$('.alert-box.notice').remove();
+$('<div class="alert-box notice"><%= flash[:notice] %></div>').insertAfter('#ajax_bar');
+
 <% if params[:bar_specials][:current_page] %>
-  $('.ajax-container').html('<div class="alert-box notice"><%= flash[:notice] %></div><%= j render("users/current_specials") %>').fadeIn();
+  $('.ajax-container').html('<%= j render("users/current_specials") %>').fadeIn();
 <% else %>
-  $('.ajax-container').html('<div class="alert-box notice"><%= flash[:notice] %></div><%= j render("users/archives") %>').fadeIn();
+  $('.ajax-container').html('<%= j render("users/archives") %>').fadeIn();
 <% end %>
 
 $('#ajax_bar').fadeOut();
