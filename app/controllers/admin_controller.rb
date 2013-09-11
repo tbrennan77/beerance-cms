@@ -9,8 +9,7 @@ class AdminController < ApplicationController
   end
 
   def user_show
-    @user = User.find params[:id]
-    @customer = @user.stripe_customer
+    @user = User.find params[:id]    
   end
 
   def news_subscriptions

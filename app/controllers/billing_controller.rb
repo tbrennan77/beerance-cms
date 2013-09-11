@@ -13,10 +13,12 @@ class BillingController < ApplicationController
     @bar = find_current_users_bar params[:id]    
   end
 
-  def show_invoice    
-    @invoice = Stripe::Invoice.retrieve params[:id]
-    
-    if BarEntity.where(stripe_customer_id: @invoice.customer).first.bar_owner_id != current_user.id
+  def show_invoice
+    if current_user.admin?
+      @invoice = Stripe::Invoice.retrieve params[:id]
+    elsif BarEntity.where(stripe_customer_id: @invoice.customer).first.user_id == current_user.id
+      @invoice = Stripe::Invoice.retrieve params[:id]
+    else
       redirect_to log_out_path
     end
   end

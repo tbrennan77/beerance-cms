@@ -4,7 +4,6 @@
       <%= link_to "Admin Panel", admin_path, class: is_current?('index') %>
       <%= link_to "User List", admin_users_path, class: are_current?(%w{user_index user_show}) %>
       <%= link_to "News Subscriptions", news_subscriptions_path, class: is_current?('news_subscriptions') %>
-      <%= link_to "Test Emails", test_email_path, class: is_current?('test_email') %>
       <%= link_to "SEO", edit_meta_tag_path, class: is_current?('edit') %>
     </div>
   </div>

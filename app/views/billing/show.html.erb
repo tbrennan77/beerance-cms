@@ -38,7 +38,7 @@
           <div class="large-12 columns user_info">
             <span>Name: <%= @bar.stripe_customer.active_card.name %></span>
             <span><%= @bar.stripe_customer.active_card.type %> - **** **** **** <%= @bar.stripe_customer.active_card.last4 %></span>
-            <span><%= link_to "Update Payment Info", edit_card_path(@bar.id) %></span>
+            <span><%= link_to "Update Payment Info", edit_card_path(@bar.id), class: 'small orange button radius' %></span>
           </div>
         </div>    
     </div>

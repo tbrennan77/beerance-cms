@@ -1,54 +1,45 @@
-<h2>Records for: <%= @user.username %></h2>
-<div class='row'>  
-    <div class="large-12 columns">
-      <h2>Plan</h2>
-      <% if @user.subscription %>
-        <div class="row">
-            <div class="large-3 columns user_info" style="text-align:center">  
-                <%= image_tag 'beerance_mugicon.png' %><br />
-                <span><%= @user.subscription.nice_name %></span>
-            </div>
-      <div class="large-9 columns user_info">  
-              <span><%= number_to_currency @user.subscription.amount %></span>
-        <span>Cost per month: <%= number_to_currency @user.subscription_plan.cost_per_month %></span>
-        <span>He has <b><%= pluralize @user.subscription.days_remaining, 'day' %></b> remaining</span>
-      </div>
+<h2>Records for: <%= @user.email %></h2>
+
+<div class="row heading">
+    <div class="large-9 columns">
+        <img alt="Beerance_baricon" src="/assets/beerance_baricon.png"><h2>Bars</h2>
     </div>
-    <% else %>
-    <p style="text-align:center;">
-        It looks like you don't have a plan yet :(
-      <%= link_to "Choose A Plan", '#', class: 'button radius' %>
-    </p>
-    <% end %>
-    </div>
+  <div class="large-3 columns">
+    <%= link_to "Add New Bar", new_bar_entity_path, id: 'new_link', class: 'button radius shadow' %>
+  </div>
 </div>
 
-<div class='row'>  
-    <div class="large-12 columns">
-      <h2>Charges</h2>      
-        <div class="row">
-          <div class="large-12 columns user_info">
-            <span><%= @customer.active_card.name %></span>
-            <span><%= @customer.active_card.type %> - **** **** **** <%= @customer.active_card.last4 %></span>
-            <table>
-              <thead>
-                <tr>
-                  <th>Date</th>
-                  <th>Paid?</th>
-                  <th>Amount</th>
-                </tr>
-              </thead>
-              <tbody>
-                <% @customer.charges.each do |charge| %>
-                <tr>
-                  <td><%= Time.at(charge.created) %></td>
-                  <td><%= charge.paid %></td>
-                  <td><%= number_to_currency charge.amount/100 %></td>
-                </tr>
-                <% end %>
-              </tbody>
-            </table>
+<div class="content bar-list">
+  <div class="large-12 columns">
+    <% @user.bars.each do |bar| %>
+      <div id="bar-<%= bar.id %>" class="row" style="border-bottom: 1px solid #3e130d; margin-bottom: 20px;">
+          <div class="row">
+            <div class="large-12 columns user-info" style ="padding-bottom:0;">
+              <h2><%= bar.bar_name %>
+                <small>
+                  <%= link_to "edit", edit_bar_entity_path(bar) %>
+              </small>
+            </h2>
           </div>
-        </div>  
-    </div>
-</div>
+        </div>
+        <div class="row">
+            <div class="large-6 columns user_info" style="padding-left:35px;">
+            <span><%= bar.bar_addr1 %></span>
+              <% unless bar.bar_addr2.blank? %>
+            <span><%= bar.bar_addr2 %></span>
+              <% end %>
+            <span><%= bar.bar_city %>, <%= bar.bar_state %></span>
+            <span><%= bar.bar_zip %></span>
+            <span><%= link_to bar.bar_url, "#{bar.bar_url}", target: :_blank %></span>
+          </div>
+          <div class="large-6 columns user_info">
+            <span>Plan: <%= format_plan bar %></span>
+            <span>Status: <%= format_status bar.subscription %></span>
+            <span><%= number_to_phone bar.bar_phone, area_code: true %></span>
+            <span><%= link_to "View Invoices", invoices_path(bar.id) %></span>            
+          </div>
+        </div>
+        </div>   
+        <% end %>    
+      </div>
+  </div>
