@@ -55,6 +55,10 @@ class BillingController < ApplicationController
   end
 
   def find_current_users_bar(id)
-    current_user.bars.where(objectId: id).first
+    if current_user.admin?
+      BarEntity.find(id)
+    else
+      current_user.bars.where(objectId: id).first
+    end
   end
 end
