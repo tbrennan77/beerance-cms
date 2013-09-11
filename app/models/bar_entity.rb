@@ -125,9 +125,8 @@ class BarEntity < ParseResource::Base
   end
   
   def cancel_subscription    
-    customer = Stripe::Customer.retrieve(stripe_customer_id)      
-    if customer.subscription.status == 'active'
-      customer.cancel_subscription(at_period_end: true)
+    if stripe_customer.subscription.status == 'active'
+      stripe_customer.cancel_subscription(at_period_end: true)
     end 
   rescue Stripe::StripeError => e
     log_stripe_error(e, "Unable to cancel your subscription. #{e.message}.")    

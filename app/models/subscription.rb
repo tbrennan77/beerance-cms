@@ -32,6 +32,18 @@ class Subscription
     json.plan.amount/100
   end
 
+  def canceled?
+    if json.canceled_at.blank?
+      false
+    else
+      true
+    end
+  end
+
+  def canceled_at
+    Time.at(json.canceled_at)
+  end
+
   def days_remaining
     (end_date.to_date-Date.today).to_i
   end

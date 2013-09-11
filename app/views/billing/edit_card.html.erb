@@ -1,3 +1,7 @@
+<% content_for :head do %>
+<meta name="stripe-key" content="<%= STRIPE_PUBLIC_KEY %>" />
+<% end %>
+
 <% title "Change Card - " %>
 <%= form_tag update_card_path(@bar.id), id: 'edit_card' do %>
   <%= hidden_field_tag :stripe_card_token %>
