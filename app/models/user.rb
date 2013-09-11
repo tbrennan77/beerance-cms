@@ -7,8 +7,9 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  validates_presence_of :name, :phone, :password
-  validates_confirmation_of :password
+  validates_presence_of :name, :phone
+  validates_presence_of :password, on: :create
+  validates_confirmation_of :password, on: :create
   
   def admin?() admin end
   def make_admin; self.admin=true;self.save; end
