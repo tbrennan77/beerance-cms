@@ -1,10 +1,7 @@
 class BarEntity < ParseResource::Base
   include GeoKit::Geocoders
 
-  fields :user_id,        
-        :stripe_card_token,
-        :stripe_customer_id,
-        :subscription_plan_id,
+  fields :scription_plan_id,
         :bar_name,
         :bar_phone,
         :bar_url,
@@ -20,26 +17,10 @@ class BarEntity < ParseResource::Base
         :hours_thur,
         :hours_fri,
         :hours_sat,
-        :hours_sun,
-        :mon_start,
-        :mon_end,
-        :tues_start,
-        :tues_end,
-        :wed_start,
-        :wed_end,
-        :thur_start,
-        :thur_end,
-        :fri_start,
-        :fri_end,
-        :sat_start,
-        :sat_end,
-        :sun_start,
-        :sun_end  
+        :hours_sun
 
-  validates_presence_of :bar_name, :subscription_plan_id, :bar_phone, :bar_url, :bar_addr1, :bar_city, :bar_state, :bar_zip, :hours_mon, :hours_tues, :hours_wed, :hours_thur, :hours_fri, :hours_sat, :hours_sun    
-  validates_presence_of :bar_location, message: 'Geocoding faild. Please check address.'
-  after_update :update_specials_after_change
-
+  validates_presence_of :bar_name, :bar_phone, :bar_url, :bar_addr1, :bar_city, :bar_state, :bar_zip, :hours_mon, :hours_tues, :hours_wed, :hours_thur, :hours_fri, :hours_sat, :hours_sun    
+  
   def update_specials_after_change
     if (self.bar_addr1_changed?)
       set_geo_location

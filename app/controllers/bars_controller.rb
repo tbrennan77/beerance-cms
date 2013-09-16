@@ -1,5 +1,5 @@
 class BarsController < ApplicationController
-  before_filter :require_user  
+  before_filter :require_user
 
   def new  
     @bar = Bar.new    
@@ -25,7 +25,7 @@ class BarsController < ApplicationController
 
   def update    
     @bar = current_user.bars.find(params[:id])
-    if @bar.update_attributes(bar_params)      
+    if @bar.update_and_sync_with_parse(bar_params)      
       redirect_to bars_path, notice: 'Updated Bar'
     else
       render :edit
@@ -62,16 +62,4 @@ class BarsController < ApplicationController
       :sunday_end
     )
   end
-
-  def set_times
-    %w{mon tues wed thur fri sat sun}.each do |d|
-      params[:bar_entity]["hours_#{d}"] = cat_times(params[:bar_entity]["#{d}_start"], params[:bar_entity]["#{d}_end"])
-      params[:bar_entity].delete("#{d}_start")
-      params[:bar_entity].delete("#{d}_end")
-    end
-  end
-
-  def cat_times(open, close)
-    (open == "Closed" || close == "Closed") ? "Closed" : "#{open} - #{close}"    
-  end  
 end

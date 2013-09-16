@@ -46,9 +46,8 @@ Beerance::Application.routes.draw do
   match '/my-beerances'                   => 'users#profile', as: 'profile'
   match '/my-beerances/archived'          => 'users#profile', as: 'profile_archive'
   
-  # Bar entities
+  # Bars
   resources :bars
-  #resources :bar_entities, path: 'bar-entities'
   
   # Bar Specials
   resources :bar_specials, path: 'bar-specials'
@@ -66,12 +65,6 @@ Beerance::Application.routes.draw do
   match '/admin/make-admin'         => 'users#make_admin', as: 'make_admin'
   match '/admin/remove-admin'       => 'users#remove_admin', as: 'remove_admin'
   
-  # Test emails
-  get '/admin/test_signup'          => 'admin#test_signup', as: 'test_signup'
-  get '/admin/test_feedback'        => 'admin#test_feedback', as: 'test_feedback'
-  get '/admin/test_password_reset'  => 'admin#test_password_reset', as: 'test_password_reset'
-  get '/admin/test_password_change' => 'admin#test_password_change', as: 'test_password_change'
-
   # Root Path
   root to: 'home#index'  
 end

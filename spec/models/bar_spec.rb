@@ -15,7 +15,6 @@ describe Bar do
     it { should validate_presence_of(:state)    }
     it { should validate_presence_of(:zip)      }
     it { should validate_presence_of(:latitude)      }
-    it { should validate_presence_of(:longitude)      }
     it { should validate_presence_of(:sunday_start) }
     it { should validate_presence_of(:sunday_end) }
     it { should validate_presence_of(:monday_start) }

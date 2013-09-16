@@ -3,6 +3,7 @@ class Bar < ActiveRecord::Base
 
   belongs_to :user
   belongs_to :subscription_plan
+  has_many :bar_specials
 
   attr_accessor :stripe_card_token
 
@@ -30,7 +31,7 @@ class Bar < ActiveRecord::Base
     :saturday_start,
     :saturday_end
 
-  def turl
+  def nice_url
     "http://#{self.url.gsub(/(https:\/\/|http:\/\/)/,'')}"
   end
 
@@ -82,8 +83,13 @@ class Bar < ActiveRecord::Base
       create_stripe_customer
       create_parse_bar
       self.save
-    end  
-  end  
+    end
+  end
+
+  def update_and_sync_with_parse(params)
+    update_attributes(params)
+    update_parse_bar
+  end
 
   private
 
@@ -112,5 +118,40 @@ class Bar < ActiveRecord::Base
     rescue Stripe::InvalidRequestError => e    
       errors.add :base, "There was a problem with your credit card."
       false
+  end
+
+  def create_parse_bar
+    bar = BarEntity.create(parse_bar_params)
+    self.parse_bar_id = bar.id
+  end
+
+  def update_parse_bar
+    bar = BarEntity.find(self.parse_bar_id)
+    bar.update_attributes(parse_bar_params)
+  end
+
+  def parse_bar_params
+    { bar_addr1: self.address,
+      bar_addr2: self.address_2,        
+      bar_city: self.city,
+      bar_location: ParseGeoPoint.new(latitude: self.latitude, longitude: self.longitude),        
+      bar_name: self.name,
+      bar_owner_id: self.user_id,
+      bar_phone: self.phone,
+      bar_state: self.state,
+      bar_url: self.nice_url,
+      bar_zip: self.zip,
+      hours_sun:  cat_times(self.sunday_start, self.sunday_end),
+      hours_mon:  cat_times(self.monday_start, self.monday_end),
+      hours_tues: cat_times(self.tuesday_start, self.tuesday_end),
+      hours_wed:  cat_times(self.wednesday_start, self.wednesday_end),
+      hours_thur: cat_times(self.thursday_start, self.thursday_end),
+      hours_fri:  cat_times(self.friday_start, self.friday_end),
+      hours_sat:  cat_times(self.saturday_start, self.saturday_end) 
+    }
+  end
+
+  def cat_times(open, close)
+    (open == "Closed" || close == "Closed") ? "Closed" : "#{open} - #{close}"    
   end
 end

@@ -52,7 +52,7 @@ $('.hour-label select').live 'change', ->
 
   if $(this).val() == 'Closed'
     selects.first()[0].selectedIndex = 1
-    selects.last()[0].selectedIndex = 0
+    selects.last()[0].selectedIndex = 1
     selects.first().parent().removeClass('large-6').addClass('large-12').focus()
     selects.last().hide()
   else

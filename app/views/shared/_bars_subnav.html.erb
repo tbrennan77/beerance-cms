@@ -1,8 +1,8 @@
 <div class='subnav hide-for-small'>
   <div class='row'>
     <div class="large-12 columns">      
-      <%= link_to "My Bars", bar_entities_path, class: is_current?('index') %>
-      <%= link_to "Add New Bar", new_bar_entity_path, class: is_current?('new') %>
+      <%= link_to "My Bars", bars_path, class: is_current?('index') %>
+      <%= link_to "Add New Bar", new_bar_path, class: is_current?('new') %>
     </div>
   </div>
 </div>
@@ -11,7 +11,7 @@
   <ul class="side-nav">
     <li class="active"><%= link_to "Current Specials", profile_path %></li>
     <li><%= link_to "Archive", profile_path %></li>
-    <li><%= link_to "My Bars", bar_entities_path, class: 'current' %></li>
+    <li><%= link_to "My Bars", bars_path, class: 'current' %></li>
     <li><%= link_to "Account Details", profile_path %></li>
   </ul>
 </div>

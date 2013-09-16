@@ -17,7 +17,7 @@ class UsersController < ApplicationController
   end
 
   def profile    
-    redirect_to new_bar_entity_path unless current_user.bars?
+    redirect_to new_bar_path if current_user.bars.blank?
   end
 
 # Basic CRUD actions

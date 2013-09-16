@@ -1,0 +1,17 @@
+  <%= render partial: 'shared/head' %>
+
+  <body>
+    <%= render partial: 'shared/header' %>
+    <%= render partial: 'shared/bars_subnav' %>
+
+    <div class="internalpage_user">
+      <div class="orange_grad">
+        <div class="row info rounded-box">
+          <%= yield %>
+        </div>
+      </div>
+    </div>
+    
+    <%= render partial: 'shared/footer' %>
+  </body>
+</html>

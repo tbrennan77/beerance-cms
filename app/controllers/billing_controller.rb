@@ -2,7 +2,7 @@ class BillingController < ApplicationController
   before_filter :require_user
 
   def index 
-    redirect_to new_bar_entity_path unless current_user.bars?   
+    redirect_to new_bar_path if current_user.bars.blank?
   end
 
   def invoices
@@ -14,9 +14,7 @@ class BillingController < ApplicationController
   end
 
   def show_invoice
-    if current_user.admin?
-      @invoice = Stripe::Invoice.retrieve params[:id]
-    elsif BarEntity.where(stripe_customer_id: @invoice.customer).first.user_id == current_user.id
+    if current_user.admin? || Bar.find_by_stripe_customer_id(@invoice.customer).user_id == current_user.id
       @invoice = Stripe::Invoice.retrieve params[:id]
     else
       redirect_to log_out_path
@@ -44,7 +42,7 @@ class BillingController < ApplicationController
       redirect_to show_billing_path(@bar.id), notice: 'Updated Card Info'
     else
       render 'edit_card'
-    end      
+    end
   end
 
   def cancel_subscription
@@ -56,9 +54,9 @@ class BillingController < ApplicationController
 
   def find_current_users_bar(id)
     if current_user.admin?
-      BarEntity.find(id)
+      Bar.find(id)
     else
-      current_user.bars.where(objectId: id).first
+      current_user.bars.find(id)
     end
   end
 end

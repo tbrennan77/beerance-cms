@@ -1,3 +1,3 @@
 class BarSpecial < ActiveRecord::Base
-  # attr_accessible :title, :body
+  belongs_to :bar
 end
