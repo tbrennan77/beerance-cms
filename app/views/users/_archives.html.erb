@@ -4,7 +4,7 @@
   </div>  
 </div>
 
-<% unless current_user.inactive_specials.empty? %>
+<% if current_user.bar_specials.inactive.any? %>
 
 <div class="beerance_list">
 	<div class="row hide-for-small purple_grad">
@@ -28,15 +28,15 @@
 		</div>
 	</div>
 		
-	<% current_user.inactive_specials.each do |bs| %>
+	<% current_user.bar_specials.inactive.each do |bs| %>
 	<%= form_for bs, html: { data: {remote: true } } do |f| %>
 	<%= f.hidden_field :bar_id %>
 
 	<div class="row">
 		<div class="large-5 columns">
 			<span class="show-for-small">Name: </span>
-			<%= f.label :special_description, bs.special_description %>
-			<%= f.text_field :special_description, class: 'input-text hide' %>
+			<%= f.label :description, bs.description %>
+			<%= f.text_field :description, class: 'input-text hide' %>
 		</div>
 		<div class="large-1 columns color">
 			<span class="show-for-small">Color: </span>
@@ -54,7 +54,7 @@
 		</div>
 		<div class="large-3 columns">
 			<span class="show-for-small">Location: </span>
-			<%= bs.bar_name %>
+			<%= bs.bar.name %>
 		</div>
 		<div class="large-1 columns align-center">
 			<span class="show-for-small">Reactivate: </span>

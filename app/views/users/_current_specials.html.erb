@@ -32,7 +32,7 @@
 			<div class="row" id="newspecial">
 				<div class="large-4 columns">
 					<span class="show-for-small">Name: </span>					
-					<%= f.text_field :special_description, placeholder: 'Name', class: 'input-text' %>
+					<%= f.text_field :description, placeholder: 'Name', class: 'input-text' %>
 				</div>
 				<div class="large-2 columns new-color">
 					<span class="show-for-small">Color: </span>
@@ -56,16 +56,16 @@
 			</div>
 		<% end %> 
 		
-	<% current_user.active_specials.each do |bs| %>
+	<% current_user.bar_specials.active.each do |bs| %>
 		<%= form_for bs, html: { data: {remote: true } } do |f| %>
 			<%= f.hidden_field :bar_id %>
-			<%= f.hidden_field :current_page, value: true %>
+			<%= hidden_field_tag :current_page, value: true %>
 			
 			<div class="row">
 				<div class="large-5 columns">
 					<span class="show-for-small">Name*: </span>
-					<%= f.label :special_description, bs.special_description %>
-					<%= f.text_field :special_description, class: 'input-text hide' %>
+					<%= f.label :description, bs.description %>
+					<%= f.text_field :description, class: 'input-text hide' %>
 				</div>
 				<div class="large-1 columns color">
 					<span class="show-for-small">Color: </span>
@@ -83,7 +83,7 @@
 				</div>
 				<div class="large-3 columns">
 					<span class="show-for-small">Location: </span>
-					<%= bs.bar_name %>
+					<%= bs.bar.name %>
 				</div>
 				<div class="large-1 columns align-center">
 					<span class="show-for-small">Remove: </span>
@@ -95,7 +95,7 @@
 
 </div>
 
-<% if current_user.active_specials.empty? %>
+<% unless current_user.bar_specials.active.any? %>
 	<br />
 	<br />
 	<h3 style='text-align: center;'>You have no current specials</h3>

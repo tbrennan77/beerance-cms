@@ -1,18 +1,17 @@
 jQuery ->
   $('a.new-special').live 'click', ->
-    $('#new_bar_specials').fadeToggle()
+    $('#new_bar_special').fadeToggle()
 
   original_input_value = ""
 
-  $('.edit_bar_specials label').live 'click', ->
+  $('.edit_bar_special label').live 'click', ->
     $(this).hide()
     $(this).next('.hide').show()
     $(this).next('.hide').focus();
     original_input_value = $(this).next('.hide').val()
 
-  $('.edit_bar_specials .hide').live 'blur', ->
-    if $(this).val() != original_input_value
-      $('.ajax-container').fadeOut('fast')
+  $('.edit_bar_special .hide').live 'blur', ->
+    if $(this).val() != original_input_value      
       $(this).parent().parent().parent().submit()
     else
       $(this).hide()

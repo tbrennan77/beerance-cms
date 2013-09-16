@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_filter :require_user
-  before_filter :require_admin, except: %w{edit update profile show current_specials archived_specials}  
+  before_filter :require_admin, only: %w{index admin_show destroy make_admin remove_admin}
   before_filter :new_bar_special, only: %w{profile current_specials archived_specials}
 
   def index
@@ -28,7 +28,7 @@ class UsersController < ApplicationController
 
   def update    
     @user = User.find params[:id]    
-    if @user.update_attributes user_params
+    if @user.update_attributes(user_params)
       redirect_to account_details_path
     else
       render :edit
@@ -56,6 +56,6 @@ class UsersController < ApplicationController
 
 # Before Filters
   def new_bar_special
-    @bar_special = BarSpecials.new    
+    @bar_special = BarSpecial.new    
   end
 end

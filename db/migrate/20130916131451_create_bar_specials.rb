@@ -7,6 +7,7 @@ class CreateBarSpecials < ActiveRecord::Migration
       t.datetime   :expiration_date
       t.integer    :sale_price
       t.string     :description
+      t.string     :parse_bar_special_id
       t.timestamps
     end
   end

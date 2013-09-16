@@ -91,6 +91,13 @@ class Bar < ActiveRecord::Base
     update_parse_bar
   end
 
+  def active_subscription?
+    unless subscription
+      return false
+    end
+    subscription.active?
+  end
+
   private
 
   def location
