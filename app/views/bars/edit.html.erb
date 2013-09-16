@@ -1,0 +1,26 @@
+<% title "My Bars - " %>
+
+<div class="row heading">
+    <div class="large-9 columns">
+        <img alt="Beerance_baricon" src="/assets/beerance_baricon.png"><h2>Edit <%= @bar.name %></h2>
+    </div>
+</div>
+
+<fieldset>
+<%= form_for @bar do |f| %>  
+  <% if @bar.errors.any? %>  
+    <div class="error_messages">  
+      <h4>Form is invalid</h4>  
+      <ul>  
+        <% for message in @bar.errors.full_messages %>  
+          <li><%= bar_error message %></li>
+        <% end %>  
+      </ul>  
+    </div>  
+  <% end %>
+
+  <%= render partial: 'form', locals: {f: f} %>
+
+  <%= f.submit "Update Bar", class: 'button radius shadow' %> <%= link_to "Cancel", bars_path, class: 'red button radius shadow' %>
+<% end %>  
+</fieldset>

@@ -2,35 +2,31 @@ class BarsController < ApplicationController
   before_filter :require_user  
 
   def new  
-    @bar_entity = Bar.new    
+    @bar = Bar.new    
   end  
 
   def index
-    @bar_entities = current_user.bars.all
-    redirect_to new_bar_entity_path if @bar_entities.blank?
+    @bars = current_user.bars.all
+    redirect_to new_bar_path if @bars.blank?
   end
     
   def create    
-    @bar_entity = Bar.new bar_params
-    @bar_entity.set_bar_owner(current_user.id)
-
-    if @bar_entity.save_with_payment
-      redirect_to bar_entities_path, :notice => "Added Bar"
-    else  
-      render "new"  
+    @bar = current_user.bars.new(bar_params)
+    if @bar.save_with_payment
+      redirect_to bars_path, notice: 'Added Bar'
+    else
+      render :new
     end  
   end
 
   def edit
-    @bar_entity = current_user.bars.where(objectId: params[:id]).first
+    @bar = current_user.bars.find(params[:id])
   end
 
   def update    
-    @bar_entity = current_user.bars.where(objectId: params[:id]).first
-
-    if @bar_entity.update_attributes bar_params
-      @bar_entity.save
-      redirect_to bar_entities_path, notice: 'Updated Bar'
+    @bar = current_user.bars.find(params[:id])
+    if @bar.update_attributes(bar_params)      
+      redirect_to bars_path, notice: 'Updated Bar'
     else
       render :edit
     end
@@ -39,7 +35,32 @@ class BarsController < ApplicationController
   private
 
   def bar_params
-    params.require(:bar).permit(:name, :stripe_card_token, :subscription_plan_id, :phone, :url, :addr1, :addr2, :city, :state, :zip, :hours_mon, :hours_tues, :hours_wed, :hours_thur, :hours_fri, :hours_sat, :hours_sun)
+    params.require(:bar).permit(
+      :name,
+      :stripe_card_token,
+      :subscription_plan_id,
+      :phone,
+      :url,
+      :address,
+      :address_2,
+      :city,
+      :state,
+      :zip,
+      :monday_start,
+      :monday_end,
+      :tuesday_start,
+      :tuesday_end,
+      :wednesday_start,
+      :wednesday_end,
+      :thursday_start,
+      :thursday_end,
+      :friday_start,
+      :friday_end,
+      :saturday_start,
+      :saturday_end,
+      :sunday_start,
+      :sunday_end
+    )
   end
 
   def set_times

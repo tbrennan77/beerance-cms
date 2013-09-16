@@ -7,14 +7,14 @@ class Bar < ActiveRecord::Base
   attr_accessor :stripe_card_token
 
   validates_presence_of :name,
+    :subscription_plan_id,
     :phone,
     :url,
     :address,
     :city,
     :state,
     :zip,
-    :latitude,
-    :longitude,
+    :latitude,    
     :sunday_start,
     :sunday_end,
     :monday_start,
@@ -30,8 +30,8 @@ class Bar < ActiveRecord::Base
     :saturday_start,
     :saturday_end
 
-  def url
-    "http://#{self.bar_url.gsub(/(https:\/\/|http:\/\/)/,'')}"
+  def turl
+    "http://#{self.url.gsub(/(https:\/\/|http:\/\/)/,'')}"
   end
 
   # Update the STRIP API plan
@@ -75,6 +75,16 @@ class Bar < ActiveRecord::Base
     Subscription.new(stripe_customer.subscription)
   end
 
+  def save_with_payment
+    set_geo_location
+    
+    if valid?
+      create_stripe_customer
+      create_parse_bar
+      self.save
+    end  
+  end  
+
   private
 
   def location
@@ -96,10 +106,9 @@ class Bar < ActiveRecord::Base
         card:  self.stripe_card_token,
         plan:  self.subscription_plan.name,
         email: self.user.email,
-        description: self.bar_name
+        description: self.name
       )
-    self.stripe_customer_id = customer.id
-    self.stripe_card_token  = nil
+    self.stripe_customer_id = customer.id    
     rescue Stripe::InvalidRequestError => e    
       errors.add :base, "There was a problem with your credit card."
       false

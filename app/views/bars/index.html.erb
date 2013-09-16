@@ -1,0 +1,46 @@
+<% title "My Bars - " %>
+
+<div class="row heading">
+    <div class="large-9 columns">
+        <img alt="Beerance_baricon" src="/assets/beerance_baricon.png"><h2>Your Bars</h2>
+    </div>
+  <div class="large-3 columns">
+    <%= link_to "Add New Bar", new_bar_path, id: 'new_link', class: 'button radius shadow' %>
+  </div>
+</div>
+
+<div class="content bar-list">
+  <div class="large-12 columns">
+    <% @bars.each do |bar| %>
+      <div id="bar-<%= bar.id %>" class="row" style="border-bottom: 1px solid #3e130d; margin-bottom: 20px;">
+          <div class="row">
+            <div class="large-12 columns user-info" style ="padding-bottom:0;">
+              <h2><%= bar.name %>
+                <small>
+                  <%= link_to "edit", edit_bar_path(bar) %>
+              </small>
+            </h2>
+          </div>
+        </div>
+        <div class="row">
+            <div class="large-6 columns user_info" style="padding-left:35px;">
+            <span><%= bar.address %></span>
+              <% unless bar.address_2.blank? %>
+            <span><%= bar.address_2 %></span>
+              <% end %>
+            <span><%= bar.city %>, <%= bar.state %></span>
+            <span><%= bar.zip %></span>
+            <span><%= link_to bar.url, "#{bar.url}", target: :_blank %></span>
+          </div>
+          <div class="large-6 columns user_info">
+            <span>Plan: <%= format_plan bar %></span>
+            <span>Status: <%= format_status bar.subscription %></span>
+            <span><%= number_to_phone bar.phone, area_code: true %></span>
+            <span><%= link_to "Change Plan", edit_plan_path(bar.id) %></span>
+            <span><%= link_to "Update Billing Information", edit_card_path(bar.id) %></span>
+          </div>
+        </div>
+        </div>   
+        <% end %>    
+      </div>
+  </div>

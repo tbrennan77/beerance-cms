@@ -38,14 +38,8 @@ Beerance::Application.routes.draw do
   post '/send-feedback'  => 'home#send_feedback', as: 'send_feedback'
   match '/map'           => 'home#map', as: 'map'
 
-  # Sessions
-  #resources :sessions 
-  #get 'log-in'  => 'sessions#new', :as => 'log_in'  
-  #get 'log-out' => 'sessions#destroy', :as => 'log_out'  
-  
   # Users
   resources :users  
-  #get   '/register'                       => 'users#new', :as => 'sign_up'    
   get   '/account-details'                => 'users#show', :as => 'account_details'    
   get   '/my-beerances/current-specials'  => 'users#current_specials', as: 'current_specials'
   get   '/my-beerances/archived-specials' => 'users#archived_specials', as: 'archived_specials'  
@@ -53,7 +47,8 @@ Beerance::Application.routes.draw do
   match '/my-beerances/archived'          => 'users#profile', as: 'profile_archive'
   
   # Bar entities
-  resources :bar_entities, path: 'bars'
+  resources :bars
+  #resources :bar_entities, path: 'bar-entities'
   
   # Bar Specials
   resources :bar_specials, path: 'bar-specials'
@@ -78,5 +73,5 @@ Beerance::Application.routes.draw do
   get '/admin/test_password_change' => 'admin#test_password_change', as: 'test_password_change'
 
   # Root Path
-  root :to => 'home#index'  
+  root to: 'home#index'  
 end

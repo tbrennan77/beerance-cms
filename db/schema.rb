@@ -52,6 +52,7 @@ ActiveRecord::Schema.define(:version => 20130916132753) do
     t.string   "friday_end"
     t.string   "saturday_start"
     t.string   "saturday_end"
+    t.string   "parse_bar_id"
     t.datetime "created_at",           :null => false
     t.datetime "updated_at",           :null => false
   end

@@ -1,0 +1,101 @@
+  <div class="row">     
+      <div class='large-6 columns'>
+        <h3>Bar Information</h3>
+
+        <%= f.label :name, "Name of the bar" %> 
+        <%= f.text_field :name, placeholder: 'Rocky River Brewing Co', class: 'required' %>  
+    
+        <%= f.label :phone, "Phone number for the bar" %>
+        <%= f.phone_field :phone, placeholder: '216-123-4567', class: 'required' %>  
+    
+        <%= f.label :url, "Website URL" %>
+        <%= f.text_field :url, placeholder: 'http://www.brew.com', class: 'required' %>  
+        
+        <%= f.label :address, "Address" %>
+        <%= f.text_field :address, placeholder: '123 Main St', class: 'required' %>  
+    
+        <%= f.label :address_2, "Address 2" %>
+        <%= f.text_field :address_2, placeholder: '(optional)' %>  
+        
+        <div class='row'>
+          <div class='large-8 columns'>
+            <%= f.label :city, "City" %>
+            <%= f.text_field :city, placeholder: 'Cleveland', class: 'required' %>  
+          </div>
+          <div class='large-4 columns'>
+            <%= f.label :state, "State" %>
+            <%= f.select :state, states.map {|s| s} %>  
+          </div>
+        </div>
+        <%= f.label :zip, "Zip" %>
+        <%= f.text_field :zip, placeholder: '44116', class: 'required' %>
+      </div>
+
+    <div class='large-6 columns'>
+        <h3>Hours</h3>
+        
+        <%= f.label :monday_start, "Monday" %>
+        <div class='row hour-label'>
+          <div class="large-6 columns">
+            <%= f.select :monday_start, times.map {|t| t }, prompt: "-- Open at --" %>
+          </div>
+          <div class="large-6 columns">
+            <%= f.select :monday_end, times.map {|t| t }, prompt: "-- Close at --" %>
+          </div>
+        </div>
+        <%= f.label :tuesday_start, "Tuesday" %>
+        <div class='row hour-label'>
+          <div class="large-6 columns">
+            <%= f.select :tuesday_start, times.map {|t| t }, prompt: "-- Open at --" %>
+          </div>
+          <div class="large-6 columns">
+            <%= f.select :tuesday_end, times.map {|t| t }, prompt: "-- Close at --" %>
+          </div>
+        </div>
+        <%= f.label :wednesday_start, "Wednesday" %>
+        <div class='row hour-label'>
+          <div class="large-6 columns">
+            <%= f.select :wednesday_start, times.map {|t| t }, prompt: "-- Open at --" %>
+          </div>
+          <div class="large-6 columns">
+            <%= f.select :wednesday_end, times.map {|t| t }, prompt: "-- Close at --" %>
+          </div>
+        </div>
+        <%= f.label :thursday_start, "Thursday" %>
+        <div class='row hour-label'>
+          <div class="large-6 columns">
+            <%= f.select :thursday_start, times.map {|t| t }, prompt: "-- Open at --" %>
+          </div>
+          <div class="large-6 columns">
+            <%= f.select :thursday_end, times.map {|t| t }, prompt: "-- Close at --" %>
+          </div>
+        </div>
+        <%= f.label :friday_start, "Friday" %>
+        <div class='row hour-label'>
+          <div class="large-6 columns">
+            <%= f.select :friday_start, times.map {|t| t }, prompt: "-- Open at --" %>
+          </div>
+          <div class="large-6 columns">
+            <%= f.select :friday_end, times.map {|t| t }, prompt: "-- Close at --" %>
+          </div>
+        </div>
+        <%= f.label :saturday_start, "Saturday" %>
+        <div class='row hour-label'>
+          <div class="large-6 columns">
+            <%= f.select :saturday_start, times.map {|t| t }, prompt: "-- Open at --" %>
+          </div>
+          <div class="large-6 columns">
+            <%= f.select :saturday_end, times.map {|t| t }, prompt: "-- Close at --" %>
+          </div>
+        </div>
+        <%= f.label :sunday_start, "Sunday" %>
+        <div class='row hour-label'>
+          <div class="large-6 columns">
+            <%= f.select :sunday_start, times.map {|t| t }, :prompt => "-- Open at --" %>
+          </div>
+          <div class="large-6 columns">
+            <%= f.select :sunday_end, times.map {|t| t }, :prompt => "-- Close at --" %>
+          </div>
+        </div>
+      </div>
+    </div>

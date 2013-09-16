@@ -10,14 +10,16 @@ class User < ActiveRecord::Base
   validates_presence_of :name, :phone
   validates_presence_of :password, on: :create
   validates_confirmation_of :password, on: :create
-  
+
+  has_many :bars
+    
   def admin?() admin end
   def make_admin; self.admin=true;self.save; end
   def remove_admin; self.admin=false;self.save; end
 
-  def bars
-    BarEntity.where(user_id: id)
-  end
+  #def bars
+  #  BarEntity.where(user_id: id)
+  #end
 
   def specials
     specials = []
