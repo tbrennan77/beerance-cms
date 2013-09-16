@@ -59,7 +59,7 @@
 	<% current_user.bar_specials.active.each do |bs| %>
 		<%= form_for bs, html: { data: {remote: true } } do |f| %>
 			<%= f.hidden_field :bar_id %>
-			<%= hidden_field_tag :current_page, value: true %>
+			<%= hidden_field_tag :current_page, true %>
 			
 			<div class="row">
 				<div class="large-5 columns">

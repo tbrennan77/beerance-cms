@@ -18,10 +18,11 @@ ActiveRecord::Schema.define(:version => 20130916132753) do
     t.integer  "beer_color"
     t.integer  "beer_size"
     t.datetime "expiration_date"
-    t.integer  "sale_price"
+    t.decimal  "sale_price"
     t.string   "description"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
+    t.string   "parse_bar_special_id"
+    t.datetime "created_at",           :null => false
+    t.datetime "updated_at",           :null => false
   end
 
   create_table "bars", :force => true do |t|

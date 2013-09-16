@@ -5,7 +5,7 @@ class CreateBarSpecials < ActiveRecord::Migration
       t.integer    :beer_color
       t.integer    :beer_size
       t.datetime   :expiration_date
-      t.integer    :sale_price
+      t.decimal    :sale_price
       t.string     :description
       t.string     :parse_bar_special_id
       t.timestamps

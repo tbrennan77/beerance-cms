@@ -83,7 +83,7 @@ class BarSpecial < ActiveRecord::Base
   end
 
   def update_parse_bar_special
-    bar_special = BarSpecial.find(self.parse_bar_special_id)
+    bar_special = BarSpecials.find(self.parse_bar_special_id)
     bar_special.update_attributes(parse_bar_special_params)
   end
 
