@@ -25,7 +25,7 @@
 					  			<fieldset style="background:none;border:none;padding-top:0;padding-bottom:0;">
 						  			<%= form_for @news_subscription, url: new_signup_path do |f| %>			  				
 						  				<%= f.hidden_field :subscriber_type, value: "bar_drinker" %>
-							  			<%= f.email_field :subscriber_email, placeholder: 'youremail@example.com', class: 'required' %>
+							  			<%= f.email_field :subscriber_email, placeholder: 'drinker@example.com', class: 'required' %>
 							  			<%= submit_tag "Submit", class: 'orange button radius' %>
 						  			<% end %>
 						  		</fieldset>
@@ -37,7 +37,7 @@
 					  			<fieldset style="background:none;border:none;padding-top:0;padding-bottom:0;">
 						  			<%= form_for @news_subscription, url: new_signup_path, html: {id: 'new_owner_news_subscription'} do |f| %>			  				
 							  			<%= f.hidden_field :subscriber_type, value: "bar_owner", id: 'owner_subscriber_type' %>
-							  			<%= f.email_field :subscriber_email, id: 'owner_subscriber_email', placeholder: 'youremail@example.com', class: 'required' %>
+							  			<%= f.email_field :subscriber_email, id: 'owner_subscriber_email', placeholder: 'owner@example.com', class: 'required' %>
 							  			<%= submit_tag "Submit", class: 'orange button radius' %>
 						  			<% end %>
 						  		</fieldset>							      
