@@ -67,7 +67,7 @@ class BarSpecial < ActiveRecord::Base
     update_parse_bar_special
   end
   
-  #private
+  private
   
   def set_expiration_date
     self.expiration_date = DateTime.now.tomorrow.beginning_of_day.advance(years: 1, hours: 9)
@@ -94,7 +94,7 @@ class BarSpecial < ActiveRecord::Base
       beer_color: self.beer_color,
       beer_size: self.beer_size,
       expiration_date: self.expiration_date || DateTime.now.tomorrow.beginning_of_day.advance(years: 1, hours: 9),
-      sale_price: self.sale_price,
+      sale_price: self.sale_price.to_f,
       special_description: self.description
     }
   end

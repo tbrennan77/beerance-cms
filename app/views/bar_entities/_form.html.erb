@@ -99,3 +99,24 @@
         </div>
       </div>
     </div>
+
+     <div class="row">
+      <div class='large-12 columns'>
+        <h3>Step 2</h3>
+        <h5>Package Selection:</h5>
+        <div class="row">
+          <% SubscriptionPlan.order("amount").each do |p| %>
+          <div class="large-4 columns ">
+            <article>
+              <label class="amount plan-box <%= 'active' if @bar_entity.subscription_plan_id.to_i == p.id %>">
+                <h5><%= p.friendly_name %></h5>
+                <%= image_tag p.image %><br />
+                <%= f.radio_button :subscription_plan_id, p.id %>
+                <span><%= number_to_currency p.amount/100 %></span>
+              </label>
+            </article>
+          </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
