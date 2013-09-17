@@ -11,7 +11,7 @@ describe "SignUps" do
       fill_in 'user_phone', with: '12334477'
       click_button 'Join Beerance'
       visit profile_path
-      current_path.should == new_bar_entity_path
+      current_path.should == new_bar_path
     }.to change{User.where(email: 'random@beerancetest.com').count}.by 1
   end
 end

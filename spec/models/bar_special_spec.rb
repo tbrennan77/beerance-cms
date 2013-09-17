@@ -1,9 +1,10 @@
 require 'spec_helper'
 
 describe BarSpecial do
-  
+
   subject(:bar_special) { FactoryGirl.build(:bar_special) }
   let(:geo) { ParseGeoPoint.new(latitude: 34.34343, longitude: -81.2999) }
+  after { BarSpecials.destroy_all }
 
   context "validations" do
     before { BarEntity.any_instance.stub(:set_geo_location).and_return(geo) }
@@ -23,21 +24,23 @@ describe BarSpecial do
   it "sets expiration on create" do
     bar_special = FactoryGirl.build(:inactive_bar_special)
     expect {bar_special.send(:set_expiration_date)}
-      .to change{bar_special.expiration_date}.to(DateTime.now.tomorrow.beginning_of_day.advance(years: 1, hours: 9))
+      .to change{bar_special.expiration_date}.to(Time.now.tomorrow.beginning_of_day.advance(years: 1, hours: 9))
   end
 
   context "toggle function" do
+    before { @parse_bar_special = FactoryGirl.create(:bar_specials) }
 
     context "with active special" do
       it "should end on toggle" do
-        active_bar_special = FactoryGirl.create(:active_bar_special)
+        active_bar_special = FactoryGirl.create(:active_bar_special, parse_bar_special_id: @parse_bar_special.id)
         expect{active_bar_special.toggle_activation}
           .to change{active_bar_special.active?}.from(true).to(false)
       end
     end
 
     context "with inactive special" do
-      subject(:inactive_bar_special) { FactoryGirl.create(:inactive_bar_special) }
+      let(:inactive_bar_special) { FactoryGirl.build(:inactive_bar_special, parse_bar_special_id: @parse_bar_special.id) }
+      subject { inactive_bar_special }   
 
       it { should_not be_active }
 
@@ -49,7 +52,9 @@ describe BarSpecial do
 
       it "should NOT reactive on toggle without active subscription" do
         Bar.any_instance.stub(:active_subscription?).and_return(false)
+        puts subject.expiration_date
         inactive_bar_special.toggle_activation
+        puts subject.expiration_date
         inactive_bar_special.should_not be_active
       end
     end

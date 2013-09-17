@@ -9,8 +9,7 @@ class BarSpecials < ParseResource::Base
     :beer_color,
     :beer_size
   
-  validates_presence_of :bar_id,
-    :special_description,
+  validates_presence_of :special_description,
     :sale_price,
     :beer_color,
     :beer_size

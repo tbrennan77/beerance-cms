@@ -3,8 +3,7 @@ require 'spec_helper'
 describe BarEntity do
   subject(:bar_entity) { FactoryGirl.build(:bar_entity) }
     
-  describe "validations" do
-    it { should be_an_instance_of(BarEntity) }
+  describe "validations" do    
     it { should be_valid }
     it { should validate_presence_of(:bar_name)     }    
     it { should validate_presence_of(:bar_phone)    }    

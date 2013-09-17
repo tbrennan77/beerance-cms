@@ -56,30 +56,30 @@ class BarSpecial < ActiveRecord::Base
   end
 
   def save_with_parse
-    if valid?
+    if self.save      
       create_parse_bar_special
-      self.save
     end
   end
 
   def update_with_parse(params)
-    update_attributes(params)
-    update_parse_bar_special
+    if update_attributes(params)
+      update_parse_bar_special
+    end
   end
   
   private
   
   def set_expiration_date
-    self.expiration_date = DateTime.now.tomorrow.beginning_of_day.advance(years: 1, hours: 9)
+    self.expiration_date = Time.now.tomorrow.beginning_of_day.advance(years: 1, hours: 9)
   end
 
   def end_special
-    self.expiration_date = DateTime.now.yesterday.beginning_of_day.advance(hours: 9)
+    self.expiration_date = Time.now.yesterday.beginning_of_day.advance(hours: 9)
   end
 
   def create_parse_bar_special
     bar_sepcial = BarSpecials.create(parse_bar_special_params)
-    self.parse_bar_special_id = bar_sepcial.id
+    self.update_attributes(parse_bar_special_id: bar_sepcial.id)
   end
 
   def update_parse_bar_special
@@ -93,7 +93,7 @@ class BarSpecial < ActiveRecord::Base
       bar_name: self.bar.name,
       beer_color: self.beer_color,
       beer_size: self.beer_size,
-      expiration_date: self.expiration_date || DateTime.now.tomorrow.beginning_of_day.advance(years: 1, hours: 9),
+      expiration_date: self.expiration_date || Time.now.tomorrow.beginning_of_day.advance(years: 1, hours: 9),
       sale_price: self.sale_price.to_f,
       special_description: self.description
     }

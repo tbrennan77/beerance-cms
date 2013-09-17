@@ -1,7 +1,5 @@
 FactoryGirl.define do
   factory :bar_entity do
-    user
-    subscription_plan    
     bar_name       'Rocky River Brewing Company'
     bar_phone      '2165551234'
     bar_url        'http://www.google.com'

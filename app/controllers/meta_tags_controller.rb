@@ -4,7 +4,13 @@ class MetaTagsController < ApplicationController
   layout 'admin'
 
   def edit
-    @meta_tag = MetaTag.first
+    @meta_tag = MetaTag.first || MetaTag.new
+  end
+
+  def create
+    @meta_tag = MetaTag.new params[:meta_tag]
+    @meta_tag.save
+    redirect_to edit_meta_tag_path, notice: 'Updated Meta Tags'
   end
 
   def update
