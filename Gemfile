@@ -12,6 +12,7 @@ gem 'jquery-rails'
 gem 'exception_notification'
 gem 'strong_parameters'
 gem 'geokit'
+gem 'unicorn'
 
 # Parse and Stripe and New Relic
 gem 'parse_resource', "~> 1.8.0"
