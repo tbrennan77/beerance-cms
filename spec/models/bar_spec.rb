@@ -7,6 +7,9 @@ describe Bar do
   describe "validations" do
     it { should be_an_instance_of(Bar) }
     it { should be_valid }
+    it { should belong_to(:user) }
+    it { should belong_to(:subscription_plan) }
+    it { should have_many(:bar_specials) }
     it { should validate_presence_of(:name)     }
     it { should validate_presence_of(:phone)    }
     it { should validate_presence_of(:url)      }
@@ -30,4 +33,7 @@ describe Bar do
     it { should validate_presence_of(:saturday_start) }
     it { should validate_presence_of(:saturday_end) }
   end
+
+  it "saves with payment"
+  it "updates with parse"
 end

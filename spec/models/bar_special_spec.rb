@@ -8,7 +8,8 @@ describe BarSpecial do
   context "validations" do
     before { BarEntity.any_instance.stub(:set_geo_location).and_return(geo) }
     it { should be_an_instance_of(BarSpecial) }
-    it { should be_valid }
+    it { should be_valid }    
+    it { should belong_to(:bar) }
     it { should validate_presence_of(:bar_id) }
     it { should validate_presence_of(:description) }
     it { should validate_presence_of(:sale_price) }
@@ -17,6 +18,12 @@ describe BarSpecial do
     it { should validate_numericality_of(:beer_color) }
     it { should validate_numericality_of(:beer_size) }
     it { should validate_numericality_of(:sale_price) } 
+  end
+
+  it "sets expiration on create" do
+    bar_special = FactoryGirl.build(:inactive_bar_special)
+    expect {bar_special.send(:set_expiration_date)}
+      .to change{bar_special.expiration_date}.to(DateTime.now.tomorrow.beginning_of_day.advance(years: 1, hours: 9))
   end
 
   context "toggle function" do
@@ -46,5 +53,8 @@ describe BarSpecial do
         inactive_bar_special.should_not be_active
       end
     end
-  end  
+  end
+
+  it "creates a parse record"
+  it "updates a parse record"
 end
