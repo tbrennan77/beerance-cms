@@ -88,6 +88,7 @@ class Bar < ActiveRecord::Base
 
   def update_and_sync_with_parse(params)
     update_attributes(params)
+    set_geo_location    
     update_parse_bar
   end
 

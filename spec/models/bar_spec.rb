@@ -2,7 +2,6 @@ require 'spec_helper'
 
 describe Bar do  
   subject(:bar) { FactoryGirl.create(:bar) }  
-  #before { Bar.any_instance.stub(:set_geo_location).and_return(geo) }  
 
   describe "validations" do
     it { should be_an_instance_of(Bar) }
@@ -34,6 +33,57 @@ describe Bar do
     it { should validate_presence_of(:saturday_end) }
   end
 
-  it "saves with payment"
-  it "updates with parse"
+  describe "saving with a payment" do
+    before {
+      location = double(lat: 41.000, lng: -31.000)      
+
+      bar.stub(:location).and_return(location)
+      bar.stub(:create_stripe_customer).and_return(true)
+    }
+
+    it "sets geo latitude" do
+      expect {bar.save_with_payment}.to change{bar.latitude}.to(41.000)
+    end
+
+    it "sets geo latitude" do
+      expect {bar.save_with_payment}.to change{bar.longitude}.to(-31.000)
+    end
+    
+    it "creates a bar" do
+      my_bar = FactoryGirl.build(:bar)
+      expect {my_bar.save_with_payment}.to change{Bar.count}.by(1)
+    end
+
+    it "creates a parse bar" do
+      my_bar = FactoryGirl.build(:bar)
+      my_bar.should_receive(:create_parse_bar)
+      my_bar.save_with_payment
+    end
+  end
+
+  describe "updating and syncing a bar with parse" do
+    before {
+      @parse_bar = FactoryGirl.create(:bar_entity)
+      location = double(lat: 44.000, lng: -38.000)
+      @bar = FactoryGirl.create(:bar, parse_bar_id: @parse_bar.id)
+      @bar.stub(:location).and_return(location)
+    }
+
+    after { BarEntity.destroy_all }
+
+    it "updates the bars geo location" do
+      expect {@bar.update_and_sync_with_parse(name: 'new Name')}.to change{@bar.latitude}.from(41.462172).to(44.000)
+    end
+
+    it "updates the bar" do
+      expect {@bar.update_and_sync_with_parse(name: 'new Name')}.to change{@bar.name}.from('Rocky River Brewing Company').to('new Name')
+    end
+
+    it "updates the parse bar" do
+      bar_entity = BarEntity.find(@bar.parse_bar_id)
+      @bar.should_receive(:update_parse_bar)
+      @bar.update_and_sync_with_parse(name: 'new Name')
+      @bar.name.should == 'new Name'
+    end
+  end
 end

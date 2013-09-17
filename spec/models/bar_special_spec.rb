@@ -56,6 +56,21 @@ describe BarSpecial do
     end
   end
 
-  it "creates a parse record"
-  it "updates a parse record"
+  describe "save with parse" do
+    it "sets the parse special id" do
+      bar_special = FactoryGirl.create(:bar_special)            
+      bar_special.save_with_parse
+      bar_special.parse_bar_special_id.should_not be_blank
+    end
+  end
+
+  describe "update with parse" do
+    it "sets the parse special name" do
+      @parse_special = FactoryGirl.create(:bar_specials)
+      bar_special = FactoryGirl.create(:bar_special, parse_bar_special_id: @parse_special.id)
+      bar_special.update_with_parse(description: 'new description')
+      bar_special.description.should == 'new description'
+      @parse_special.reload.special_description.should == 'new description'
+    end
+  end
 end
