@@ -37,8 +37,7 @@ describe BarSpecial do
     end
 
     context "with inactive special" do
-      let!(:inactive_bar_special) { FactoryGirl.build(:inactive_bar_special, parse_bar_special_id: @parse_bar_special.id) }
-      subject { inactive_bar_special }   
+      subject(:inactive_bar_special) { FactoryGirl.build(:inactive_bar_special, parse_bar_special_id: @parse_bar_special.id) }      
 
       it { should_not be_active }
 
@@ -50,10 +49,9 @@ describe BarSpecial do
 
       it "should NOT reactive on toggle without active subscription" do
         Bar.any_instance.stub(:active_subscription?).and_return(false)
-        puts subject.expiration_date
-        inactive_bar_special.toggle_activation
-        puts subject.expiration_date
-        inactive_bar_special.should_not be_active
+        ia_bar_special = FactoryGirl.create(:inactive_bar_special, parse_bar_special_id: @parse_bar_special.id)
+        ia_bar_special.toggle_activation        
+        ia_bar_special.should_not be_active
       end
     end
   end
