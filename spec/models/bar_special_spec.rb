@@ -2,12 +2,10 @@ require 'spec_helper'
 
 describe BarSpecial do
 
-  subject(:bar_special) { FactoryGirl.build(:bar_special) }
-  let(:geo) { ParseGeoPoint.new(latitude: 34.34343, longitude: -81.2999) }
+  subject(:bar_special) { FactoryGirl.build(:bar_special) }  
   after { BarSpecials.destroy_all }
 
-  context "validations" do
-    before { BarEntity.any_instance.stub(:set_geo_location).and_return(geo) }
+  context "validations" do    
     it { should be_an_instance_of(BarSpecial) }
     it { should be_valid }    
     it { should belong_to(:bar) }
@@ -39,7 +37,7 @@ describe BarSpecial do
     end
 
     context "with inactive special" do
-      let(:inactive_bar_special) { FactoryGirl.build(:inactive_bar_special, parse_bar_special_id: @parse_bar_special.id) }
+      let!(:inactive_bar_special) { FactoryGirl.build(:inactive_bar_special, parse_bar_special_id: @parse_bar_special.id) }
       subject { inactive_bar_special }   
 
       it { should_not be_active }
