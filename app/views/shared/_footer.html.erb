@@ -31,18 +31,6 @@
             <% end %>
           </div>
           <div class="row spacing top bottom show-for-small">
-            <dl>
-              <dd><%= link_to "About", "about_path", :title => "About" %></dd>
-              <dd><%= link_to "Media", "broadcast_path", :title => "Media" %></dd>
-              <dd><%= link_to "Privacy Policy", privacy_path %></dd>
-              <dd><%= link_to "Terms of Use", tos_path %></dd>
-              <% if user_signed_in? %>
-              <dd><%= link_to "My Account", "edit_user_path", :title => "My account" %>
-              <dd><%= link_to "Sign Out", destroy_user_session_path, :method => :delete, :title => "Sign out" %></dd>
-              <% else %>
-              <dd><%= link_to "Sign In", new_user_session_path, :title => "Sign in" %></dd>
-              <% end %>
-            </dl>
             <span class="text-align: center">© <%= Date.today.year %> Beerance Company LLC</span>
           </div>
         </footer>

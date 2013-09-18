@@ -2,7 +2,6 @@ class HomeController < ApplicationController
   include GeoKit::Geocoders
 
 	before_filter :find_promoters
-  before_filter :require_admin, except: %w{bar_info map index how_it_works privacy feedback send_feedback new_signup signup find_subscriber_email_id find_promoters}
 
   layout 'interior'
   
