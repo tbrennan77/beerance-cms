@@ -12,6 +12,8 @@ gem 'jquery-rails'
 gem 'exception_notification'
 gem 'strong_parameters'
 gem 'geokit'
+gem 'geokit-rails'
+gem 'geocoder'
 gem 'unicorn'
 
 # Parse and Stripe and New Relic

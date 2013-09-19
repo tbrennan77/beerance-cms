@@ -1,6 +1,13 @@
 Beerance::Application.routes.draw do  
   devise_for :users, :path => "sessions", :path_names => { :sign_in => 'login', :sign_out => 'logout', :password => 'secret', :confirmation => 'verification', :unlock => 'unblock', :registration => 'register' }
   
+  # API
+  constraints :subdomain => "api" do 
+    get 'bars/:id' => 'api#show_bar', :defaults => { :format => 'json' }
+    get 'bars/:id/specials' => 'api#show_specials', :defaults => { :format => 'json' }
+    get 'specials/near/:miles/of/:zip' => 'api#specials_near_zip', :defaults => { :format => 'json' }
+  end
+
   # Meta tags
   get '/admin/meta-tags/edit' => 'meta_tags#edit', as: 'edit_meta_tag'
   resources :meta_tags

@@ -2,6 +2,11 @@ class BarSpecial < ActiveRecord::Base
   belongs_to :bar
   belongs_to :user
 
+  acts_as_mappable :through => :bar,
+                   :lat_column_name => :latitude,
+                   :lng_column_name => :longitude
+
+
   validates_presence_of :bar_id, :description
   
   validates :sale_price,
@@ -27,6 +32,18 @@ class BarSpecial < ActiveRecord::Base
   scope :inactive, -> { where("expiration_date < '#{Time.now}'") }
 
   before_create :set_expiration_date
+
+  def bar_name
+    bar.name
+  end
+
+  def lat
+    bar.latitude
+  end
+
+  def lng
+    bar.longitude
+  end
 
   def active?
     self.expiration_date > Time.now

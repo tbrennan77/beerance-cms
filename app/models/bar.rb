@@ -5,6 +5,8 @@ class Bar < ActiveRecord::Base
   belongs_to :subscription_plan
   has_many :bar_specials
 
+  reverse_geocoded_by :latitude, :longitude
+
   attr_accessor :stripe_card_token
 
   validates_presence_of :name,
@@ -74,6 +76,34 @@ class Bar < ActiveRecord::Base
 
   def subscription
     Subscription.new(stripe_customer.subscription)
+  end
+
+  def monday_hours
+    cat_times(self.monday_start, self.monday_end)
+  end
+
+  def tuesday_hours
+    cat_times(self.tuesday_start, self.tuesday_end)
+  end
+
+  def wednesday_hours
+    cat_times(self.wednesday_start, self.wednesday_end)
+  end
+
+  def thursday_hours
+    cat_times(self.thursday_start, self.thursday_end)
+  end
+
+  def friday_hours
+    cat_times(self.friday_start, self.friday_end)
+  end
+
+  def saturday_hours
+    cat_times(self.saturday_start, self.saturday_end) 
+  end
+
+  def sunday_hours
+    cat_times(self.sunday_start, self.sunday_end) 
   end
 
   def save_with_payment
