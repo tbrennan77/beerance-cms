@@ -3,7 +3,7 @@ class ApiController < ApplicationController
 
   def show_bar
     @bar=Bar.find(params[:id])
-    respond_with(@bar, include: :bar_specials, methods: [:monday_hours, :tuesday_hours, :wednesday_hours, :thursday_hours, :friday_hours, :saturday_hours, :sunday_hours] )
+    respond_with(@bar, methods: [:nice_url, :monday_hours, :tuesday_hours, :wednesday_hours, :thursday_hours, :friday_hours, :saturday_hours, :sunday_hours] )
   end
 
   def show_specials
