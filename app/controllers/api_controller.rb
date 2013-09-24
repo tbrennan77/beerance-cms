@@ -9,7 +9,7 @@ class ApiController < ApplicationController
   def show_specials
     bar=Bar.find(params[:id])
     @specials = bar.bar_specials.active
-    respond_with(@specials)
+    respond_with(@specials, methods: [:bar_name])
   end
 
   def specials_near_zip
