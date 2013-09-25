@@ -1,7 +1,9 @@
+stripe_settings = YAML.load(File.new("config/stripe.yml").read)[Rails.env]
+
 Rails.configuration.stripe = {
   # Replace these with your Stripe.com keys
-  :publishable_key => "pk_test_weoNBbbyjlvVH6byhDE992nq",
-  :secret_key      => "sk_test_Yla7t2GFVTDzgCO3s8OlUaaF"
+  :publishable_key => stripe_settings['stripe_publishable_key'],
+  :secret_key      => stripe_settings['stripe_secret_key']
 }
 
 Stripe.api_key = Rails.configuration.stripe[:secret_key]

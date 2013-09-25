@@ -1,0 +1,11 @@
+development:
+  stripe_publishable_key: pk_test_weoNBbbyjlvVH6byhDE992nq
+  stripe_secret_key: sk_test_Yla7t2GFVTDzgCO3s8OlUaaF
+
+test:
+  stripe_publishable_key: pk_test_weoNBbbyjlvVH6byhDE992nq
+  stripe_secret_key: sk_test_Yla7t2GFVTDzgCO3s8OlUaaF
+
+production:
+  stripe_publishable_key: pk_test_weoNBbbyjlvVH6byhDE992nq
+  stripe_secret_key: sk_test_Yla7t2GFVTDzgCO3s8OlUaaF
