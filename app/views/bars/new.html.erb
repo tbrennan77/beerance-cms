@@ -92,11 +92,11 @@
                 <div class='row'>
                   <div class='large-4 columns'>    
                     <%= label_tag :card_number %>
-                    <%= phone_field_tag :card_number, "4242424242424242", name: nil %>
+                    <%= phone_field_tag :card_number, nil, name: nil %>
                   </div>
                   <div class='large-2 columns'>
                     <%= label_tag :card_code, "(CVV)" %>
-                    <%= phone_field_tag :card_code, "123", name: nil, class: "input-text small", maxlength: 4 %>
+                    <%= phone_field_tag :card_code, nil, name: nil, class: "input-text small", maxlength: 4 %>
                   </div>
                   <div class='large-6 columns'></div>
                 </div>
