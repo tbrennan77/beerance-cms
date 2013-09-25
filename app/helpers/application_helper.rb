@@ -28,11 +28,12 @@ module ApplicationHelper
   end
 
   def format_plan(bar)
+    return "N/A" if bar.user.admin?
     bar.active_subscription? ? bar.subscription_plan.friendly_name : 'No Plan'    
   end
 
   def format_status(bar)
-    return "Admins don't have plans" if bar.user.admin?
+    return "N/A" if bar.user.admin?
     bar.active_subscription? ? bar.subscription.status.capitalize : 'Not Active'
   end
 
