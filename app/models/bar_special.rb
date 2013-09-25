@@ -67,6 +67,9 @@ class BarSpecial < ActiveRecord::Base
       end_special
     elsif bar.active_subscription?
       reactivate_special
+    else
+      errors.add :base, "Subscription is not active"
+      return false
     end
     save
   end

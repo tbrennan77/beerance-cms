@@ -37,6 +37,11 @@ class BarSpecialsController < ApplicationController
         format.js   { flash.now.notice = 'Updated Special' }
         format.html { redirect_to profile_path, notice: 'Updated Special' }
       end
+    else
+      respond_to do |format|
+        format.js   { flash.now.notice = @special.errors.full_messages.first }
+        format.html { redirect_to profile_path, notice: @special.errors.full_messages.first }
+      end
     end
   end
 

@@ -3,6 +3,8 @@ $('#ajax_bar').before('<div class="alert-box notice"><%= flash[:notice] %></div>
 
 <% if @special.active? %>
   $('.ajax-container').html('<%= j render("users/archives") %>');
+<% elsif flash[:notice] == 'Subscription is not active' %>
+  $('.ajax-container').html('<%= j render("users/archives") %>');  
 <% else %>
   $('.ajax-container').html('<%= j render("users/current_specials") %>');
 <% end %>
