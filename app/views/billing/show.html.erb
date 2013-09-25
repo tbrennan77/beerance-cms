@@ -2,8 +2,8 @@
 
 <div class='row'>  
     <div class="large-12 columns">
-    <h2>Plan for <%= @bar.bar_name %></h2>
-<% unless @bar.subscription.active? %>
+    <h2>Plan for <%= @bar.name %></h2>
+<% unless @bar.active_subscription? %>
 <p class="centered" style="text-align:center"><br /><br /><br />You don't have an active subscription<br /><br /><%= link_to "Renew subscription", edit_plan_path(@bar.id), class: 'button radius shadow' %></p>
 </div>
 </div>
@@ -36,8 +36,8 @@
       <h2>Payment Info</h2>      
         <div class="row">
           <div class="large-12 columns user_info">
-            <span>Name: <%= @bar.stripe_customer.active_card.name %></span>
-            <span><%= @bar.stripe_customer.active_card.type %> - **** **** **** <%= @bar.stripe_customer.active_card.last4 %></span>
+            <span>Name: <%= @bar.stripe_customer.cards.first.name %></span>
+            <span><%= @bar.stripe_customer.cards.first.type %> - **** **** **** <%= @bar.stripe_customer.cards.first.last4 %></span>
             <span><%= link_to "Update Payment Info", edit_card_path(@bar.id), class: 'small orange button radius' %></span>
           </div>
         </div>    

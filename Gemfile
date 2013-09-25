@@ -15,9 +15,6 @@ gem 'geokit'
 gem 'geokit-rails'
 gem 'geocoder'
 gem 'unicorn'
-
-# Parse and Stripe and New Relic
-gem 'parse_resource', "~> 1.8.0"
 gem 'stripe'
 
 group :assets do

@@ -65,6 +65,8 @@ class Bar < ActiveRecord::Base
   def cancel_subscription    
     if stripe_customer.subscription.status == 'active'
       stripe_customer.cancel_subscription(at_period_end: true)
+    elsif stripe_customer.subscription.status == 'trialing'
+      stripe_customer.cancel_subscription(at_period_end: false)
     end 
   rescue Stripe::StripeError => e
     log_stripe_error(e, "Unable to cancel your subscription. #{e.message}.")    

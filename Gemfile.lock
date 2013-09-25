@@ -124,11 +124,6 @@ GEM
     nokogiri (1.6.0)
       mini_portile (~> 0.5.0)
     orm_adapter (0.4.0)
-    parse_resource (1.8.0)
-      activemodel
-      activesupport
-      json
-      rest-client
     pg (0.16.0)
     polyglot (0.3.3)
     pry (0.9.12.2)
@@ -250,7 +245,6 @@ DEPENDENCIES
   guard-rspec (= 2.5.0)
   jquery-rails
   modernizr-rails
-  parse_resource (~> 1.8.0)
   pg
   rails (= 3.2.13)
   rspec-rails (= 2.13.1)

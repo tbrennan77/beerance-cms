@@ -30,7 +30,7 @@ class BillingController < ApplicationController
   end
 
   def edit_plan
-    @bar = find_current_users_bar params[:id]
+    @bar = find_current_users_bar params[:id]    
   end
 
   def edit_card

@@ -5,7 +5,7 @@
 <% title "Change Card - " %>
 <%= form_tag update_card_path(@bar.id), id: 'edit_card' do %>
   <%= hidden_field_tag :stripe_card_token %>
-  <h2>Update card for: <%= @bar.bar_name %></h2>
+  <h2>Update card for: <%= @bar.name %></h2>
   <h5>Card Information:</h5>
   <div class="row">
     <div class='large-6 offset-by-6 columns'>    
