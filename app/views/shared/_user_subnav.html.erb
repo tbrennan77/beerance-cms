@@ -15,8 +15,8 @@ $('.subnav a[data-remote="true"]').live('click', function(e) {
     <div class="large-12 columns">    
       <%= link_to "Current Specials", current_specials_path, class: current_subnav('/my-beerances'), data: {remote: true} %>
       <%= link_to "Archived Specials", archived_specials_path, class: current_subnav('/my-beerances/archived'), data: {remote: true} %>
-      <%= link_to "My Bars", bars_path, class: current_subnav(/com\/bar.+/) %>      
-      <%= link_to "Account Details", account_details_path, class: current_subnav('/account_details') %>
+      <%= link_to "My Bars", bars_path, class: current_subnav(/\A\/bar.+/) %>      
+      <%= link_to "Account Details", account_details_path, class: current_subnav('/account-details') %>
       <%= link_to "Billing", billing_overview_path, class: current_subnav(/\/billin.+/) unless current_user.admin? %>
     </div>
   </div>
