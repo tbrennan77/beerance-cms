@@ -1,6 +1,7 @@
 class BillingController < ApplicationController
   before_filter :require_user
 
+  layout 'users'
   def index 
     redirect_to new_bar_path if current_user.bars.blank?
   end

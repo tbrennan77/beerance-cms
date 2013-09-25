@@ -1,6 +1,8 @@
 class BarsController < ApplicationController
   before_filter :require_user
 
+  layout 'users'
+
   def new  
     @bar = Bar.new    
   end  
@@ -25,7 +27,7 @@ class BarsController < ApplicationController
 
   def update    
     @bar = current_user.bars.find(params[:id])
-    if @bar.update_and_sync_with_parse(bar_params)      
+    if @bar.update_attributes(bar_params)      
       redirect_to bars_path, notice: 'Updated Bar'
     else
       render :edit

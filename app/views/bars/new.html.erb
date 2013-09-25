@@ -28,6 +28,8 @@
   
   <%= render partial: 'form', locals: {f: f} %>
 
+
+    <% unless current_user.admin? %>
     <div class="row">
           <div class='large-12 columns'>
             <h3>Step 2</h3>
@@ -47,7 +49,7 @@
               <% end %>
             </div>
           </div>
-        </div>
+        </div>        
         <div class='row'>
           <div class='large-12 columns'>
             <h3>Step 3</h3>
@@ -112,7 +114,9 @@
             <p>Your 30-day free trial lasts until midnight on <%= DateTime.now.advance(days: 30).strftime("%b %-d, %Y") %>. If you don't want to continue using Beerance, just cancel before the trial ends and you won't be charged (we'll email you 5 days before the trial ends to remind you). Otherwise, you'll pay just the monthly cost for the service as long as your account is open. You can upgrade, downgrade, or cancel anytime.</p>
           </div>
         </div>
-        
+        <% else %>
+        <%= f.hidden_field :subscription_plan_id, value: SubscriptionPlan.first.id %>
+        <% end %>
         <div id="stripe_error">
           <noscript>JavaScript is not enabled and is required for this form. First enable it in your web browser settings.</noscript>
         </div>        

@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   before_filter :require_user
   before_filter :require_admin, only: %w{index admin_show destroy make_admin remove_admin}
-  before_filter :new_bar_special, only: %w{profile current_specials archived_specials}
+  before_filter :new_bar_special, only: %w{profile current_specials}
 
   def index
     @users = User.all
@@ -12,8 +12,7 @@ class UsersController < ApplicationController
     @customer = Stripe::Customer.retrieve @user.stripe_customer_id
   end
 
-  def show    
-    render layout: 'account_details'    
+  def show        
   end
 
   def profile    

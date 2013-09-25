@@ -6,7 +6,6 @@ class BarSpecial < ActiveRecord::Base
                    :lat_column_name => :latitude,
                    :lng_column_name => :longitude
 
-
   validates_presence_of :bar_id, :description
   
   validates :sale_price,
@@ -69,21 +68,8 @@ class BarSpecial < ActiveRecord::Base
       reactivate_special
     end
     save
-    update_parse_bar_special
   end
 
-  def save_with_parse
-    if self.save      
-      create_parse_bar_special
-    end
-  end
-
-  def update_with_parse(params)
-    if update_attributes(params)
-      update_parse_bar_special
-    end
-  end
-  
   private
   
   def set_expiration_date
@@ -93,28 +79,6 @@ class BarSpecial < ActiveRecord::Base
   def end_special
     self.expiration_date = Time.now.yesterday.beginning_of_day.advance(hours: 9)
   end
-
-  def create_parse_bar_special
-    bar_sepcial = BarSpecials.create(parse_bar_special_params)
-    self.update_attributes(parse_bar_special_id: bar_sepcial.id)
-  end
-
-  def update_parse_bar_special
-    bar_special = BarSpecials.find(self.parse_bar_special_id)
-    bar_special.update_attributes(parse_bar_special_params)
-  end
-
-  def parse_bar_special_params
-    { bar_id: self.bar.parse_bar_id,
-      bar_location: ParseGeoPoint.new(latitude: self.bar.latitude, longitude: self.bar.longitude),
-      bar_name: self.bar.name,
-      beer_color: self.beer_color,
-      beer_size: self.beer_size,
-      expiration_date: self.expiration_date || Time.now.tomorrow.beginning_of_day.advance(years: 1, hours: 9),
-      sale_price: self.sale_price.to_f,
-      special_description: self.description
-    }
-  end
-
+  
   alias_method :reactivate_special, :set_expiration_date
 end

@@ -4,7 +4,7 @@ class BarSpecialsController < ApplicationController
   
   def create      
     bar_special = current_user.bar_specials.new bar_special_params
-    if bar_special.save_with_parse
+    if bar_special.save
       respond_to do |f|
         f.html {redirect_to profile_path, notice: 'Added Special!'}
         f.js { flash.now.notice = 'Added Special!'}
@@ -19,7 +19,7 @@ class BarSpecialsController < ApplicationController
 
   def update    
     bs = current_user.bar_specials.find(params[:id])
-    if bs.update_with_parse( bar_special_params )
+    if bs.update_attributes( bar_special_params )
       respond_to do |format|
         format.js { flash.now.notice = "Updated Special" }
       end

@@ -9,8 +9,8 @@ class Bar < ActiveRecord::Base
 
   attr_accessor :stripe_card_token
 
-  validates_presence_of :name,
-    :subscription_plan_id,
+  validates_presence_of :subscription_plan_id, message: 'should be selected'
+  validates_presence_of :name,    
     :phone,
     :url,
     :address,
@@ -71,11 +71,11 @@ class Bar < ActiveRecord::Base
   end
 
   def stripe_customer
-    Stripe::Customer.retrieve self.stripe_customer_id
+    Stripe::Customer.retrieve self.stripe_customer_id unless stripe_customer_id.blank?
   end
 
   def subscription
-    Subscription.new(stripe_customer.subscription)
+    Subscription.new(stripe_customer.subscription) if stripe_customer
   end
 
   def monday_hours
@@ -111,20 +111,13 @@ class Bar < ActiveRecord::Base
     
     if valid?
       create_stripe_customer
-      create_parse_bar
       self.save
     end
   end
 
-  def update_and_sync_with_parse(params)
-    update_attributes(params)
-    set_geo_location    
-    update_parse_bar
-  end
-
   def active_subscription?
     unless subscription
-      return false
+      return user.admin?
     end
     subscription.active?
   end
@@ -142,10 +135,11 @@ class Bar < ActiveRecord::Base
     else
       self.errors.add :base, "geocoding faild. Please check address."
       return false
-    end    
+    end
   end
 
   def create_stripe_customer
+    return true if user.admin?
     customer = Stripe::Customer.create(
         card:  self.stripe_card_token,
         plan:  self.subscription_plan.name,
@@ -156,37 +150,6 @@ class Bar < ActiveRecord::Base
     rescue Stripe::InvalidRequestError => e    
       errors.add :base, "There was a problem with your credit card."
       false
-  end
-
-  def create_parse_bar
-    bar = BarEntity.create(parse_bar_params)
-    self.parse_bar_id = bar.id
-  end
-
-  def update_parse_bar
-    bar = BarEntity.find(self.parse_bar_id)
-    bar.update_attributes(parse_bar_params)
-  end
-
-  def parse_bar_params
-    { bar_addr1: self.address,
-      bar_addr2: self.address_2,        
-      bar_city: self.city,
-      bar_location: ParseGeoPoint.new(latitude: self.latitude, longitude: self.longitude),        
-      bar_name: self.name,
-      bar_owner_id: self.user_id,
-      bar_phone: self.phone,
-      bar_state: self.state,
-      bar_url: self.nice_url,
-      bar_zip: self.zip,
-      hours_sun:  cat_times(self.sunday_start, self.sunday_end),
-      hours_mon:  cat_times(self.monday_start, self.monday_end),
-      hours_tues: cat_times(self.tuesday_start, self.tuesday_end),
-      hours_wed:  cat_times(self.wednesday_start, self.wednesday_end),
-      hours_thur: cat_times(self.thursday_start, self.thursday_end),
-      hours_fri:  cat_times(self.friday_start, self.friday_end),
-      hours_sat:  cat_times(self.saturday_start, self.saturday_end) 
-    }
   end
 
   def cat_times(open, close)
