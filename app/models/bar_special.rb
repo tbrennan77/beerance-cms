@@ -29,7 +29,7 @@ class BarSpecial < ActiveRecord::Base
 
   default_scope order('created_at DESC')
   scope :active,   -> { where("expiration_date > '#{Time.now}'") }
-  scope :inactive, -> { where("expiration_date < '#{Time.now}'") }
+  scope :inactive, -> { where("NOT EXISTS (SELECT * FROM bar_specials WHERE expiration_date > '#{Time.now}')") }
 
   before_create :set_expiration_date
 
