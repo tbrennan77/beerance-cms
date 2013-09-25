@@ -6,13 +6,14 @@ jQuery ->
   subscription.setupForm()
 
   $(document).ready ->
-    selects = $('.hour-label').find('select')
-    selects.each ->    
+    all_selects = $('.hour-label').find('select')    
+    all_selects.each ->
+      selects = $(this).parent().parent().find('select')
       if $(this).val() == 'Closed'
-        $(this)[0].selectedIndex = 1
-        $(this).parent().parent().find('select')[1].selectedIndex = 0
-        $(this).parent().removeClass('large-6').addClass('large-12').focus()
-        $(this).parent().parent().find('select').last().hide()
+        selects.first().val('Closed')
+        selects.last().val('Closed')
+        selects.first().parent().removeClass('large-6').addClass('large-12').focus()
+        selects.last().hide()
 
 subscription =
   setupForm: ->
@@ -47,16 +48,17 @@ subscription =
       $('#stripe_error').text(response.error.message.replace("The card object must have a value for 'number'", 'Please enter a credit card number'))      
       $('input[type="submit"]').attr('disabled', false)
 
-$('.hour-label select').live 'change', ->
+$('.hour-label').find('select').live 'change', ->
   selects = $(this).parent().parent().find('select')
 
   if $(this).val() == 'Closed'
-    selects.first()[0].selectedIndex = 1
-    selects.last()[0].selectedIndex = 1
+    selects.first().val('Closed')
+    selects.last().val('Closed')
     selects.first().parent().removeClass('large-6').addClass('large-12').focus()
     selects.last().hide()
   else
     selects.first().parent().removeClass('large-12').addClass('large-6')
+    selects.last().parent().removeClass('large-12').addClass('large-6')    
     selects.last().show()
 
 $('input[type="radio"]').live 'change', ->

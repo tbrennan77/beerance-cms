@@ -17,17 +17,6 @@
 //= require modernizr
 //= require_tree .
 
-function DeviceIsIpad() {
-  if (navigator.userAgent.toLowerCase().search("ipad") >= 0) { return true; }
-}
-function DeviceIsNotStandalone() {
-  if(!window.navigator.standalone) { return true; }
-}
-function IpadIsNotStandalone() { 
-  if (DeviceIsIpad() && DeviceIsNotStandalone() ) { return true; }
-}
-function DisplayAddToHomeScreenPopup() { $("#addToHomeScreen").show(); }
-
 $(document).ready(function() {  
   $(document).foundation();
   var jPM = $.jPanelMenu();
