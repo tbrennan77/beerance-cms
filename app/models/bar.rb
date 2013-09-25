@@ -33,6 +33,8 @@ class Bar < ActiveRecord::Base
     :saturday_start,
     :saturday_end
 
+  default_scope order('created_at ASC')
+
   def nice_url
     "http://#{self.url.gsub(/(https:\/\/|http:\/\/)/,'')}"
   end
