@@ -37,8 +37,8 @@ describe Bar do
     before {
       location = double(lat: 41.000, lng: -31.000)      
 
-      bar.stub(:location).and_return(location)
-      bar.stub(:create_stripe_customer).and_return(true)
+      Bar.any_instance.stub(:location).and_return(location)
+      Bar.any_instance.stub(:create_stripe_customer).and_return(true)
     }
 
     it "sets geo latitude" do
