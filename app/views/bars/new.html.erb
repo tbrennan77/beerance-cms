@@ -42,9 +42,10 @@
                         <article>
                           <label class="amount plan-box <%= 'active' if @bar.subscription_plan_id == p.id %>">
                             <h5><%= p.friendly_name %></h5>
+                            <h5><%= number_to_currency p.amount/100 %> for <%= pluralize p.length_in_months, 'month' %></h5>
                             <%= image_tag p.image %><br />
                             <%= f.radio_button :subscription_plan_id, p.id %>
-                            <span><%= number_to_currency p.amount/100 %></span>
+                            <span style="font-size: 12px"><%= number_to_currency (p.amount/100)/p.length_in_months %>/month</span>
                           </label>
                         </article>
                       </div>
