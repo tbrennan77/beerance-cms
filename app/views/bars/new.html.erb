@@ -88,8 +88,7 @@
                     <%= text_field_tag :address_zip, nil, name: nil, placeholder: '44114', class: "input-text small" %>
                   </div>
                   <div class='large-6 columns'></div>
-                </div>
-                <div class='row'>
+            
                   <div class='large-4 columns'>    
                     <%= label_tag :card_number %>
                     <%= phone_field_tag :card_number, nil, name: nil %>
@@ -106,9 +105,16 @@
                       <%= label_tag :card_month, "Expiration Date" %><br />
                       <%= select_month nil, {add_month_numbers: true, prompt: 'Month'}, {name: nil, id: 'card_month'} %>
                       <%= select_year nil, {start_year: Date.today.year, end_year: Date.today.year+15, prompt: 'Year'}, {name: nil, id: 'card_year'} %>
+
                     </div>
                       <% end %>
                     <div class='large-7 columns'></div>
+                  </div>
+                </div>
+                <div class='row'>
+                  <div class='large-4 columns'>
+                    <%= f.label :coupon, "Coupon code" %>
+                    <%= f.text_field :coupon %>
                   </div>
                 </div>
                 <div class='row'>
@@ -116,9 +122,11 @@
                     <p>Your 30-day free trial lasts until midnight on <%= DateTime.now.advance(days: 30).strftime("%b %-d, %Y") %>. If you don't want to continue using Beerance, just cancel before the trial ends and you won't be charged (we'll email you 5 days before the trial ends to remind you). Otherwise, you'll pay just the monthly cost for the service as long as your account is open. You can upgrade, downgrade, or cancel anytime.</p>
                   </div>
                 </div>
+
                 <% else %>
                 <%= f.hidden_field :subscription_plan_id, value: SubscriptionPlan.first.id %>
                 <% end %>
+
                 <div id="stripe_error">
                   <noscript>JavaScript is not enabled and is required for this form. First enable it in your web browser settings.</noscript>
                 </div>        

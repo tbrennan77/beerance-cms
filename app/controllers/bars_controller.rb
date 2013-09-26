@@ -40,6 +40,7 @@ class BarsController < ApplicationController
     params.require(:bar).permit(
       :name,
       :stripe_card_token,
+      :coupon,
       :subscription_plan_id,
       :phone,
       :url,

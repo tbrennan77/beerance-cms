@@ -7,8 +7,11 @@ class Bar < ActiveRecord::Base
 
   reverse_geocoded_by :latitude, :longitude
 
-  attr_accessor :stripe_card_token
+  attr_accessor :stripe_card_token, :coupon
 
+  VALID_COUPON_CODES = %w{rockyriver beerance3months beerance6months}
+
+  validates :coupon, inclusion: { in: VALID_COUPON_CODES, message: "code could not be found or is no longer valid", allow_nil: true}
   validates_presence_of :subscription_plan_id, message: 'should be selected'
   validates_presence_of :name,    
     :phone,
@@ -34,6 +37,7 @@ class Bar < ActiveRecord::Base
     :saturday_end
 
   default_scope order('created_at ASC')
+  before_validation :clean_coupon_code
 
   def nice_url
     "http://#{self.url.gsub(/(https:\/\/|http:\/\/)/,'')}"
@@ -64,11 +68,12 @@ class Bar < ActiveRecord::Base
   end
 
   # Cancel the STRIP API plan
-  def cancel_subscription    
-    if stripe_customer.subscription.status == 'active'
-      stripe_customer.cancel_subscription(at_period_end: true)
-    elsif stripe_customer.subscription.status == 'trialing'
-      stripe_customer.cancel_subscription(at_period_end: false)
+  def cancel_subscription
+    case stripe_customer.subscription.status
+      when 'active'
+        stripe_customer.cancel_subscription(at_period_end: true)
+      when 'trialing'
+        stripe_customer.cancel_subscription(at_period_end: false)
     end 
   rescue Stripe::StripeError => e
     log_stripe_error(e, "Unable to cancel your subscription. #{e.message}.")    
@@ -82,37 +87,14 @@ class Bar < ActiveRecord::Base
     Subscription.new(stripe_customer.subscription) if stripe_customer
   end
 
-  def monday_hours
-    cat_times(self.monday_start, self.monday_end)
-  end
-
-  def tuesday_hours
-    cat_times(self.tuesday_start, self.tuesday_end)
-  end
-
-  def wednesday_hours
-    cat_times(self.wednesday_start, self.wednesday_end)
-  end
-
-  def thursday_hours
-    cat_times(self.thursday_start, self.thursday_end)
-  end
-
-  def friday_hours
-    cat_times(self.friday_start, self.friday_end)
-  end
-
-  def saturday_hours
-    cat_times(self.saturday_start, self.saturday_end) 
-  end
-
-  def sunday_hours
-    cat_times(self.sunday_start, self.sunday_end) 
+  [:monday, :tuesday, :wednesday, :thursday, :friday, :saturday, :sunday].each do |day|
+    define_method :"#{day}_hours" do      
+      cat_times(self.send("#{day}_start"), self.send("#{day}_end"))
+    end
   end
 
   def save_with_payment
     set_geo_location
-    
     if valid?
       create_stripe_customer
       self.save
@@ -127,6 +109,10 @@ class Bar < ActiveRecord::Base
   end
 
   private
+
+  def clean_coupon_code    
+    self.coupon = self.coupon.blank? ? nil : self.coupon.downcase
+  end
 
   def location
     MultiGeocoder.geocode("#{address}, #{city}, #{state} #{zip}")
@@ -143,13 +129,16 @@ class Bar < ActiveRecord::Base
   end
 
   def create_stripe_customer
+    # Admin are free
     return true if user.admin?
+    
     customer = Stripe::Customer.create(
-        card:  self.stripe_card_token,
-        plan:  self.subscription_plan.name,
-        email: self.user.email,
-        description: self.name
-      )
+      card:  self.stripe_card_token,
+      coupon: self.coupon,
+      plan:  self.subscription_plan.name,
+      email: self.user.email,
+      description: self.name
+    )
     self.stripe_customer_id = customer.id    
     rescue Stripe::InvalidRequestError => e    
       errors.add :base, "There was a problem with your credit card."
