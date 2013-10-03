@@ -18,14 +18,7 @@ $('.subnav a[data-remote="true"]').live('click', function(e) {
       <%= link_to "My Bars", bars_path, class: current_subnav(/\A\/bar.+/) %>      
       <%= link_to "Account Details", account_details_path, class: current_subnav('/account-details') %>
       <%= link_to "Billing", billing_overview_path, class: current_subnav(/\/billin.+/) unless current_user.admin? || current_user.bars.count == 0 %>
+      <%= link_to "Feedback", feedback_path, class: current_subnav('feedback') %>
     </div>
   </div>
-</div>
-
-<div class='subnav show-for-small'>
-  <ul class="side-nav">
-    <li class="active"><%= link_to "Current Specials", current_specials_path, class: 'current', data: {remote: true} %></li>
-    <li><%= link_to "Archive", archived_specials_path, data: {remote: true} %></li>
-    <li><%= link_to "My Bars", bars_path %></li>
-  </ul>
 </div>

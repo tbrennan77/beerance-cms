@@ -13,7 +13,16 @@ class Notifier < ActionMailer::Base
 
   def feedback(feedback)
     @feedback = feedback
-    mail(:from => "hello@beeranceapp.com", :to => 'stipton@boondockwalker.com,dh@dillonhafer.com', :subject => "Feedback - #{feedback.category}")
+    to_email = case feedback.category
+                 when 'Design'
+                  'stipton@boondockwalker.com'
+                 when 'Error'
+                  'dhafer@boondockwalker.com'
+                 when 'Suggestion', 'Request', 'Other'
+                  'info@beeranceapp.com'
+               end
+
+    mail(from: "feedback@beeranceapp.com", to: to_email, subject: "Feedback - #{feedback.category}")
   end
 
   def password_changed(user)

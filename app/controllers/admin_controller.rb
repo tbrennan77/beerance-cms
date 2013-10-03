@@ -1,7 +1,8 @@
 class AdminController < ApplicationController
   before_filter :require_admin
 
-  def index    
+  def feedback
+    @feedbacks = Feedback.all
   end
 
   def user_index

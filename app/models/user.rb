@@ -9,6 +9,7 @@ class User < ActiveRecord::Base
   validates_confirmation_of :password, on: :create
 
   has_many :bars
+  has_many :feedbacks
   has_many :bar_specials, through: :bars
   
   default_scope order('created_at ASC')

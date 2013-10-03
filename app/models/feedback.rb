@@ -1,15 +1,12 @@
-class Feedback
-  include ActiveModel::Validations
-  include ActiveModel::Conversion
+class Feedback < ActiveRecord::Base
+  belongs_to :user
+  validates :category,
+    inclusion: { 
+      in: %w{Design Error Suggestion Request Other}, 
+      message: 'must be selected'
+    }
+    
+  validates_presence_of :comment
 
-  attr_accessor         :name, :email, :phone, :category, :comment
-  validates_presence_of :name, :email, :phone, :category
-
-  def initialize(attributes={})
-    attributes.each do |name, value|
-      send("#{name}=", value)
-    end    
-  end
-
-  def persisted?() false end
+  default_scope order('created_at ASC')
 end

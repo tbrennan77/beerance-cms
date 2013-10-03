@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130916132753) do
+ActiveRecord::Schema.define(:version => 20131003164930) do
 
   create_table "bar_specials", :force => true do |t|
     t.integer  "bar_id"
@@ -56,6 +56,14 @@ ActiveRecord::Schema.define(:version => 20130916132753) do
     t.string   "parse_bar_id"
     t.datetime "created_at",           :null => false
     t.datetime "updated_at",           :null => false
+  end
+
+  create_table "feedbacks", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "category"
+    t.text     "comment"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "meta_tags", :force => true do |t|

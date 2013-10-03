@@ -25,14 +25,6 @@ textarea {height:150px;}
                 </ul>  
               </div>  
             <% end %>  
-	          <%= f.label :name, "Your Name" %><br />
-	          <%= f.text_field :name, placeholder: 'John Smith', class: 'required' %>
-	          
-	          <%= f.label :email, "Your Email" %><br />
-	          <%= f.email_field :email, placeholder: 'email@example.com', class: 'required' %>
-	
-	          <%= f.label :phone, "Phone Number" %><br />
-	          <%= f.phone_field :phone, placeholder: '216-123-4567' %>
 	
 	          <%= f.label :category, "Feedback Category" %><br />
 	          <%= f.select :category, %w{Design Error Suggestion Request Other}, prompt: 'Select One' %>
@@ -40,7 +32,8 @@ textarea {height:150px;}
 	        	<%= f.label :comment, "Your Comment" %><br />
 						<%= f.text_area :comment %>
 	
-	          <%= f.submit "Submit", class: 'button' %>
+            <%= f.submit "Submit", class: 'orange button radius' %>
+	          <%= link_to "Cancel", :back, class: 'red button nice radius' %>
 	
 	      <% end %>
       </fieldset>

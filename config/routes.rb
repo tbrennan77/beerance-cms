@@ -35,16 +35,17 @@ Beerance::Application.routes.draw do
   get  '/pricing'        => 'home#pricing', as: 'pricing'
   get  '/privacy'        => 'home#privacy', as: 'privacy'
   get  '/sign-up'        => 'home#signup', as: 'signup'
-  get  '/feedback'       => 'home#feedback', as: 'feedback'
   get  '/get-the-app'    => 'home#get_the_app', as: 'get_the_app'
   get  '/how-it-works'   => 'home#how_it_works', as: 'how_it_works'
   get  '/recent-updates' => 'home#recent_updates', as: 'recent_updates'
   get  '/for-bar-owners' => 'home#for_bar_owners', as: 'for_bar_owners'  
   get  '/map/bar-info/:id' => 'home#bar_info', as: 'bar_info'
   post '/new-sign-up'    => 'home#new_signup', as: 'new_signup'
-  post '/send-feedback'  => 'home#send_feedback', as: 'send_feedback'
-  match '/map'           => 'home#map', as: 'map'
 
+  # Feedback
+  get  '/feedback'       => 'feedback#index', as: 'feedback'
+  post '/send-feedback'  => 'feedback#send_feedback', as: 'send_feedback'
+  
   # Users
   resources :users  
   get   '/account-details'                => 'users#show', :as => 'account_details'    
@@ -64,13 +65,16 @@ Beerance::Application.routes.draw do
   match 'bar-specials/new'       => 'bar_specials#new', as: 'new_bar_special'
 
   # Admin panel
-  get   '/admin'                    => 'admin#index', as: 'admin'
-  get   '/admin/test-email'         => 'admin#test_email', as: 'test_email'
-  get   '/admin/news-subscriptions' => 'admin#news_subscriptions', as: 'news_subscriptions'
-  match '/admin/users'              => 'admin#user_index', as: 'admin_users'
-  match '/admin/users/:id'          => 'admin#user_show', as: 'admin_user'
-  match '/admin/make-admin'         => 'users#make_admin', as: 'make_admin'
-  match '/admin/remove-admin'       => 'users#remove_admin', as: 'remove_admin'
+  scope "/admin/" do 
+    get   '/'                   => 'admin#index', as: 'admin'
+    get   '/test-email'         => 'admin#test_email', as: 'test_email'
+    get   '/news-subscriptions' => 'admin#news_subscriptions', as: 'news_subscriptions'
+    match '/users'              => 'admin#user_index', as: 'admin_users'
+    match '/users/:id'          => 'admin#user_show', as: 'admin_user'
+    match '/make-admin'         => 'users#make_admin', as: 'make_admin'
+    match '/remove-admin'       => 'users#remove_admin', as: 'remove_admin'
+    match '/feedback'           => 'admin#feedback', as: 'admin_feedback'
+  end
   
   # Root Path
   root to: 'home#index'  
