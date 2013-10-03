@@ -5,46 +5,19 @@
 			<%= image_tag "beerance_iphone.png", class: 'iphone hide-for-small', height: 281, width: 456 %>
 		</div>
 		<div class="large-5 columns">
-			<%= image_tag "comingsoon.png", class: 'slogan', style: 'padding: 39px 0 30px 0;width: 100%;', height: 453, width: 238 %>
+			<%= image_tag "beerance_tagline.png", class: 'slogan', style: 'padding: 39px 0 30px 0;width: 100%;', height: 453, width: 238 %>
 			<div class="row">
 				<div class='large-12 columns' style="padding:0;">
-
-					
-						<!--<div class="large-6 columns">
+						<div class="large-6 columns">
 							<h2>Beer Drinkers</h2>
-		  				</div>
-		  				<div class="large-6 columns">
-			  				<h2>Bar Owners</h2>
-		  				</div>-->
-		  				<p style="color:#e7e2b7;">Be the first to know! Sign up today to receive Beerance app release dates, news and information.</p>
-
-						<div class="section-container auto" data-section>
-						  <section>
-						    <p class="title" data-section-title><a href="#panel1">I am a Beer Drinker</a></p>
-						    <div class="content" data-section-content>
-					  			<fieldset style="background:none;border:none;padding-top:0;padding-bottom:0;">
-						  			<%= form_for @news_subscription, url: new_signup_path do |f| %>			  				
-						  				<%= f.hidden_field :subscriber_type, value: "bar_drinker" %>
-							  			<%= f.email_field :subscriber_email, placeholder: 'drinker@example.com', class: 'required' %>
-							  			<%= submit_tag "Submit", class: 'orange button radius' %>
-						  			<% end %>
-						  		</fieldset>
-						    </div>
-						  </section>
-						  <section>
-						    <p class="title" data-section-title><a href="#panel2">I am a Bar Owner</a></p>
-						    <div class="content" data-section-content>
-					  			<fieldset style="background:none;border:none;padding-top:0;padding-bottom:0;">
-						  			<%= form_for @news_subscription, url: new_signup_path, html: {id: 'new_owner_news_subscription'} do |f| %>			  				
-							  			<%= f.hidden_field :subscriber_type, value: "bar_owner", id: 'owner_subscriber_type' %>
-							  			<%= f.email_field :subscriber_email, id: 'owner_subscriber_email', placeholder: 'owner@example.com', class: 'required' %>
-							  			<%= submit_tag "Submit", class: 'orange button radius' %>
-						  			<% end %>
-						  		</fieldset>							      
-						    </div>
-						  </section>
-						</div>
-
+	  					<br />
+							<a href="https://itunes.apple.com/us/app/beerance/id715736707?mt=8&uo=4" target="itunes_store" class='orange button radius'>Get the free app</a>
+	  				</div>
+	  				<div class="large-6 columns">
+		  				<h2>Bar Owners</h2>
+	  					<br />
+							<%= link_to "Sign Up", new_registration_path(resource_name), class: 'orange button nice radius' %>
+	  				</div>
 		  		</div>
 		  	</div>
 		</div>
@@ -79,7 +52,7 @@
 						<li>Any town, any city, any country</li>
 						<li>Share your favorite specials via Facebook and Twitter</li>
 					</ul>
-					<!--<%= link_to "How it Works", how_it_works_path, class: 'button' %>-->
+					<%= link_to "How it works", how_it_works_path, class: 'orange button radius shadow' %>
 		  		</div>
 		  		<div class="large-4 columns bar">
 		  			<%= image_tag "beerance_baricon.png", height: 82, width: 73 %><h2>Bar Owners</h2>
@@ -87,29 +60,18 @@
 						<li>Move inventory quickly</li>
 						<li>Connect with your mobile audience</li>
 						<li>Announce Beerance Sales daily</li>
-						<li>Easy to use tools</li>
 						<li>Low monthly cost</li>
 						<li>Create loyalty</li>
 						<li>Connect to mobile users</li>
 						<li>Attract new customers</li>
 					</ul>					
-					<!--<%= link_to "Sign Up for FREE!", new_registration_path(resource_name), class: 'button' %>-->
+					<%= link_to "Sign Up for FREE!", new_registration_path(resource_name), class: 'orange button nice radius' %>
 			  	</div>
-		  		<!--<div class="large-4 columns">
-			  		<%= link_to new_registration_path(resource_name) do %>
-			  		<div class="button cta">
-			  			<h2><span>Bar<br />Owners</span>Sign up<br />today<br />and get<br />2 months<br />FREE!</h2>
-			  			<%= image_tag "beerance_kegicon.png", class: 'keg' %>
-			  		</div>
-			  		<% end %>
-		  		</div>-->
-		  		
-		  		
 		  		<div class="large-4 columns">
-			  		<%= link_to how_it_works_path, class: 'orange button radius shadow' do %>
-			  		<div class="cta">
-			  			<h2><span>How<br />It<br />Works<br /></span></h2><h3>Click here to learn more about the app.</h3>
-			  			<%= image_tag "beerance_kegicon.png", class: 'keg', height: 156, width: 99 %>
+			  		<%= link_to new_registration_path(resource_name) do %>
+			  		<div class="orange button radius shadow">
+			  			<h2 class='promo-button'><span>Bar Owners</span><br />Sign up<br />today<br />and get<br />2 months<br />FREE!</h2>
+			  			<%= image_tag "beerance_kegicon.png", class: 'keg' %>
 			  		</div>
 			  		<% end %>
 		  		</div>
