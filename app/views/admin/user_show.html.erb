@@ -5,7 +5,6 @@
         <img alt="Beerance_baricon" src="/assets/beerance_baricon.png"><h2>Bars</h2>
     </div>
   <div class="large-3 columns">
-    <%= link_to "Add New Bar", new_bar_entity_path, id: 'new_link', class: 'button radius shadow' %>
   </div>
 </div>
 
@@ -15,27 +14,26 @@
       <div id="bar-<%= bar.id %>" class="row" style="border-bottom: 1px solid #3e130d; margin-bottom: 20px;">
           <div class="row">
             <div class="large-12 columns user-info" style ="padding-bottom:0;">
-              <h2><%= bar.bar_name %>
+              <h2><%= bar.name %>
                 <small>
-                  <%= link_to "edit", edit_bar_entity_path(bar) %>
+                  <%= link_to "edit", edit_bar_path(bar) %>
               </small>
             </h2>
           </div>
         </div>
         <div class="row">
             <div class="large-6 columns user_info" style="padding-left:35px;">
-            <span><%= bar.bar_addr1 %></span>
-              <% unless bar.bar_addr2.blank? %>
+            <span><%= bar.address %></span>
+              <% unless bar.address_2.blank? %>
             <span><%= bar.bar_addr2 %></span>
               <% end %>
-            <span><%= bar.bar_city %>, <%= bar.bar_state %></span>
-            <span><%= bar.bar_zip %></span>
-            <span><%= link_to bar.bar_url, "#{bar.bar_url}", target: :_blank %></span>
+            <span><%= bar.city %>, <%= bar.state %></span>
+            <span><%= bar.zip %></span>
+            <span><%= link_to bar.nice_url, "#{bar.nice_url}", target: :_blank %></span>
           </div>
           <div class="large-6 columns user_info">
             <span>Plan: <%= format_plan bar %></span>
-            <span>Status: <%= format_status bar.subscription %></span>
-            <span><%= number_to_phone bar.bar_phone, area_code: true %></span>
+            <span><%= number_to_phone bar.phone, area_code: true %></span>
             <span><%= link_to "View Invoices", invoices_path(bar.id) %></span>            
           </div>
         </div>
