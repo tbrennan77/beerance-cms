@@ -45,7 +45,7 @@ $button_bottom: #d95f10;
 body {font-family: 'Roboto Slab', serif !important; background: url(beerance_footerbackground.jpg) left bottom !important; height: 100% !important;}
 
 a {
- &:hover {@include transition(all);}
+ &:hover, &:focus {@include transition(all);color: darken(white, 20%) !important;}
 }
 
 .jPanelMenu-panel {background:none!important;}
