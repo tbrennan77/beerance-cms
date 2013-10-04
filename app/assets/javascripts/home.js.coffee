@@ -14,3 +14,8 @@ jQuery ->
       $('.contact').slideToggle('fast')
     $('.login').slideToggle('fast')
     $('#header_user_email').focus()
+
+  $("#user_remember_me").focusout ->
+    $(this).parent().removeClass('remember_me_focused')
+  $("#user_remember_me").focus ->
+    $(this).parent().addClass('remember_me_focused')

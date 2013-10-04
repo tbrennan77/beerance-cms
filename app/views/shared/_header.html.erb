@@ -22,7 +22,7 @@
 
 <div class="login hide orange_grad">
   <div class='row'>
-    <%= form_for("user", :url => user_session_path) do |f| %>
+    <%= form_for("user", url: user_session_path, html: {id: 'header_login'}) do |f| %>
       <div class='large-3 columns'>
         <%= f.label :email, 'Email',style: "font-family: 'Roboto Slab', serif !important;"  %>
         <%= f.email_field :email, id: 'header_user_email', class: 'required', tabIndex: 1 %>

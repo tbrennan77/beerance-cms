@@ -14,7 +14,6 @@
  */
  
 /*-- Colors --*/
-
 $white: #FFF;
 $light_orange: #dc7c22;
 $dark_orange: #b55a22;
@@ -414,6 +413,22 @@ li {list-style-type: none;}
       background: -webkit-gradient(linear, left top, left bottom, from(darken($colorA,7%)),to(darken($colorB,7%)));
     }
   }
+  &.green {
+    $colorA: #ACD071; 
+    $colorB: #74AE22; 
+    color: #FFFFFF !important;
+    text-shadow: 0 1px 1px rgba(0,0,0,0.7);    
+    font-family: 'Roboto Slab', Arial, Helvetica, sans-serif;
+    border: 1px solid #74AE22 !important;
+    background: -moz-linear-gradient(top, $colorA 0%, $colorB);
+    background: -webkit-gradient(linear, left top, left bottom, from($colorA),to($colorB));
+    
+    &.nice {border: 1px solid darken($colorB,10%);}
+    &:hover, &:focus {
+      background: -moz-linear-gradient(top, darken($colorA,7%) 0%, darken($colorB,7%));
+      background: -webkit-gradient(linear, left top, left bottom, from(darken($colorA,7%)),to(darken($colorB,7%)));
+    }
+  }
 }
 
 .shadow {
@@ -759,4 +774,8 @@ $small: "only screen and (max-width:"#{$small-screen}")";
   position: relative;
   top: -60px;
   left: -75px;
+}
+
+.remember_me_focused {
+  color: white !important;
 }
