@@ -25,12 +25,12 @@
     <%= form_for("user", :url => user_session_path) do |f| %>
       <div class='large-3 columns'>
         <%= f.label :email, 'Email',style: "font-family: 'Roboto Slab', serif !important;"  %>
-        <%= f.email_field :email, id: 'header_user_email', class: 'required' %>
-        <label><%= f.check_box :remember_me %> Remember me</label>
+        <%= f.email_field :email, id: 'header_user_email', class: 'required', tabIndex: 1 %>
+        <label><%= f.check_box :remember_me, tabIndex: 3 %> Remember me</label>
       </div>
       <div class='large-3 columns'>
         <%= f.label :password, 'Password' %>
-        <%= f.password_field :password, id: 'header_user_password', class: 'required' %>
+        <%= f.password_field :password, id: 'header_user_password', class: 'required', tabIndex: 2 %>
       </div>
       <div class='large-6 columns'>
         <br /><br />
