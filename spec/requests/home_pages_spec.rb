@@ -23,7 +23,7 @@ describe "Home Pages" do
     current_path.should == for_bar_owners_path
   end
 
-  xit "clicks Pricing" do
+  it "clicks Pricing" do
     click_link 'Pricing'
     current_path.should == pricing_path
   end
