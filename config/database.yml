@@ -1,6 +1,7 @@
 development:
   adapter: postgresql
   database: beerance_dev
+  password: foo
 
 test:
   adapter: postgresql

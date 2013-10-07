@@ -205,7 +205,7 @@ li {list-style-type: none;}
   height: 471px;
   .iphone {padding: 39px 0 0 0;}
   .slogan {padding: 13px 0 0 0px;}
-  .pint {padding: 100px 0 0 32px;}
+  .pint {padding: 30px 0 0 25px;}
   h2{font-size: 18px;color:$white; text-transform: uppercase;}
 }
 .badge-desc {
@@ -794,4 +794,69 @@ $small: "only screen and (max-width:"#{$small-screen}")";
 
 .remember_me_focused {
   color: white !important;
+}
+
+
+
+
+
+
+/* jQuery Countdown styles 1.6.3. */
+
+#countdownwrap{
+	padding: 27px 0 0 26px;
+}
+#noSeconds {
+}
+.hasCountdown {
+}
+.countdown_rtl {
+	direction: rtl;
+}
+.countdown_holding span {
+	color: #888;
+}
+.countdown_row {
+	clear: both;
+	width: 100%;
+	padding: 0px 2px;
+	text-align: center;
+	font-size: 20px;
+	color:#e9e0b5;
+}
+.countdown_show1 .countdown_section {
+	width: 98%;
+}
+.countdown_show2 .countdown_section {
+	width: 48%;
+}
+.countdown_show3 .countdown_section {
+	width: 32.5%;
+}
+.countdown_show4 .countdown_section {
+	width: 24.5%;
+}
+.countdown_show5 .countdown_section {
+	width: 19.5%;
+}
+.countdown_show6 .countdown_section {
+	width: 16.25%;
+}
+.countdown_show7 .countdown_section {
+	width: 14%;
+}
+.countdown_section {
+	display: block;
+	float: left;
+	font-size: 75%;
+	text-align: center;
+	
+}
+.countdown_amount {
+	font-size: 200%;
+	color:#f58300;
+}
+.countdown_descr {
+	display: block;
+	width: 100%;
 }
