@@ -1,8 +1,13 @@
 class ApplicationController < ActionController::Base  
   protect_from_forgery  
   before_filter :configure_permitted_parameters, if: :devise_controller?
+  before_filter :news_letter
 
   private
+
+  def news_letter
+    @news_subscription = NewsSubscription.new
+  end
 
   def require_user
     if current_user.blank?

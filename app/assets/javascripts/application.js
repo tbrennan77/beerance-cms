@@ -37,3 +37,8 @@ $(document).live('ajax:beforeSend', function(event, xhr, settings) {
 $(document).live('ajax:complete', function(event, xhr, settings) {  
   $("#ajax_bar").fadeOut("slow");  
 });
+
+
+$('#newsLetterLink').live('click', function() {  
+  setTimeout($(window).trigger('resize'), 1500);
+});
