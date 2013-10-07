@@ -1,2 +1,0 @@
-class RecordNotFound < ArgumentError
-end
