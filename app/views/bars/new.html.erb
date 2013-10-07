@@ -40,12 +40,15 @@
                       <% SubscriptionPlan.order("amount").each do |p| %>
                       <div class="large-4 columns ">
                         <article>
-                          <label class="amount plan-box <%= 'active' if @bar.subscription_plan_id == p.id %>">
-                            <h5><%= p.friendly_name %></h5>
-                            <h5><%= number_to_currency p.amount/100 %> for <%= pluralize p.length_in_months, 'month' %></h5>
+                          <label class="amount plan-box <%= 'active' if @bar.subscription_plan_id == p.id %> <%= class_for_plan(p) %> button nice radius">
+                            <span style='font-size: 40px'><%= number_to_currency (p.amount/100)/p.length_in_months %><br />
+                            Per month</span>
+                            <br />
+                            <br />
                             <%= image_tag p.image %><br />
                             <%= f.radio_button :subscription_plan_id, p.id %>
-                            <span style="font-size: 12px"><%= number_to_currency (p.amount/100)/p.length_in_months %>/month</span>
+                            <br />
+                            <h5><%= number_to_currency p.amount/100 %> for <%= pluralize p.length_in_months, 'month' %></h5>
                           </label>
                         </article>
                       </div>
