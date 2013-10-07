@@ -23,3 +23,4 @@
 */*/*/.DS_Store
 config/stripe.yml
 vender/bundle
+config/database.yml
