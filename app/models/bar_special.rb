@@ -77,7 +77,7 @@ class BarSpecial < ActiveRecord::Base
   private
   
   def set_expiration_date
-    self.expiration_date = Time.now.tomorrow.beginning_of_day.advance(years: 1, hours: 9)
+    self.expiration_date = Time.now.tomorrow.beginning_of_day.advance(hours: 9)
   end
 
   def end_special

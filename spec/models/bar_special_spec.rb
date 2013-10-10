@@ -21,7 +21,7 @@ describe BarSpecial do
   it "sets expiration on create" do
     bar_special = FactoryGirl.build(:inactive_bar_special)
     expect {bar_special.send(:set_expiration_date)}
-      .to change{bar_special.expiration_date}.to(Time.now.tomorrow.beginning_of_day.advance(years: 1, hours: 9))
+      .to change{bar_special.expiration_date}.to(Time.now.tomorrow.beginning_of_day.advance(hours: 9))
   end
 
   context "toggle function" do    
