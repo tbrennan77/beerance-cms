@@ -1,6 +1,7 @@
 class FeedbackController < ApplicationController
   before_filter :require_user
 
+  layout 'users'
   def index
     @feedback = Feedback.new
   end

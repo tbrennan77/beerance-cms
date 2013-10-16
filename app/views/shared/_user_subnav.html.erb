@@ -18,7 +18,7 @@ $('.subnav a[data-remote="true"]').live('click', function(e) {
       <%= link_to "My Bars", bars_path, class: current_subnav(/\A\/bar.+/) %>      
       <%= link_to "Account Details", account_details_path, class: current_subnav('/account-details') %>
       <%= link_to "Billing", billing_overview_path, class: current_subnav(/\/billin.+/) unless current_user.admin? || current_user.bars.count == 0 %>
-      <%= link_to "Feedback", feedback_path, class: current_subnav('feedback') %>
+      <%= link_to "Feedback", feedback_path, class: current_subnav('/feedback') %>
     </div>
   </div>
 </div>
