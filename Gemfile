@@ -24,7 +24,7 @@ group :assets do
 
   # Add foundation ehre
   gem 'compass-rails'
-  gem 'zurb-foundation', '~> 4.0.0'
+  gem 'zurb-foundation', '~> 4.3.0'
 end
 
 group :test do
