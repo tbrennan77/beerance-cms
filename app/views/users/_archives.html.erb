@@ -40,7 +40,8 @@
 		</div>
 		<div class="large-1 columns color">
 			<span class="show-for-small">Color: </span>
-			  <%= beer_color_image bs.beer_color %>
+			  <%= f.label :description, beer_color_image(bs.beer_color) %>
+			  <%= f.select :beer_color, [['Black', 0], ['Red', 1], ['Pale', 2], ['Amber', 3] ], {prompt: 'Color'}, class: 'input-text hide' %>
 		</div>
 		<div class="large-1 columns">
 			<span class="show-for-small">Price: </span>
@@ -50,7 +51,7 @@
 		<div class="large-1 columns">
 			<span class="show-for-small">Size: </span>
 			<%= f.label :beer_size, "#{bs.beer_size}oz" %>
-			<%= f.select :beer_size, (3..26).map{|n|["#{n}oz",n]}, {}, class: 'input-text hide' %>
+			<%= f.select :beer_size, (4..32).map{|n|["#{n}oz",n]}.push(['64oz', 64]), {}, class: 'input-text hide' %>
 		</div>
 		<div class="large-3 columns">
 			<span class="show-for-small">Location: </span>
