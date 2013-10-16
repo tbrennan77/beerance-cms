@@ -205,7 +205,7 @@ li {list-style-type: none;}
   height: 471px;
   .iphone {padding: 39px 0 0 0;}
   .slogan {padding: 39px 0 30px 0;width:100%;}
-  .pint {padding: 30px 0 0 25px;}
+  .pint {padding: 30px 0 0 25px;position: absolute;width: 223px;top: 100px;left: 19px;}
   h2{font-size: 18px;color:$white; text-transform: uppercase;}
 }
 .badge-desc {
@@ -451,10 +451,10 @@ li {list-style-type: none;}
   .beer, .bar {
     img {margin:5px 5px 0 0; float:left;}
     h2 {color:$medium_orange; float:left; font-size: 33px;padding: 5px 0 0 3px; font-weight: 300;}
-    .orange {width: 85%; margin: 43px 0 0 8%;}
+    .orange {width: 85%; margin: 0 0 0 8%;}
   }
   .bar { 
-    .orange {margin: 12px 0 0 8%;}
+    .orange {margin: 45px 0 0 8%;}
   }
   ul {list-style-image: url("beerance_staricon.png"); color:$dark_oranges; clear:both; font-size: 20px; font-weight: 300; line-height: 25px; padding: 20px 0 0 25px;}
     li {padding:7px 0;}
