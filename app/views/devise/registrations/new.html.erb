@@ -11,10 +11,10 @@
           <%= devise_error_messages! %>
           <div class='large-4 columns'>
             <div><%= f.label :email %><br />
-            <%= f.email_field :email, :autofocus => true %></div>
+            <%= f.email_field :email, placeholder: 'user@mail.com', :autofocus => true %></div>
 
             <div><%= f.label :password %><br />
-            <%= f.password_field :password %></div>
+            <%= f.password_field :password, placeholder: 'minimum is 8 characters' %></div>
 
             <div><%= f.label :password_confirmation %><br />
             <%= f.password_field :password_confirmation %></div>            

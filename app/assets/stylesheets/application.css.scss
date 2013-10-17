@@ -206,7 +206,7 @@ li {list-style-type: none;}
   height: 471px;
   .iphone {padding: 39px 0 0 0;}
   .slogan {padding: 39px 0 30px 0;width:100%;}
-  .pint {padding: 30px 0 0 25px;position: absolute;width: 223px;top: 100px;left: 19px;}
+  .pint {padding: 30px 0 0 25px;position: absolute;width: 223px;top: 46px;left: 19px;}
   h2{font-size: 18px;color:$white; text-transform: uppercase;}
 }
 .badge-desc {
@@ -220,6 +220,19 @@ li {list-style-type: none;}
 /*-- Colors 
 .button {-webkit-border-radius: 10px; -moz-border-radius: 10px; border-radius: 10px; border-color: $dark_orange!important; -webkit-box-shadow: -1px 1px 3px rgba(50, 50, 50, 0.2)!important; -moz-box-shadow: -1px 1px 3px rgba(50, 50, 50, 0.2)!important; box-shadow: -1px 1px 3px rgba(50, 50, 50, 0.2)!important;}
 --*/
+
+.appstorewrap {
+	position:relative;
+	a {
+		width:154px;
+		height:43px
+	}
+	.storeicon {
+		position: absolute;
+		left: 13px;
+		top: 6px;
+	}
+}
 
 .internalpage, .internalpage_user {
   a {
@@ -632,7 +645,22 @@ $medium: "only screen and (max-width:"#{$medium-screen}")";
     li:first-child {border-top: 1px solid #FFF;padding-top: 5px;}
     li.active a {color:#FFF!important; font-weight: normal!important;}
   }
-
+  
+  .top-bar-section {
+		width: 100% !important;
+		padding-right: 20px;
+		ul {
+			width: 79px !important;
+			float: right !important;
+			padding: 0 0 0 0;
+		}
+	}
+	.top-bar .top-bar-section ul.right a {
+		line-height: 0px !important;
+	}
+	.top-bar .top-bar-section li {
+		padding: 22px 0px 0 0px!important;
+	}
 }
 
 $small: "only screen and (max-width:"#{$small-screen}")";
