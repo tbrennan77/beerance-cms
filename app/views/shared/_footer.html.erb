@@ -42,7 +42,7 @@
     <%= form_for @news_subscription, url: new_signup_path do |f| %>               
       <%= f.hidden_field :subscriber_type, value: "bar_drinker" %>
       <%= f.email_field :subscriber_email, placeholder: 'drinker@example.com', class: 'required' %>
-      <%= submit_tag "Sign up for the News Letter", class: 'orange button radius full-width' %>
+      <%= submit_tag "Sign up", class: 'orange button radius full-width' %>
     <% end %>
   <a class="close-reveal-modal" style='color:white'>&#215;</a>
 </div>
