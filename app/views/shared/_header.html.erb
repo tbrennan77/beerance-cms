@@ -46,7 +46,7 @@
   <section class="top-bar-section" id="menu">
     <a href="/" id="logo"></a>
 		<% if user_signed_in? %>  
-		  <ul class="right">
+		  <ul class="right myaccountsmall">
 		    <li class="divider hide-for-small hide-for-medium"></li>
 		    <li><%= link_to "My Account", profile_path %>  </li>
 		    <li class="divider hide-for-small hide-for-medium"></li>
@@ -58,9 +58,9 @@
 		  </ul>
 		<% end %>
 		
-		<ul class="right">
+		<ul class="right usernamehead">
 		    <li class="divider hide-for-small hide-for-medium"></li>
-		    <li>Hello, <%= current_user.name %><%= link_to "(Log out)", destroy_user_session_path, :method => :delete %></li>
+		    <li>Hi, <%= current_user.name %><%= link_to "(Log out)", destroy_user_session_path, :method => :delete %></li>
 		</ul>
 		
 		<% else %>

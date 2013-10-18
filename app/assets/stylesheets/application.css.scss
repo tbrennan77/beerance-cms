@@ -92,7 +92,7 @@ a {
 
 .top-bar {  margin-bottom: 0 !important;background-image: url(beerance_topbar_background.png) !important;box-shadow: 0 1px 3px #AAA;height:78px;width: 100%;
   .top-bar-section{ 
-    ul { background:none!important;}
+    ul { background:none!important;width: auto;}
       li {color:$white;padding: 22px 10px 0 17px;font-size: 15px;
       }
     > ul > .divider {border-right: solid 1px #311308; border-left: solid 1px #62382e;height: 73px; padding:0;}
@@ -614,6 +614,10 @@ select {
 	margin-bottom:0;
 }
 
+.myaccountsmall {
+	width: 171px!important;
+}
+
 /*----- MEDIA QUERIES -----*/
 $medium: "only screen and (max-width:"#{$medium-screen}")";
 
@@ -650,7 +654,7 @@ $medium: "only screen and (max-width:"#{$medium-screen}")";
 		width: 100% !important;
 		padding-right: 20px;
 		ul {
-			width: 79px !important;
+			width: 12%;
 			float: right !important;
 			padding: 0 0 0 0;
 		}
@@ -659,7 +663,7 @@ $medium: "only screen and (max-width:"#{$medium-screen}")";
 		line-height: 0px !important;
 	}
 	.top-bar .top-bar-section li {
-		padding: 22px 0px 0 0px!important;
+		padding: 22px 0px 0 0px;
 	}
 }
 
@@ -667,6 +671,36 @@ $small: "only screen and (max-width:"#{$small-screen}")";
 
 @media #{$small} {
 
+
+	.top-bar-section {
+		ul {
+			background: none !important;
+			width: 48%!important;
+			height: 24px!important;
+			margin-left: 153px!important;
+			li {
+				height: 100%!important;
+				padding: 0!important;
+				text-align: right;
+			}
+		}
+	}
+	
+	.home-promo {
+		height: auto!important;
+	}
+	
+	.info .beer img, .info .bar img {
+		display: none;
+	}
+	
+	.rounded-box {
+		-webkit-border-radius: 0px;
+		-moz-border-radius: 00px;
+		border-radius: 0px;
+		padding: 0 25px;
+	}
+	
   #newspecial {
     select {
   	  left: 90px !important;
@@ -836,62 +870,4 @@ $small: "only screen and (max-width:"#{$small-screen}")";
 
 
 
-/* jQuery Countdown styles 1.6.3. */
 
-#countdownwrap{
-	padding: 27px 0 0 26px;
-}
-#noSeconds {
-}
-.hasCountdown {
-}
-.countdown_rtl {
-	direction: rtl;
-}
-.countdown_holding span {
-	color: #888;
-}
-.countdown_row {
-	clear: both;
-	width: 100%;
-	padding: 0px 2px;
-	text-align: center;
-	font-size: 20px;
-	color:#e9e0b5;
-}
-.countdown_show1 .countdown_section {
-	width: 98%;
-}
-.countdown_show2 .countdown_section {
-	width: 48%;
-}
-.countdown_show3 .countdown_section {
-	width: 32.5%;
-}
-.countdown_show4 .countdown_section {
-	width: 24.5%;
-}
-.countdown_show5 .countdown_section {
-	width: 19.5%;
-}
-.countdown_show6 .countdown_section {
-	width: 16.25%;
-}
-.countdown_show7 .countdown_section {
-	width: 14%;
-}
-.countdown_section {
-	display: block;
-	float: left;
-	font-size: 75%;
-	text-align: center;
-	
-}
-.countdown_amount {
-	font-size: 200%;
-	color:#f58300;
-}
-.countdown_descr {
-	display: block;
-	width: 100%;
-}
