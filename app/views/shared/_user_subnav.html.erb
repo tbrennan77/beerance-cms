@@ -10,7 +10,7 @@ $('.subnav a[data-remote="true"]').live('click', function(e) {
 })
 </script>
 
-<div class='subnav hide-for-small'>
+<div class='subnav'>
   <div class='row'>
     <div class="large-12 columns">    
       <%= link_to "Current Specials", current_specials_path, class: current_subnav('/my-beerances'), data: {remote: true} unless current_user.bars.count == 0 %>
