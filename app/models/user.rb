@@ -1,6 +1,4 @@
 class User < ActiveRecord::Base
-  attr_accessible :email, :password, :password_confirmation, :name, :phone, :newsletter_subscription, :admin
-
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
@@ -12,7 +10,7 @@ class User < ActiveRecord::Base
   has_many :feedbacks
   has_many :bar_specials, through: :bars
   
-  default_scope order('created_at ASC')
+  default_scope { order('created_at ASC') }
   
   def admin?() admin end
   def make_admin() update_attributes(admin: true) end  

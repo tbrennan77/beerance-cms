@@ -52,12 +52,9 @@ $body-font-family: "Roboto Slab", "Helvetica Neue", "Helvetica", Helvetica, Aria
 // Grid Variables
 //
 
-@function emCalc($pxWidth) {
-  @return $pxWidth / $em-base * 1em;
-} 
-$row-width: emCalc(1021px);
-$column-gutter: emCalc(30px);
-$total-columns: 12;
+//$row-width: emCalc(1021px);
+//$column-gutter: emCalc(30px);
+//$total-columns: 12;
 
 //
 // Block Grid Variables
@@ -72,13 +69,14 @@ $total-columns: 12;
 
 //
 // Typography Variables
-//
+//color: #FFF;
+//font-family: 'Roboto Slab', serif;
 
 // We use these to control header font styles
-// $header-font-family: "itc_officina_sans_std_bookRg", "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
+$header-font-family: "Roboto Slab", "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
 // $header-font-weight: bold;
 // $header-font-style: normal;
-// $header-font-color: #222;
+$header-font-color: #FFF;
 // $header-line-height: 1.4;
 // $header-top-margin: .2em;
 // $header-bottom-margin: .5em;
@@ -1043,8 +1041,8 @@ $total-columns: 12;
   border-right: 10px solid transparent;
 }
 
-@import 'foundation';
 h1, h2, h3, h4, h5 {color: #FFF;font-family: 'Roboto Slab', serif;}
 body {height: 100% !important;}
 
 body {font-family: 'Roboto Slab', serif !important; background: url(beerance_footerbackground.jpg) left bottom repeat-x !important; height: 100% !important;}
+@import 'foundation';

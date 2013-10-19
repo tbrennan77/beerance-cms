@@ -19,12 +19,12 @@ Beerance::Application.routes.draw do
   get  '/billing/change-card/:id'           => 'billing#edit_card', as: 'edit_card'
   get  '/billing/bars/:id/invoices'         => 'billing#invoices', as: 'invoices'
   get  '/billing/bars/invoices-details/:id' => 'billing#show_invoice', as: 'show_invoice'
-  post '/billing/update-plan/:id'           => 'billing#update_plan', as: 'update_plan'
-  post '/billing/update-card/:id'           => 'billing#update_card', as: 'update_card'
+  post '/billing/update-plan/:id'           => 'billing#update_plan', as: 'update_plan', via: [:get, :post]
+  post '/billing/update-card/:id'           => 'billing#update_card', as: 'update_card', via: [:get, :post]
   get  '/cancel-subscription/:id'           => 'billing#cancel_subscription', as: 'cancel_subscription'
 
   # Password resests
-  get '/send-password-reset' => 'password_resets#new', :as => 'new_password_reset'
+  get '/send-password-reset' => 'password_resets#new'
   resources :password_resets, path: 'password-resets'
 
   # Home pages
@@ -40,40 +40,41 @@ Beerance::Application.routes.draw do
   get  '/recent-updates' => 'home#recent_updates', as: 'recent_updates'
   get  '/for-bar-owners' => 'home#for_bar_owners', as: 'for_bar_owners'  
   get  '/map/bar-info/:id' => 'home#bar_info', as: 'bar_info'
-  post '/new-sign-up'    => 'home#new_signup', as: 'new_signup'
+  post '/new-sign-up'    => 'home#new_signup', as: 'new_signup', via: [:get, :post]
+  #match  '/map'           => 'home#map', via: :all, as: 'map'  
 
   # Feedback
   get  '/feedback'       => 'feedback#index', as: 'feedback'
-  post '/send-feedback'  => 'feedback#send_feedback', as: 'send_feedback'
+  post '/send-feedback'  => 'feedback#send_feedback', as: 'send_feedback', via: [:get, :post]
   
   # Users
   resources :users  
   get   '/account-details'                => 'users#show', :as => 'account_details'    
   get   '/my-beerances/current-specials'  => 'users#current_specials', as: 'current_specials'
   get   '/my-beerances/archived-specials' => 'users#archived_specials', as: 'archived_specials'  
-  match '/my-beerances'                   => 'users#profile', as: 'profile'
-  match '/my-beerances/archived'          => 'users#profile', as: 'profile_archive'
+  get   '/my-beerances'                   => 'users#profile', as: 'profile'
+  get   '/my-beerances/archived'          => 'users#profile', as: 'profile_archive'
   
   # Bars
   resources :bars
   
   # Bar Specials
-  resources :bar_specials, path: 'bar-specials'
+  resources :bar_specials, except: [:new], path: 'bar-specials'
   get   '/end-beerance/:id'      => 'bar_specials#toggle_beerance', as: 'end_beerance'
   get   '/reactive-beerance/:id' => 'bar_specials#toggle_beerance', as: 'reactivate_beerance'
-  match 'bar-specials'           => 'bar_specials#index', as: 'bar_specials_index'
-  match 'bar-specials/new'       => 'bar_specials#new', as: 'new_bar_special'
+  get 'bar-specials'           => 'bar_specials#index', as: 'bar_specials_index'
+  get 'bar-specials/new'       => 'bar_specials#new', as: 'new_bar_special'
 
   # Admin panel
   scope "/admin/" do 
     get   '/'                   => 'admin#index', as: 'admin'
     get   '/test-email'         => 'admin#test_email', as: 'test_email'
     get   '/news-subscriptions' => 'admin#news_subscriptions', as: 'news_subscriptions'
-    match '/users'              => 'admin#user_index', as: 'admin_users'
-    match '/users/:id'          => 'admin#user_show', as: 'admin_user'
-    match '/make-admin'         => 'users#make_admin', as: 'make_admin'
-    match '/remove-admin'       => 'users#remove_admin', as: 'remove_admin'
-    match '/feedback'           => 'admin#feedback', as: 'admin_feedback'
+    match '/users'              => 'admin#user_index', as: 'admin_users', via: [:get, :post]
+    match '/users/:id'          => 'admin#user_show', as: 'admin_user', via: [:get, :post]
+    match '/make-admin'         => 'users#make_admin', as: 'make_admin', via: [:get, :post]
+    match '/remove-admin'       => 'users#remove_admin', as: 'remove_admin', via: [:get, :post]
+    match '/feedback'           => 'admin#feedback', as: 'admin_feedback', via: [:get, :post]
   end
   
   # Root Path

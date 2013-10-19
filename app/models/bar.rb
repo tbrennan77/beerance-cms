@@ -36,7 +36,7 @@ class Bar < ActiveRecord::Base
     :saturday_start,
     :saturday_end
 
-  default_scope order('created_at ASC')
+  default_scope { order('created_at ASC') }  
   before_validation :clean_coupon_code
 
   def nice_url

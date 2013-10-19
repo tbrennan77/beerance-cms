@@ -9,4 +9,14 @@
 
 # Make sure your secret_key_base is kept private
 # if you're sharing your code publicly.
-Beerance::Application.config.secret_token = '33be17f6dfc0e4b20489aca3652e183eb750710adec7d525de1ef8708f7f34d592f0abd0cc9f5f07bb0334a7797e1df55591cc5ff7b06d9786f8ac12c12d8b50'
+Beerance::Application.config.secret_token = if Rails.env.development? or Rails.env.test?
+  ('x' * 30) # meets minimum requirement of 30 chars long
+else
+  '33be17f6dfc0e4b20489aca3652e183eb750710adec7d525de1ef8708f7f34d592f0abd0cc9f5f07bb0334a7797e1df55591cc5ff7b06d9786f8ac12c12d8b50'
+end
+
+Beerance::Application.config.secret_key_base = if Rails.env.development? or Rails.env.test?
+  ('x' * 30) # meets minimum requirement of 30 chars long
+else
+  '33be17f6dfc0e4b20489aca3652e183eb750710adec7d525de1ef8708f7f34d592f0abd0cc9f5f07bb0334a7797e1df55591cc5ff7b06d9786f8ac12c12d8b50'
+end

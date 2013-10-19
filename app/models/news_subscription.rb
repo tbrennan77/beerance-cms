@@ -1,6 +1,4 @@
-class NewsSubscription < ActiveRecord::Base  
-  attr_accessible :subscriber_name, :subscriber_email, :promoter_name, :subscriber_type
-
+class NewsSubscription < ActiveRecord::Base
   validates_presence_of :subscriber_email, :subscriber_type
   validates :subscriber_type, inclusion: { in: %w(bar_owner bar_drinker),
     message: "%{value} is not a valid subscriber type" }

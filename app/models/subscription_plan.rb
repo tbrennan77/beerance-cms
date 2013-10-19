@@ -1,5 +1,4 @@
-class SubscriptionPlan < ActiveRecord::Base
-  attr_accessible :name, :amount, :friendly_name, :image, :length_in_months
+class SubscriptionPlan < ActiveRecord::Base  
   validates_presence_of :name, :amount, :friendly_name, :image, :length_in_months
 
   def cost_per_month
