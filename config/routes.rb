@@ -3,9 +3,15 @@ Beerance::Application.routes.draw do
   
   # API
   scope "/api/v1/" do 
-    get 'bars/:id' => 'api#show_bar', :defaults => { :format => 'json' }
-    get 'bars/:id/specials' => 'api#show_specials', :defaults => { :format => 'json' }
-    get 'specials/near/:miles/of/:zip' => 'api#specials_near_zip', :defaults => { :format => 'json' }
+    get 'bars/:id' => 'api_v1#show_bar', :defaults => { :format => 'json' }
+    get 'bars/:id/specials' => 'api_v1#show_specials', :defaults => { :format => 'json' }
+    get 'specials/near/:miles/of/:zip' => 'api_v1#specials_near_zip', :defaults => { :format => 'json' }
+  end
+
+  scope "/api/v2/" do 
+    get 'bars/:id' => 'api_v2#show_bar', :defaults => { :format => 'json' }
+    get 'bars/:id/specials' => 'api_v2#show_specials', :defaults => { :format => 'json' }
+    get 'specials/near/:miles/of/:zip' => 'api_v2#specials_near_zip', :defaults => { :format => 'json' }
   end
 
   # Meta tags

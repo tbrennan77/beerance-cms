@@ -1,4 +1,4 @@
-class ApiController < ApplicationController
+class ApiV1Controller < ApplicationController
   respond_to :json
 
   def show_bar
