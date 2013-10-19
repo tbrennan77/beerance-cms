@@ -8,7 +8,8 @@ class ApiController < ApplicationController
 
   def show_specials
     bar=Bar.find(params[:id])
-    @specials = bar.bar_specials.active
+    @specials = []
+    bar.bar_specials.active.each {|s| @specials << {bar_special: s} }
     respond_with(@specials, methods: [:bar_name])
   end
 
