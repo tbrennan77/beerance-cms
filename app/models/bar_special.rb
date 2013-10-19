@@ -45,6 +45,10 @@ class BarSpecial < ActiveRecord::Base
     bar.longitude
   end
 
+  def formatted_sale_price
+    sale_price > 9.99 ? sale_price.to_i : sale_price
+  end
+
   def active?
     self.expiration_date > Time.now
   end
@@ -72,6 +76,13 @@ class BarSpecial < ActiveRecord::Base
       return false
     end
     save
+  end
+
+  # TEMP FIX UNTIL IOS APP UPDATE
+  def as_json(options={})
+    result = super({ :except => :password }.merge(options))
+    result["sale_price"] = formatted_sale_price
+    result
   end
 
   private
