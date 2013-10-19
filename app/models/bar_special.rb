@@ -32,6 +32,11 @@ class BarSpecial < ActiveRecord::Base
   scope :inactive, -> { where("expiration_date < '#{Time.now}'") }
 
   before_create :set_expiration_date
+  before_save :format_description
+
+  def format_description
+    self.description = self.description.split(' ').map(&:capitalize).map{|w|w.gsub('Mcc', 'McC')}.map{|w|w.gsub('Mcd', 'McD')}.join(' ')
+  end
 
   def bar_name
     bar.name
