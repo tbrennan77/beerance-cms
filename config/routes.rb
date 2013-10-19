@@ -80,6 +80,7 @@ Beerance::Application.routes.draw do
     match '/users/:id'          => 'admin#user_show', as: 'admin_user', via: [:get, :post]
     match '/make-admin'         => 'users#make_admin', as: 'make_admin', via: [:get, :post]
     match '/remove-admin'       => 'users#remove_admin', as: 'remove_admin', via: [:get, :post]
+    match '/impersonate'        => 'admin#impersonate', as: 'impersonate', via: [:get, :post]
     match '/feedback'           => 'admin#feedback', as: 'admin_feedback', via: [:get, :post]
   end
   

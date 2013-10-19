@@ -33,6 +33,8 @@ tbody tr:hover {background: #F7E2B8;}
             <%= link_to "Make Admin", make_admin_path(id: u.id) %>
           <% end %>
         <% end %>
+        |
+        <%= link_to_if (current_user.email == 'dh@dillonhafer.com'), "Impersonate", impersonate_path(id: u.id) %>
       </td>
     </tr>
     <% end %>

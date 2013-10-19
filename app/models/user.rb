@@ -16,4 +16,12 @@ class User < ActiveRecord::Base
   def make_admin() update_attributes(admin: true) end  
   def remove_admin() update_attributes(admin: false) end
   def gary?() email.downcase == 'gcintron@rockyriverbrewco.com' end
+
+  def self.current
+    Thread.current[:user]
+  end
+  
+  def self.current=(user)
+    Thread.current[:user] = user
+  end
 end

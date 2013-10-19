@@ -37,4 +37,10 @@ class AdminController < ApplicationController
     Notifier.signup(current_user).deliver
     redirect_to test_email_path, notice: 'Test email sent!'
   end
+
+  def impersonate
+    user = User.find params[:id]
+    env['warden'].set_user user
+    redirect_to admin_users_path, notice: "You are now impersonating #{user.name}"
+  end
 end
