@@ -15,4 +15,5 @@ class User < ActiveRecord::Base
   def admin?() admin end
   def make_admin() update_attributes(admin: true) end  
   def remove_admin() update_attributes(admin: false) end
+  def gary?() email.downcase == 'gcintron@rockyriverbrewco.com' end
 end

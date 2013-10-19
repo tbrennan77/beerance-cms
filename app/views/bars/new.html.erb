@@ -31,7 +31,7 @@
           <%= render partial: 'form', locals: {f: f} %>
 
 
-            <% unless current_user.admin? %>
+            <% unless current_user.admin? || current_user.gary? %>
             <div class="row">
                   <div class='large-12 columns'>
                     <h3>Step 2</h3>

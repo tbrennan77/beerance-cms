@@ -40,8 +40,8 @@
                           <span>Plan: <%= format_plan bar %></span>
                           <span>Status: <%= format_status bar %></span>
                           <span><%= number_to_phone bar.phone, area_code: true %></span>
-                          <span><%= link_to "Change Plan", show_billing_path(bar.id) unless current_user.admin? %></span>
-                          <span><%= link_to "Update Billing Information", edit_card_path(bar.id) unless current_user.admin? %></span>
+                          <span><%= link_to "Change Plan", show_billing_path(bar.id) unless current_user.admin? || current_user.gary? %></span>
+                          <span><%= link_to "Update Billing Information", edit_card_path(bar.id) unless current_user.admin? || current_user.gary? %></span>
                         </div>
                       </div>
                       </div>   

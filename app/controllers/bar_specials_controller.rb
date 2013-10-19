@@ -1,18 +1,28 @@
 class BarSpecialsController < ApplicationController
   before_filter :require_user  
-  before_filter :instantiate_new_special
+  before_filter :instantiate_new_special  
   
-  def create      
-    bar_special = current_user.bar_specials.new bar_special_params
-    if bar_special.save
+  def create 
+    @bar_special = current_user.bar_specials.new bar_special_params 
+    if @bar_special.bar_id && !Bar.find(@bar_special.bar_id).active_subscription?      
+      @bar_special = BarSpecial.new      
       respond_to do |f|
+        f.html {redirect_to profile_path, notice: 'Subscription is not active'}
+        f.js { flash.now.notice = 'Subscription is not active'}
+      end 
+      return false
+    end
+
+    if @bar_special.save
+      respond_to do |f|
+        @bar_special = BarSpecial.new
         f.html {redirect_to profile_path, notice: 'Added Special!'}
         f.js { flash.now.notice = 'Added Special!'}
       end    
     else
       respond_to do |f|
         f.html {redirect_to profile_path, notice: 'The form was invalid!'}
-        f.js { flash.now.notice = 'The form was invalid!'}
+        f.js { flash.now.notice = @bar_special.errors.full_messages.first}
       end    
     end
   end

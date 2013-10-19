@@ -3,3 +3,7 @@ $('#ajax_bar').before('<div class="alert-box notice"><%= flash[:notice] %></div>
 $('.ajax-container').html('<%= j render("users/current_specials") %>').fadeIn();
 $('#ajax_bar').fadeOut();
 $('.alert-box.notice').hide().fadeIn('slow').delay(4000).fadeOut();
+
+if ($('#new_bar_special .field_with_errors').length > 0) { 
+  $('#new_bar_special').removeClass('hide') 
+} 

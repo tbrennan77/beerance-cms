@@ -103,7 +103,7 @@ class Bar < ActiveRecord::Base
 
   def active_subscription?
     unless subscription
-      return user.admin?
+      return (user.admin? || user.gary?)
     end
     subscription.active?
   end
@@ -130,7 +130,7 @@ class Bar < ActiveRecord::Base
 
   def create_stripe_customer
     # Admin are free
-    return true if user.admin?
+    return true if user.admin? || user.gary?
     
     customer = Stripe::Customer.create(
       card:  self.stripe_card_token,
