@@ -43,7 +43,7 @@ $button_bottom: #d95f10;
 @import "foundation";
 @import "foundation/components/grid-5";
 
-body {font-family: 'Roboto Slab', serif !important; background: url(beerance_footerbackground.jpg) left bottom !important; height: 100% !important;}
+body {font-family: 'Roboto Slab', serif !important; background: url(<%= asset_path "beerance_footerbackground.jpg" %>) left bottom !important; height: 100% !important;}
 
 a {
  &:hover, &:focus {@include transition(all);color: darken(white, 20%) !important;}
@@ -62,7 +62,7 @@ a {
 .error label, label.error {color: #c60f13!important;}
 
 #logo {
-  background: url(beerance_logo.png);
+  background: url(<%= asset_path "beerance_logo.png" %>);
   position:absolute;
   top:8px;
   width:173px;
@@ -90,7 +90,7 @@ a {
 
 .field_with_errors input {border: 1px dotted red;}
 
-.top-bar {  margin-bottom: 0 !important;background-image: url(beerance_topbar_background.png) !important;box-shadow: 0 1px 3px #AAA;height:78px;width: 100%;
+.top-bar {  margin-bottom: 0 !important;background-image: url(<%= asset_path "beerance_topbar_background.png" %>) !important;box-shadow: 0 1px 3px #AAA;height:78px;width: 100%;
   .top-bar-section{ 
     ul { background:none!important;width: auto;}
       li {color:$white;padding: 22px 10px 0 17px;font-size: 15px;
@@ -269,8 +269,8 @@ li {list-style-type: none;}
   	li {list-style-type: decimal!important;}
     span {color:$dark_oranges; font-weight: normal;}
   }
-  a.appstore {background-image: url(beerance_appstoreicon.png);width:267px; height:79px; float:left;}
-  a.bartry {background-image: url(beerance_try-free-btn.png);width:255px; height:80px; float:left; margin-left: 10px;}
+  a.appstore {background-image: url(<%= asset_path "beerance_appstoreicon.png" %>);width:267px; height:79px; float:left;}
+  a.bartry {background-image: url(<%= asset_path "beerance_try-free-btn.png" %>);width:255px; height:80px; float:left; margin-left: 10px;}
   fieldset {background:none;border:none;}
   .hiw_iphone {margin-left: -20px;}
 }
@@ -326,10 +326,10 @@ li {list-style-type: none;}
 	.orange_grad > div {color: white;}
 	.info .beer .orange {margin: 0;width: 150px;margin-bottom: 20px;}
 	
-	.remove {background: url(remove_icon.png);width: 24px;height: 24px;display: inline-block;margin-top: -10px;}
+	.remove {background: url(<%= asset_path "remove_icon.png" %>);width: 24px;height: 24px;display: inline-block;margin-top: -10px;}
 	.remove:hover {transform:translate(1px, 1px);-moz-transform:translate(1px, 1px);-ms-transform:translate(1px, 1px);-webkit-transform:translate(1px, 1px);-o-transform:translate(1px, 1px);}
 	
-	.re-activate {background: url(reactivate_icon.png);width: 24px;height: 27px;display: inline-block;margin-top: -13px;
+	.re-activate {background: url(<%= asset_path "reactivate_icon.png" %>);width: 24px;height: 27px;display: inline-block;margin-top: -13px;
 		-webkit-transition: all .5s ease-in-out;
     -moz-transition: all .5s ease-in-out;
     -o-transition: all .5s ease-in-out;
@@ -470,7 +470,7 @@ li {list-style-type: none;}
   .bar { 
     .orange {margin: 45px 0 0 8%;}
   }
-  ul {list-style-image: url("beerance_staricon.png"); color:$dark_oranges; clear:both; font-size: 20px; font-weight: 300; line-height: 25px; padding: 20px 0 0 25px;}
+  ul {list-style-image: url(<%= asset_path "beerance_staricon.png" %>); color:$dark_oranges; clear:both; font-size: 20px; font-weight: 300; line-height: 25px; padding: 20px 0 0 25px;}
     li {padding:7px 0;}
 }
 
@@ -550,7 +550,7 @@ select {
 	appearance:none;
 	height: 32px;
 	overflow: hidden;
-	background: url(dropdown_background.png) no-repeat right #fff;
+	background: url(<%= asset_path "dropdown_background.png" %>) no-repeat right #fff;
 	border: 1px solid #ccc;
 	padding-left: 10px;
 	font-size: 0.875em;
@@ -856,7 +856,7 @@ $small: "only screen and (max-width:"#{$small-screen}")";
 .price {
   color:white;
   font-weight: bold;
-  background: url('/assets/price.png');
+  background: url(<%= asset_path '/assets/price.png' %>);
   background-repeat: no-repeat;
   font-size: 14px;
   padding-left: 12px;

@@ -1004,45 +1004,8 @@ $header-font-color: #FFF;
   top: 5px;
 }
 
-#addToHomeScreen {
-  z-index:99999999;
-  display: none;
-  width: 300px;
-  height: 90px;
-  box-shadow: 0 8px 17px #DDD;
-  border-radius: 8px;
-  opacity: .97;
-  background: #333;
-  color: white;
-  position: absolute;
-  top: 15px;
-  padding: 15px;
-  padding-left: 40px;
-  line-height: 20px;
-  left: 57px;
-  border-top: 1px solid #D8D9DD;
-  background: #52504b; /* Old browsers */
-  background: -moz-linear-gradient(top,  #52504b 0%, #46433c 50%, #423d36 51%, #322d26 100%); /* FF3.6+ */
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#52504b), color-stop(50%,#46433c), color-stop(51%,#423d36), color-stop(100%,#322d26)); /* Chrome,Safari4+ */
-  background: -webkit-linear-gradient(top,  #52504b 0%,#46433c 50%,#423d36 51%,#322d26 100%); /* Chrome10+,Safari5.1+ */
-  background: -o-linear-gradient(top,  #52504b 0%,#46433c 50%,#423d36 51%,#322d26 100%); /* Opera 11.10+ */
-  background: -ms-linear-gradient(top,  #52504b 0%,#46433c 50%,#423d36 51%,#322d26 100%); /* IE10+ */
-  background: linear-gradient(to bottom,  #52504b 0%,#46433c 50%,#423d36 51%,#322d26 100%); /* W3C */
-  background-image: url(/assets/button.png), linear-gradient(to bottom,  #52504b 0%,#46433c 50%,#423d36 51%,#322d26 100%);
-  background-repeat: no-repeat;
-}
-#addToHomeScreen:before {
-  content: "";
-  position: absolute;
-  top: -9px;
-  left: 130px;
-  border-bottom: 10px solid #52504b;
-  border-left: 10px solid transparent;
-  border-right: 10px solid transparent;
-}
-
 h1, h2, h3, h4, h5 {color: #FFF;font-family: 'Roboto Slab', serif;}
 body {height: 100% !important;}
 
-body {font-family: 'Roboto Slab', serif !important; background: url(beerance_footerbackground.jpg) left bottom repeat-x !important; height: 100% !important;}
+body {font-family: 'Roboto Slab', serif !important; background: url(<%= asset_path "beerance_footerbackground.jpg" %>) left bottom repeat-x !important; height: 100% !important;}
 @import 'foundation';
