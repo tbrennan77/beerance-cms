@@ -17,7 +17,7 @@ class ApiController < ApplicationController
     zip = params[:zip] || 44114
     bars = Bar.near(zip, miles)
     @specials = []
-    bars.each { |b| b.bar_specials.each {|s| @specials << s if s.active? }}
+    bars.each { |b| b.bar_specials.each {|s| @specials << {bar_special: s} if s.active? }}
     respond_with(@specials, methods: [:bar_name, :lat, :lng])
   end
 end
