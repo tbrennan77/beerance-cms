@@ -2,7 +2,8 @@ class ApiController < ApplicationController
   respond_to :json
 
   def show_bar
-    @bar=Bar.find(params[:id])
+    bar=Bar.find(params[:id])
+    @bar = {bar: bar}
     respond_with(@bar, methods: [:nice_url, :monday_hours, :tuesday_hours, :wednesday_hours, :thursday_hours, :friday_hours, :saturday_hours, :sunday_hours] )
   end
 
