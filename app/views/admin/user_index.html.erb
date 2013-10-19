@@ -7,6 +7,7 @@ tbody tr:hover {background: #F7E2B8;}
     <tr>
       <th>Email</th>
       <th>Admin?</th>
+      <th>Bars</th>
       <th>Actions</th>
       <th>Danger Zone!</th>
   </tr>
@@ -17,6 +18,7 @@ tbody tr:hover {background: #F7E2B8;}
     <tr>
       <td><%= link_to u.email, admin_user_path(u) %></td>
       <td><%= u.admin? ? 'yes' : '' %></td>
+      <td><%= u.bars.count %></td>
       <td>
         <%= link_to "Edit", edit_user_path(u) %>
       </td>

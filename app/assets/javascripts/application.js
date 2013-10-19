@@ -22,7 +22,6 @@ $(document).ready(function() {
   var jPM = $.jPanelMenu();
   jPM.on();
   $("#loading").hide();  
-  $('form').each(function() { $(this).validate(); });
   if ($('.alert-box.notice').length) {
     $('.alert-box.notice').fadeIn().delay(3000).fadeOut();
   }
