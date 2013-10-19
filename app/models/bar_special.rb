@@ -35,7 +35,10 @@ class BarSpecial < ActiveRecord::Base
   before_save :format_description
 
   def format_description
-    self.description = self.description.split(' ').map(&:capitalize).map{|w|w.gsub('Mcc', 'McC')}.map{|w|w.gsub('Mcd', 'McD')}.join(' ')
+    self.description =
+    self.description.split(' ').map(&:capitalize)
+    .map{ |w| w = (/\AMc(.)/.match(w)) ? ("Mc" + w.gsub(/\AMc(.)/, '\1').capitalize) : w }
+    .join(' ')
   end
 
   def bar_name
