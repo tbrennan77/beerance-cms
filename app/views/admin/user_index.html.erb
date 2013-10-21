@@ -34,7 +34,7 @@ tbody tr:hover {background: #F7E2B8;}
           <% end %>
         <% end %>
         |
-        <%= link_to_if (current_user.email == 'dh@dillonhafer.com'), "Impersonate", impersonate_path(id: u.id) %>
+        <%= link_to_if (%w(dh@dillonhafer.com cnagy@boondockwalker.com).include? current_user.email), "Impersonate", impersonate_path(id: u.id) %>
       </td>
     </tr>
     <% end %>
