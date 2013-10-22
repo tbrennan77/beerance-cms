@@ -1,3 +1,13 @@
+namespace :subscriptions do
+	task :create => :environment do
+			# Create Subscription Plans      
+      SubscriptionPlan.create(amount: 4500,  friendly_name: 'Bronze', image: 'red.png', length_in_months: 3, name: '3_months')
+      SubscriptionPlan.create(amount: 7200,  friendly_name: 'Silver', image: 'amber.png', length_in_months: 6, name: '6_months')
+      SubscriptionPlan.create(amount: 12000, friendly_name: 'Gold', image: 'black.png', length_in_months: 12, name: '12_months')
+      puts "Created subscription plans..."
+	end
+end
+
 namespace :parse do
   
   namespace :dev do
