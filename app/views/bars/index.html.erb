@@ -19,7 +19,7 @@
                     <div id="bar-<%= bar.id %>" class="row" style="border-bottom: 1px solid #3e130d; margin-bottom: 20px;">
                         <div class="row">
                           <div class="large-12 columns user-info" style ="padding-bottom:0;">
-                            <h2><%= bar.name %>
+                            <h2 style="padding-left: 20px;"><%= bar.name %>
                               <small>
                                 <%= link_to "edit", edit_bar_path(bar) %>
                             </small>
@@ -36,7 +36,7 @@
                           <span><%= bar.zip %></span>
                           <span><%= link_to bar.url, "#{bar.nice_url}", target: :_blank %></span>
                         </div>
-                        <div class="large-6 columns user_info">
+                        <div class="large-6 columns user_info" style="padding-left: 20px;">
                           <span>Plan: <%= format_plan bar %></span>
                           <span>Status: <%= format_status bar %></span>
                           <span><%= number_to_phone bar.phone, area_code: true %></span>
