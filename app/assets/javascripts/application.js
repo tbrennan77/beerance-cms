@@ -15,6 +15,7 @@
 //= require jquery_ujs
 //= require foundation
 //= require modernizr
+//= require turbolinks
 //= require_tree .
 
 $(document).ready(function() {  
@@ -25,7 +26,6 @@ $(document).ready(function() {
   if ($('.alert-box.notice').length) {
     $('.alert-box.notice').fadeIn().delay(3000).fadeOut();
   }
-  $('#noSeconds').countdown({until: new Date(2013, 9, 17), format: 'dHM'});
 });
 $(document).foundation();
 
