@@ -1,0 +1,16 @@
+<div id="ajax_bar"><%= image_tag "ajax-loader.gif", height: 32, width: 32 %><br /><br />loading...</div>
+
+<nav class="top-bar">
+  <ul class="title-area">
+    <!-- Title Area -->
+    <li class="name">
+      <h1><a href="/" id="logo"></a></h1>
+    </li>
+    <!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
+    <li class="toggle-topbar menu-icon menu-trigger"><a href="#"><span>Menu</span></a></li>
+  </ul>
+</nav>
+
+<div id="menu" class='hide'>
+  <%= yield(:menu) %>
+</div>

@@ -25,7 +25,6 @@ $(document).ready(function() {
   if ($('.alert-box.notice').length) {
     $('.alert-box.notice').fadeIn().delay(3000).fadeOut();
   }
-  $('#noSeconds').countdown({until: new Date(2013, 9, 17), format: 'dHM'});
 });
 $(document).foundation();
 
@@ -36,3 +35,5 @@ $(document).live('ajax:beforeSend', function(event, xhr, settings) {
 $(document).live('ajax:complete', function(event, xhr, settings) {  
   $("#ajax_bar").fadeOut("slow");  
 });
+
+$(document).on('page:load', ready)
