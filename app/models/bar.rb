@@ -9,7 +9,7 @@ class Bar < ActiveRecord::Base
 
   attr_accessor :stripe_card_token, :coupon
 
-  VALID_COUPON_CODES = %w{rockyriver beerance3months beerance6months}
+  VALID_COUPON_CODES = %w{rockyriver 3months 6months}
 
   validates :coupon, inclusion: { in: VALID_COUPON_CODES, message: "code could not be found or is no longer valid", allow_nil: true}
   validates_presence_of :subscription_plan_id, message: 'should be selected'
