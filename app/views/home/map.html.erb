@@ -31,6 +31,26 @@ label.small {
 .top-bar.expanded .title-area {background: transparent !important;}
 .columns {padding: none !important;}
 .footer_wrap {display: none;}
+#logo {top: 5px;height: 68px;}
+
+.price {height: 30px;padding-top: 5px;padding-left: 8px; position:relative;z-index: 1;}
+
+.beericon {
+position: absolute;
+top: 18px;
+left: 10px;
+width: 48px;
+z-index: 0;
+}
+
+.button.small {padding-right: 10px;padding-left: 10px;}
+
+.gmnoprint, .gmnoprint, .gm-style-cc, gmnoprint {display:none;}
+
+#spitemformobile {height:130px;background:url("assets/shelf_mobile.png")repeat-x;margin-bottom: 0px;position:relative;}
+
+#body {background:url("assets/shelf_mobile.png")!important;}
+
 </style>
 <script>
 var map;
@@ -73,20 +93,21 @@ $(document).ready(function() {
   });
 });
 </script>
-<div class='large-12 ' style='padding: none !important; padding-left: none !imortant;'>
+<div class='large-12 ' style='min-height: 495px;padding: none !important; padding-left: none !imortant;'>
   <div id='map-canvas'></div>    
 
   <% @specials.each do |s| %>
-  <ul data-reveal-id="bar-info" data-bar-id="<%= s.bar_id %>" class="special-bar" style="background-image: url('<%= asset_path s.beer_image %>'), url(assets/darkshelf.png);background-position: 15px 15px, left;background-repeat: no-repeat, no-repeat;padding-left: 75px;color:white;padding-top: 30px;">
+  <ul data-reveal-id="bar-info" id="spitemformobile" data-bar-id="<%= s.bar_id %>" class="special-bar" style="background-repeat: no-repeat, no-repeat;padding-left: 75px;color:white;padding-top: 30px;">
     <li><b><%= s.description %></b></li>
     <li class='star'><%= s.bar_name %></li>
     <li><%= s.beer_size %> oz. - <%= s.bar.distance_from("#{@location[:lat]}, #{@location[:lon]}").round(2) %> miles away</li>
     <div class='price'><%= number_to_currency s.sale_price %></div>
+    <div class="beericon"><%= beer_color_image s.beer_color %></div>
   </ul>
   <% end %>
 
   <% if @specials.blank? %>
-    <ul class="special-bar" style="height: 450px; background-image: url('<%= asset_path "nospec.png" %>');background-position: left;background-repeat: no-repeat;"></ul>
+    <ul class="special-bar" style="height: 450px; background-image: url('<%= asset_path "nospec.png" %>');background-position: -163px -250px;background-repeat: no-repeat;"></ul>
   <% end %>
 </div>
 

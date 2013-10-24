@@ -36,6 +36,20 @@ module ApplicationHelper
     return "N/A" if bar.user.admin? || bar.user.gary?
     bar.active_subscription? ? bar.subscription.status.capitalize : 'Not Active'
   end
+  
+  def beer_color_image(beer_color_number)
+    image_name = case beer_color_number
+      when 0
+        "black.png"
+      when 1
+        "red.png"
+      when 2
+        "pale.png"
+      when 3
+        "amber.png"
+    end
+    image_tag image_name
+  end
 
   def states
     @states = [
