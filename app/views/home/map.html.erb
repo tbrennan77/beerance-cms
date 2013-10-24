@@ -98,7 +98,7 @@ $(document).ready(function() {
 
   <% @specials.each do |s| %>
   <ul data-reveal-id="bar-info" id="spitemformobile" data-bar-id="<%= s.bar_id %>" class="special-bar" style="background-repeat: no-repeat, no-repeat;padding-left: 75px;color:white;padding-top: 30px;">
-    <li><b><%= s.description %></b></li>
+    <li style="overflow-x: hidden;max-width: 320px;white-space: nowrap;"><b><%= s.description %></b></li>
     <li class='star'><%= s.bar_name %></li>
     <li><%= s.beer_size %> oz. - <%= s.bar.distance_from("#{@location[:lat]}, #{@location[:lon]}").round(2) %> miles away</li>
     <div class='price'><%= number_to_currency s.sale_price %></div>
