@@ -15,7 +15,6 @@
 //= require jquery_ujs
 //= require foundation
 //= require modernizr
-//= require turbolinks
 //= require_tree .
 
 $(document).ready(function() {  
@@ -36,3 +35,5 @@ $(document).live('ajax:beforeSend', function(event, xhr, settings) {
 $(document).live('ajax:complete', function(event, xhr, settings) {  
   $("#ajax_bar").fadeOut("slow");  
 });
+
+$(document).on('page:load', ready)
