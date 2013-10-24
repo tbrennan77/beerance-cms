@@ -1,14 +1,14 @@
-<h2><%= @bar.bar_name %></h2>
+<h2><%= @bar.name %></h2>
 <ul>
-  <li><b>M</b> <%= @bar.hours_mon %></li>
-  <li><b>T</b> <%= @bar.hours_tues %></li>
-  <li><b>W</b> <%= @bar.hours_wed %></li>
-  <li><b>R</b> <%= @bar.hours_thur %></li>
-  <li><b>F</b> <%= @bar.hours_fri %></li>
-  <li><b>S</b> <%= @bar.hours_sat %></li>
-  <li><b>S</b> <%= @bar.hours_sun %></li>
+  <li><b>M</b> <%= @bar.monday_hours %></li>
+  <li><b>T</b> <%= @bar.tuesday_hours %></li>
+  <li><b>W</b> <%= @bar.wednesday_hours %></li>
+  <li><b>R</b> <%= @bar.thursday_hours %></li>
+  <li><b>F</b> <%= @bar.friday_hours %></li>
+  <li><b>S</b> <%= @bar.saturday_hours %></li>
+  <li><b>S</b> <%= @bar.sunday_hours %></li>
 </ul>
-<a class="small orange button radius" href="<%= @bar.bar_url %>">Website</a>
-<a class="small orange button radius" href="https://map@google.com/?q=<%= @bar.bar_location.latitude %>,<%= @bar.bar_location.longitude %>">Directions</a>
-<a class="small orange button radius" href="tel:<%= @bar.bar_phone %>">Call</a>
+<a class="small orange button radius" href="http://<%= @bar.url %>">Website</a>
+<a class="small orange button radius" href="https://map@google.com/?q=<%= @bar.latitude %>,<%= @bar.longitude %>">Directions</a>
+<a class="small orange button radius" href="tel:<%= @bar.phone %>">Call</a>
 <a class="close-reveal-modal">&#215;</a>

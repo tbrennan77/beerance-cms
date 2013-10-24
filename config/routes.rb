@@ -47,7 +47,7 @@ Beerance::Application.routes.draw do
   get  '/for-bar-owners' => 'home#for_bar_owners', as: 'for_bar_owners'  
   get  '/map/bar-info/:id' => 'home#bar_info', as: 'bar_info'
   post '/new-sign-up'    => 'home#new_signup', as: 'new_signup', via: [:get, :post]
-  #match  '/map'           => 'home#map', via: :all, as: 'map'  
+  match  '/map'           => 'home#map', via: :all, as: 'map'  
 
   # Feedback
   get  '/feedback'       => 'feedback#index', as: 'feedback'

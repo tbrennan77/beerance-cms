@@ -1,0 +1,117 @@
+<% title('Map - ') %>
+
+<% content_for(:head) do %>
+   <script src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
+<% end %>
+
+<style>
+ul.right {
+  display: none;
+}
+input[type="radio"] {
+  display: none
+}
+#menu label {color: white !important;margin-bottom: 6px;}
+.info ul {
+  list-style-image:none;
+}
+label.small {
+  font-size: 14px !important;
+}
+.button-group li:first-child label {
+  border-radius: 8px 0 0 8px;
+}
+.button-group li:last-child label {
+  border-radius: 0 8px 8px 0;
+}
+.star {
+  margin-left: 20px;
+  list-style-image: url("assets/beerance_staricon.png");
+}
+.top-bar.expanded .title-area {background: transparent !important;}
+.columns {padding: none !important;}
+.footer_wrap {display: none;}
+</style>
+<script>
+var map;
+function initialize() {
+  var mapOptions = {
+    zoom: 8,
+    center: new google.maps.LatLng(<%= @location[:lat] %>, <%= @location[:lon] %>),
+    mapTypeId: google.maps.MapTypeId.ROADMAP
+  };
+  map = new google.maps.Map(document.getElementById('map-canvas'),
+      mapOptions);
+
+  // Iterate through specials  
+  var image = '<%= asset_path "pin.png" %>';
+  <% @bars.each do |b| %>
+    var myLatlng = new google.maps.LatLng(<%= b.latitude %>,<%= b.longitude %>);
+    var marker = new google.maps.Marker({
+        position: myLatlng,
+        map: map,
+        title: '<%= b.name %>',
+        icon: image
+    });
+  <% end %>
+}
+$(document).ready(function() {
+  $('input[type="radio"]:checked').parent().addClass('brown')
+  $('input[type="radio"]').on('change', function() {
+    $('.button-group').find('label').removeClass('brown');
+    $(this).parent().addClass('brown');
+  })
+
+  initialize();
+
+  $('ul.special-bar').on('click', function() {
+    var url = '/map/bar-info/' + $(this).data('bar-id');
+
+    $.get(url, function(data) {
+      $('#bar-info').html(data);      
+    });
+  });
+});
+</script>
+<div class='large-12 ' style='padding: none !important; padding-left: none !imortant;'>
+  <div id='map-canvas'></div>    
+
+  <% @specials.each do |s| %>
+  <ul data-reveal-id="bar-info" data-bar-id="<%= s.bar_id %>" class="special-bar" style="background-image: url('<%= asset_path s.beer_image %>'), url(assets/darkshelf.png);background-position: 15px 15px, left;background-repeat: no-repeat, no-repeat;padding-left: 75px;color:white;padding-top: 30px;">
+    <li><b><%= s.description %></b></li>
+    <li class='star'><%= s.bar_name %></li>
+    <li><%= s.beer_size %> oz. - <%= s.bar.distance_from("#{@location[:lat]}, #{@location[:lon]}").round(2) %> miles away</li>
+    <div class='price'><%= number_to_currency s.sale_price %></div>
+  </ul>
+  <% end %>
+
+  <% if @specials.blank? %>
+    <ul class="special-bar" style="height: 450px; background-image: url('<%= asset_path "nospec.png" %>');background-position: left;background-repeat: no-repeat;"></ul>
+  <% end %>
+</div>
+
+<% content_for(:menu) do %>
+<div class='large-12 columns'>
+  <br />
+  <br />
+  <h5 class='centered'><%= @location[:city] %></h5>
+  <%= form_tag '' do %>
+     <div class='row'>
+      <%= label_tag :zip, nil, style: 'color: white !important;margin-bottom: 9px !important;' %>
+      <%= text_field_tag :zip, params[:zip] %>
+      <%= label_tag :distance, nil, style: 'color: white !important;margin-bottom: 9px !important;' %>
+    </div>
+    <div class='row'>      
+      <ul class="button-group round even-3">
+        <li><label class="small button"><%= radio_button_tag :distance, 5, (params[:distance].to_i == 5 ? true : false) %> 5 mi.</label></li>
+        <li><label class="small button"><%= radio_button_tag :distance, 10, (params[:distance].to_i == 10 ? true : false) %> 10 mi.</label></li>
+        <li><label class="small button"><%= radio_button_tag :distance, 25, (params[:distance].to_i == 25 ? true : false) %> 25 mi.</label></li>
+      </ul>
+    </div>
+    
+    <%= submit_tag "Get Specials", class: 'orange button full-width' %>
+  <% end %>  
+</div>
+<% end %>  
+
+<div id="bar-info" class="reveal-modal orange_grad"></div>
