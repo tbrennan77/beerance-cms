@@ -26,7 +26,7 @@ label.small {
 }
 .star {
   margin-left: 20px;
-  list-style-image: url("assets/beerance_staricon.png");
+  list-style-image: url(<%= asset_path "beerance_staricon.png" %>);
 }
 .top-bar.expanded .title-area {background: transparent !important;}
 .columns {padding: none !important;}
@@ -47,9 +47,9 @@ z-index: 0;
 
 .gmnoprint, .gmnoprint, .gm-style-cc, gmnoprint {display:none;}
 
-#spitemformobile {height:130px;background:url("assets/shelf_mobile.png")repeat-x;margin-bottom: 0px;position:relative;}
+#spitemformobile {height:130px;background:url(<%= asset_path "shelf_mobile.png" %>)repeat-x;margin-bottom: 0px;position:relative;}
 
-#body {background:url("assets/shelf_mobile.png")!important;}
+#body {background:url(<%= asset_path "shelf_mobile.png" %>)!important;}
 
 </style>
 <script>
