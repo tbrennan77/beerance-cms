@@ -34,7 +34,8 @@ class Bar < ActiveRecord::Base
     :friday_start,
     :friday_end,
     :saturday_start,
-    :saturday_end
+    :saturday_end,
+    :stripe_card_token
 
   default_scope { order('created_at ASC') }  
   before_validation :clean_coupon_code
@@ -94,10 +95,11 @@ class Bar < ActiveRecord::Base
   end
 
   def save_with_payment
-    set_geo_location
-    if valid?
-      create_stripe_customer
-      self.save
+    set_geo_location    
+    if self.valid?
+      if create_stripe_customer
+        self.save
+      end
     end
   end
 
@@ -130,7 +132,7 @@ class Bar < ActiveRecord::Base
 
   def create_stripe_customer
     # Admin are free
-    return true if user.admin? || user.gary?
+    #return true if user.admin? || user.gary?
     
     customer = Stripe::Customer.create(
       card:  self.stripe_card_token,
@@ -139,6 +141,7 @@ class Bar < ActiveRecord::Base
       email: self.user.email,
       description: self.name
     )
+    puts "Customer id: #{customer.id}"
     self.stripe_customer_id = customer.id    
     rescue Stripe::InvalidRequestError => e    
       errors.add :base, "There was a problem with your credit card."
