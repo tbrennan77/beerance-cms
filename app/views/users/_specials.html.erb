@@ -74,7 +74,7 @@ div.row.inactive img, div.row.inactive a.re-activate {
       </div>
     <% end %> 
     
-  <% current_user.bar_specials.each do |bs| %>
+  <% current_user.bar_specials.order('expiration_date DESC, updated_at DESC').each do |bs| %>
     <%= form_for bs, html: { data: {remote: true } } do |f| %>
       <%= f.hidden_field :bar_id %>
       
