@@ -3,13 +3,8 @@
   <div class="row">
       <div class="large-12 columns">
           <div class='ajax-container'>
-              <% if request.path_info == '/my-beerances/archived' %>
-                <% title "Archived -  " %>
-                <%= render partial: 'archives' %>
-              <% else %>
-                <% title "My Beerances - " %>
-                <%= render partial: 'current_specials' %>
-              <% end %>
+              <% title "My Beerances - " %>
+              <%= render partial: 'specials' %>
             </div>          
         </div>
     </div>

@@ -1,11 +1,5 @@
 $('.alert-box.notice').remove();
 $('<div class="alert-box notice"><%= flash[:notice] %></div>').insertAfter('#ajax_bar');
-
-<% if params[:current_page] %>
-  $('.ajax-container').html('<%= j render("users/current_specials") %>')
-<% else %>
-  $('.ajax-container').html('<%= j render("users/archives") %>')
-<% end %>
-
+$('.ajax-container').html('<%= j render("users/specials") %>')
 $('#ajax_bar').fadeOut();
 $('.alert-box.notice').hide().fadeIn('slow').delay(4000).fadeOut();

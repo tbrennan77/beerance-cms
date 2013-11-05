@@ -1,13 +1,5 @@
 $('.alert-box.notice').remove();
 $('#ajax_bar').before('<div class="alert-box notice"><%= flash[:notice] %></div>');
-
-<% if @special.active? %>
-  $('.ajax-container').html('<%= j render("users/archives") %>');
-<% elsif flash[:notice] == 'Subscription is not active' %>
-  $('.ajax-container').html('<%= j render("users/archives") %>');  
-<% else %>
-  $('.ajax-container').html('<%= j render("users/current_specials") %>');
-<% end %>
-
+$('.ajax-container').html('<%= j render("users/specials") %>');
 $('#ajax_bar').fadeOut();
 $('.alert-box.notice').hide().fadeIn('slow').delay(4000).fadeOut();

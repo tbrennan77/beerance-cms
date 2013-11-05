@@ -27,7 +27,7 @@ class BarSpecial < ActiveRecord::Base
       greater_than: 0
     }
 
-  default_scope { order('created_at DESC') }
+  default_scope { order('bar_specials.updated_at DESC') }
   scope :active,   -> { where("expiration_date > '#{Time.now}'") }
   scope :inactive, -> { where("expiration_date < '#{Time.now}'") }
 

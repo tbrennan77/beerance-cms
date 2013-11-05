@@ -1,0 +1,125 @@
+<style>
+div.row.inactive {
+  background: #DDD !important;
+  opacity: 0.9 !important;
+  color: #444 !important;
+}
+div.row.inactive label {
+  color: #444 !important;
+}
+div.row.inactive a.re-activate {
+
+}
+div.row.inactive img, div.row.inactive a.re-activate {
+  filter: url(filters.svg#grayscale); /* Firefox 3.5+ */
+  filter: gray; /* IE6-9 */
+  -webkit-filter: grayscale(1); /* Google Chrome, Safari 6+ & Opera 15+ */
+}
+</style>
+<div class="row heading">
+  <div class="large-9 columns">
+    <%= image_tag "beerance_mugicon.png" %><h2>Specials</h2>
+  </div>
+  <div class="large-3 columns">
+    <%= link_to "New Special", "javascript:void(0)", title: "New Special", class: 'button radius shadow new-special' %>
+  </div>
+</div>
+
+<div class="beerance_list">
+  <div class="row hide-for-small purple_grad">
+    <div class="large-5 columns">
+      Name
+    </div>
+    <div class="large-1 columns">
+      Color
+    </div>
+    <div class="large-1 columns">
+      Price
+    </div>
+    <div class="large-1 columns">
+      Size
+    </div>
+    <div class="large-3 columns">
+      Location
+    </div>
+    <div class="large-1 columns align-center">
+      Remove
+    </div>
+  </div>
+    <%= form_for @bar_special, html: { class: 'hide', data: {remote: true} } do |f| %>      
+      <div class="row" id="newspecial">
+        <div class="large-4 columns">
+          <span class="show-for-small">Name: </span>          
+          <%= f.text_field :description, placeholder: 'Name', class: 'input-text' %>
+        </div>
+        <div class="large-2 columns new-color">
+          <span class="show-for-small">Color: </span>
+            <%= f.select :beer_color, [['Black', 0], ['Red', 1], ['Pale', 2], ['Amber', 3] ], prompt: 'Color' %>
+        </div>
+        <div class="large-1 columns">
+          <span class="show-for-small">Price: </span>         
+          <%= f.text_field :sale_price, placeholder: '3.99', class: 'input-text' %>
+        </div>
+        <div class="large-1 columns">
+          <span class="show-for-small">Size: </span>          
+          <%= f.select :beer_size, (4..32).map{ |n| ["#{n}oz",n] }.push(['64oz', 64]), prompt: 'Size' , class: 'input-text' %>
+        </div>
+        <div class="large-3 columns">
+          <span class="show-for-small">Location: </span>
+          <%= f.select :bar_id, current_user.bars.map {|b| [b.name, b.id] }, prompt: 'Choose A Bar'  %>
+        </div>
+        <div class="large-1 columns align-center">
+          <%= f.submit "Add", class: 'small button radius shadow' %>
+        </div>
+      </div>
+    <% end %> 
+    
+  <% current_user.bar_specials.each do |bs| %>
+    <%= form_for bs, html: { data: {remote: true } } do |f| %>
+      <%= f.hidden_field :bar_id %>
+      
+      <div class="row<%= " inactive" unless bs.active? %>">
+        <div class="large-5 columns">
+          <span class="show-for-small">Name*: </span>
+          <%= f.label :description, bs.description %>
+          <%= f.text_field :description, class: 'input-text hide' %>
+        </div>
+        <div class="large-1 columns color">
+          <span class="show-for-small">Color: </span>
+            <%= f.label :description, beer_color_image(bs.beer_color) %>
+            <%= f.select :beer_color, [['Black', 0], ['Red', 1], ['Pale', 2], ['Amber', 3] ], {prompt: 'Color'}, class: 'input-text hide' %>
+        </div>
+        <div class="large-1 columns">
+          <span class="show-for-small">Price*: </span>
+          <%= f.label :sale_price, number_to_currency(bs.sale_price) %>
+          <%= f.text_field :sale_price, class: 'input-text hide' %>
+        </div>
+        <div class="large-1 columns">
+          <span class="show-for-small">Size*: </span>
+          <%= f.label :beer_size, "#{bs.beer_size}oz" %>
+          <%= f.select :beer_size, (4..32).map{ |n| ["#{n}oz",n] }.push(['64oz', 64]), {} , class: 'input-text hide' %>
+        </div>
+        <div class="large-3 columns">
+          <span class="show-for-small">Location: </span>
+          <%= bs.bar.name %>
+        </div>
+        <div class="large-1 columns align-center">
+          <% if bs.active? %>
+            <span class="show-for-small">Remove: </span>
+            <%= link_to "", end_beerance_path(bs), class: 'remove', data: {remote: true} %>
+          <% else %>
+             <span class="show-for-small">Reactivate: </span>      
+            <%= link_to "", reactivate_beerance_path(bs), class: 're-activate', data: {remote: true} %>
+          <% end %>
+        </div>
+      </div>
+    <% end %> 
+  <% end %>
+
+</div>
+
+<% unless current_user.bar_specials.any? %>
+  <br />
+  <br />
+  <h3 style='text-align: center;'>You have no specials</h3>
+<% end %>

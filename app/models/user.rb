@@ -10,7 +10,7 @@ class User < ActiveRecord::Base
   has_many :feedbacks
   has_many :bar_specials, through: :bars
   
-  default_scope { order('created_at ASC') }
+  default_scope { order('users.created_at ASC') }
   
   def admin?() admin end
   def make_admin() update_attributes(admin: true) end  
