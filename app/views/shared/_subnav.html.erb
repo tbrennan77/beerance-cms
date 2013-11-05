@@ -9,7 +9,9 @@
       <%= link_to "View Specials Now", map_path, class: 'show-for-small hide-for-medium hide-for-large' %>
       <%#= link_to "Support", support_path, class: is_current?('support') %>
       <a href="#" data-reveal-id="newsLetter" id='newsLetterLink'>Newsletter</a>
-      <!--<a href="#" data-reveal-id="newsLetter" id='newsLetterLink'>Find Beer Now</a>-->
+      <% if current_user %>
+        <%= link_to "Post Specials", profile_path %>
+      <% end %>
     </div>
   </div>
 </div>
