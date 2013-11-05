@@ -85,11 +85,11 @@ class BarSpecial < ActiveRecord::Base
   private
   
   def set_expiration_date
-    self.update_attributes expiration_date: Time.now.tomorrow.beginning_of_day.advance(hours: 9)
+    self.expiration_date = Time.now.tomorrow.beginning_of_day.advance(hours: 9)
   end
 
   def end_special
-    self.update_attributes expiration_date: Time.now.yesterday.beginning_of_day.advance(hours: 9)
+    self.expiration_date = Time.now.yesterday.beginning_of_day.advance(hours: 9)
   end
   
   alias_method :reactivate_special, :set_expiration_date

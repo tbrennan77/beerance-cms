@@ -25,5 +25,6 @@ FactoryGirl.define do
     friday_end      '10:00pm'
     saturday_start  '7:00am'
     saturday_end    '10:00pm'
+    stripe_card_token 'foo'
   end
 end
