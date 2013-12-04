@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20131003164930) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "bar_specials", force: true do |t|
     t.integer  "bar_id"
     t.integer  "beer_color"
@@ -21,8 +24,8 @@ ActiveRecord::Schema.define(version: 20131003164930) do
     t.decimal  "sale_price"
     t.string   "description"
     t.string   "parse_bar_special_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
   end
 
   create_table "bars", force: true do |t|
@@ -54,22 +57,22 @@ ActiveRecord::Schema.define(version: 20131003164930) do
     t.string   "saturday_start"
     t.string   "saturday_end"
     t.string   "parse_bar_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
   end
 
   create_table "feedbacks", force: true do |t|
     t.integer  "user_id"
     t.string   "category"
     t.text     "comment"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "meta_tags", force: true do |t|
     t.text     "text"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "news_subscriptions", force: true do |t|
@@ -77,8 +80,8 @@ ActiveRecord::Schema.define(version: 20131003164930) do
     t.string   "subscriber_email"
     t.string   "subscriber_name"
     t.string   "subscriber_type"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
   end
 
   create_table "subscription_plans", force: true do |t|
@@ -87,8 +90,8 @@ ActiveRecord::Schema.define(version: 20131003164930) do
     t.string   "image"
     t.integer  "length_in_months"
     t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
   end
 
   create_table "users", force: true do |t|
@@ -106,8 +109,8 @@ ActiveRecord::Schema.define(version: 20131003164930) do
     t.string   "name"
     t.string   "phone"
     t.boolean  "admin",                   default: false, null: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                              null: false
+    t.datetime "updated_at",                              null: false
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

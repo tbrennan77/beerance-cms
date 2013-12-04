@@ -2,17 +2,17 @@ ruby '2.0.0'
 source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.0.0'
+gem 'rails', '4.0.2'
 gem 'geocoder'
 gem 'gibbon', :git => 'https://github.com/amro/gibbon.git'
 gem 'modernizr-rails'
 gem 'exception_notification'
-gem 'geokit'
-gem 'geokit-rails'
+gem 'geokit', '~> 1.6.7'
+gem 'geokit-rails', '~> 2.0.0'
 gem 'geocoder'
 gem 'unicorn'
 gem 'pg'
-gem 'devise'
+gem 'devise', '~> 3.1.1'
 gem 'turbolinks'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
@@ -40,7 +40,7 @@ gem 'jquery-rails'
 group :test do
   # Pretty printed test output
   gem 'turn', '0.8.3', :require => false
-  gem 'factory_girl'
+  gem 'factory_girl', '~> 4.2.0'
   gem 'rspec-rails', '2.13.1'
   gem 'shoulda-matchers'
   gem 'selenium-webdriver', '~> 2.35.1'
