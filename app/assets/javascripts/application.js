@@ -11,16 +11,12 @@
 // GO AFTER THE REQUIRES BELOW.
 //
 //= require jquery
-//= require jquery.min
 //= require jquery_ujs
 //= require foundation
 //= require modernizr
 //= require_tree .
 
 $(document).ready(function() {  
-  $(document).foundation();
-  var jPM = $.jPanelMenu();
-  jPM.on();
   $("#loading").hide();  
   if ($('.alert-box.notice').length) {
     $('.alert-box.notice').fadeIn().delay(3000).fadeOut();
@@ -28,12 +24,12 @@ $(document).ready(function() {
 });
 $(document).foundation();
 
-$(document).live('ajax:beforeSend', function(event, xhr, settings) {    
+$(document).on('ajax:beforeSend', function(event, xhr, settings) {    
   $("#ajax_bar").fadeIn("slow");
 });
 
-$(document).live('ajax:complete', function(event, xhr, settings) {  
+$(document).on('ajax:complete', function(event, xhr, settings) {  
   $("#ajax_bar").fadeOut("slow");  
 });
 
-$(document).on('page:load', ready)
+//$(document).on('page:load', ready)

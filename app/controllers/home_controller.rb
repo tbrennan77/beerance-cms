@@ -14,7 +14,7 @@ class HomeController < ApplicationController
     miles = params[:distance] || 15
     zip = params[:zip] || 44114
     @location = get_geo(zip.to_s)
-    bars = Bar.near(zip.to_s, miles.to_s)
+    bars = Bar.includes(:bar_specials).near(zip.to_s, miles.to_s)
     @specials = []
     @bars = []
     bars.each do |b| 
@@ -26,6 +26,7 @@ class HomeController < ApplicationController
       end
     end
     @bars.uniq!
+    @specials.uniq!
     render layout: 'mobile'
   end
 

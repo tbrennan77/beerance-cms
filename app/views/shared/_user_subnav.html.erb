@@ -1,5 +1,5 @@
 <script>
-$('.subnav a[data-remote="true"]').live('click', function(e) {  
+$('.subnav a[data-remote="true"]').on('click', function(e) {  
   $('.ajax-container').fadeOut()
   $('.subnav a').each( function() {
     $(this).removeClass('current');

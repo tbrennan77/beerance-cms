@@ -2,13 +2,13 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 jQuery ->
-  $('#contact').live 'click', ->
+  $(document).on 'click', '#contact', ->
     $('.alert-box.notice').hide()
     if $('.login').is(":visible")
       $('.login').slideToggle('fast')
     $('.contact').slideToggle('fast')
 
-  $('#login').live 'click', ->
+  $(document).on 'click', '#login', ->
     $('.alert-box.notice').hide()
     if $('.contact').is(":visible")
       $('.contact').slideToggle('fast')

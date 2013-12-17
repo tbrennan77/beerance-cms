@@ -48,7 +48,7 @@ subscription =
       $('#stripe_error').text(response.error.message.replace("The card object must have a value for 'number'", 'Please enter a credit card number'))      
       $('input[type="submit"]').attr('disabled', false)
 
-$('.hour-label').find('select').live 'change', ->
+$(document).on 'change', '.hour-label select', ->
   selects = $(this).parent().parent().find('select')
 
   if $(this).val() == 'Closed'
@@ -61,6 +61,6 @@ $('.hour-label').find('select').live 'change', ->
     selects.last().parent().removeClass('large-12').addClass('large-6')    
     selects.last().show()
 
-$('input[type="radio"]').live 'change', ->
+$(document).on 'change', 'input[type="radio"]', ->
   $('label').removeClass('active')  
   $(this).parent().parent().parent().find('label.amount').addClass('active')
