@@ -4,12 +4,12 @@ server "162.243.14.28", :web, :app, :db, primary: true
 
 set :application, "beerance"
 set :user, "deployer"
-set :deploy_to, "/home/#{user}/apps/#{application}"
+set :deploy_to, "/var/www/#{application}"
 set :deploy_via, :remote_cache
 set :use_sudo, false
 
 set :scm, "git"
-set :repository, "git@bitbucket.org:boondockwalker/beerance-cms.git"
+set :repository, "ssh://git@bitbucket.org:boondockwalker/beerance-cms.git"
 set :branch, "master"
 
 default_run_options[:pty] = true
