@@ -8,8 +8,8 @@ TIMEOUT=${TIMEOUT-60}
 APP_ROOT=/home/deployer/apps/beerance/current
 PID=$APP_ROOT/tmp/pids/unicorn.pid
 ENVIRONMENT=production
-CMD="cd $APP_ROOT; bundle exec unicorn -E $ENVIRONMENT -D -c $APP_ROOT/config/unicorn.rb"
 AS_USER=deployer
+CMD="cd $APP_ROOT; bundle exec unicorn -E $ENVIRONMENT -D -c $APP_ROOT/config/unicorn.rb"
 action="$1"
 set -u
  
