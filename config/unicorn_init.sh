@@ -29,11 +29,19 @@ workersig () {
   workerpid="$APP_ROOT/tmp/pids/unicorn.$2.pid"
   test -s "$workerpid" && kill -$1 `cat $workerpid`
 }
+
+run () {
+  if [ "$(id -un)" = "$AS_USER" ]; then
+    eval $1
+  else
+    su -c "$1" - $AS_USER
+  fi
+}
  
 case $action in
 start)
   sig 0 && echo >&2 "Already running" && exit 0
-  $CMD
+  run "$CMD"
   ;;
 stop)
   sig QUIT && exit 0
@@ -46,7 +54,7 @@ force-stop)
 restart|reload)
   sig HUP && echo reloaded OK && exit 0
   echo >&2 "Couldn't reload, starting '$CMD' instead"
-  $CMD
+  run "$CMD"
   ;;
 upgrade)
   if sig USR2 && sleep 20 && sig 0 && oldsig QUIT
@@ -66,7 +74,7 @@ upgrade)
     exit 0
   fi
   echo >&2 "Couldn't upgrade, starting '$CMD' instead"
-  $CMD
+  run "$CMD"
   ;;
 kill_worker)
   workersig QUIT $2 && exit 0
