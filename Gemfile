@@ -1,5 +1,5 @@
-ruby '2.0.0'
 source 'https://rubygems.org'
+ruby '2.0.0'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.2'
@@ -21,7 +21,6 @@ gem 'stripe'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
-gem 'compass-rails', '~> 2.0.alpha.0'
 gem 'zurb-foundation', '~> 4.3.1'
 
 # Use Uglifier as compressor for JavaScript assets
