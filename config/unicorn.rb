@@ -10,7 +10,7 @@ preload_app true
  
 timeout 30
  
-listen APP_ROOT + "/tmp/sockets/unicorn.sock", :backlog => 64
+listen "/tmp/unicorn.beerance.sock", :backlog => 64
  
 pid APP_ROOT + "/tmp/pids/unicorn.pid"
  
