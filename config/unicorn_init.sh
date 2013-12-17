@@ -33,7 +33,7 @@ workersig () {
 case $action in
 start)
   sig 0 && echo >&2 "Already running" && exit 0
-  su - rails -c "$CMD"
+  su - #{AS_USER} -c "$CMD"
   ;;
 stop)
   sig QUIT && exit 0
@@ -46,7 +46,7 @@ force-stop)
 restart|reload)
   sig HUP && echo reloaded OK && exit 0
   echo >&2 "Couldn't reload, starting '$CMD' instead"
-  su - rails -c "$CMD"
+  su - #{AS_USER} -c "$CMD"
   ;;
 upgrade)
   if sig USR2 && sleep 20 && sig 0 && oldsig QUIT
@@ -66,7 +66,7 @@ upgrade)
     exit 0
   fi
   echo >&2 "Couldn't upgrade, starting '$CMD' instead"
-  su - rails -c "$CMD"
+  su - #{AS_USER} -c "$CMD"
   ;;
 kill_worker)
   workersig QUIT $2 && exit 0
