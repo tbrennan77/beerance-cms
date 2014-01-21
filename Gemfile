@@ -14,7 +14,7 @@ gem 'unicorn'
 gem 'pg'
 gem 'devise', '~> 3.1.1'
 #gem 'turbolinks'
-gem 'capistrano', '~> 2.15.5'
+gem 'capistrano', '~> 2.15'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 1.2'
