@@ -390,14 +390,12 @@ li {list-style-type: none;}
     color: #FFFFFF !important;
     text-shadow: 0 1px 1px rgba(0,0,0,0.7);    
     font-family: 'Roboto Slab', Arial, Helvetica, sans-serif;
-    border: 1px solid #904513 !important;
-    background: -moz-linear-gradient(top, $colorA 0%, $colorB);
-    background: -webkit-gradient(linear, left top, left bottom, from($colorA),to($colorB));    
+    border: 1px solid #904513 !important;    
     @include background-gradient($colorA, $colorB);      
     
     &.nice {border: 1px solid darken($colorB,10%);}
     &:hover, &:focus {
-      @include background-gradient(darken($colorA, 7%), darken($colorB, 7%);      
+      @include background-gradient(darken($colorA, 7%), darken($colorB, 7%));      
     }
   }
   &.brown {
@@ -411,7 +409,7 @@ li {list-style-type: none;}
     
     &.nice {border: 1px solid darken($colorB,10%);}
     &:hover, &:focus {
-      @include background-gradient(darken($colorA, 7%), darken($colorB, 7%);          
+      @include background-gradient(darken($colorA, 7%), darken($colorB, 7%));          
     }
   }
   &.in-brown {
@@ -425,7 +423,7 @@ li {list-style-type: none;}
     
     &.nice {border: 1px solid darken($colorB,10%);}
     &:hover, &:focus {
-      @include background-gradient(darken($colorA, 7%), darken($colorB, 7%);
+      @include background-gradient(darken($colorA, 7%), darken($colorB, 7%));
     }
   }
   &.green {
@@ -439,7 +437,7 @@ li {list-style-type: none;}
     
     &.nice {border: 1px solid darken($colorB,10%);}
     &:hover, &:focus {
-      @include background-gradient(darken($colorA, 7%), darken($colorB, 7%);
+      @include background-gradient(darken($colorA, 7%), darken($colorB, 7%));
     }
   }
 }
