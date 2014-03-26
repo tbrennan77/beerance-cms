@@ -7,18 +7,16 @@ class ApiV2Controller < ApplicationController
   end
 
   def show_specials
-    bar=Bar.find(params[:id])
-    @specials = []
-    bar.bar_specials.active.each {|s| @specials << s}
+    @specials = Bar.includes(:bar_specials).find(params[:id]).bar_specials.where("expiration_date > ?", Time.now)
     respond_with(@specials, methods: [:bar_name])
   end
 
-  def specials_near_zip
-    miles = params[:miles] || 15
-    zip = params[:zip] || 44114
-    bars = Bar.near(zip, miles)
-    @specials = []
-    bars.each { |b| b.bar_specials.each {|s| @specials << s if s.active? }}
+  def specials_near_zip    
+    miles     = params[:miles] || 15
+    zip       = params[:zip]   || 44114    
+    bar_ids   = Bar.near(zip, miles).map(&:id)
+
+    @specials = BarSpecial.where("bar_id IN (?) AND expiration_date > ?", bar_ids, Time.now)
     respond_with(@specials, methods: [:bar_name, :lat, :lng])
   end
 end
