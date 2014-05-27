@@ -21,12 +21,12 @@
 <div id="ajax_bar"><%= image_tag "ajax-loader.gif", height: 32, width: 32 %><br /><br />loading...</div>   
 
 <div class="login hide orange_grad">
-  <div class='row'>
+  <div class='row clearfix'>
     <%= form_for("user", url: user_session_path, html: {id: 'header_login'}) do |f| %>
       <div class='large-3 columns'>
         <%= f.label :email, 'Email',style: "font-family: 'Roboto Slab', serif !important;"  %>
         <%= f.email_field :email, id: 'header_user_email', class: 'required', tabIndex: 1 %>
-        <label><%= f.check_box :remember_me, tabIndex: 3 %> Remember me</label>
+        <label for='user_remember_me'><%= f.check_box :remember_me, tabIndex: 3 %> Remember me</label>
       </div>
       <div class='large-3 columns'>
         <%= f.label :password, 'Password' %>
