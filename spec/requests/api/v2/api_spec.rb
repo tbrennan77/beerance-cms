@@ -9,7 +9,6 @@ describe "Bar API v2" do
 
   it 'sends a given bar' do    
     get "/api/v2/bars/#{@bar.id}"
-    json = JSON.parse(response.body)
 
     expect(response).to be_success
     expect(json.length).to eq(39)
@@ -18,7 +17,6 @@ describe "Bar API v2" do
 
   it 'sends specials for a given bar' do    
     get "/api/v2/bars/#{@bar.id}/specials"    
-    json = JSON.parse(response.body)
     
     expect(response).to be_success
     expect(json[0].length).to eq(11)
@@ -28,7 +26,6 @@ describe "Bar API v2" do
 
   it 'sends specials within a given mile' do
     get "/api/v2/specials/near/#{5}/of/#{@bar.zip}"
-    json = JSON.parse(response.body)
     
     expect(response).to be_success
     expect(json[0].length).to eq(13)

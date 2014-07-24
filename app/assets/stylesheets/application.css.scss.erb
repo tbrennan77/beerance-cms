@@ -12,45 +12,9 @@
  *= require foundation_and_overrides
  *= require_tree .
  */
- 
-/*-- Colors --*/
-$white: #FFF;
-$light_orange: #dc7c22;
-$dark_orange: #b55a22;
 
-$highlightbackground: #f1de94;
-
-$light_maroon: #874736;
-$dark_maroon: #3d120c;
-
-/*-- Colors Text --*/
-$medium_orange: #c26816;
-$dark_oranges: #3e130d;
-$beige: #e7e2b7;
-$orange: #ec8420;
-
-/*-- Colors Buttons --*/
-$button_top: #e8a555;
-$button_bottom: #d95f10;
-
-@mixin shadow {
-  box-shadow: 0 2px 4px #666;
-}
-@mixin transition($type: "color"){
-  transition: $type 0.25s ease-in-out; -moz-transition: $type 0.25s ease-in-out; -webkit-transition: $type 0.25s ease-in-out; -o-transition: $type 0.25s ease-in-out;
-}
-
-@mixin background-gradient($from,$to) {
-  background-color: $from;
-  background-image: linear-gradient(top, $from, $to);
-  background-image: -moz-linear-gradient(top, $from, $to);
-  background-image: -webkit-linear-gradient(top, $from, $to);
-  background-image: -o-linear-gradient(top, $from, $to);
-  background-image: -ms-linear-gradient(top, $from, $to);
-  background-image: -webkit-gradient(linear, left top, left bottom, from($from), to($to));
-  filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr='$to', EndColorStr='$from');
-}
-
+@import "variables";
+@import "mixins";
 @import "foundation";
 @import "foundation/components/grid-5";
 
@@ -61,8 +25,6 @@ a {
 }
 
 .jPanelMenu-panel {background:none!important;}
-
-.top-bar-section {width: 1021px!important;margin:0 auto;}
 
 .highlightbackground{
   background-color: $highlightbackground;
@@ -101,13 +63,23 @@ a {
 
 .field_with_errors input {border: 1px dotted red;}
 
-.top-bar {  margin-bottom: 0 !important;background-image: url(<%= asset_path "beerance_topbar_background.png" %>) !important;box-shadow: 0 1px 3px #AAA;height:78px;width: 100%;
-  .top-bar-section{ 
-    ul { background:none!important;width: auto;}
-      li {color:$white;padding: 22px 10px 0 17px;font-size: 15px;
-      }
-    > ul > .divider {border-right: solid 1px #311308; border-left: solid 1px #62382e;height: 73px; padding:0;}
-    ul.right a {background:none!important;width:auto!important;float:right;color:$light_orange;line-height: 26px!important;font-size: 15px;font-weight: normal!important;&:hover{color: $dark_oranges; @include transition(all);}}
+.contain-to-grid {
+  background-image: url(<%= asset_path "beerance_topbar_background.png" %>) !important;
+  box-shadow: 0 1px 3px #AAA;
+  -moz-box-shadow: 0 1px 3px #AAA;
+  -webkit-box-shadow: 0 1px 3px #AAA;
+  height:73px;  
+  
+  .top-bar {  
+    background: transparent;
+
+    .top-bar-section{ 
+      ul { background:none!important;width: auto;}
+        li {color:$white;padding: 22px 10px 0 17px;font-size: 15px;
+        }
+      > ul > .divider {border-right: solid 1px #311308; border-left: solid 1px #62382e;height: 73px; padding:0;}
+      ul.right a {background:none!important;width:auto!important;float:right;color:$light_orange;line-height: 26px!important;font-size: 15px;font-weight: normal!important;&:hover{color: $dark_oranges; @include transition(all);}}
+    }
   }
 }
 .login {
@@ -120,8 +92,7 @@ a {
 
 .contact {background:$white; color:$white; width:100%; padding: 28px 0 10px 0!important;
   label {color:$white;}
-  input {background-color: #fff!important;outline: none;}
-  input[type="password"],input[type="email"] {padding: 19px 10px!important;}
+  input {background-color: #fff!important;outline: none;}  
   .error label, label.error {;border: 1px solid red;padding: 4px; font-weight: normal;background: #e7e2b7;}
   a {
     color: black;
