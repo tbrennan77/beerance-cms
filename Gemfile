@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 #ruby '2.0.0'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
+gem 'dotenv-rails'
 gem 'rails', '4.1.4'
 gem 'geocoder'
 gem 'gibbon', :git => 'https://github.com/amro/gibbon.git'
@@ -11,9 +12,8 @@ gem 'geokit', '~> 1.6.7'
 gem 'geokit-rails', '~> 2.0.0'
 gem 'unicorn'
 gem 'pg'
+gem 'passenger'
 gem 'devise', '~> 3.1.1'
-#gem 'turbolinks'
-gem 'capistrano', '~> 2.15'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 1.2'

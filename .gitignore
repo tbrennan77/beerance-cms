@@ -14,13 +14,8 @@
 /log/*.log
 /tmp
 
-#config/parse_resource.yml
-#config/initializers/stripe.rb
-
 .DS_Store
 */.DS_Store
 */*/.DS_Store
 */*/*/.DS_Store
-config/stripe.yml
 vendor/bundle
-config/database.yml
