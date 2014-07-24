@@ -3,10 +3,10 @@ require 'mina/rails'
 require 'mina/git'
 # require 'mina/rbenv'  # for rbenv support. (http://rbenv.org)
 # require 'mina/rvm'    # for rvm support. (http://rvm.io)
-set :repository, 'ssh://git@bitbucket.org/boondockwalker/beerance.git'
+set :repository, 'ssh://git@bitbucket.org/boondockwalker/beerance-cms.git'
 
 ENV['to'] = 'production'
-set :domain, 'www.beerance.com'      
+set :domain, '162.243.14.28'      
 set :deploy_to, '/var/www/beerance-production'
 set :branch, 'master'
 set :rails_env, 'production'  
